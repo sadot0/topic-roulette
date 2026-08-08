@@ -1,52 +1,52 @@
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0B0D14">
+<meta name="theme-color" content="#0C0D0E">
 <title>Рулетка тем</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:CRSV,SHRP,wght@0,100,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
-   РУЛЕТКА ТЕМ · «Night Study»
-   Выпала тема → 15 минут ресёрча → минута на камеру.
+   РУЛЕТКА ТЕМ · «КАЛИБР»
+   Экран — не страница, а передняя панель измерительного
+   прибора. Рельса управления слева, окно результата в центре,
+   шкала барабана справа, обрезанная краем экрана.
 
-   Палитра построена на КОМПЛЕМЕНТАРНОЙ паре: сине-фиолетовая
-   чернильная база и тёплое золото с противоположной стороны
-   круга. Аналогичные сочетания (зелёный фон + терракота)
-   дают вязкий, приглушённый акцент; комплементарные — свечение
+   Тема не «выпадает красиво» — она вычитывается индексной
+   риской, как частота на шкале приёмника. Дорого через
+   точность, а не через золото.
    ═══════════════════════════════════════════════════════════ */
 
 :root{
-  --bg:      #0B0D14;
-  --bg-deep: #080910;
+  --bg:      #0C0D0E;
+  --bg-rail: #0A0B0C;
+  --bg-tape: #0A0B0C;
 
-  /* Пергамент, а не белый: чистый #fff рядом с тёплым золотом
-     выглядит хирургически холодным */
-  --ink:   #EFE9DF;
-  --ink-2: rgba(239,233,223,.66);
-  --ink-3: rgba(239,233,223,.40);
-  --ink-4: rgba(239,233,223,.21);
-  --ink-5: rgba(239,233,223,.11);
+  --ink:   #EDEDEC;
+  --ink-2: rgba(237,237,236,.62);
+  --ink-3: rgba(237,237,236,.36);
+  --ink-4: rgba(237,237,236,.19);
+  --ink-5: rgba(237,237,236,.10);
 
-  --gold:      #E3A857;
-  --gold-soft: #F2C88C;
+  /* Один сигнальный цвет. Не «люкс», а индикатор прибора */
+  --sig: #E8402A;
 
-  /* Поверхности лесенкой — так панели не разъезжаются */
-  --surf-1: rgba(239,233,223,.035);
-  --surf-2: rgba(239,233,223,.06);
-  --surf-3: rgba(239,233,223,.10);
+  --line-1: rgba(237,237,236,.10);
+  --line-2: rgba(237,237,236,.18);
 
-  --line:     rgba(239,233,223,.09);
-  --line-mid: rgba(239,233,223,.16);
+  /* SHRP 100 — ось резкости Geologica: срезает углы сочленений,
+     буква получает фрезерованную приборную пластику. Ни один
+     шаблон этой осью не пользуется, потому что о ней не знают */
+  --font-d: 'Geologica', 'Helvetica Neue', Arial, sans-serif;
+  --font-m: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
-  --font-ui:      'Manrope', -apple-system, 'Segoe UI', sans-serif;
+  --rail: 72px;
+  --tape: 312px;
+  --row-h: 56px;
 
-  --row-h: 68px;
-  --ease-out: cubic-bezier(.22,.61,.36,1);
-  --ease-io:  cubic-bezier(.65,.05,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
 }
 
 *, *::before, *::after{ box-sizing:border-box; }
@@ -56,611 +56,564 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--ink);
-  font-family:var(--font-ui);
+  font-family:var(--font-m);
   font-synthesis:none;
-  text-rendering:optimizeLegibility;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   overflow:hidden;
 }
 
-::selection{ background:var(--gold); color:#0B0D14; }
+::selection{ background:var(--sig); color:#fff; }
 button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
-a{ color:inherit; }
+a{ color:inherit; text-decoration:none; }
 
-/* ── Атмосфера ─────────────────────────────────────────────
-   Один фиксированный слой, четыре градиента, нулевая цена.
-   Золотая лампа сверху-слева, фиолетовая справа, холодная
-   бирюза снизу — три источника света дают глубину, которой
-   плоская заливка дать не может */
-.atmosphere{
-  position:fixed; inset:0; z-index:-1; pointer-events:none;
-  background:
-    radial-gradient(88% 64% at 14% 4%,   rgba(227,168,87,.13),  transparent 56%),
-    radial-gradient(74% 58% at 88% 16%,  rgba(104,88,178,.155), transparent 54%),
-    radial-gradient(86% 50% at 50% 103%, rgba(38,88,116,.20),   transparent 62%),
-    linear-gradient(166deg, #12141F 0%, #0B0D14 46%, #080910 100%);
-}
-/* Зерно в soft-light: normal-blend равномерно серит тёмное,
-   и его приходится глушить до невидимости. soft-light даёт
-   фактуру, не поднимая чёрное */
-.atmosphere::after{
-  content:''; position:absolute; inset:0;
-  opacity:.42; mix-blend-mode:soft-light;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+/* Зерно — фактура металла, не «шум ради шума» */
+body::after{
+  content:''; position:fixed; inset:0; z-index:90;
+  pointer-events:none; opacity:.30; mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
 }
 
-.shell{
-  height:100dvh;
-  display:flex; flex-direction:column; align-items:center;
-  max-width:920px; margin:0 auto;
-  padding:0 clamp(20px,4vw,40px);
-  text-align:center;
-}
-
-/* ── Шапка ─────────────────────────────────────────────── */
-
-.top{
-  flex:0 0 auto;
-  padding:clamp(20px,3.4vh,34px) 0 0;
-  display:flex; flex-direction:column; align-items:center;
-  gap:11px;
-  animation:rise .9s var(--ease-out) both;
-}
-
-.brand{
-  font-family:var(--font-display); font-weight:600;
-  font-size:clamp(24px,3.4vw,31px); letter-spacing:.005em;
-  color:var(--ink); line-height:1;
-}
-
-.author{
-  display:inline-flex; align-items:center; gap:7px;
-  text-decoration:none;
-  font-size:12px; font-weight:500;
-  color:var(--ink-3);
-  padding:5px 12px 5px 10px;
-  border-radius:999px;
-  background:var(--surf-1);
-  box-shadow:inset 0 0 0 1px var(--line);
-  transition:color .22s, background-color .22s, box-shadow .22s;
-}
-.author svg{ width:13px; height:13px; flex:0 0 auto; }
-.author:hover{
-  color:var(--gold-soft); background:var(--surf-2);
-  box-shadow:inset 0 0 0 1px rgba(227,168,87,.3);
-}
-.author:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-.author .by{ color:var(--ink-4); }
-
-.controls{ display:flex; align-items:center; gap:9px; margin-top:3px; }
-
-/* Переключатель режимов. Бегунок едет под активным сегментом —
-   это дешевле и плавнее, чем анимировать фон каждой кнопки */
-.modes{
-  position:relative; display:flex; padding:3px;
-  border-radius:999px;
-  background:var(--surf-1);
-  box-shadow:inset 0 0 0 1px var(--line);
-  margin-top:2px;
-}
-.modes .thumb{
-  position:absolute; top:3px; bottom:3px; left:3px;
-  width:calc(50% - 3px);
-  border-radius:999px;
-  background:var(--surf-3);
-  box-shadow:inset 0 0 0 1px var(--line-mid);
-  transform:translateX(calc(var(--i,0) * 100%));
-  transition:transform .34s var(--ease-out);
-}
-.mode{
-  position:relative; z-index:1;
-  flex:1 1 0; min-width:0;
-  padding:8px 20px; border-radius:999px;
-  font-size:12.5px; font-weight:600; white-space:nowrap;
-  color:var(--ink-4);
-  transition:color .26s;
-}
-.mode[aria-pressed="true"]{ color:var(--ink); }
-.mode:hover{ color:var(--ink-2); }
-.mode:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-
-.mode-note{
-  font-size:12px; color:var(--ink-4);
-  margin-top:2px; min-height:1.2em;
-}
-
-.langs{
-  display:flex; padding:3px;
-  border-radius:999px;
-  background:var(--surf-1);
-  box-shadow:inset 0 0 0 1px var(--line);
-}
-.lang{
-  font-size:11.5px; font-weight:600; letter-spacing:.09em;
-  padding:6px 13px; border-radius:999px;
-  color:var(--ink-3);
-  transition:color .22s, background-color .22s;
-}
-.lang:hover{ color:var(--ink-2); }
-.lang[aria-pressed="true"]{ color:#0B0D14; background:var(--gold); }
-.lang:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-
-.icon-btn{
-  width:32px; height:32px;
-  display:grid; place-items:center;
-  border-radius:999px;
-  background:var(--surf-1);
-  box-shadow:inset 0 0 0 1px var(--line);
-  color:var(--ink-3);
-  transition:color .22s, background-color .22s;
-}
-.icon-btn:hover{ color:var(--ink); background:var(--surf-2); }
-.icon-btn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
-.icon-btn svg{ width:15px; height:15px; }
-.icon-btn .off-slash{ opacity:0; transition:opacity .2s; }
-.icon-btn[aria-pressed="false"]{ color:var(--ink-4); }
-.icon-btn[aria-pressed="false"] .off-slash{ opacity:1; }
-.icon-btn[aria-pressed="false"] .wave{ opacity:.22; }
-
-/* ── Барабан ───────────────────────────────────────────── */
-
-.drum{
+.app{
   position:relative;
-  flex:0 0 auto;
-  width:100%;
-  margin:clamp(16px,3vh,30px) 0 clamp(12px,2vh,20px);
-  animation:rise 1s var(--ease-out) .1s both;
-  transition:opacity .8s var(--ease-out);
-}
-/* После остановки лента уходит на второй план — крупное имя
-   внизу не должно с ней конкурировать */
-body.is-settled .drum{ opacity:.5; }
-
-.drum-window{
-  position:relative;
-  height:calc(var(--row-h) * 3);
-  overflow:hidden;
-  /* Строки приходят «из ниоткуда»: без растворения края ленты
-     обрубаются и иллюзия бесконечности ломается */
-  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 30%, #000 70%, transparent 100%);
-          mask-image:linear-gradient(180deg, transparent 0, #000 30%, #000 70%, transparent 100%);
+  height:100dvh; width:100vw;
+  display:grid;
+  grid-template-columns: var(--rail) minmax(0,1fr) var(--tape);
 }
 
-.strip{ position:absolute; left:0; right:0; top:0; will-change:transform; }
+/* Хайрлайны идут В КРАЙ, от 0 до 100% высоты. Линия, не
+   доходящая до кромки, читается как рамка; линия в край —
+   как конструкция */
+.app::before, .app::after{
+  content:''; position:absolute; top:0; bottom:0; width:1px;
+  background:var(--line-1); z-index:6; pointer-events:none;
+}
+.app::before{ left:var(--rail); }
+.app::after{ right:var(--tape); }
 
-/* Строки — чистая типографика, никаких карточек */
-.row{
-  height:var(--row-h);
+/* ── РЕЛЬСА ──────────────────────────────────────────────── */
+
+.rail{
+  background:var(--bg-rail);
+  display:flex; flex-direction:column;
+  position:relative; z-index:5;
+}
+.rail-cell{
+  border-bottom:1px solid var(--line-1);
   display:flex; align-items:center; justify-content:center;
-  padding:0 22px;
-  font-family:var(--font-display); font-weight:600;
-  font-size:clamp(20px,2.5vw,27px); line-height:1.12;
-  color:var(--ink-5);
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  transition:color .2s linear;
-}
-/* Строка загорается ровно в момент прохода через прицел —
-   синхронно со щелчком. Это и есть визуальный хук */
-.row.live{ color:var(--ink-2); }
-.row.hit{ color:var(--ink); }
-
-/* Прицел: мягкая капсула со свечением, а не жёсткие засечки */
-.sight{
-  position:absolute; left:0; right:0;
-  top:50%; height:var(--row-h);
-  transform:translateY(-50%);
-  pointer-events:none; z-index:4;
-  border-radius:999px;
-  background:linear-gradient(90deg, transparent, rgba(227,168,87,.05) 22%, rgba(227,168,87,.05) 78%, transparent);
-  box-shadow:inset 0 0 0 1px rgba(227,168,87,.15);
-  transition:box-shadow .4s var(--ease-out);
-}
-body.is-spinning .sight{
-  box-shadow:inset 0 0 0 1px rgba(227,168,87,.34), 0 0 30px rgba(227,168,87,.10);
-}
-/* Момент остановки не только слышен, но и виден */
-body.is-settled .sight{ animation:land .5s var(--ease-out); }
-@keyframes land{
-  0%   { transform:translateY(-50%) scaleY(1) }
-  38%  { transform:translateY(-50%) scaleY(1.055) }
-  100% { transform:translateY(-50%) scaleY(1) }
+  flex:0 0 auto;
 }
 
-/* ── Результат ─────────────────────────────────────────── */
+/* Знак: три планки убывающей длины — единственная графика */
+.mark{ height:64px; gap:3px; flex-direction:column; }
+.mark i{ display:block; height:3px; background:var(--ink-2); }
+.mark i:nth-child(1){ width:24px; }
+.mark i:nth-child(2){ width:16px; background:var(--ink-3); }
+.mark i:nth-child(3){ width:8px;  background:var(--sig); }
 
-.stage{
+.rail-lang{ flex-direction:column; padding:0; }
+.rail-lang button{
+  width:100%; padding:11px 0;
+  font-size:10px; font-weight:500; letter-spacing:.14em;
+  color:var(--ink-4); position:relative;
+  transition:color .2s;
+}
+.rail-lang button + button{ border-top:1px solid var(--line-1); }
+.rail-lang button:hover{ color:var(--ink-2); }
+.rail-lang button[aria-pressed="true"]{ color:var(--ink); }
+/* Активный язык помечен риской у кромки, а не заливкой */
+.rail-lang button[aria-pressed="true"]::before{
+  content:''; position:absolute; left:0; top:50%;
+  width:3px; height:14px; margin-top:-7px; background:var(--sig);
+}
+.rail-lang button:focus-visible{ outline:1px solid var(--sig); outline-offset:-2px; }
+
+.rail-btn{
+  height:56px; width:100%;
+  display:grid; place-items:center;
+  color:var(--ink-4); transition:color .2s;
+}
+.rail-btn:hover{ color:var(--ink-2); }
+.rail-btn svg{ width:15px; height:15px; }
+.rail-btn:focus-visible{ outline:1px solid var(--sig); outline-offset:-2px; }
+.rail-btn[aria-pressed="false"] .wave{ opacity:.2; }
+.rail-btn[aria-pressed="false"] .slash{ opacity:1; }
+.rail-btn .slash{ opacity:0; transition:opacity .2s; }
+
+.rail-spacer{ flex:1 1 auto; border-bottom:1px solid var(--line-1); }
+
+/* Подпись автора — вертикально по рельсе, у нижней кромки */
+.rail-author{ padding:16px 0 20px; display:flex; justify-content:center; }
+.rail-author a{
+  writing-mode:vertical-rl; transform:rotate(180deg);
+  font-size:9.5px; font-weight:500; letter-spacing:.16em;
+  color:var(--ink-4); white-space:nowrap;
+  transition:color .2s;
+}
+.rail-author a:hover{ color:var(--sig); }
+.rail-author a:focus-visible{ outline:1px solid var(--sig); outline-offset:2px; }
+
+/* ── ГЛАВНОЕ ПОЛЕ ────────────────────────────────────────── */
+
+.field{
+  position:relative;
+  display:flex; flex-direction:column;
+  padding:0 clamp(28px,4vw,56px) 0 clamp(32px,4.5vw,56px);
+  min-width:0;
+}
+/* Структурные хайрлайны поля — от кромки до кромки */
+.field .h{
+  position:absolute; left:0; right:0; height:1px;
+  background:var(--line-1); pointer-events:none;
+}
+.field .h.top{ top:88px; }
+.field .h.bot{ bottom:96px; }
+
+.status{
+  height:88px; flex:0 0 auto;
+  display:flex; align-items:center; gap:16px;
+  font-size:10px; font-weight:500; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-4);
+  min-width:0;
+}
+.status .st{ color:var(--ink-2); white-space:nowrap; }
+.status .sep{ color:var(--ink-5); }
+.status .right{
+  margin-left:auto; display:flex; align-items:center; gap:14px;
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.status .right b{ color:var(--ink-2); font-weight:500; }
+
+/* Режимы: две ячейки, активная помечена риской слева */
+.modes{ display:flex; }
+.modes button{
+  padding:6px 13px;
+  font-size:10px; font-weight:500; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-4);
+  position:relative; white-space:nowrap;
+  transition:color .2s;
+}
+.modes button + button{ border-left:1px solid var(--line-1); }
+.modes button:hover{ color:var(--ink-2); }
+.modes button[aria-pressed="true"]{ color:var(--ink); }
+.modes button[aria-pressed="true"]::before{
+  content:''; position:absolute; left:0; top:50%;
+  width:2px; height:11px; margin-top:-5.5px; background:var(--sig);
+}
+.modes button:focus-visible{ outline:1px solid var(--sig); outline-offset:-2px; }
+
+/* Окно результата: имя темы прижато к нижней границе бокса */
+.window{
   flex:1 1 auto;
-  display:flex; flex-direction:column; align-items:center;
-  justify-content:center;
-  min-height:0; width:100%;
-  padding:clamp(4px,1.4vh,14px) 0;
+  display:flex; flex-direction:column; justify-content:center;
+  padding-bottom:clamp(10px,2vh,24px);
+  min-height:0;
 }
 
 .eyebrow{
-  /* Центрируем явно: flex по умолчанию жмёт содержимое к левому
-     краю блока, а блок здесь шириной с заголовок */
-  display:flex; align-items:center; justify-content:center; gap:9px;
-  font-size:10.5px; font-weight:700; letter-spacing:.22em;
-  text-transform:uppercase; color:var(--gold);
-  margin-bottom:clamp(10px,1.8vh,18px);
+  display:flex; align-items:center; gap:11px;
+  font-size:10px; font-weight:500; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--ink-3);
+  margin-bottom:18px;
+  font-variant-numeric:tabular-nums;
 }
-.eyebrow .num{ color:var(--ink-4); font-weight:600; letter-spacing:.14em; }
-.eyebrow .dot{ color:var(--ink-5); }
+.eyebrow .idx{ color:var(--sig); }
+.eyebrow .sep{ color:var(--ink-5); }
 
-.r-title{
-  font-family:var(--font-display); font-weight:600;
-  font-size:clamp(42px,7.4vw,92px);
-  line-height:1.02; letter-spacing:-.012em;
+/* Кегль ставит автофит из JS: три ступени по длине давали
+   «Молоху» и «Алгоритмической дискриминации оплаты» случайные
+   оптические веса */
+.title{
+  font-family:var(--font-d);
+  font-variation-settings:'SHRP' 100, 'wght' 600;
+  font-size:88px; line-height:.95;
+  letter-spacing:-.03em;
   margin:0; color:var(--ink);
-  text-wrap:balance;
-  max-width:15ch;
+  max-width:100%;
+  overflow-wrap:break-word;
 }
-/* Кегль ступенями: «Молох» и «Алгоритмическая дискриминация
-   оплаты» не могут жить в одном размере */
-.r-title.len-m{ font-size:clamp(36px,5.8vw,72px); max-width:18ch; }
-.r-title.len-l{ font-size:clamp(31px,4.5vw,56px); max-width:21ch; line-height:1.06; }
 
-#reveal > *{ opacity:0; transform:translateY(12px); }
-.result.show #reveal > *{ animation:rise .75s var(--ease-out) forwards; }
+.idle-txt{
+  font-size:11px; font-weight:400; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-4);
+  line-height:2.2;
+}
+.idle-txt b{ display:block; color:var(--ink-2); font-weight:500; }
+
+#reveal > *{ opacity:0; transform:translateY(10px); }
+.result.show #reveal > *{ animation:rise .62s var(--ease-out) forwards; }
 .result.show #reveal > *:nth-child(1){ animation-delay:.02s; }
-.result.show #reveal > *:nth-child(2){ animation-delay:.12s; }
+.result.show #reveal > *:nth-child(2){ animation-delay:.09s; }
 @keyframes rise{ to{ opacity:1; transform:none; } }
 
-.idle{ font-size:13px; color:var(--ink-3); line-height:2.1; }
-.idle b{
-  display:block; font-family:var(--font-display); font-weight:600;
-  font-size:clamp(26px,3.6vw,36px); color:var(--ink-2);
-  margin-bottom:6px;
+.foot{
+  height:96px; flex:0 0 auto;
+  display:flex; align-items:center; gap:9px;
 }
-
-/* ── Низ ───────────────────────────────────────────────── */
-
-.bottom{
-  flex:0 0 auto; width:100%;
-  padding:0 0 clamp(18px,3vh,30px);
-  display:flex; flex-direction:column; align-items:center; gap:13px;
-}
-.bottom-row{ display:flex; align-items:center; gap:9px; flex-wrap:wrap; justify-content:center; }
 
 .btn{
-  border-radius:999px;
-  padding:14px 30px;
-  font-size:13.5px; font-weight:600;
-  color:var(--ink);
-  background:var(--surf-1);
-  box-shadow:inset 0 0 0 1px var(--line-mid);
-  transition:transform .2s, background-color .22s, box-shadow .22s, color .22s;
+  height:42px; padding:0 22px;
+  border-radius:2px;
+  font-family:var(--font-m); font-size:10.5px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-2);
+  box-shadow:inset 0 0 0 1px var(--line-2);
+  transition:color .18s, box-shadow .18s, background-color .18s;
+  white-space:nowrap;
 }
-.btn:hover:not(:disabled){ transform:translateY(-1px); background:var(--surf-2); }
-.btn:active:not(:disabled){ transform:translateY(1px); }
-.btn:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
-.btn:disabled{ color:var(--ink-4); box-shadow:inset 0 0 0 1px var(--line); cursor:default; }
+.btn:hover:not(:disabled){ color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink-3); }
+.btn:focus-visible{ outline:1px solid var(--sig); outline-offset:2px; }
+.btn:disabled{ color:var(--ink-5); box-shadow:inset 0 0 0 1px var(--line-1); cursor:default; }
 
-/* Единственная сплошная заливка на экране — она же единственное
-   действие, с которого всё начинается */
-.btn.primary{
-  color:#0B0D14; background:var(--gold);
-  box-shadow:0 0 0 1px var(--gold), 0 6px 24px rgba(227,168,87,.18);
-  padding:14px 42px;
+/* Единственная заливка на экране — единственное действие,
+   с которого всё начинается */
+.btn.go{
+  color:#fff; background:var(--sig);
+  box-shadow:none; padding:0 32px; font-weight:700;
 }
-.btn.primary:hover:not(:disabled){
-  background:var(--gold-soft);
-  box-shadow:0 0 0 1px var(--gold-soft), 0 8px 30px rgba(227,168,87,.26);
-}
-.btn.round{ padding:0; width:44px; height:44px; display:grid; place-items:center; }
-.btn.round svg{ width:16px; height:16px; }
+.btn.go:hover:not(:disabled){ background:#F04A34; color:#fff; box-shadow:none; }
+.btn.go:active{ transform:translateY(1px); }
 
-.foot-meta{
-  display:flex; align-items:center; gap:14px;
-  font-size:11.5px; color:var(--ink-4);
-}
-.foot-meta kbd{
-  font:inherit; border-radius:6px; padding:3px 8px;
-  background:var(--surf-1); box-shadow:inset 0 0 0 1px var(--line);
-  color:var(--ink-3);
-}
-.foot-meta b{ color:var(--ink-2); font-weight:600; }
-.foot-meta .sep{ color:var(--ink-5); }
-.foot-meta button{
-  font:inherit; color:var(--ink-4); transition:color .2s;
-  border-radius:6px; padding:2px 4px;
-}
-.foot-meta button:hover{ color:var(--ink-2); }
-.foot-meta button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+.btn.sq{ width:42px; padding:0; display:grid; place-items:center; }
+.btn.sq svg{ width:15px; height:15px; }
 
-/* ── Оверлеи ───────────────────────────────────────────── */
+.foot .hint{
+  margin-left:auto;
+  font-size:9.5px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-5);
+}
+.foot .hint kbd{
+  font:inherit; padding:3px 7px; border-radius:2px;
+  box-shadow:inset 0 0 0 1px var(--line-1); color:var(--ink-4);
+}
+
+/* ── ЛЕНТА (барабан) ─────────────────────────────────────
+   Вертикальная шкала, обрезанная правой, верхней и нижней
+   кромками. Не «блок на странице», а деталь прибора,
+   уходящая за корпус */
+.tape{
+  position:relative;
+  background:var(--bg-tape);
+  overflow:hidden; z-index:4;
+}
+.tape-win{ position:absolute; inset:0; overflow:hidden; }
+.strip{ position:absolute; left:0; right:0; top:0; will-change:transform; }
+
+.row{
+  height:var(--row-h);
+  display:flex; align-items:center;
+  padding:0 14px 0 22px;
+  font-family:var(--font-d);
+  font-variation-settings:'SHRP' 100, 'wght' 450;
+  font-size:17px; line-height:1.15;
+  letter-spacing:-.008em;
+  /* Барабан обязан читаться: контраст 1.27:1 в прошлой версии
+     означал, что 200px экрана заняты невидимым ничем */
+  color:var(--ink-4);
+  white-space:nowrap; overflow:hidden;
+  transition:color .16s linear;
+  /* Длинные имена выбегают за кромку — честнее многоточия:
+     лента продолжается за корпусом */
+  -webkit-mask-image:linear-gradient(90deg,#000 76%,transparent 100%);
+          mask-image:linear-gradient(90deg,#000 76%,transparent 100%);
+}
+.row.live{ color:var(--ink-2); }
+.row.hit{ color:var(--ink); }
+
+/* Деления шкалы у левой кромки ленты */
+.ticks{
+  position:absolute; left:0; top:0; bottom:0; width:9px;
+  z-index:2; pointer-events:none;
+  background-image:repeating-linear-gradient(180deg,
+    var(--line-2) 0 1px, transparent 1px var(--row-h));
+}
+
+/* Индексная риска — то, чем «вычитывается» тема */
+.index{
+  position:absolute; left:0; right:0;
+  top:50%; height:var(--row-h);
+  transform:translateY(-50%);
+  pointer-events:none; z-index:3;
+  box-shadow:inset 0 1px 0 var(--line-2), inset 0 -1px 0 var(--line-2);
+  background:rgba(237,237,236,.022);
+}
+.index::before{
+  content:''; position:absolute; left:0; top:50%;
+  width:9px; height:2px; margin-top:-1px;
+  background:var(--sig);
+  transition:width .3s var(--ease-out);
+}
+body.is-spinning .index::before{ width:16px; }
+body.is-settled .index::before{ width:22px; }
+
+/* ── ОВЕРЛЕИ ─────────────────────────────────────────────── */
 
 .overlay{
   position:fixed; inset:0; z-index:50;
   display:none; place-items:center;
-  padding:32px;
-  background:rgba(8,9,16,.9);
-  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  background:rgba(8,9,10,.93);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
 }
-.overlay.open{ display:grid; animation:fade .36s var(--ease-out) both; }
+.overlay.open{ display:grid; animation:fade .3s var(--ease-out) both; }
 @keyframes fade{ from{ opacity:0 } to{ opacity:1 } }
 
-.overlay-inner{
+.ov-in{
   display:flex; flex-direction:column; align-items:center;
-  text-align:center; max-width:640px; width:100%;
-  animation:rise .6s var(--ease-out) .06s both;
+  text-align:center;
+  animation:rise .5s var(--ease-out) .05s both;
 }
 
 .t-topic{
-  font-family:var(--font-display); font-weight:600;
-  font-size:clamp(21px,3vw,29px); line-height:1.16;
-  color:var(--ink-2);
-  margin-bottom:clamp(20px,3.6vh,36px);
-  max-width:20ch;
+  font-size:10.5px; font-weight:500; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3);
+  margin-bottom:clamp(22px,4vh,42px);
+  max-width:42ch; line-height:1.9;
 }
 
-/* Кольцо УБЫВАЕТ: показывает остаток, а не расход. Растущая
-   дуга боковым зрением читается как «времени ещё много»
-   ровно тогда, когда его уже нет */
+/* Кольцо убывает и непрерывно меняет цвет — от спокойного
+   к тревожному. Растущая дуга боковым зрением читается как
+   «времени много» ровно тогда, когда его нет */
 .ring{
   position:relative;
-  width:clamp(186px,26vh,250px); aspect-ratio:1;
+  width:clamp(180px,25vh,236px); aspect-ratio:1;
   border-radius:50%;
   display:grid; place-items:center;
-  background:conic-gradient(var(--ring-col, var(--gold)) calc(var(--p,1) * 360deg), rgba(239,233,223,.07) 0);
+  background:conic-gradient(var(--ring-col,var(--sig)) calc(var(--p,1) * 360deg), rgba(237,237,236,.06) 0);
   transition:background .1s linear;
 }
 .ring::before{
-  content:''; position:absolute; inset:10px;
-  border-radius:50%; background:#0A0C13;
-  box-shadow:inset 0 0 0 1px var(--line);
+  content:''; position:absolute; inset:9px;
+  border-radius:50%; background:var(--bg);
+  box-shadow:inset 0 0 0 1px var(--line-1);
 }
-.ring-body{ position:relative; z-index:1; }
+.ring-b{ position:relative; z-index:1; }
 
-/* Цифры — намеренно НЕ сериф. У Cormorant старостильные цифры:
-   «1» мелкая, «4» и «3» уходят под базовую линию. Для таймера,
-   на который смотрят мельком, это нечитаемо. Плюс возникает
-   осмысленный контраст: сериф для идей, гротеск для данных */
 .t-digits{
-  font-family:var(--font-ui); font-weight:600;
-  font-size:clamp(40px,6.4vh,56px);
-  letter-spacing:-.02em;
+  font-weight:700;
+  font-size:clamp(38px,6vh,52px); letter-spacing:-.03em;
   color:var(--ink); line-height:1;
-  font-variant-numeric:tabular-nums lining-nums;
+  font-variant-numeric:tabular-nums;
 }
 .t-phase{
-  margin-top:7px;
-  font-size:10px; font-weight:700; letter-spacing:.24em;
+  margin-top:8px;
+  font-size:9.5px; font-weight:500; letter-spacing:.22em;
   text-transform:uppercase; color:var(--ink-4);
 }
+.overlay.done .t-digits{ color:var(--sig); }
+.overlay.done .ring{ animation:pop .8s var(--ease-out); }
+@keyframes pop{ 0%,100%{ transform:scale(1) } 42%{ transform:scale(1.045) } }
 
-.overlay.done .t-digits{ color:var(--gold); }
-.overlay.done .ring{ animation:pop .85s var(--ease-out); }
-@keyframes pop{ 0%,100%{ transform:scale(1) } 42%{ transform:scale(1.05) } }
-
-/* Три опоры минутного монолога — каркас связной речи,
-   а не украшение */
-.stages{
-  display:flex; gap:8px; flex-wrap:wrap; justify-content:center;
-  margin-top:clamp(20px,3.6vh,32px);
+/* Три опоры минутного монолога — каркас речи, не украшение */
+.stages{ display:flex; margin-top:clamp(20px,3.4vh,32px); }
+.stages span{
+  padding:9px 18px;
+  font-size:10px; font-weight:500; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-5);
+  box-shadow:inset 0 0 0 1px var(--line-1);
+  transition:color .3s, box-shadow .3s, background-color .3s;
 }
-.stage-pill{
-  font-size:11.5px; font-weight:600;
-  padding:8px 17px; border-radius:999px;
-  color:var(--ink-4);
-  background:var(--surf-1);
-  box-shadow:inset 0 0 0 1px var(--line);
-  transition:color .35s, background-color .35s, box-shadow .35s;
-}
-.stage-pill.on{
-  color:#0B0D14; background:var(--gold);
-  box-shadow:0 0 0 1px var(--gold), 0 4px 18px rgba(227,168,87,.2);
-}
-.stage-pill.past{ color:var(--ink-3); box-shadow:inset 0 0 0 1px var(--line-mid); }
+.stages span + span{ margin-left:-1px; }
+.stages span.on{ color:#fff; background:var(--sig); box-shadow:none; }
+.stages span.past{ color:var(--ink-3); box-shadow:inset 0 0 0 1px var(--line-2); }
 
 .t-status{
   margin-top:clamp(16px,2.6vh,26px);
-  font-size:11px; font-weight:700; letter-spacing:.22em;
+  font-size:10px; font-weight:500; letter-spacing:.2em;
   text-transform:uppercase; color:var(--ink-2);
 }
-
 .t-actions{
-  display:flex; gap:9px; align-items:center; flex-wrap:wrap;
-  justify-content:center;
-  margin-top:clamp(18px,3vh,30px);
+  display:flex; gap:8px; margin-top:clamp(18px,3vh,30px);
+  flex-wrap:wrap; justify-content:center;
 }
-.t-actions .btn{ padding:12px 24px; font-size:12.5px; }
-.t-actions .btn.primary{ padding:12px 28px; }
 
-/* Отсчёт перед речью: минутный дубль нельзя начинать в момент,
-   когда рука ещё на мыши, а лёгкие пустые */
 .countdown{
   position:fixed; inset:0; z-index:60;
-  display:none; place-items:center;
-  background:rgba(8,9,16,.97);
+  display:none; place-items:center; background:rgba(8,9,10,.97);
 }
 .countdown.open{ display:grid; }
 .countdown b{
-  font-family:var(--font-ui); font-weight:600;
-  font-size:clamp(130px,24vh,220px); line-height:1;
-  letter-spacing:-.04em;
-  color:var(--gold);
-  font-variant-numeric:lining-nums;
-  animation:cd .95s var(--ease-out);
+  font-family:var(--font-d);
+  font-variation-settings:'SHRP' 100,'wght' 600;
+  font-size:clamp(120px,22vh,200px); line-height:1;
+  letter-spacing:-.05em; color:var(--sig);
+  animation:cd .92s var(--ease-out);
 }
 @keyframes cd{
-  0%   { opacity:0; transform:scale(1.3) }
-  20%  { opacity:1; transform:scale(1) }
-  100% { opacity:.1; transform:scale(.95) }
+  0%{ opacity:0; transform:scale(1.25) }
+  18%{ opacity:1; transform:scale(1) }
+  100%{ opacity:.08; transform:scale(.96) }
 }
 
-/* ── Настройки ─────────────────────────────────────────── */
+/* ── НАСТРОЙКИ ───────────────────────────────────────────── */
 
 .panel{
-  width:100%; max-width:420px;
-  border-radius:20px;
-  background:#0E1018;
-  box-shadow:inset 0 0 0 1px var(--line-mid), 0 30px 70px rgba(0,0,0,.5);
-  padding:clamp(24px,3.6vh,32px);
-  text-align:left;
+  width:min(420px,90vw);
+  background:#0E0F10;
+  box-shadow:inset 0 0 0 1px var(--line-2);
+  padding:30px; text-align:left;
 }
 .panel:focus{ outline:none; }
 .panel h2{
-  margin:0 0 6px;
-  font-family:var(--font-display); font-weight:600;
-  font-size:26px; color:var(--ink);
+  margin:0 0 4px;
+  font-size:11px; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--ink);
 }
-.panel-note{ font-size:12.5px; color:var(--ink-4); margin:0 0 24px; }
-.field{ margin-bottom:22px; }
-.field-top{
+.panel .note{
+  font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-5); margin:0 0 26px;
+}
+.field-row{ margin-bottom:24px; }
+.field-row .lab{
   display:flex; align-items:baseline; justify-content:space-between;
-  margin-bottom:11px;
+  margin-bottom:12px;
+  font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
 }
-.field-top .lbl{ font-size:12.5px; font-weight:600; color:var(--ink-2); }
-.field-top .val{ font-size:13px; font-weight:700; color:var(--gold); }
-
+.field-row .lab span{ color:var(--ink-3); }
+.field-row .lab b{
+  color:var(--sig); font-weight:700; font-size:12px;
+  font-variant-numeric:tabular-nums;
+}
 input[type=range]{
   -webkit-appearance:none; appearance:none;
-  width:100%; height:3px; border-radius:999px;
-  background:var(--surf-3); outline:none; cursor:pointer;
+  width:100%; height:2px; background:var(--line-2);
+  outline:none; cursor:pointer;
 }
 input[type=range]::-webkit-slider-thumb{
   -webkit-appearance:none; appearance:none;
-  width:15px; height:15px; border-radius:50%;
-  background:var(--gold); cursor:pointer;
-  box-shadow:0 0 0 4px rgba(227,168,87,.15);
-  transition:box-shadow .16s;
+  width:4px; height:18px; border-radius:1px;
+  background:var(--sig); cursor:pointer;
 }
-input[type=range]::-webkit-slider-thumb:hover{ box-shadow:0 0 0 7px rgba(227,168,87,.22); }
 input[type=range]::-moz-range-thumb{
-  width:15px; height:15px; border:none; border-radius:50%;
-  background:var(--gold); cursor:pointer;
+  width:4px; height:18px; border:none; border-radius:1px;
+  background:var(--sig); cursor:pointer;
 }
-input[type=range]:focus-visible{ outline:2px solid var(--gold); outline-offset:4px; }
+input[type=range]:focus-visible{ outline:1px solid var(--sig); outline-offset:5px; }
 
-/* Невысокие ноутбучные экраны: барабан отдаёт высоту имени */
-@media (max-height: 820px){
-  :root{ --row-h:60px; }
-  .top{ padding-top:18px; }
+/* Узкие и низкие экраны: лента сжимается, поле остаётся рабочим */
+@media (max-width: 1180px){ :root{ --tape:250px; } }
+@media (max-width: 980px){
+  :root{ --tape:0px; }
+  .tape{ display:none; }
+  .app::after{ display:none; }
 }
-@media (max-height: 700px){
-  :root{ --row-h:52px; }
-  .row{ font-size:clamp(18px,2vw,22px); }
-  .brand{ font-size:clamp(21px,2.8vw,25px); }
+@media (max-height: 720px){
+  .field .h.top{ top:72px; }
+  .field .h.bot{ bottom:80px; }
+  .status{ height:72px; }
+  .foot{ height:80px; }
 }
 
 @media (prefers-reduced-motion: reduce){
   .result.show #reveal > *{ animation-duration:.01s; }
-  .countdown b, body.is-settled .sight, .top, .drum{ animation:none; }
-  /* Лента останавливается в JS: гасить одни CSS-переходы,
-     оставив 96 строк в движении, — полумера */
+  .countdown b{ animation:none; }
 }
 </style>
 
 <!-- Направленное размытие: stdDeviation="0 N" мылит только по
-     вертикали. Обычный CSS blur() размазал бы и по горизонтали,
-     превратив текст в кашу -->
+     вертикали. Обычный blur() размазал бы и по горизонтали -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="vblur" x="-5%" y="-25%" width="110%" height="150%">
     <feGaussianBlur id="vblur-g" in="SourceGraphic" stdDeviation="0 0"/>
   </filter>
 </svg>
 
-<div class="atmosphere" aria-hidden="true"></div>
+<div class="app" id="app">
 
-<div class="shell" id="shell">
+  <aside class="rail">
+    <div class="rail-cell mark"><i></i><i></i><i></i></div>
 
-  <header class="top">
-    <div class="brand" data-i18n="brand">Рулетка тем</div>
+    <div class="rail-cell rail-lang" role="group" aria-label="Language">
+      <button data-lang="ru" aria-pressed="true">RU</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+      <button data-lang="uz" aria-pressed="false">UZ</button>
+    </div>
 
-    <a class="author" href="https://www.instagram.com/mirzabek_vokhidov"
-       target="_blank" rel="noopener noreferrer">
-      <span class="by" data-i18n="madeBy">автор</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="3" y="3" width="18" height="18" rx="5.4"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"/>
-      </svg>
-      <span class="handle">@mirzabek_vokhidov</span>
-    </a>
-
-    <div class="controls">
-      <div class="langs" role="group" aria-label="Language">
-        <button class="lang" data-lang="ru" aria-pressed="true">RU</button>
-        <button class="lang" data-lang="en" aria-pressed="false">EN</button>
-        <button class="lang" data-lang="uz" aria-pressed="false">UZ</button>
-      </div>
-      <button class="icon-btn" id="sound-btn" aria-pressed="true" aria-label="Sound">
+    <div class="rail-cell">
+      <button class="rail-btn" id="sound-btn" aria-pressed="true" aria-label="Sound">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
              stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 9.5h3.2L12 5.5v13L7.2 14.5H4z"/>
           <path class="wave" d="M15.6 9.2a4 4 0 0 1 0 5.6"/>
           <path class="wave" d="M18.2 6.6a7.6 7.6 0 0 1 0 10.8"/>
-          <path class="off-slash" d="M3 3l18 18" stroke-width="1.5"/>
+          <path class="slash" d="M3 3l18 18" stroke-width="1.5"/>
         </svg>
       </button>
     </div>
 
-    <div class="modes" role="group" aria-label="Mode">
-      <span class="thumb" id="mode-thumb"></span>
-      <button class="mode" data-mode="quick" aria-pressed="false" data-i18n="modeQuick">Без подготовки</button>
-      <button class="mode" data-mode="deep"  aria-pressed="true"  data-i18n="modeDeep">Глубокий ресёрч</button>
-    </div>
-    <div class="mode-note" id="mode-note"></div>
-  </header>
+    <div class="rail-spacer"></div>
 
-  <section class="drum">
-    <div class="drum-window" id="window">
-      <div class="strip" id="strip"></div>
-      <div class="sight"></div>
+    <div class="rail-author">
+      <a href="https://www.instagram.com/mirzabek_vokhidov" target="_blank" rel="noopener noreferrer">@mirzabek_vokhidov</a>
     </div>
-  </section>
+  </aside>
 
-  <main class="stage">
-    <div class="result" id="result">
-      <div class="idle" id="idle">
-        <b data-i18n="idleTitle">Готово к запуску</b>
-        <span data-i18n="idleText">одна тема · 15 минут ресёрча · минута на камеру</span>
+  <main class="field">
+    <div class="h top"></div>
+    <div class="h bot"></div>
+
+    <div class="status">
+      <span class="st" id="st-state">—</span>
+      <span class="sep">/</span>
+      <div class="modes" role="group" aria-label="Mode">
+        <button data-mode="quick" aria-pressed="false" data-i18n="modeQuick">Без подготовки</button>
+        <button data-mode="deep"  aria-pressed="true"  data-i18n="modeDeep">Глубокий ресёрч</button>
       </div>
-      <div id="reveal" hidden>
-        <div class="eyebrow">
-          <span id="r-domain">—</span>
-          <span class="dot">·</span>
-          <span class="num" id="r-num">—</span>
+      <span class="right">
+        <span data-i18n="progress">открыто</span>
+        <b id="seen-n">0</b>/<span id="total-n">0</span>
+        <span class="sep">·</span>
+        <span id="t-preset">15:00 / 01:00</span>
+      </span>
+    </div>
+
+    <div class="window">
+      <div class="result" id="result">
+        <div class="idle-txt" id="idle">
+          <b data-i18n="idleTitle">Готово к запуску</b>
+          <span data-i18n="idleText">одна тема · 15 минут ресёрча · минута на камеру</span>
         </div>
-        <h1 class="r-title" id="r-title"></h1>
+        <div id="reveal" hidden>
+          <div class="eyebrow">
+            <span id="r-domain">—</span>
+            <span class="sep">·</span>
+            <span id="r-era">—</span>
+            <span class="sep">·</span>
+            <span class="idx" id="r-num">—</span>
+          </div>
+          <h1 class="title" id="r-title"></h1>
+        </div>
       </div>
     </div>
-  </main>
 
-  <footer class="bottom">
-    <div class="bottom-row">
-      <button class="btn primary" id="spin"><span data-i18n="spin">Крутить</span></button>
-      <button class="btn" id="start-research" disabled>
-        <span id="research-label">15 мин</span>
-      </button>
-      <button class="btn round" id="open-settings" aria-label="Settings">
+    <div class="foot">
+      <button class="btn go" id="spin"><span data-i18n="spin">Крутить</span></button>
+      <button class="btn" id="start-research" disabled><span id="research-label">15 мин</span></button>
+      <button class="btn sq" id="open-settings" aria-label="Settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
              stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="3.1"/>
           <path d="M19.4 15a1.6 1.6 0 0 0 .32 1.77l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.6 1.6 0 0 0-1.77-.32 1.6 1.6 0 0 0-1 1.47V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.77.32l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.6 1.6 0 0 0 4.6 15a1.6 1.6 0 0 0-1.47-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.32-1.77l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.6 1.6 0 0 0 9 4.6h.08A1.6 1.6 0 0 0 10 3.13V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.47 1.6 1.6 0 0 0 1.77-.32l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.6 1.6 0 0 0 19.4 9v.08a1.6 1.6 0 0 0 1.47 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/>
         </svg>
       </button>
+      <span class="hint"><kbd data-i18n="kbd">пробел</kbd></span>
     </div>
-    <div class="foot-meta">
-      <kbd data-i18n="kbd">пробел</kbd>
-      <span class="sep">·</span>
-      <span><span data-i18n="progress">открыто</span> <b id="seen-n">0</b>/<span id="total-n">0</span></span>
-      <span class="sep">·</span>
-      <button id="reset" data-i18n="reset">сброс</button>
+  </main>
+
+  <aside class="tape">
+    <div class="tape-win" id="window">
+      <div class="strip" id="strip"></div>
     </div>
-  </footer>
+    <div class="ticks"></div>
+    <div class="index"></div>
+  </aside>
 
 </div>
 
-<!-- Таймер: ресёрч → речь -->
 <div class="overlay" id="timer" role="dialog" aria-modal="true" aria-labelledby="t-phase">
-  <div class="overlay-inner">
+  <div class="ov-in">
     <div class="t-topic" id="t-topic"></div>
     <div class="ring" id="ring">
-      <div class="ring-body">
+      <div class="ring-b">
         <div class="t-digits" id="t-digits">0:00</div>
         <div class="t-phase" id="t-phase"></div>
       </div>
@@ -669,7 +622,7 @@ input[type=range]:focus-visible{ outline:2px solid var(--gold); outline-offset:4
     <div class="t-status" id="t-status"></div>
     <div class="t-actions">
       <button class="btn" id="t-pause" data-i18n="pause">Пауза</button>
-      <button class="btn primary" id="t-next" hidden></button>
+      <button class="btn go" id="t-next" hidden></button>
       <button class="btn" id="t-close" data-i18n="close">Закрыть</button>
     </div>
   </div>
@@ -677,32 +630,22 @@ input[type=range]:focus-visible{ outline:2px solid var(--gold); outline-offset:4
 
 <div class="countdown" id="countdown" aria-hidden="true"><b id="cd-n">3</b></div>
 
-<!-- Настройки -->
 <div class="overlay" id="settings" role="dialog" aria-modal="true" aria-labelledby="s-title">
-  <div class="overlay-inner">
+  <div class="ov-in">
     <div class="panel" id="s-panel" tabindex="-1">
       <h2 id="s-title" data-i18n="settings">Настройки</h2>
-      <p class="panel-note" data-i18n="settingsNote">Длительность в минутах</p>
+      <p class="note" data-i18n="settingsNote">длительность в минутах</p>
 
-      <div class="field">
-        <div class="field-top">
-          <span class="lbl" data-i18n="research">Ресёрч</span>
-          <span class="val" id="v-research">15</span>
-        </div>
+      <div class="field-row">
+        <div class="lab"><span data-i18n="research">Ресёрч</span><b id="v-research">15</b></div>
         <input type="range" id="s-research" min="1" max="60" step="1" value="15">
       </div>
-
-      <div class="field">
-        <div class="field-top">
-          <span class="lbl" data-i18n="speech">Речь</span>
-          <span class="val" id="v-speech">1</span>
-        </div>
+      <div class="field-row">
+        <div class="lab"><span data-i18n="speech">Речь</span><b id="v-speech">1</b></div>
         <input type="range" id="s-speech" min="1" max="10" step="1" value="1">
       </div>
 
-      <div class="t-actions" style="justify-content:flex-start;margin-top:26px">
-        <button class="btn primary" id="s-done" data-i18n="done">Готово</button>
-      </div>
+      <button class="btn go" id="s-done" data-i18n="done">Готово</button>
     </div>
   </div>
 </div>
@@ -714,7 +657,7 @@ input[type=range]:focus-visible{ outline:2px solid var(--gold); outline-offset:4
 /* ═══════════════════════════════════════════════════════════
    ДАННЫЕ — подставляются сборщиком build.js
    ═══════════════════════════════════════════════════════════ */
-const TOPICS = /*__TOPICS__*/[{"slug":"reverse-centaur","domain":"tech","era":"modern","ru":{"title":"Обратный кентавр"},"en":{"title":"Reverse Centaur"},"uz":{"title":"Teskari kentavr"}},{"slug":"workslop","domain":"tech","era":"modern","ru":{"title":"Воркслоп"},"en":{"title":"Workslop"},"uz":{"title":"Workslop"}},{"slug":"jagged-frontier","domain":"tech","era":"modern","ru":{"title":"Зубчатая граница ИИ"},"en":{"title":"Jagged Frontier"},"uz":{"title":"Tishsimon chegara"}},{"slug":"verification-gap","domain":"tech","era":"modern","ru":{"title":"Разрыв верификации"},"en":{"title":"Verification Gap"},"uz":{"title":"Tekshiruv bo'shlig'i"}},{"slug":"moral-crumple-zone","domain":"tech","era":"modern","ru":{"title":"Моральная зона смятия"},"en":{"title":"Moral Crumple Zone"},"uz":{"title":"Axloqiy ezilish zonasi"}},{"slug":"habsburg-ai","domain":"tech","era":"modern","ru":{"title":"Габсбургский ИИ"},"en":{"title":"Habsburg AI"},"uz":{"title":"Habsburg sun'iy intellekti"}},{"slug":"seventy-percent-problem","domain":"tech","era":"modern","ru":{"title":"Проблема последних 30%"},"en":{"title":"The 70% Problem"},"uz":{"title":"70 foiz muammosi"}},{"slug":"ai-sycophancy","domain":"tech","era":"modern","ru":{"title":"Машинное подхалимство"},"en":{"title":"AI Sycophancy"},"uz":{"title":"Mashina xushomadi"}},{"slug":"secret-cyborgs","domain":"tech","era":"modern","ru":{"title":"Тайные киборги"},"en":{"title":"Secret Cyborgs"},"uz":{"title":"Yashirin kiborglar"}},{"slug":"liars-dividend","domain":"tech","era":"modern","ru":{"title":"Дивиденд лжеца"},"en":{"title":"Liar's Dividend"},"uz":{"title":"Yolg'onchi dividendi"}},{"slug":"moravecs-paradox","domain":"tech","era":"classic","ru":{"title":"Парадокс Моравека"},"en":{"title":"Moravec's Paradox"},"uz":{"title":"Moravek paradoksi"}},{"slug":"ironies-of-automation","domain":"tech","era":"classic","ru":{"title":"Иронии автоматизации"},"en":{"title":"Ironies of Automation"},"uz":{"title":"Avtomatlashtirish kinoyasi"}},{"slug":"illusion-of-explanatory-depth","domain":"mind","era":"classic","ru":{"title":"Иллюзия глубины объяснения"},"en":{"title":"Illusion of Explanatory Depth"},"uz":{"title":"Tushuntirish chuqurligi illyuziyasi"}},{"slug":"mere-urgency-effect","domain":"mind","era":"classic","ru":{"title":"Эффект простой срочности"},"en":{"title":"Mere Urgency Effect"},"uz":{"title":"Shoshilinchlik effekti"}},{"slug":"solomons-paradox","domain":"mind","era":"classic","ru":{"title":"Парадокс Соломона"},"en":{"title":"Solomon's Paradox"},"uz":{"title":"Sulaymon paradoksi"}},{"slug":"moral-licensing","domain":"mind","era":"classic","ru":{"title":"Моральное лицензирование"},"en":{"title":"Moral Licensing"},"uz":{"title":"Axloqiy litsenziya"}},{"slug":"prevalence-induced-concept-change","domain":"mind","era":"classic","ru":{"title":"Сдвиг понятия проблемы"},"en":{"title":"Prevalence-Induced Concept Change"},"uz":{"title":"Muammo tushunchasining siljishi"}},{"slug":"berksons-paradox","domain":"mind","era":"classic","ru":{"title":"Парадокс Берксона"},"en":{"title":"Berkson's Paradox"},"uz":{"title":"Berkson paradoksi"}},{"slug":"porcupine-dilemma","domain":"mind","era":"classic","ru":{"title":"Дилемма дикобразов"},"en":{"title":"Hedgehog's Dilemma"},"uz":{"title":"Tipratikanlar dilemmasi"}},{"slug":"cognitive-debt","domain":"mind","era":"modern","ru":{"title":"Когнитивный долг"},"en":{"title":"Cognitive Debt"},"uz":{"title":"Kognitiv qarz"}},{"slug":"algorithm-aversion","domain":"mind","era":"modern","ru":{"title":"Алгоритмическое отторжение"},"en":{"title":"Algorithm Aversion"},"uz":{"title":"Algoritmga ishonmaslik"}},{"slug":"ludic-loop","domain":"mind","era":"modern","ru":{"title":"Лудическая петля"},"en":{"title":"Ludic Loop"},"uz":{"title":"Ludik halqa"}},{"slug":"teletransportation-paradox","domain":"philosophy","era":"classic","ru":{"title":"Телепортационный парадокс Парфита"},"en":{"title":"Teletransportation Paradox"},"uz":{"title":"Teleportatsiya paradoksi"}},{"slug":"marys-room","domain":"philosophy","era":"classic","ru":{"title":"Комната Мэри"},"en":{"title":"Mary's Room"},"uz":{"title":"Merining xonasi"}},{"slug":"humes-guillotine","domain":"philosophy","era":"classic","ru":{"title":"Гильотина Юма"},"en":{"title":"Hume's Guillotine"},"uz":{"title":"Yum gilyotinasi"}},{"slug":"moral-luck","domain":"philosophy","era":"classic","ru":{"title":"Моральная удача"},"en":{"title":"Moral Luck"},"uz":{"title":"Axloqiy omad"}},{"slug":"frankfurt-bullshit","domain":"philosophy","era":"classic","ru":{"title":"Брехня против лжи"},"en":{"title":"Frankfurt's Bullshit"},"uz":{"title":"Yolg'on va safsata"}},{"slug":"motte-and-bailey","domain":"philosophy","era":"classic","ru":{"title":"Мотт и бейли"},"en":{"title":"Motte-and-Bailey"},"uz":{"title":"Mott va beyli"}},{"slug":"copenhagen-interpretation-of-ethics","domain":"philosophy","era":"classic","ru":{"title":"Копенгагенская интерпретация этики"},"en":{"title":"Copenhagen Interpretation of Ethics"},"uz":{"title":"Etikaning Kopengagen talqini"}},{"slug":"audience-capture","domain":"society","era":"modern","ru":{"title":"Захват аудиторией"},"en":{"title":"Audience Capture"},"uz":{"title":"Auditoriya asirligi"}},{"slug":"context-collapse","domain":"society","era":"modern","ru":{"title":"Схлопывание контекстов"},"en":{"title":"Context Collapse"},"uz":{"title":"Kontekstlar qulashi"}},{"slug":"value-capture","domain":"society","era":"modern","ru":{"title":"Захват ценности"},"en":{"title":"Value Capture"},"uz":{"title":"Qadriyat asirligi"}},{"slug":"parasocial-breakup","domain":"society","era":"modern","ru":{"title":"Парасоциальный разрыв"},"en":{"title":"Parasocial Breakup"},"uz":{"title":"Parasotsial ayriliq"}},{"slug":"calibrated-amateurism","domain":"society","era":"modern","ru":{"title":"Калиброванная любительность"},"en":{"title":"Calibrated Amateurism"},"uz":{"title":"Sozlangan havaskorlik"}},{"slug":"toxoplasma-of-rage","domain":"society","era":"modern","ru":{"title":"Токсоплазма ярости"},"en":{"title":"The Toxoplasma of Rage"},"uz":{"title":"G'azab toksoplazmasi"}},{"slug":"purity-spiral","domain":"society","era":"modern","ru":{"title":"Спираль чистоты"},"en":{"title":"Purity Spiral"},"uz":{"title":"Poklik spirali"}},{"slug":"algorithmic-monoculture","domain":"society","era":"modern","ru":{"title":"Алгоритмическая монокультура"},"en":{"title":"Algorithmic Monoculture"},"uz":{"title":"Algoritmik monomadaniyat"}},{"slug":"hipster-effect","domain":"society","era":"modern","ru":{"title":"Эффект хипстера"},"en":{"title":"The Hipster Effect"},"uz":{"title":"Xipster effekti"}},{"slug":"abilene-paradox","domain":"society","era":"classic","ru":{"title":"Парадокс Абилина"},"en":{"title":"The Abilene Paradox"},"uz":{"title":"Abilin paradoksi"}},{"slug":"preference-falsification","domain":"power","era":"classic","ru":{"title":"Фальсификация предпочтений"},"en":{"title":"Preference Falsification"},"uz":{"title":"Soxta rozilik"}},{"slug":"pournelles-iron-law-of-bureaucracy","domain":"power","era":"classic","ru":{"title":"Железный закон бюрократии"},"en":{"title":"Iron Law of Bureaucracy"},"uz":{"title":"Byurokratiyaning temir qonuni"}},{"slug":"shirky-principle","domain":"power","era":"classic","ru":{"title":"Принцип Ширки"},"en":{"title":"The Shirky Principle"},"uz":{"title":"Shirki prinsipi"}},{"slug":"salami-tactics","domain":"power","era":"classic","ru":{"title":"Тактика салями"},"en":{"title":"Salami Tactics"},"uz":{"title":"Salami taktikasi"}},{"slug":"mcnamara-fallacy","domain":"power","era":"classic","ru":{"title":"Ошибка Макнамары"},"en":{"title":"The McNamara Fallacy"},"uz":{"title":"Maknamara xatosi"}},{"slug":"dead-sea-effect","domain":"power","era":"classic","ru":{"title":"Эффект Мёртвого моря"},"en":{"title":"The Dead Sea Effect"},"uz":{"title":"O'lik dengiz effekti"}},{"slug":"kayfabe","domain":"power","era":"modern","ru":{"title":"Кейфейб"},"en":{"title":"Kayfabe"},"uz":{"title":"Keyfeyb"}},{"slug":"weaponized-interdependence","domain":"power","era":"modern","ru":{"title":"Взаимозависимость как оружие"},"en":{"title":"Weaponized Interdependence"},"uz":{"title":"O'zaro bog'liqlik quroli"}},{"slug":"elite-overproduction","domain":"power","era":"modern","ru":{"title":"Перепроизводство элит"},"en":{"title":"Elite Overproduction"},"uz":{"title":"Elita ortiqchaligi"}},{"slug":"enshittification","domain":"economy","era":"modern","ru":{"title":"Эншиттификация"},"en":{"title":"Enshittification"},"uz":{"title":"Platformalarning aynishi"}},{"slug":"surveillance-pricing","domain":"economy","era":"modern","ru":{"title":"Слежечное ценообразование"},"en":{"title":"Surveillance Pricing"},"uz":{"title":"Kuzatuvga asoslangan narx"}},{"slug":"technofeudalism","domain":"economy","era":"modern","ru":{"title":"Технофеодализм"},"en":{"title":"Technofeudalism"},"uz":{"title":"Texnofeodalizm"}},{"slug":"algorithmic-wage-discrimination","domain":"economy","era":"modern","ru":{"title":"Алгоритмическая дискриминация оплаты"},"en":{"title":"Algorithmic Wage Discrimination"},"uz":{"title":"Maoshdagi algoritmik kamsitish"}},{"slug":"circular-financing","domain":"economy","era":"modern","ru":{"title":"Круговое финансирование"},"en":{"title":"Circular Financing"},"uz":{"title":"Aylanma moliyalashtirish"}},{"slug":"sludge","domain":"economy","era":"modern","ru":{"title":"Сладж — спроектированное трение"},"en":{"title":"Sludge: Designed Friction"},"uz":{"title":"Slaj: ataylab qo'yilgan to'siq"}},{"slug":"cantillon-effect","domain":"economy","era":"classic","ru":{"title":"Эффект Кантильона"},"en":{"title":"Cantillon Effect"},"uz":{"title":"Kantilon effekti"}},{"slug":"law-of-rent","domain":"economy","era":"classic","ru":{"title":"Закон ренты Рикардо"},"en":{"title":"Ricardo's Law of Rent"},"uz":{"title":"Rikardoning renta qonuni"}},{"slug":"baumol-cost-disease","domain":"economy","era":"classic","ru":{"title":"Болезнь издержек Баумоля"},"en":{"title":"Baumol's Cost Disease"},"uz":{"title":"Baumolning xarajat kasalligi"}},{"slug":"sam-vimes-boots-theory","domain":"economy","era":"classic","ru":{"title":"Теория ботинок Ваймса"},"en":{"title":"Sam Vimes Boots Theory"},"uz":{"title":"Vaymsning etik nazariyasi"}},{"slug":"a-fine-is-a-price","domain":"economy","era":"classic","ru":{"title":"Штраф — это цена"},"en":{"title":"When Fines Become Prices"},"uz":{"title":"Jarima — bu narx"}},{"slug":"moloch-multipolar-trap","domain":"systems","era":"modern","ru":{"title":"Молох: многополярная ловушка"},"en":{"title":"Moloch: The Multipolar Trap"},"uz":{"title":"Molox: ko'p qutbli tuzoq"}},{"slug":"ergodicity","domain":"systems","era":"modern","ru":{"title":"Неэргодичность"},"en":{"title":"Non-Ergodicity"},"uz":{"title":"Noergodiklik"}},{"slug":"jevons-paradox","domain":"systems","era":"classic","ru":{"title":"Парадокс Джевонса"},"en":{"title":"Jevons Paradox"},"uz":{"title":"Jevons paradoksi"}},{"slug":"braess-paradox","domain":"systems","era":"classic","ru":{"title":"Парадокс Браесса"},"en":{"title":"Braess's Paradox"},"uz":{"title":"Braess paradoksi"}},{"slug":"normalization-of-deviance","domain":"systems","era":"classic","ru":{"title":"Нормализация отклонения"},"en":{"title":"Normalization of Deviance"},"uz":{"title":"Qoidabuzarlikning odatga aylanishi"}},{"slug":"seneca-effect","domain":"systems","era":"classic","ru":{"title":"Обрыв Сенеки"},"en":{"title":"The Seneca Cliff"},"uz":{"title":"Seneka jarligi"}},{"slug":"handicap-of-a-head-start","domain":"systems","era":"classic","ru":{"title":"Закон гандикапа лидера"},"en":{"title":"The Head Start Handicap"},"uz":{"title":"Oldinda ketganning jazosi"}}]/*__END_TOPICS__*/;
+const TOPICS = /*__TOPICS__*/[{"slug":"reverse-centaur","domain":"tech","era":"modern","ru":{"title":"Обратный кентавр"},"en":{"title":"Reverse Centaur"},"uz":{"title":"Teskari kentavr"}},{"slug":"workslop","domain":"tech","era":"modern","ru":{"title":"Воркслоп"},"en":{"title":"Workslop"},"uz":{"title":"Workslop"}},{"slug":"jagged-frontier","domain":"tech","era":"modern","ru":{"title":"Зубчатая граница ИИ"},"en":{"title":"Jagged Frontier"},"uz":{"title":"Tishsimon chegara"}},{"slug":"verification-gap","domain":"tech","era":"modern","ru":{"title":"Разрыв верификации"},"en":{"title":"Verification Gap"},"uz":{"title":"Tekshiruv boʻshligʻi"}},{"slug":"moral-crumple-zone","domain":"tech","era":"modern","ru":{"title":"Моральная зона смятия"},"en":{"title":"Moral Crumple Zone"},"uz":{"title":"Axloqiy ezilish zonasi"}},{"slug":"habsburg-ai","domain":"tech","era":"modern","ru":{"title":"Габсбургский ИИ"},"en":{"title":"Habsburg AI"},"uz":{"title":"Habsburg sunʼiy intellekti"}},{"slug":"seventy-percent-problem","domain":"tech","era":"modern","ru":{"title":"Проблема последних 30%"},"en":{"title":"The 70% Problem"},"uz":{"title":"70 foiz muammosi"}},{"slug":"ai-sycophancy","domain":"tech","era":"modern","ru":{"title":"Машинное подхалимство"},"en":{"title":"AI Sycophancy"},"uz":{"title":"Mashina xushomadi"}},{"slug":"secret-cyborgs","domain":"tech","era":"modern","ru":{"title":"Тайные киборги"},"en":{"title":"Secret Cyborgs"},"uz":{"title":"Yashirin kiborglar"}},{"slug":"liars-dividend","domain":"tech","era":"modern","ru":{"title":"Дивиденд лжеца"},"en":{"title":"Liar's Dividend"},"uz":{"title":"Yolgʻonchi dividendi"}},{"slug":"moravecs-paradox","domain":"tech","era":"classic","ru":{"title":"Парадокс Моравека"},"en":{"title":"Moravec's Paradox"},"uz":{"title":"Moravek paradoksi"}},{"slug":"ironies-of-automation","domain":"tech","era":"classic","ru":{"title":"Иронии автоматизации"},"en":{"title":"Ironies of Automation"},"uz":{"title":"Avtomatlashtirish kinoyasi"}},{"slug":"illusion-of-explanatory-depth","domain":"mind","era":"classic","ru":{"title":"Иллюзия глубины объяснения"},"en":{"title":"Illusion of Explanatory Depth"},"uz":{"title":"Tushuntirish chuqurligi illyuziyasi"}},{"slug":"mere-urgency-effect","domain":"mind","era":"classic","ru":{"title":"Эффект простой срочности"},"en":{"title":"Mere Urgency Effect"},"uz":{"title":"Shoshilinchlik effekti"}},{"slug":"solomons-paradox","domain":"mind","era":"classic","ru":{"title":"Парадокс Соломона"},"en":{"title":"Solomon's Paradox"},"uz":{"title":"Sulaymon paradoksi"}},{"slug":"moral-licensing","domain":"mind","era":"classic","ru":{"title":"Моральное лицензирование"},"en":{"title":"Moral Licensing"},"uz":{"title":"Axloqiy litsenziya"}},{"slug":"prevalence-induced-concept-change","domain":"mind","era":"classic","ru":{"title":"Сдвиг понятия проблемы"},"en":{"title":"Prevalence-Induced Concept Change"},"uz":{"title":"Muammo tushunchasining siljishi"}},{"slug":"berksons-paradox","domain":"mind","era":"classic","ru":{"title":"Парадокс Берксона"},"en":{"title":"Berkson's Paradox"},"uz":{"title":"Berkson paradoksi"}},{"slug":"porcupine-dilemma","domain":"mind","era":"classic","ru":{"title":"Дилемма дикобразов"},"en":{"title":"Hedgehog's Dilemma"},"uz":{"title":"Tipratikanlar dilemmasi"}},{"slug":"cognitive-debt","domain":"mind","era":"modern","ru":{"title":"Когнитивный долг"},"en":{"title":"Cognitive Debt"},"uz":{"title":"Kognitiv qarz"}},{"slug":"algorithm-aversion","domain":"mind","era":"modern","ru":{"title":"Алгоритмическое отторжение"},"en":{"title":"Algorithm Aversion"},"uz":{"title":"Algoritmga ishonmaslik"}},{"slug":"ludic-loop","domain":"mind","era":"modern","ru":{"title":"Лудическая петля"},"en":{"title":"Ludic Loop"},"uz":{"title":"Ludik halqa"}},{"slug":"teletransportation-paradox","domain":"philosophy","era":"classic","ru":{"title":"Телепортационный парадокс Парфита"},"en":{"title":"Teletransportation Paradox"},"uz":{"title":"Teleportatsiya paradoksi"}},{"slug":"marys-room","domain":"philosophy","era":"classic","ru":{"title":"Комната Мэри"},"en":{"title":"Mary's Room"},"uz":{"title":"Merining xonasi"}},{"slug":"humes-guillotine","domain":"philosophy","era":"classic","ru":{"title":"Гильотина Юма"},"en":{"title":"Hume's Guillotine"},"uz":{"title":"Yum gilyotinasi"}},{"slug":"moral-luck","domain":"philosophy","era":"classic","ru":{"title":"Моральная удача"},"en":{"title":"Moral Luck"},"uz":{"title":"Axloqiy omad"}},{"slug":"frankfurt-bullshit","domain":"philosophy","era":"classic","ru":{"title":"Брехня против лжи"},"en":{"title":"Frankfurt's Bullshit"},"uz":{"title":"Yolgʻon va safsata"}},{"slug":"motte-and-bailey","domain":"philosophy","era":"classic","ru":{"title":"Мотт и бейли"},"en":{"title":"Motte-and-Bailey"},"uz":{"title":"Mott va beyli"}},{"slug":"copenhagen-interpretation-of-ethics","domain":"philosophy","era":"classic","ru":{"title":"Копенгагенская интерпретация этики"},"en":{"title":"Copenhagen Interpretation of Ethics"},"uz":{"title":"Etikaning Kopengagen talqini"}},{"slug":"audience-capture","domain":"society","era":"modern","ru":{"title":"Захват аудиторией"},"en":{"title":"Audience Capture"},"uz":{"title":"Auditoriya asirligi"}},{"slug":"context-collapse","domain":"society","era":"modern","ru":{"title":"Схлопывание контекстов"},"en":{"title":"Context Collapse"},"uz":{"title":"Kontekstlar qulashi"}},{"slug":"value-capture","domain":"society","era":"modern","ru":{"title":"Захват ценности"},"en":{"title":"Value Capture"},"uz":{"title":"Qadriyat asirligi"}},{"slug":"parasocial-breakup","domain":"society","era":"modern","ru":{"title":"Парасоциальный разрыв"},"en":{"title":"Parasocial Breakup"},"uz":{"title":"Parasotsial ayriliq"}},{"slug":"calibrated-amateurism","domain":"society","era":"modern","ru":{"title":"Калиброванная любительность"},"en":{"title":"Calibrated Amateurism"},"uz":{"title":"Sozlangan havaskorlik"}},{"slug":"toxoplasma-of-rage","domain":"society","era":"modern","ru":{"title":"Токсоплазма ярости"},"en":{"title":"The Toxoplasma of Rage"},"uz":{"title":"Gʻazab toksoplazmasi"}},{"slug":"purity-spiral","domain":"society","era":"modern","ru":{"title":"Спираль чистоты"},"en":{"title":"Purity Spiral"},"uz":{"title":"Poklik spirali"}},{"slug":"algorithmic-monoculture","domain":"society","era":"modern","ru":{"title":"Алгоритмическая монокультура"},"en":{"title":"Algorithmic Monoculture"},"uz":{"title":"Algoritmik monomadaniyat"}},{"slug":"hipster-effect","domain":"society","era":"modern","ru":{"title":"Эффект хипстера"},"en":{"title":"The Hipster Effect"},"uz":{"title":"Xipster effekti"}},{"slug":"abilene-paradox","domain":"society","era":"classic","ru":{"title":"Парадокс Абилина"},"en":{"title":"The Abilene Paradox"},"uz":{"title":"Abilin paradoksi"}},{"slug":"preference-falsification","domain":"power","era":"classic","ru":{"title":"Фальсификация предпочтений"},"en":{"title":"Preference Falsification"},"uz":{"title":"Soxta rozilik"}},{"slug":"pournelles-iron-law-of-bureaucracy","domain":"power","era":"classic","ru":{"title":"Железный закон бюрократии"},"en":{"title":"Iron Law of Bureaucracy"},"uz":{"title":"Byurokratiyaning temir qonuni"}},{"slug":"shirky-principle","domain":"power","era":"classic","ru":{"title":"Принцип Ширки"},"en":{"title":"The Shirky Principle"},"uz":{"title":"Shirki prinsipi"}},{"slug":"salami-tactics","domain":"power","era":"classic","ru":{"title":"Тактика салями"},"en":{"title":"Salami Tactics"},"uz":{"title":"Salami taktikasi"}},{"slug":"mcnamara-fallacy","domain":"power","era":"classic","ru":{"title":"Ошибка Макнамары"},"en":{"title":"The McNamara Fallacy"},"uz":{"title":"Maknamara xatosi"}},{"slug":"dead-sea-effect","domain":"power","era":"classic","ru":{"title":"Эффект Мёртвого моря"},"en":{"title":"The Dead Sea Effect"},"uz":{"title":"Oʻlik dengiz effekti"}},{"slug":"kayfabe","domain":"power","era":"modern","ru":{"title":"Кейфейб"},"en":{"title":"Kayfabe"},"uz":{"title":"Keyfeyb"}},{"slug":"weaponized-interdependence","domain":"power","era":"modern","ru":{"title":"Взаимозависимость как оружие"},"en":{"title":"Weaponized Interdependence"},"uz":{"title":"Oʻzaro bogʻliqlik quroli"}},{"slug":"elite-overproduction","domain":"power","era":"modern","ru":{"title":"Перепроизводство элит"},"en":{"title":"Elite Overproduction"},"uz":{"title":"Elita ortiqchaligi"}},{"slug":"enshittification","domain":"economy","era":"modern","ru":{"title":"Эншиттификация"},"en":{"title":"Enshittification"},"uz":{"title":"Platformalarning aynishi"}},{"slug":"surveillance-pricing","domain":"economy","era":"modern","ru":{"title":"Слежечное ценообразование"},"en":{"title":"Surveillance Pricing"},"uz":{"title":"Kuzatuvga asoslangan narx"}},{"slug":"technofeudalism","domain":"economy","era":"modern","ru":{"title":"Технофеодализм"},"en":{"title":"Technofeudalism"},"uz":{"title":"Texnofeodalizm"}},{"slug":"algorithmic-wage-discrimination","domain":"economy","era":"modern","ru":{"title":"Алгоритмическая дискриминация оплаты"},"en":{"title":"Algorithmic Wage Discrimination"},"uz":{"title":"Maoshdagi algoritmik kamsitish"}},{"slug":"circular-financing","domain":"economy","era":"modern","ru":{"title":"Круговое финансирование"},"en":{"title":"Circular Financing"},"uz":{"title":"Aylanma moliyalashtirish"}},{"slug":"sludge","domain":"economy","era":"modern","ru":{"title":"Сладж — спроектированное трение"},"en":{"title":"Sludge: Designed Friction"},"uz":{"title":"Slaj: ataylab qoʻyilgan toʻsiq"}},{"slug":"cantillon-effect","domain":"economy","era":"classic","ru":{"title":"Эффект Кантильона"},"en":{"title":"Cantillon Effect"},"uz":{"title":"Kantilon effekti"}},{"slug":"law-of-rent","domain":"economy","era":"classic","ru":{"title":"Закон ренты Рикардо"},"en":{"title":"Ricardo's Law of Rent"},"uz":{"title":"Rikardoning renta qonuni"}},{"slug":"baumol-cost-disease","domain":"economy","era":"classic","ru":{"title":"Болезнь издержек Баумоля"},"en":{"title":"Baumol's Cost Disease"},"uz":{"title":"Baumolning xarajat kasalligi"}},{"slug":"sam-vimes-boots-theory","domain":"economy","era":"classic","ru":{"title":"Теория ботинок Ваймса"},"en":{"title":"Sam Vimes Boots Theory"},"uz":{"title":"Vaymsning etik nazariyasi"}},{"slug":"a-fine-is-a-price","domain":"economy","era":"classic","ru":{"title":"Штраф — это цена"},"en":{"title":"When Fines Become Prices"},"uz":{"title":"Jarima — bu narx"}},{"slug":"moloch-multipolar-trap","domain":"systems","era":"modern","ru":{"title":"Молох: многополярная ловушка"},"en":{"title":"Moloch: The Multipolar Trap"},"uz":{"title":"Molox: koʻp qutbli tuzoq"}},{"slug":"ergodicity","domain":"systems","era":"modern","ru":{"title":"Неэргодичность"},"en":{"title":"Non-Ergodicity"},"uz":{"title":"Noergodiklik"}},{"slug":"jevons-paradox","domain":"systems","era":"classic","ru":{"title":"Парадокс Джевонса"},"en":{"title":"Jevons Paradox"},"uz":{"title":"Jevons paradoksi"}},{"slug":"braess-paradox","domain":"systems","era":"classic","ru":{"title":"Парадокс Браесса"},"en":{"title":"Braess's Paradox"},"uz":{"title":"Braess paradoksi"}},{"slug":"normalization-of-deviance","domain":"systems","era":"classic","ru":{"title":"Нормализация отклонения"},"en":{"title":"Normalization of Deviance"},"uz":{"title":"Qoidabuzarlikning odatga aylanishi"}},{"slug":"seneca-effect","domain":"systems","era":"classic","ru":{"title":"Обрыв Сенеки"},"en":{"title":"The Seneca Cliff"},"uz":{"title":"Seneka jarligi"}},{"slug":"handicap-of-a-head-start","domain":"systems","era":"classic","ru":{"title":"Закон гандикапа лидера"},"en":{"title":"The Head Start Handicap"},"uz":{"title":"Oldinda ketganning jazosi"}}]/*__END_TOPICS__*/;
 
 const DOMAINS = {
   mind:       { ru:'Разум',      en:'Mind',       uz:'Ong' },
@@ -725,14 +668,18 @@ const DOMAINS = {
   power:      { ru:'Власть',     en:'Power',      uz:'Hokimiyat' },
   tech:       { ru:'Технологии', en:'Tech',       uz:'Texnologiya' },
 };
-const FALLBACK_DOMAIN = { ru:'Идея', en:'Idea', uz:'Goya' };
+/* Gʻoya — через U+02BB, как требует узбекская латиница */
+const FALLBACK_DOMAIN = { ru:'Идея', en:'Idea', uz:'Gʻoya' };
 const domainOf = k => DOMAINS[k] || FALLBACK_DOMAIN;
+
+const ERA = {
+  classic: { ru:'классика', en:'classic', uz:'klassik' },
+  modern:  { ru:'2020-е',   en:'2020s',   uz:'2020-yil' },
+};
 
 const UI = {
   ru:{ brand:'Рулетка тем', spin:'Крутить', spinAgain:'Следующая', skipSpin:'Пропустить',
-       progress:'открыто', kbd:'пробел', reset:'сброс', madeBy:'автор',
-       idleTitle:'Готово к запуску', idleText:'одна тема · 15 минут ресёрча · минута на камеру',
-       settings:'Настройки', settingsNote:'Длительность в минутах',
+       progress:'открыто', kbd:'пробел', settings:'Настройки', settingsNote:'длительность в минутах',
        research:'Ресёрч', speech:'Речь', done:'Готово',
        pause:'Пауза', resume:'Продолжить', close:'Закрыть',
        min:'мин', phaseResearch:'ресёрч', phaseSpeech:'речь',
@@ -741,14 +688,11 @@ const UI = {
        toSpeech:'Начать речь', skipToSpeech:'Пропустить', nextTopic:'Следующая тема',
        st1:'Что?', st2:'И что?', st3:'Что дальше?',
        modeQuick:'Без подготовки', modeDeep:'Глубокий ресёрч',
-       noteQuick:'Минимум подготовки. Говори сразу, как есть.',
-       noteDeep:'Изучи тему, потом расскажи её на камеру.',
-       speechBtn:'Речь' },
+       idleTitle:'Готово к запуску', idleText:'одна тема · 15 минут ресёрча · минута на камеру',
+       stReady:'ожидание', stSpin:'выборка', stLocked:'тема выбрана', speechBtn:'Речь' },
 
   en:{ brand:'Topic Roulette', spin:'Spin', spinAgain:'Next one', skipSpin:'Skip',
-       progress:'unlocked', kbd:'space', reset:'reset', madeBy:'made by',
-       idleTitle:'Ready', idleText:'one topic · 15 minutes of research · one minute on camera',
-       settings:'Settings', settingsNote:'Durations in minutes',
+       progress:'unlocked', kbd:'space', settings:'Settings', settingsNote:'durations in minutes',
        research:'Research', speech:'Speech', done:'Done',
        pause:'Pause', resume:'Resume', close:'Close',
        min:'min', phaseResearch:'research', phaseSpeech:'speech',
@@ -757,32 +701,22 @@ const UI = {
        toSpeech:'Start speech', skipToSpeech:'Skip', nextTopic:'Next topic',
        st1:'What?', st2:'So what?', st3:'Now what?',
        modeQuick:'Off the cuff', modeDeep:'Deep research',
-       noteQuick:'Minimal prep. Think on your feet.',
-       noteDeep:'Dig into the topic, then say it on camera.',
-       speechBtn:'Speech' },
+       idleTitle:'Ready', idleText:'one topic · 15 minutes of research · one minute on camera',
+       stReady:'standby', stSpin:'drawing', stLocked:'topic locked', speechBtn:'Speech' },
 
   uz:{ brand:'Mavzular ruletkasi', spin:'Aylantirish', spinAgain:'Keyingisi', skipSpin:'Tashlab ketish',
-       progress:'ochilgan', kbd:'boshliq', reset:'tozalash', madeBy:'muallif',
-       idleTitle:'Tayyor', idleText:'bitta mavzu · 15 daqiqa research · bir daqiqa kamera oldida',
-       settings:'Sozlamalar', settingsNote:'Davomiylik daqiqada',
+       progress:'ochilgan', kbd:'boʻshliq', settings:'Sozlamalar', settingsNote:'davomiylik daqiqada',
        research:'Research', speech:'Nutq', done:'Tayyor',
        pause:'Pauza', resume:'Davom ettirish', close:'Yopish',
        min:'daq', phaseResearch:'research', phaseSpeech:'nutq',
-       statusResearch:'organ', statusSpeech:'gapir', statusPaused:'pauzada',
+       statusResearch:'oʻrgan', statusSpeech:'gapir', statusPaused:'pauzada',
        researchDone:'research tugadi', timeUp:'vaqt',
-       toSpeech:'Nutqni boshlash', skipToSpeech:'Otkazib yuborish', nextTopic:'Keyingi mavzu',
+       toSpeech:'Nutqni boshlash', skipToSpeech:'Oʻtkazib yuborish', nextTopic:'Keyingi mavzu',
        st1:'Nima?', st2:'Nega muhim?', st3:'Endi nima?',
        modeQuick:'Tayyorgarliksiz', modeDeep:'Chuqur research',
-       noteQuick:'Tayyorgarliksiz. Bor gapni darrov ayt.',
-       noteDeep:'Mavzuni organ, keyin kamera oldida ayt.',
-       speechBtn:'Nutq' },
+       idleTitle:'Tayyor', idleText:'bitta mavzu · 15 daqiqa research · bir daqiqa kamera oldida',
+       stReady:'kutish', stSpin:'tanlash', stLocked:'mavzu tanlandi', speechBtn:'Nutq' },
 };
-/* Апострофы узбекской латиницы ставим кодом — так они не зависят
-   от того, как редактор или сборщик обойдётся с ' в разметке */
-UI.uz.kbd            = "bo'shliq";
-UI.uz.statusResearch = "o'rgan";
-UI.uz.skipToSpeech   = "O'tkazib yuborish";
-UI.uz.noteDeep       = "Mavzuni o'rgan, keyin kamera oldida ayt.";
 
 const LANGS = ['ru','en','uz'];
 
@@ -794,14 +728,14 @@ const store = {
   read(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; } },
   write(patch){
     try { localStorage.setItem(KEY, JSON.stringify({ ...store.read(), ...patch })); }
-    catch { /* приватный режим — работаем без сохранения */ }
+    catch {}
   },
 };
 
 const saved = store.read();
 let lang    = LANGS.includes(saved.lang) ? saved.lang : 'ru';
 let soundOn = saved.sound !== false;
-let mode    = saved.mode === 'quick' ? 'quick' : 'deep';   // deep = ресёрч + речь
+let mode    = saved.mode === 'quick' ? 'quick' : 'deep';
 let seen    = new Set(Array.isArray(saved.seen) ? saved.seen : []);
 
 /* ═══════════════════════════════════════════════════════════
@@ -815,15 +749,11 @@ const Snd = {
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     this.ctx = new AC();
-
     const comp = this.ctx.createDynamicsCompressor();
     comp.threshold.value = -14; comp.ratio.value = 5; comp.release.value = .25;
-
     this.master = this.ctx.createGain();
     this.master.gain.value = .9;
-    this.master.connect(comp);
-    comp.connect(this.ctx.destination);
-
+    this.master.connect(comp); comp.connect(this.ctx.destination);
     const n = Math.floor(this.ctx.sampleRate * .35);
     this.noiseBuf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
     const d = this.noiseBuf.getChannelData(0);
@@ -838,27 +768,22 @@ const Snd = {
     if (!this.on) return;
     const c = this.ctx, t = c.currentTime;
     const s = Math.min(1, Math.max(0, speed));
-
     const src = c.createBufferSource();
     src.buffer = this.noiseBuf;
     src.playbackRate.value = .8 + s*.5;
-
     const bp = c.createBiquadFilter();
-    bp.type = 'bandpass'; bp.frequency.value = 1200 + s*1500; bp.Q.value = 5.5;
+    bp.type='bandpass'; bp.frequency.value = 1200 + s*1500; bp.Q.value = 5.5;
     const hp = c.createBiquadFilter();
-    hp.type = 'highpass'; hp.frequency.value = 420;
-
+    hp.type='highpass'; hp.frequency.value = 420;
     const g = c.createGain();
-    const peak = .05 + s*.08;
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(peak, t + .0012);
+    g.gain.linearRampToValueAtTime(.05 + s*.08, t + .0012);
     g.gain.exponentialRampToValueAtTime(.0001, t + .026 + (1-s)*.024);
-
     src.connect(bp); bp.connect(hp); hp.connect(g); g.connect(this.master);
     src.start(t); src.stop(t + .09);
 
     const o = c.createOscillator(), og = c.createGain();
-    o.type = 'triangle';
+    o.type='triangle';
     o.frequency.setValueAtTime(2050 + s*900, t);
     o.frequency.exponentialRampToValueAtTime(880, t + .022);
     og.gain.setValueAtTime(0, t);
@@ -868,14 +793,13 @@ const Snd = {
     o.start(t); o.stop(t + .06);
   },
 
-  /* Остановка: удар + обертон на 45 мс позже.
-     Металл звенит ПОСЛЕ контакта, а не вместе с ним */
+  /* Остановка: удар + обертон на 45 мс позже. Металл звенит
+     ПОСЛЕ контакта, а не вместе с ним */
   thud(){
     if (!this.on) return;
     const c = this.ctx, t = c.currentTime;
-
     const o = c.createOscillator(), g = c.createGain();
-    o.type = 'sine';
+    o.type='sine';
     o.frequency.setValueAtTime(170, t);
     o.frequency.exponentialRampToValueAtTime(44, t + .32);
     g.gain.setValueAtTime(0, t);
@@ -887,7 +811,7 @@ const Snd = {
     const src = c.createBufferSource();
     src.buffer = this.noiseBuf;
     const lp = c.createBiquadFilter();
-    lp.type = 'lowpass';
+    lp.type='lowpass';
     lp.frequency.setValueAtTime(2600, t);
     lp.frequency.exponentialRampToValueAtTime(300, t + .13);
     const ng = c.createGain();
@@ -897,7 +821,7 @@ const Snd = {
     src.start(t); src.stop(t + .2);
 
     const o2 = c.createOscillator(), g2 = c.createGain();
-    o2.type = 'sine'; o2.frequency.value = 1320;
+    o2.type='sine'; o2.frequency.value = 1320;
     g2.gain.setValueAtTime(0, t + .045);
     g2.gain.linearRampToValueAtTime(.038, t + .055);
     g2.gain.exponentialRampToValueAtTime(.0001, t + .78);
@@ -909,7 +833,7 @@ const Snd = {
     if (!this.on) return;
     const c = this.ctx, t = c.currentTime;
     const o = c.createOscillator(), g = c.createGain();
-    o.type = 'sine'; o.frequency.value = freq;
+    o.type='sine'; o.frequency.value = freq;
     g.gain.setValueAtTime(0, t);
     g.gain.linearRampToValueAtTime(vol, t + .004);
     g.gain.exponentialRampToValueAtTime(.0001, t + .085);
@@ -917,7 +841,6 @@ const Snd = {
     o.start(t); o.stop(t + .1);
   },
 
-  /* Арпеджио на конец фазы */
   chime(up = true, vol = .17){
     if (!this.on) return;
     const c = this.ctx, t = c.currentTime;
@@ -925,7 +848,7 @@ const Snd = {
     notes.forEach((f, i) => {
       const at = t + i * .11;
       const o = c.createOscillator(), g = c.createGain();
-      o.type = 'triangle'; o.frequency.value = f;
+      o.type='triangle'; o.frequency.value = f;
       g.gain.setValueAtTime(0, at);
       g.gain.linearRampToValueAtTime(vol, at + .012);
       g.gain.exponentialRampToValueAtTime(.0001, at + .62);
@@ -938,7 +861,7 @@ const Snd = {
     if (!this.on) return;
     const c = this.ctx, t = c.currentTime;
     const o = c.createOscillator(), g = c.createGain();
-    o.type = 'sine'; o.frequency.value = last ? 1180 : 880;
+    o.type='sine'; o.frequency.value = last ? 1180 : 880;
     g.gain.setValueAtTime(0, t);
     g.gain.linearRampToValueAtTime(last ? .07 : .04, t + .004);
     g.gain.exponentialRampToValueAtTime(.0001, t + .13);
@@ -948,9 +871,7 @@ const Snd = {
 };
 
 /* ═══════════════════════════════════════════════════════════
-   МЕШОК — все темы без повторов, потом пересдача.
-   Честный Math.random() повторяется так часто, что читается
-   как баг, даже когда работает правильно
+   МЕШОК — все темы без повторов, потом пересдача
    ═══════════════════════════════════════════════════════════ */
 const Bag = {
   queue: [],
@@ -976,45 +897,56 @@ const $ = id => document.getElementById(id);
 const el = {
   win:$('window'), strip:$('strip'), spin:$('spin'), result:$('result'),
   idle:$('idle'), reveal:$('reveal'),
-  title:$('r-title'), domain:$('r-domain'), num:$('r-num'),
-  seenN:$('seen-n'), totalN:$('total-n'),
-  soundBtn:$('sound-btn'), reset:$('reset'),
-  blur:$('vblur-g'),
+  title:$('r-title'), domain:$('r-domain'), era:$('r-era'), num:$('r-num'),
+  seenN:$('seen-n'), totalN:$('total-n'), stState:$('st-state'),
+  soundBtn:$('sound-btn'), blur:$('vblur-g'),
 };
 
 const STRIP_LEN   = 96;
-const START_SLOT  = 90;   // старт у низа ленты
-const TARGET_SLOT = 6;    // над целью остаётся хвост — окно не пустеет
+const START_SLOT  = 90;
+const TARGET_SLOT = 6;
 
 let spinning = false;
 let current  = null;
 let rafId    = 0;
 let liveRow  = null;
-let skipReq  = false;   // запрошен пропуск текущего вращения
+let skipReq  = false;
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const rowH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--row-h'));
+/* Высота строки — из реальной геометрии окна: лента должна
+   показывать НЕЧЁТНОЕ число строк, чтобы у центральной были
+   ровные соседи сверху и снизу */
+function fitRowHeight(){
+  const h = el.win.clientHeight;
+  if (!h) return 56;
+  let n = Math.round(h / 96);
+  if (n % 2 === 0) n += 1;
+  n = Math.max(5, Math.min(9, n));
+  const rh = h / n;
+  document.documentElement.style.setProperty('--row-h', rh.toFixed(2) + 'px');
+  return rh;
+}
+const rowH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--row-h')) || 56;
 
-function rowEl(topicIndex){
-  const t = TOPICS[topicIndex];
-  const div = document.createElement('div');
-  div.className = 'row';
-  div.textContent = (t[lang] || t.ru).title;
-  return div;
+function rowEl(i){
+  const d = document.createElement('div');
+  d.className = 'row';
+  d.textContent = (TOPICS[i][lang] || TOPICS[i].ru).title;
+  return d;
 }
 
-function buildStrip(targetIndex){
+function buildStrip(target){
   const frag = document.createDocumentFragment();
   let prev = -1;
   for (let i = 0; i < STRIP_LEN; i++){
     let idx;
-    if (i === TARGET_SLOT) idx = targetIndex;
+    if (i === TARGET_SLOT) idx = target;
     else {
       let guard = 0;
       do { idx = Math.floor(Math.random() * TOPICS.length); guard++; }
       while (TOPICS.length > 2 && guard < 8 &&
-             (idx === prev || (Math.abs(i - TARGET_SLOT) <= 1 && idx === targetIndex)));
+             (idx === prev || (Math.abs(i - TARGET_SLOT) <= 1 && idx === target)));
     }
     prev = idx;
     frag.appendChild(rowEl(idx));
@@ -1037,8 +969,6 @@ function setLive(i){
 
 function setBlur(v){
   el.blur?.setAttribute('stdDeviation', `0 ${v.toFixed(2)}`);
-  /* Фильтр снимаем полностью, когда он уже не нужен: держать
-     активный SVG-фильтр на статичном слое — лишняя работа GPU */
   el.strip.style.filter = v > .12 ? 'url(#vblur)' : '';
 }
 
@@ -1051,10 +981,10 @@ function spin(){
   skipReq = false;
   document.body.classList.add('is-spinning');
   document.body.classList.remove('is-settled');
-  /* Кнопку НЕ отключаем: disabled-элемент не отдаёт click, и
-     пропуск был бы недостижим мышью. Вместо этого она на время
-     вращения честно превращается в «пропустить» */
+  /* Кнопку НЕ отключаем: disabled не отдаёт click, и пропуск
+     был бы недостижим мышью */
   el.spin.querySelector('span').textContent = UI[lang].skipSpin;
+  el.stState.textContent = UI[lang].stSpin;
   el.strip.querySelector('.row.hit')?.classList.remove('hit');
 
   Snd.init();
@@ -1063,9 +993,6 @@ function spin(){
   const target = Bag.next(current);
   buildStrip(target);
 
-  /* При выключенной анимации лента не едет вообще: гасить одни
-     CSS-переходы, оставив 96 строк в движении на 7 секунд, —
-     ровно та полумера, за которую мы критикуем референс */
   if (reduceMotion){
     setOffset(TARGET_SLOT * rowH());
     setLive(TARGET_SLOT);
@@ -1073,15 +1000,12 @@ function spin(){
     return;
   }
 
-  const h     = rowH();
-  const from  = START_SLOT * h;
-  const exact = TARGET_SLOT * h;
-
-  /* Две фазы вместо одной — ради драматургии. Разгон проносит
-     ленту почти до цели, затем начинается отдельный, очень
-     медленный доползок последних полутора строк */
-  const brakePoint = exact + h * 1.55;
-  const RUN   = 4200 + Math.random() * 700;
+  const h = rowH();
+  const from = START_SLOT * h, exact = TARGET_SLOT * h;
+  /* Две фазы: разгон проносит ленту почти до цели, затем
+     отдельный медленный доползок последних полутора строк */
+  const brake = exact + h * 1.55;
+  const RUN = 4200 + Math.random() * 700;
   const CRAWL = 2600 + Math.random() * 500;
 
   let lastCard = -1, lastPos = from, t0 = performance.now();
@@ -1089,42 +1013,29 @@ function spin(){
   function run(now){
     if (skipReq) return bail();
     const raw = Math.min(1, (now - t0) / RUN);
-    const pos = from + (brakePoint - from) * easeOutQuint(raw);
-    frameCommon(pos);
+    frameCommon(from + (brake - from) * easeOutQuint(raw));
     if (raw < 1) rafId = requestAnimationFrame(run);
     else { t0 = performance.now(); rafId = requestAnimationFrame(crawl); }
   }
-
   function crawl(now){
     if (skipReq) return bail();
     const raw = Math.min(1, (now - t0) / CRAWL);
-    const pos = brakePoint + (exact - brakePoint) * easeOutCubic(raw);
-    frameCommon(pos);
+    frameCommon(brake + (exact - brake) * easeOutCubic(raw));
     if (raw < 1) rafId = requestAnimationFrame(crawl);
     else finish(target);
   }
-
-  /* Досрочная посадка. Инструмент, куда возвращаются по десять
-     раз за сессию, обязан уметь пропускать собственную анимацию */
   function bail(){
     cancelAnimationFrame(rafId);
-    setBlur(0);
-    setOffset(exact);
-    setLive(TARGET_SLOT);
+    setBlur(0); setOffset(exact); setLive(TARGET_SLOT);
     finish(target);
   }
-
   function frameCommon(pos){
     setOffset(pos);
-
-    /* Мгновенная скорость в строках за кадр — она же задаёт
-       и тембр щелчка, и силу размытия. Всё привязано к физике,
-       а не к таймеру */
+    /* Мгновенная скорость задаёт и тембр щелчка, и силу
+       размытия — всё привязано к физике, а не к таймеру */
     const dv = Math.abs(lastPos - pos) / h;
     lastPos = pos;
-
     setBlur(Math.min(9, dv * 5.2));
-
     const card = Math.floor(pos / h);
     if (card !== lastCard){
       if (lastCard !== -1) Snd.tick(Math.min(1, dv / 1.5));
@@ -1148,33 +1059,66 @@ function finish(target){
   el.strip.children[TARGET_SLOT]?.classList.add('hit');
 
   /* Индекс берём из замыкания спина, а не вычитываем из DOM:
-     две темы могут совпасть заголовком, и поиск по тексту
-     молча вернул бы не ту строку */
+     две темы могут совпасть заголовком */
   current = target;
   render(current);
 
   seen.add(TOPICS[current].slug);
-  /* Тему запоминаем: ресёрч уходит в другие вкладки, и любая
-     перезагрузка иначе стирает то, ради чего человек сюда шёл */
   store.write({ seen:[...seen], last: TOPICS[current].slug });
   updateProgress();
 
   el.spin.querySelector('span').textContent = UI[lang].spinAgain;
+  el.stState.textContent = UI[lang].stLocked;
   $('start-research').disabled = false;
+}
+
+/* Автофит кегля бинарным поиском. Три ступени по длине давали
+   «Молоху» и «Алгоритмической дискриминации оплаты» случайные
+   оптические веса; здесь любое имя на любом языке занимает
+   один и тот же процент бокса */
+function fitTitle(){
+  const t = el.title;
+  const box = el.result;
+  const maxW = box.clientWidth;
+  if (!maxW) return;
+  /* Высоту берём от ОКНА, а не от .result: у последнего высота
+     по контенту, и заголовок сам себе занижал потолок */
+  const win = document.querySelector('.window');
+  const maxH = Math.max(140, win.clientHeight - 92);
+  let lo = 24, hi = 132, best = 24;
+  for (let i = 0; i < 9; i++){
+    const mid = (lo + hi) / 2;
+    t.style.fontSize = mid + 'px';
+    /* Трекинг ужимается вместе с кеглем: крупный требует
+       отрицательного, мелкий — почти нулевого */
+    t.style.letterSpacing = trackFor(mid) + 'em';
+    if (t.scrollWidth <= maxW && t.scrollHeight <= maxH){ best = mid; lo = mid; }
+    else hi = mid;
+  }
+  t.style.fontSize = best.toFixed(1) + 'px';
+  t.style.letterSpacing = trackFor(best) + 'em';
+}
+
+/* Трекинг обязан ужиматься вместе с кеглем: межбуквенные
+   просветы, набранные для 16px, на 96px разъезжаются в дыры */
+function trackFor(px){
+  if (px >= 88) return -.034;
+  if (px >= 64) return -.028;
+  if (px >= 44) return -.020;
+  if (px >= 30) return -.012;
+  return -.004;
 }
 
 function render(i){
   const t = TOPICS[i];
+  const d = domainOf(t.domain);
   el.idle.hidden = true;
   el.reveal.hidden = false;
-  el.domain.textContent = domainOf(t.domain)[lang] || domainOf(t.domain).ru;
-  el.num.textContent    = String(i + 1).padStart(2,'0') + ' / ' + String(TOPICS.length).padStart(2,'0');
-
-  const name = (t[lang] || t.ru).title;
-  el.title.textContent = name;
-  el.title.className = 'r-title' + (name.length > 29 ? ' len-l' : name.length > 17 ? ' len-m' : '');
-
-  /* Перезапуск CSS-анимации: снять класс, форсировать reflow, вернуть */
+  el.domain.textContent = d[lang] || d.ru;
+  el.era.textContent = (ERA[t.era] || ERA.classic)[lang];
+  el.num.textContent = String(i + 1).padStart(2,'0') + '/' + String(TOPICS.length).padStart(2,'0');
+  el.title.textContent = (t[lang] || t.ru).title;
+  fitTitle();
   el.result.classList.remove('show');
   void el.result.offsetWidth;
   el.result.classList.add('show');
@@ -1185,23 +1129,39 @@ function updateProgress(){
   el.totalN.textContent = TOPICS.length;
 }
 
+function applyMode(){
+  document.querySelectorAll('.modes button').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+  updateResearchLabel();
+}
+
+function updateResearchLabel(){
+  const d = UI[lang];
+  $('research-label').textContent = mode === 'deep'
+    ? cfg.research + ' ' + d.min
+    : d.speechBtn + ' · ' + cfg.speech + ' ' + d.min;
+  const pad = n => String(n).padStart(2,'0');
+  $('t-preset').textContent = `${pad(cfg.research)}:00 / ${pad(cfg.speech)}:00`;
+}
+
 function applyLang(){
   document.documentElement.lang = lang;
   const dict = UI[lang];
-  document.querySelectorAll('[data-i18n]').forEach(node => {
-    const k = node.dataset.i18n;
-    if (dict[k] != null) node.textContent = dict[k];
+  document.querySelectorAll('[data-i18n]').forEach(n => {
+    const k = n.dataset.i18n;
+    if (dict[k] != null) n.textContent = dict[k];
   });
-  document.querySelectorAll('.lang').forEach(b =>
+  document.querySelectorAll('.rail-lang button').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
 
-  if (current != null && !el.reveal.hidden){
+  if (current != null){
     render(current);
     el.spin.querySelector('span').textContent = dict.spinAgain;
+    el.stState.textContent = dict.stLocked;
+  } else {
+    el.stState.textContent = dict.stReady;
   }
 
-  /* Ленту пересобираем на новом языке, но положение сохраняем:
-     после спина выпавшая строка обязана остаться под прицелом */
   if (!spinning){
     liveRow = null;
     if (current != null){
@@ -1209,16 +1169,11 @@ function applyLang(){
       setOffset(TARGET_SLOT * rowH());
       setLive(TARGET_SLOT);
       el.strip.children[TARGET_SLOT]?.classList.add('hit');
-    } else {
-      fillIdleStrip();
-    }
+    } else fillIdleStrip();
   }
 
   applyMode();
-  /* Открытый таймер перерисовываем на месте — язык не должен
-     сбивать отсчёт */
   if (T.isOpen){ T.buildStages(); T.render(); }
-
   document.title = dict.brand;
 }
 
@@ -1241,80 +1196,66 @@ function fillIdleStrip(){
 
 /* ═══════════════════════════════════════════════════════════
    ТАЙМЕР: ресёрч → речь
-   Отсчёт против абсолютного дедлайна, а не накоплением дельт —
-   вкладка в фоне троттлит интервалы, и наивный счётчик отстаёт
-   на минуты. Плюс пауза, которой нет у референса
    ═══════════════════════════════════════════════════════════ */
-/* Кольцо не просто красится в цвет фазы, а непрерывно уходит
-   от спокойного холодного к тревожному тёплому по мере расхода
-   времени. Стопы заданы по ДОЛЕ ПРОШЕДШЕГО (0 — старт, 1 — конец) */
-const RING_STOPS = {
-  research: [[0, [96,126,158]], [.55, [227,168,87]], [1, [214,104,72]]],
-  speech:   [[0, [227,168,87]], [.62, [226,146,92]], [1, [214,88,68]]],
-};
 
+/* Кольцо не просто красится в цвет фазы, а непрерывно уходит
+   от спокойного к тревожному по мере расхода времени */
+const RING_STOPS = {
+  research: [[0,[110,120,128]], [.55,[214,150,60]], [1,[232,64,42]]],
+  speech:   [[0,[214,150,60]],  [.6,[228,104,50]],  [1,[232,64,42]]],
+};
 function ringColor(phase, elapsed){
   const stops = RING_STOPS[phase] || RING_STOPS.speech;
   const e = Math.max(0, Math.min(1, elapsed));
   for (let i = 1; i < stops.length; i++){
-    const [p1, c1] = stops[i - 1], [p2, c2] = stops[i];
+    const [p1,c1] = stops[i-1], [p2,c2] = stops[i];
     if (e <= p2){
       const k = p2 === p1 ? 0 : (e - p1) / (p2 - p1);
-      const c = c1.map((v, j) => Math.round(v + (c2[j] - v) * k));
+      const c = c1.map((v,j) => Math.round(v + (c2[j]-v)*k));
       return `rgb(${c[0]},${c[1]},${c[2]})`;
     }
   }
-  const last = stops[stops.length - 1][1];
-  return `rgb(${last[0]},${last[1]},${last[2]})`;
+  const l = stops[stops.length-1][1];
+  return `rgb(${l[0]},${l[1]},${l[2]})`;
 }
 
 const T = {
-  el: {
-    box:$('timer'), topic:$('t-topic'), ring:$('ring'), digits:$('t-digits'),
-    phase:$('t-phase'), stages:$('t-stages'), status:$('t-status'),
-    pause:$('t-pause'), next:$('t-next'), close:$('t-close'),
-  },
+  el:{ box:$('timer'), topic:$('t-topic'), ring:$('ring'), digits:$('t-digits'),
+       phase:$('t-phase'), stages:$('t-stages'), status:$('t-status'),
+       pause:$('t-pause'), next:$('t-next'), close:$('t-close') },
   phase:null, total:0, left:0, frac:1,
   deadline:0, paused:false, finished:false, tick:0, lastPip:-1,
 
   open(phase){
     if (current == null) return;
     this.phase = phase;
-    this.total = phase === 'research' ? cfg.research * 60 : cfg.speech * 60;
-    this.left = this.total;
-    this.frac = 1;
-    this.finished = false;
-    this.paused = false;
-    this.lastPip = -1;
-
-    const t = TOPICS[current];
-    this.el.topic.textContent = (t[lang] || t.ru).title;
+    this.total = phase === 'research' ? cfg.research*60 : cfg.speech*60;
+    this.left = this.total; this.frac = 1;
+    this.finished = false; this.paused = false; this.lastPip = -1;
+    this.el.topic.textContent = (TOPICS[current][lang] || TOPICS[current].ru).title;
     this.buildStages();
     this.el.box.classList.add('open');
     this.el.box.classList.remove('done');
-    $('shell').setAttribute('inert', '');
-
+    $('app').setAttribute('inert','');
     Snd.init();
     this.start();
     this.el.pause.focus();
   },
 
-  /* Три опоры монолога — только у речи. У ресёрча делить нечего */
   buildStages(){
     const s = this.el.stages;
     if (this.phase !== 'speech'){ s.hidden = true; s.replaceChildren(); return; }
     const d = UI[lang];
     s.hidden = false;
-    s.replaceChildren(...[d.st1, d.st2, d.st3].map(txt => {
+    s.replaceChildren(...[d.st1,d.st2,d.st3].map(txt => {
       const b = document.createElement('span');
-      b.className = 'stage-pill';
       b.textContent = txt;
       return b;
     }));
   },
 
   start(){
-    this.deadline = Date.now() + this.left * 1000;
+    this.deadline = Date.now() + this.left*1000;
     clearInterval(this.tick);
     this.tick = setInterval(() => this.frame(), 100);
     this.frame();
@@ -1322,57 +1263,43 @@ const T = {
 
   frame(){
     if (this.paused || this.finished) return;
-    const msLeft = Math.max(0, this.deadline - Date.now());
-    const left = Math.ceil(msLeft / 1000);
-    /* Дробный остаток — только для кольца. Считать дугу от целых
+    const ms = Math.max(0, this.deadline - Date.now());
+    const left = Math.ceil(ms/1000);
+    /* Дробный остаток — только для кольца: считать дугу от целых
        секунд значило бы 900 микрорывков за 15-минутный ресёрч */
-    this.frac = this.total ? msLeft / 1000 / this.total : 0;
+    this.frac = this.total ? ms/1000/this.total : 0;
     if (left !== this.left){
       this.left = left;
-      if (left <= 3 && left > 0 && left !== this.lastPip){
-        this.lastPip = left;
-        Snd.pip(false);
-      }
+      if (left <= 3 && left > 0 && left !== this.lastPip){ this.lastPip = left; Snd.pip(false); }
     }
     this.render();
-    if (msLeft <= 0) this.finish();
+    if (ms <= 0) this.finish();
   },
 
   render(){
     const d = UI[lang];
-    const m = Math.floor(this.left / 60);
-    const s = String(this.left % 60).padStart(2, '0');
-    const clock = `${m}:${s}`;
+    const clock = `${Math.floor(this.left/60)}:${String(this.left%60).padStart(2,'0')}`;
     this.el.digits.textContent = clock;
-    this.el.phase.textContent =
-      this.phase === 'research' ? d.phaseResearch : d.phaseSpeech;
+    this.el.phase.textContent = this.phase === 'research' ? d.phaseResearch : d.phaseSpeech;
 
-    /* Ресёрч человек проводит в ДРУГИХ вкладках — оверлей ему
-       в этот момент не виден, и заголовок вкладки остаётся
-       единственной поверхностью, куда можно вынести отсчёт */
-    document.title = this.finished
-      ? `✓ ${d.brand}`
+    /* Ресёрч идёт в ДРУГИХ вкладках — оверлей в этот момент
+       не виден, заголовок остаётся единственной поверхностью */
+    document.title = this.finished ? `✓ ${d.brand}`
       : `${clock} · ${this.phase === 'research' ? d.phaseResearch : d.phaseSpeech}`;
 
     const p = this.finished ? 0 : Math.max(0, Math.min(1, this.frac));
     this.el.ring.style.setProperty('--p', p.toFixed(4));
-    this.el.ring.style.setProperty('--ring-col', ringColor(this.phase, 1 - p));
+    this.el.ring.style.setProperty('--ring-col', ringColor(this.phase, 1-p));
 
-    if (this.finished){
-      this.el.status.textContent =
-        this.phase === 'research' ? d.researchDone : d.timeUp;
-    } else if (this.paused){
-      this.el.status.textContent = d.statusPaused;
-    } else {
-      this.el.status.textContent =
-        this.phase === 'research' ? d.statusResearch : d.statusSpeech;
-    }
+    this.el.status.textContent = this.finished
+      ? (this.phase === 'research' ? d.researchDone : d.timeUp)
+      : this.paused ? d.statusPaused
+      : (this.phase === 'research' ? d.statusResearch : d.statusSpeech);
 
     if (this.phase === 'speech' && !this.el.stages.hidden){
-      const elapsed = this.total - this.left;
       const idx = this.finished ? 2
-        : Math.min(2, Math.floor(elapsed / (this.total / 3)));
-      [...this.el.stages.children].forEach((pill, i) => {
+        : Math.min(2, Math.floor((this.total - this.left) / (this.total/3)));
+      [...this.el.stages.children].forEach((pill,i) => {
         pill.classList.toggle('on', i === idx);
         pill.classList.toggle('past', i < idx);
       });
@@ -1381,65 +1308,55 @@ const T = {
     this.el.pause.textContent = this.paused ? d.resume : d.pause;
     this.el.pause.hidden = this.finished;
 
-    /* Ключевое отличие от референса: из завершённого ресёрча
-       есть прямой путь в речь. У них тут тупик — приходится
-       перезапускать таймер и жать «готово» */
+    /* Из завершённого ресёрча — прямой путь в речь. У референса
+       здесь тупик: приходится перезапускать таймер */
     if (this.phase === 'research'){
       this.el.next.hidden = false;
       this.el.next.textContent = this.finished ? d.toSpeech : d.skipToSpeech;
-      /* Акцент только у «начать речь». Пока идёт ресёрч, кнопка
-         пропуска обязана быть тихой — иначе она сама себя
-         предлагает нажать */
-      this.el.next.classList.toggle('primary', this.finished);
+      this.el.next.classList.toggle('go', this.finished);
       this.el.next.dataset.act = 'speech';
     } else if (this.finished){
       this.el.next.hidden = false;
       this.el.next.textContent = d.nextTopic;
-      this.el.next.classList.add('primary');
+      this.el.next.classList.add('go');
       this.el.next.dataset.act = 'next';
-    } else {
-      this.el.next.hidden = true;
-    }
+    } else this.el.next.hidden = true;
   },
 
   togglePause(){
     if (this.finished) return;
     this.paused = !this.paused;
     if (this.paused){
-      this.left = Math.max(0, Math.ceil((this.deadline - Date.now()) / 1000));
-      Snd.blip(430, .04);
+      this.left = Math.max(0, Math.ceil((this.deadline - Date.now())/1000));
+      Snd.blip(430,.04);
     } else {
-      this.deadline = Date.now() + this.left * 1000;
-      Snd.blip(660, .04);
+      this.deadline = Date.now() + this.left*1000;
+      Snd.blip(660,.04);
     }
     this.render();
   },
 
   finish(){
     if (this.finished) return;
-    this.finished = true;
-    this.left = 0;
+    this.finished = true; this.left = 0;
     clearInterval(this.tick);
     this.el.box.classList.add('done');
     Snd.chime(this.phase === 'research');
     this.render();
   },
 
-  /* Перед речью — отсчёт 3-2-1. Без него первые секунды дубля
-     уходят на то, как человек отпускает мышь и набирает воздух */
+  /* Отсчёт перед речью: без него первые секунды дубля уходят
+     на то, как человек отпускает мышь и набирает воздух */
   toSpeech(){
     clearInterval(this.tick);
     this.el.box.classList.remove('done');
-
     const cd = $('countdown'), n = $('cd-n');
     if (reduceMotion){ this.open('speech'); return; }
-
     cd.classList.add('open');
     let k = 3;
     const step = () => {
       n.textContent = k;
-      /* Перезапуск анимации: снять и вернуть */
-      n.style.animation = 'none'; void n.offsetWidth; n.style.animation = '';
+      n.style.animation='none'; void n.offsetWidth; n.style.animation='';
       Snd.pip(k === 1);
       k--;
       if (k > 0) setTimeout(step, 1000);
@@ -1448,17 +1365,12 @@ const T = {
     step();
   },
 
-  /* После минутного дубля логично не «закрыть», а взять
-     следующую тему — цикл не должен стоить лишних кликов */
-  nextTopic(){
-    this.close();
-    spin();
-  },
+  nextTopic(){ this.close(); spin(); },
 
   close(){
     clearInterval(this.tick);
-    this.el.box.classList.remove('open', 'done');
-    $('shell').removeAttribute('inert');
+    this.el.box.classList.remove('open','done');
+    $('app').removeAttribute('inert');
     this.phase = null;
     document.title = UI[lang].brand;
     el.spin.focus();
@@ -1470,83 +1382,57 @@ const T = {
 /* ═══════════════════════════════════════════════════════════
    НАСТРОЙКИ
    ═══════════════════════════════════════════════════════════ */
-const clampInt = (v, lo, hi, dflt) => {
+const clampInt = (v,lo,hi,d) => {
   const n = Math.round(Number(v));
-  return Number.isFinite(n) ? Math.min(hi, Math.max(lo, n)) : dflt;
+  return Number.isFinite(n) ? Math.min(hi, Math.max(lo, n)) : d;
 };
-
 const cfg = {
-  research: clampInt(saved.research, 1, 60, 15),
-  speech:   clampInt(saved.speech,   1, 10, 1),
+  research: clampInt(saved.research,1,60,15),
+  speech:   clampInt(saved.speech,1,10,1),
 };
 
 const S = {
   box:$('settings'), research:$('s-research'), speech:$('s-speech'),
-  vResearch:$('v-research'), vSpeech:$('v-speech'), done:$('s-done'),
-
+  vR:$('v-research'), vS:$('v-speech'),
   open(){
     this.research.value = cfg.research;
     this.speech.value = cfg.speech;
     this.sync();
     this.box.classList.add('open');
-    $('shell').setAttribute('inert', '');
+    $('app').setAttribute('inert','');
     $('s-panel').focus();
   },
-  sync(){
-    this.vResearch.textContent = this.research.value;
-    this.vSpeech.textContent = this.speech.value;
-  },
+  sync(){ this.vR.textContent = this.research.value; this.vS.textContent = this.speech.value; },
   apply(){
-    cfg.research = clampInt(this.research.value, 1, 60, 15);
-    cfg.speech   = clampInt(this.speech.value,   1, 10, 1);
-    store.write({ research: cfg.research, speech: cfg.speech });
-    this.sync();
-    updateResearchLabel();
+    cfg.research = clampInt(this.research.value,1,60,15);
+    cfg.speech   = clampInt(this.speech.value,1,10,1);
+    store.write({ research:cfg.research, speech:cfg.speech });
+    this.sync(); updateResearchLabel();
   },
   close(){
     this.box.classList.remove('open');
-    $('shell').removeAttribute('inert');
+    $('app').removeAttribute('inert');
     $('open-settings').focus();
   },
   get isOpen(){ return this.box.classList.contains('open'); },
 };
 
-/* В режиме «без подготовки» ресёрча нет вовсе: кнопка ведёт
-   сразу в речь. Это не косметика — это второй сценарий работы */
-function applyMode(){
-  const d = UI[lang];
-  document.querySelectorAll('.mode').forEach(b =>
-    b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
-  $('mode-thumb').style.setProperty('--i', mode === 'deep' ? 1 : 0);
-  $('mode-note').textContent = mode === 'deep' ? d.noteDeep : d.noteQuick;
-  updateResearchLabel();
-}
-
-function updateResearchLabel(){
-  const d = UI[lang];
-  $('research-label').textContent = mode === 'deep'
-    ? cfg.research + ' ' + d.min
-    : d.speechBtn + ' · ' + cfg.speech + ' ' + d.min;
-}
-
 /* ── События ───────────────────────────────────────────── */
 
-/* Клик во время вращения = «хватит крутить, показывай» */
 el.spin.addEventListener('click', () => { if (spinning) skipReq = true; else spin(); });
-
 $('start-research').addEventListener('click', () =>
   mode === 'deep' ? T.open('research') : T.toSpeech());
+$('open-settings').addEventListener('click', () => { Snd.init(); S.open(); });
 
-document.querySelectorAll('.mode').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.mode === mode) return;
-    mode = btn.dataset.mode;
+document.querySelectorAll('.modes button').forEach(b => {
+  b.addEventListener('click', () => {
+    if (b.dataset.mode === mode) return;
+    mode = b.dataset.mode;
     store.write({ mode });
     Snd.init(); Snd.blip(mode === 'deep' ? 660 : 520, .04);
     applyMode();
   });
 });
-$('open-settings').addEventListener('click', () => { Snd.init(); S.open(); });
 
 T.el.pause.addEventListener('click', () => T.togglePause());
 T.el.next.addEventListener('click', () =>
@@ -1555,10 +1441,9 @@ T.el.close.addEventListener('click', () => T.close());
 
 S.research.addEventListener('input', () => S.apply());
 S.speech.addEventListener('input', () => S.apply());
-S.done.addEventListener('click', () => { Snd.blip(700, .045); S.close(); });
+$('s-done').addEventListener('click', () => { Snd.blip(700,.045); S.close(); });
 
 document.addEventListener('keydown', e => {
-  /* Пока открыт оверлей, клавиши принадлежат ему */
   if (T.isOpen){
     if (e.code === 'Escape'){ e.preventDefault(); T.close(); }
     else if (e.code === 'Space'){ e.preventDefault(); T.togglePause(); }
@@ -1568,7 +1453,6 @@ document.addEventListener('keydown', e => {
     if (e.code === 'Escape'){ e.preventDefault(); S.close(); }
     return;
   }
-
   if (e.code === 'Space' || e.code === 'Enter'){
     if (e.code === 'Enter' && document.activeElement
         && /^(BUTTON|A|INPUT)$/.test(document.activeElement.tagName)) return;
@@ -1577,12 +1461,12 @@ document.addEventListener('keydown', e => {
   }
 });
 
-document.querySelectorAll('.lang').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (btn.dataset.lang === lang) return;
-    lang = btn.dataset.lang;
+document.querySelectorAll('.rail-lang button').forEach(b => {
+  b.addEventListener('click', () => {
+    if (b.dataset.lang === lang) return;
+    lang = b.dataset.lang;
     store.write({ lang });
-    Snd.init(); Snd.blip(760, .035);
+    Snd.init(); Snd.blip(760,.035);
     applyLang();
   });
 });
@@ -1590,46 +1474,41 @@ document.querySelectorAll('.lang').forEach(btn => {
 el.soundBtn.addEventListener('click', () => {
   soundOn = !soundOn;
   el.soundBtn.setAttribute('aria-pressed', String(soundOn));
-  store.write({ sound: soundOn });
-  if (soundOn){ Snd.init(); Snd.blip(700, .05); }
+  store.write({ sound:soundOn });
+  if (soundOn){ Snd.init(); Snd.blip(700,.05); }
 });
 
-el.reset.addEventListener('click', () => {
-  seen = new Set();
-  store.write({ seen: [] });
-  updateProgress();
-  Snd.init(); Snd.blip(380, .045);
-});
-
-/* Высота строки зависит от брейкпоинта — при ресайзе
-   пересчитываем трансформ, иначе лента уезжает */
 let rz;
 window.addEventListener('resize', () => {
   clearTimeout(rz);
   rz = setTimeout(() => {
+    fitRowHeight();
     if (spinning) return;
-    if (current != null && !el.reveal.hidden) setOffset(TARGET_SLOT * rowH());
-    else fillIdleStrip();
+    if (current != null){
+      setOffset(TARGET_SLOT * rowH());
+      fitTitle();
+    } else fillIdleStrip();
   }, 140);
 });
 
 /* ── Старт ─────────────────────────────────────────────── */
 
 el.soundBtn.setAttribute('aria-pressed', String(soundOn));
+fitRowHeight();
 
-/* Восстанавливаем тему прошлой сессии — без вращения и без
-   повторной записи в прогресс. Ленту и текст расставит
-   applyLang() ниже: он уже умеет и то и другое */
 const lastIdx = saved.last ? TOPICS.findIndex(t => t.slug === saved.last) : -1;
 if (lastIdx >= 0){
   current = lastIdx;
-  render(current);
   document.body.classList.add('is-settled');
   $('start-research').disabled = false;
 }
 
 applyLang();
 updateProgress();
+
+/* Шрифты приходят позже разметки — после их загрузки метрики
+   меняются, и подобранный кегль перестаёт быть верным */
+document.fonts?.ready.then(() => { if (current != null) fitTitle(); });
 
 })();
 </script>
