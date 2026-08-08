@@ -1,0 +1,1430 @@
+[
+ {
+  "slug": "paket-s-paketami",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Пакет с пакетами",
+   "hook": "Единственное наследство, которое передаётся из поколения в поколение без всякого завещания."
+  },
+  "en": {
+   "title": "Bag of Bags",
+   "hook": "The only inheritance passed down for generations without anyone writing a will."
+  },
+  "uz": {
+   "title": "Paket ichida paket",
+   "hook": "Vasiyatnomasiz avloddan avlodga oʻtadigan yagona meros — shkaf tepasida turadi."
+  }
+ },
+ {
+  "slug": "stul-s-odezhdoy",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Стул с одеждой",
+   "hook": "Чистилище между шкафом и стиркой: вещи уже не чистые, но ещё не грязные."
+  },
+  "en": {
+   "title": "Clothes Chair",
+   "hook": "Purgatory between the closet and the laundry: not dirty, not clean either."
+  },
+  "uz": {
+   "title": "Kiyim tashlanadigan stul",
+   "hook": "Shkaf bilan kir mashinasi orasidagi aʼrof: toza ham emas, kir ham emas."
+  }
+ },
+ {
+  "slug": "pult-ot-televizora",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Пульт от телевизора",
+   "hook": "Кто держит пульт — тот и главный в доме, и это не обсуждается."
+  },
+  "en": {
+   "title": "TV Remote",
+   "hook": "Whoever holds it runs the household, and nobody ever votes on that."
+  },
+  "uz": {
+   "title": "Televizor pulti",
+   "hook": "Pult kimning qoʻlida boʻlsa, uyning xoʻjayini ham oʻsha — buni hech kim ovozga qoʻymaydi."
+  }
+ },
+ {
+  "slug": "nosok-bez-pary",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Носок без пары",
+   "hook": "Ты хранишь его месяцами, потому что выбросить — значит признать поражение."
+  },
+  "en": {
+   "title": "Odd Sock",
+   "hook": "You keep it for months because throwing it out admits you lost."
+  },
+  "uz": {
+   "title": "Juftsiz paypoq",
+   "hook": "Oylab saqlab yurasan, chunki tashlash — magʻlubiyatni tan olish."
+  }
+ },
+ {
+  "slug": "elochnye-igrushki",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Ёлочные игрушки",
+   "hook": "Стеклянный шар из детства переживёт и ёлку, и того, кто его вешал."
+  },
+  "en": {
+   "title": "Christmas Ornaments",
+   "hook": "The chipped glass one outlives the tree and everyone who hung it."
+  },
+  "uz": {
+   "title": "Archa oʻyinchoqlari",
+   "hook": "Boʻyogʻi koʻchgan shisha shar archadan ham, uni osgan odamdan ham uzoq yashaydi."
+  }
+ },
+ {
+  "slug": "shkolnyy-dnevnik",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Школьный дневник",
+   "hook": "Первый документ, в котором чужая оценка весила больше твоего собственного мнения."
+  },
+  "en": {
+   "title": "Report Card",
+   "hook": "The first document where someone else's opinion of you outweighed your own."
+  },
+  "uz": {
+   "title": "Maktab kundaligi",
+   "hook": "Birinchi hujjating — unda birovning qoʻygan bahosi sening fikringdan ogʻir keldi."
+  }
+ },
+ {
+  "slug": "aptechka",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Аптечка",
+   "hook": "Половина лекарств просрочена, но выбросить страшно — вдруг именно это спасёт."
+  },
+  "en": {
+   "title": "Medicine Cabinet",
+   "hook": "Half of it expired years ago, but what if that's the half that saves you?"
+  },
+  "uz": {
+   "title": "Dori-darmon qutisi",
+   "hook": "Yarmining muddati allaqachon oʻtgan, baribir tashlashga qoʻling bormaydi — birdan asqotib qolsa-chi?"
+  }
+ },
+ {
+  "slug": "kover-na-stene",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Ковёр на стене",
+   "hook": "Сначала это был статус, потом стыд, теперь снова мода — ковёр пережил всех."
+  },
+  "en": {
+   "title": "Rug on the Wall",
+   "hook": "First status, then shame, now design again — the rug outlasted all three."
+  },
+  "uz": {
+   "title": "Devordagi gilam",
+   "hook": "Avval obroʻ edi, keyin uyat boʻldi, endi yana moda — gilam uchalasidan ham omon chiqdi."
+  }
+ },
+ {
+  "slug": "napolnye-vesy",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Напольные весы",
+   "hook": "Единственный прибор в доме, который умеет испортить настроение за три секунды."
+  },
+  "en": {
+   "title": "Bathroom Scale",
+   "hook": "The only appliance in the house that can ruin a whole day in three seconds."
+  },
+  "uz": {
+   "title": "Vazn tarozisi",
+   "hook": "Uydagi yagona asbob — kayfiyatingni uch soniyada yerga uradi."
+  }
+ },
+ {
+  "slug": "steklyannye-banki",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Стеклянные банки",
+   "hook": "Их копят под заготовки, которых не будет, а выбросить — как предать бабушку."
+  },
+  "en": {
+   "title": "Glass Jars",
+   "hook": "Hoarded for preserves nobody will make, kept because tossing them feels like betraying your grandmother."
+  },
+  "uz": {
+   "title": "Shisha bankalar",
+   "hook": "Hech kim qilmaydigan qish tayyorgarligi uchun yigʻiladi — tashlasang, buvingga xiyonat qilgandek boʻlasan."
+  }
+ },
+ {
+  "slug": "babushkina-shkatulka",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Бабушкина шкатулка",
+   "hook": "Внутри почти нет ничего ценного — и при этом там лежит вся её жизнь."
+  },
+  "en": {
+   "title": "Grandma's Jewelry Box",
+   "hook": "Almost nothing inside is valuable, yet her entire life is in there."
+  },
+  "uz": {
+   "title": "Buvimning sandiqchasi",
+   "hook": "Ichida qimmatbaho narsa deyarli yoʻq — ammo butun umri oʻsha yerda yotibdi."
+  }
+ },
+ {
+  "slug": "ruchka-bez-pasty",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Ручка без пасты",
+   "hook": "Ты проверил её три раза и всё равно положил обратно в стакан."
+  },
+  "en": {
+   "title": "Dead Pen",
+   "hook": "You tested it three times and put it back in the cup anyway."
+  },
+  "uz": {
+   "title": "Yozmaydigan ruchka",
+   "hook": "Uch marta sinab koʻrding, yozmadi — baribir qalamdonga qaytarib qoʻyding."
+  }
+ },
+ {
+  "slug": "chaynik",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Чайник",
+   "hook": "В доме он не техника, а повод: чай ставят, когда нужно поговорить."
+  },
+  "en": {
+   "title": "Kettle",
+   "hook": "It isn't an appliance, it's the excuse people use to start talking."
+  },
+  "uz": {
+   "title": "Choynak",
+   "hook": "Choynak uy jihozi emas, bahona: choy qoʻyildimi, demak gaplashadigan gap bor."
+  }
+ },
+ {
+  "slug": "magnity-na-kholodilnike",
+  "bank": "quick",
+  "domain": "objects",
+  "ru": {
+   "title": "Магниты на холодильнике",
+   "hook": "Карта путешествий, которую ты никому не показываешь, но видишь каждый день."
+  },
+  "en": {
+   "title": "Fridge Magnets",
+   "hook": "A travel map you never show anyone but look at every single day."
+  },
+  "uz": {
+   "title": "Muzlatgich magnitlari",
+   "hook": "Hech kimga koʻrsatmaydigan, lekin har kuni koʻzing tushadigan sayohat xaritasi."
+  }
+ },
+ {
+  "slug": "voskresnyy-vecher",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Воскресный вечер",
+   "hook": "Выходные ещё не кончились, но радость из них уже вышла."
+  },
+  "en": {
+   "title": "Sunday Night",
+   "hook": "The weekend isn't over yet, but the fun has already left the room."
+  },
+  "uz": {
+   "title": "Yakshanba oqshomi",
+   "hook": "Dam olish kunlari hali tugamadi, lekin quvonchi allaqachon uchib ketdi."
+  }
+ },
+ {
+  "slug": "eshche-pyat-minut",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Ещё пять минут",
+   "hook": "Единственная сделка, где ты одновременно и обманщик, и обманутый."
+  },
+  "en": {
+   "title": "Five More Minutes",
+   "hook": "The only deal where you're both the con artist and the mark."
+  },
+  "uz": {
+   "title": "Yana besh daqiqa",
+   "hook": "Yagona bitim — bunda aldayotgan ham, aldangan ham bitta odam: sen."
+  }
+ },
+ {
+  "slug": "kassa-samoobsluzhivaniya",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Касса самообслуживания",
+   "hook": "Ты бесплатно работаешь кассиром и ещё чувствуешь себя виноватым перед машиной."
+  },
+  "en": {
+   "title": "Self-Checkout",
+   "hook": "You work the register for free, and the machine still makes you feel guilty."
+  },
+  "uz": {
+   "title": "Oʻz-oʻziga xizmat kassasi",
+   "hook": "Kassirning ishini bepul qilib berasan, ustiga mashina oldida oʻzingni aybdor his qilasan."
+  }
+ },
+ {
+  "slug": "vynos-musora",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Вынос мусора",
+   "hook": "Самая честная проверка отношений: кто первый не выдержит и понесёт."
+  },
+  "en": {
+   "title": "Trash Duty",
+   "hook": "The most honest test of a relationship: who caves and carries it first."
+  },
+  "uz": {
+   "title": "Axlat chiqarish",
+   "hook": "Munosabatlarning eng halol sinovi: kim birinchi chidamay koʻtarib chiqadi."
+  }
+ },
+ {
+  "slug": "poisk-klyuchey",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Поиск ключей",
+   "hook": "Ключи всегда там, где ты уже смотрел дважды — но смотрел не глазами."
+  },
+  "en": {
+   "title": "Lost Keys",
+   "hook": "They're always in the spot you already checked twice without actually looking."
+  },
+  "uz": {
+   "title": "Kalit qidirish",
+   "hook": "Kalit doim ikki marta qaragan joyingdan chiqadi: qaragansan-u, koʻrmagansan."
+  }
+ },
+ {
+  "slug": "myte-posudy",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Мытьё посуды",
+   "hook": "Единственные пятнадцать минут в дне, когда телефон не может до тебя дотянуться."
+  },
+  "en": {
+   "title": "Doing the Dishes",
+   "hook": "The only fifteen minutes a day when your hands are too wet for the phone to win."
+  },
+  "uz": {
+   "title": "Idish yuvish",
+   "hook": "Kunning yagona oʻn besh daqiqasi: qoʻling hoʻl, telefon senga yeta olmaydi."
+  }
+ },
+ {
+  "slug": "nochnoy-kholodilnik",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Ночной холодильник",
+   "hook": "Ты открываешь его не за едой, а в надежде, что там что-то изменилось."
+  },
+  "en": {
+   "title": "Midnight Fridge",
+   "hook": "You don't open it for food, you open it hoping something changed."
+  },
+  "uz": {
+   "title": "Yarim tundagi muzlatgich",
+   "hook": "Uni ovqat uchun emas — ichida biror narsa oʻzgardimikan, deb ochasan."
+  }
+ },
+ {
+  "slug": "konets-rabochego-dnya",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Конец рабочего дня",
+   "hook": "Ты уже не работаешь, но ещё не отдыхаешь — самое честное время суток."
+  },
+  "en": {
+   "title": "Clocking Off",
+   "hook": "You've stopped working but haven't started living — the day's most honest hour."
+  },
+  "uz": {
+   "title": "Ish kunining oxiri",
+   "hook": "Ish tugadi, dam esa hali boshlangani yoʻq — kunning eng rost soati."
+  }
+ },
+ {
+  "slug": "progulka-s-sobakoy",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Прогулка с собакой",
+   "hook": "Единственная причина, по которой ты видишь свой район в шесть утра."
+  },
+  "en": {
+   "title": "Dog Walk",
+   "hook": "The only reason you ever see your neighborhood at six in the morning."
+  },
+  "uz": {
+   "title": "Kuchuk bilan sayr",
+   "hook": "Mahallangni ertalab oltida koʻrishingning yagona sababi — shu kuchuk."
+  }
+ },
+ {
+  "slug": "spisok-pokupok",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Список покупок",
+   "hook": "Список — это план, а чек — правда о том, кто ты."
+  },
+  "en": {
+   "title": "Grocery List",
+   "hook": "The list is the plan; the receipt is who you actually are."
+  },
+  "uz": {
+   "title": "Bozorlik roʻyxati",
+   "hook": "Roʻyxat — rejang, chek esa aslida kimligingni aytib beradi."
+  }
+ },
+ {
+  "slug": "prosrochennoe-moloko",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Просроченное молоко",
+   "hook": "Ты всё равно нюхаешь — как будто нос честнее, чем дата."
+  },
+  "en": {
+   "title": "Expired Milk",
+   "hook": "You sniff it anyway, as if your nose outranks the printed date."
+  },
+  "uz": {
+   "title": "Aynigan sut",
+   "hook": "Muddati oʻtgan boʻlsa ham hidlab koʻrasan — burningga yorliqdan koʻra koʻproq ishonasan."
+  }
+ },
+ {
+  "slug": "nezapravlennaya-krovat",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Незаправленная кровать",
+   "hook": "Первое решение дня — и уже видно, чью сторону ты выбрал."
+  },
+  "en": {
+   "title": "Unmade Bed",
+   "hook": "The day's first decision, and it already shows whose side you picked."
+  },
+  "uz": {
+   "title": "Yigʻishtirilmagan karavot",
+   "hook": "Kunning birinchi qarori — qaysi tomonda ekanliging shu yerdayoq maʼlum boʻladi."
+  }
+ },
+ {
+  "slug": "chistka-zubov",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Чистка зубов",
+   "hook": "Две минуты в день, когда ты смотришь себе в глаза молча."
+  },
+  "en": {
+   "title": "Brushing Teeth",
+   "hook": "Two minutes a day of staring yourself down in total silence."
+  },
+  "uz": {
+   "title": "Tish yuvish",
+   "hook": "Kuniga ikki daqiqa oynada oʻzing bilan jim yuzma-yuz qolasan."
+  }
+ },
+ {
+  "slug": "abonement-v-zal",
+  "bank": "quick",
+  "domain": "routine",
+  "ru": {
+   "title": "Абонемент в зал",
+   "hook": "Ты платишь не за тренировки, а за версию себя, которой ещё нет."
+  },
+  "en": {
+   "title": "Gym Membership",
+   "hook": "You're not paying for workouts; you're paying for a self that doesn't exist."
+  },
+  "uz": {
+   "title": "Sportzal abonementi",
+   "hook": "Pulni mashgʻulotlarga emas, hali dunyoda yoʻq boʻlgan oʻzingga toʻlaysan."
+  }
+ },
+ {
+  "slug": "lift",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Лифт",
+   "hook": "Комната, где незнакомцы молча договорились смотреть на цифры, а не друг на друга."
+  },
+  "en": {
+   "title": "Elevator",
+   "hook": "Strangers who won't look at each other all stare at the same three numbers."
+  },
+  "uz": {
+   "title": "Lift",
+   "hook": "Notanish odamlar bir-biriga emas, raqamlarga qarashga jimgina kelishib olgan xona."
+  }
+ },
+ {
+  "slug": "marshrutka",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Маршрутка",
+   "hook": "Единственный транспорт, где деньги передают через семь чужих рук."
+  },
+  "en": {
+   "title": "Minibus",
+   "hook": "The only ride where your fare travels forward through seven strangers' hands."
+  },
+  "uz": {
+   "title": "Damas",
+   "hook": "Pulingni yetti notanishning qoʻlidan oʻtkazib, haydovchiga yetkazadigan yagona transport."
+  }
+ },
+ {
+  "slug": "garazhi",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Гаражи",
+   "hook": "Мужская республика, где чинят не машины, а собственное настроение."
+  },
+  "en": {
+   "title": "The Garages",
+   "hook": "A men's republic where the car is rarely what's actually being repaired."
+  },
+  "uz": {
+   "title": "Garajlar",
+   "hook": "Erkaklar respublikasi — u yerda mashina emas, koʻpincha kayfiyat tuzatiladi."
+  }
+ },
+ {
+  "slug": "balkon",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Балкон",
+   "hook": "Комнату построили ради воздуха, а забили банками и тем, что жалко выбросить."
+  },
+  "en": {
+   "title": "Balcony",
+   "hook": "Built for fresh air, filled instead with everything you refused to throw out."
+  },
+  "uz": {
+   "title": "Balkon",
+   "hook": "Havo olish uchun qurilgan joy — endi bankalar va tashlashga koʻzing qiymaganlar ombori."
+  }
+ },
+ {
+  "slug": "platskart",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Плацкарт",
+   "hook": "Шестьдесят незнакомцев засыпают рядом — а к утру уже почти родня."
+  },
+  "en": {
+   "title": "Sleeper Car",
+   "hook": "Sixty strangers fall asleep together and wake up as distant relatives."
+  },
+  "uz": {
+   "title": "Platskart",
+   "hook": "Oltmish notanish yonma-yon uxlab, ertalab deyarli qarindosh boʻlib uygʻonadi."
+  }
+ },
+ {
+  "slug": "metro-utrom",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Метро утром",
+   "hook": "Сотни людей едут вместе и старательно делают вид, что они одни."
+  },
+  "en": {
+   "title": "Morning Subway",
+   "hook": "Hundreds of people traveling together, each pretending to be completely alone."
+  },
+  "uz": {
+   "title": "Ertalabki metro",
+   "hook": "Yuzlab odam bir vagonda ketadi, lekin har biri oʻzini yolgʻizdek tutadi."
+  }
+ },
+ {
+  "slug": "podzemnyy-perekhod",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Подземный переход",
+   "hook": "Концертный зал с бесплатной акустикой, где никто не аплодирует."
+  },
+  "en": {
+   "title": "Underpass",
+   "hook": "The only concert hall where the acoustics are free and nobody claps."
+  },
+  "uz": {
+   "title": "Yer osti yoʻlagi",
+   "hook": "Akustikasi tekin, lekin hech kim qarsak chalmaydigan yagona konsert zali."
+  }
+ },
+ {
+  "slug": "laryok",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Ларёк",
+   "hook": "Магазин, где тебя знают в лицо и дают в долг до зарплаты."
+  },
+  "en": {
+   "title": "Corner Kiosk",
+   "hook": "The one shop that knows your face and lets you pay next week."
+  },
+  "uz": {
+   "title": "Doʻkoncha",
+   "hook": "Seni yuzingdan taniydigan va nasiyangni daftarga yozib qoʻyadigan yagona doʻkon."
+  }
+ },
+ {
+  "slug": "bolnichnyy-koridor",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Больничный коридор",
+   "hook": "Тут все равны — и профессор, и сантехник ждут на одной скамейке."
+  },
+  "en": {
+   "title": "Hospital Corridor",
+   "hook": "The one waiting bench where a professor and a plumber are equals."
+  },
+  "uz": {
+   "title": "Kasalxona yoʻlagi",
+   "hook": "Bu yerda professor ham, santexnik ham bitta oʻrindiqda navbat kutadi."
+  }
+ },
+ {
+  "slug": "sosedi-sverkhu",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Соседи сверху",
+   "hook": "Ты знаешь их распорядок дня гораздо лучше, чем их имена."
+  },
+  "en": {
+   "title": "Upstairs Neighbors",
+   "hook": "You know their daily schedule far better than you know their names."
+  },
+  "uz": {
+   "title": "Tepadagi qoʻshnilar",
+   "hook": "Ismini bilmaysan, lekin kun tartibini soatma-soat yoddan bilasan."
+  }
+ },
+ {
+  "slug": "ochered-na-pochte",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Очередь на почте",
+   "hook": "Всегда есть один человек впереди, у которого дело на полчаса."
+  },
+  "en": {
+   "title": "Post Office Queue",
+   "hook": "There is always one person ahead of you with a thirty-minute problem."
+  },
+  "uz": {
+   "title": "Pochtadagi navbat",
+   "hook": "Oldingda doim bitta odam turadi va uning ishi aniq yarim soatga choʻziladi."
+  }
+ },
+ {
+  "slug": "gorodskie-golubi",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Городские голуби",
+   "hook": "Единственные жители города, которые точно никуда не собираются переезжать."
+  },
+  "en": {
+   "title": "City Pigeons",
+   "hook": "The only city residents who have absolutely no plans to move away."
+  },
+  "uz": {
+   "title": "Shahar kaptarlari",
+   "hook": "Shaharda koʻchib ketishni umuman oʻylamaydigan yagona aholi — shular."
+  }
+ },
+ {
+  "slug": "ulitsa-na-rassvete",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Улица на рассвете",
+   "hook": "Город на час принадлежит дворникам, пекарям и тем, кто не спал."
+  },
+  "en": {
+   "title": "Street at Dawn",
+   "hook": "For one hour the city belongs to bakers, sweepers and the sleepless."
+  },
+  "uz": {
+   "title": "Tongdagi koʻcha",
+   "hook": "Bir soatga shahar farroshlar, novvoylar va uxlay olmaganlarniki boʻlib qoladi."
+  }
+ },
+ {
+  "slug": "fudkort",
+  "bank": "quick",
+  "domain": "city",
+  "ru": {
+   "title": "Фудкорт",
+   "hook": "Все кухни мира стоят рядом, а ты снова берёшь то же самое."
+  },
+  "en": {
+   "title": "Food Court",
+   "hook": "Every cuisine on earth in one room, and you order the same thing."
+  },
+  "uz": {
+   "title": "Fudkort",
+   "hook": "Dunyoning bor taomi yonma-yon turibdi, sen esa yana oʻsha oʻzingnikini olasan."
+  }
+ },
+ {
+  "slug": "komnata-detstva",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Комната детства",
+   "hook": "Ты помнишь её размеры неправильно — она была меньше, чем в памяти."
+  },
+  "en": {
+   "title": "Childhood Bedroom",
+   "hook": "You remember it bigger than it was — memory quietly renovated everything."
+  },
+  "uz": {
+   "title": "Bolalik xonasi",
+   "hook": "Xotirangda u kattaroq qolgan — qaytib kirsang, shift pasayib, burchaklar yaqinlashib qolgan."
+  }
+ },
+ {
+  "slug": "roditeli-v-molodosti",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Родители в молодости",
+   "hook": "Сейчас ты старше, чем они были на той фотографии."
+  },
+  "en": {
+   "title": "Parents Before You",
+   "hook": "You're now older than they were in that photo — and they had no idea what they were doing either."
+  },
+  "uz": {
+   "title": "Ota-onaning yoshligi",
+   "hook": "Hozir sen oʻsha suratdagi ota-onangdan kattaroqsan — ular ham hech narsani bilmay turib seni katta qilishgan."
+  }
+ },
+ {
+  "slug": "pervoe-sentyabrya",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Первое сентября",
+   "hook": "Новая форма, старые страхи — и запах гладиолусов, который ни с чем не спутать."
+  },
+  "en": {
+   "title": "Back to School",
+   "hook": "New shoes, same old fear — the year starts without asking if you're ready."
+  },
+  "uz": {
+   "title": "Bilimlar kuni",
+   "hook": "Yangi forma, oʻsha eski qoʻrquv — qoʻlingdagi guldasta esa saf tugamay soʻlib boʻlgan."
+  }
+ },
+ {
+  "slug": "domashnee-video",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Домашнее видео",
+   "hook": "Снимал всегда один и тот же человек — поэтому его там нет."
+  },
+  "en": {
+   "title": "Home Videos",
+   "hook": "Whoever held the camera is missing from every frame — you only ever hear their voice."
+  },
+  "uz": {
+   "title": "Uy videolari",
+   "hook": "Kamerani doim bitta odam ushlagan — shuning uchun u hech bir kadrda yoʻq, faqat ovozi eshitiladi."
+  }
+ },
+ {
+  "slug": "konets-avgusta",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Конец августа",
+   "hook": "Свет ещё летний, а внутри уже осень — и все это чувствуют."
+  },
+  "en": {
+   "title": "Late August",
+   "hook": "The light is still summer, but something inside has already packed up and left."
+  },
+  "uz": {
+   "title": "Avgust oxiri",
+   "hook": "Quyosh hali yozniki, lekin soyalar boshqacha tusha boshlagan — ichingda kuz allaqachon kirib boʻlgan."
+  }
+ },
+ {
+  "slug": "otmetki-rosta",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Отметки роста",
+   "hook": "Единственный график в твоей жизни, который рос только вверх."
+  },
+  "en": {
+   "title": "Height Marks",
+   "hook": "The only chart in your life that only went up — and nobody noticed which mark would be the last."
+  },
+  "uz": {
+   "title": "Boʻy chiziqlari",
+   "hook": "Hayotingdagi yagona grafik faqat yuqoriga oʻsgan — oxirgisi qaysi chiziq boʻlganini esa hech kim sezmay qolgan."
+  }
+ },
+ {
+  "slug": "pervaya-semnaya-kvartira",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Первая съёмная квартира",
+   "hook": "Чужая мебель, свои правила — впервые никто не спрашивает, во сколько придёшь."
+  },
+  "en": {
+   "title": "First Apartment",
+   "hook": "Someone else's furniture, your own rules — and nobody asking what time you got in."
+  },
+  "uz": {
+   "title": "Birinchi ijara uyi",
+   "hook": "Begona mebel, oʻz qoidalaring — birinchi marta hech kim soat nechada kelganingni soʻramaydi."
+  }
+ },
+ {
+  "slug": "multiki-po-subbotam",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Мультики по субботам",
+   "hook": "Тогда ждали неделю ради двадцати минут — сейчас доступно всё и не ждёшь ничего."
+  },
+  "en": {
+   "title": "Saturday Cartoons",
+   "hook": "A whole week of waiting for twenty minutes — and the waiting was half the show."
+  },
+  "uz": {
+   "title": "Shanba multfilmlari",
+   "hook": "Yigirma daqiqa uchun bir hafta kutgansan — oʻsha kutishning oʻzi multfilmdan kam qiziq emasdi."
+  }
+ },
+ {
+  "slug": "pervyy-mobilnik",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Первый мобильник",
+   "hook": "Он почти ничего не умел — но был твоим первым личным пространством."
+  },
+  "en": {
+   "title": "First Phone",
+   "hook": "Calls and texts, nothing else — and the first place your parents couldn't read over your shoulder."
+  },
+  "uz": {
+   "title": "Birinchi telefon",
+   "hook": "Faqat qoʻngʻiroq va SMS — lekin ota-onang oʻqiy olmaydigan birinchi joying oʻsha edi."
+  }
+ },
+ {
+  "slug": "klyuch-na-shnurke",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Ключ на шнурке",
+   "hook": "Первый предмет, который доверили не потерять, и первый час дома одному."
+  },
+  "en": {
+   "title": "Latchkey Kid",
+   "hook": "The first thing you were trusted not to lose — and the first hour with nobody home."
+  },
+  "uz": {
+   "title": "Boʻyindagi kalit",
+   "hook": "Yoʻqotmaslikka ishonib topshirilgan birinchi narsa — va uyda yolgʻiz oʻtkazgan birinchi soating."
+  }
+ },
+ {
+  "slug": "dacha-letom",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Дача летом",
+   "hook": "Сорняки, комары и скука — а вспоминается почему-то как лучшее лето."
+  },
+  "en": {
+   "title": "Summer at Grandma's",
+   "hook": "Weeds, mosquitoes, boredom — and somehow the summer you'd go back to first."
+  },
+  "uz": {
+   "title": "Qishloqdagi yoz",
+   "hook": "Begona oʻt, chivin, zerikish — oʻshanda kunlarni sanab oʻtkazgansan, endi esa eng yaxshi yozing oʻsha."
+  }
+ },
+ {
+  "slug": "shkolnaya-stolovaya",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Школьная столовая",
+   "hook": "Там решалось не что ты ешь, а с кем ты сидишь."
+  },
+  "en": {
+   "title": "School Cafeteria",
+   "hook": "Nobody remembers the food; everyone remembers where they were allowed to sit."
+  },
+  "uz": {
+   "title": "Maktab oshxonasi",
+   "hook": "U yerdagi ovqatni hech kim eslamaydi — hamma qaysi stolga oʻtirishga ruxsat borligini eslaydi."
+  }
+ },
+ {
+  "slug": "zelenka-na-kolenke",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Зелёнка на коленке",
+   "hook": "Боль забылась мгновенно, а зелёное пятно держалось неделю как медаль."
+  },
+  "en": {
+   "title": "Scraped Knee",
+   "hook": "The pain lasted a minute; the scab was a trophy you showed off all week."
+  },
+  "uz": {
+   "title": "Tizzadagi zelyonka",
+   "hook": "Ogʻriq bir daqiqada oʻtib ketgan — yashil dogʻni esa bir hafta hammaga koʻrsatib yurgansan."
+  }
+ },
+ {
+  "slug": "staryy-pleylist",
+  "bank": "quick",
+  "domain": "memory",
+  "ru": {
+   "title": "Старый плейлист",
+   "hook": "В нём сохранился не вкус, а человек, ради которого он собирался."
+  },
+  "en": {
+   "title": "Old Playlist",
+   "hook": "A playlist doesn't save your taste — it saves who you were, which is why you can't press play."
+  },
+  "uz": {
+   "title": "Eski pleylist",
+   "hook": "Pleylist didingni emas, oʻsha paytdagi oʻzingni saqlab qolgan — shuning uchun ochishga botinolmaysan."
+  }
+ },
+ {
+  "slug": "vstrecha-vypusknikov",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Встреча выпускников",
+   "hook": "Все приходят доказать, что школьная роль больше на них не налезает."
+  },
+  "en": {
+   "title": "Class Reunion",
+   "hook": "Everyone comes to prove the old label no longer fits — an hour in, everyone's playing the same part again."
+  },
+  "uz": {
+   "title": "Bitiruvchilar uchrashuvi",
+   "hook": "Hamma maktabdagi yorligʻidan qutulganini koʻrsatgani keladi — bir soatdan keyin esa hamma yana oʻsha rolda."
+  }
+ },
+ {
+  "slug": "pervoe-svidanie",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Первое свидание",
+   "hook": "Обоим страшно, но каждый уверен, что боится только он один."
+  },
+  "en": {
+   "title": "First Date",
+   "hook": "Both of them are terrified, and each is certain they're the only one."
+  },
+  "uz": {
+   "title": "Birinchi uchrashuv",
+   "hook": "Ikkalasi ham qoʻrqib oʻtiribdi, lekin har biri qoʻrqayotgan yolgʻiz oʻzi deb oʻylaydi."
+  }
+ },
+ {
+  "slug": "sosed-po-parte",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Сосед по парте",
+   "hook": "Человека выбрал не ты, а рассадка — и он знал о тебе всё."
+  },
+  "en": {
+   "title": "The Kid You Sat Next To",
+   "hook": "You never picked them — a seating chart did, and they still know things nobody else does."
+  },
+  "uz": {
+   "title": "Partadosh",
+   "hook": "Uni sen tanlamagansan — oʻqituvchi shunchaki yoningga oʻtqazib qoʻygan, sirlaringni esa hamon oʻsha biladi."
+  }
+ },
+ {
+  "slug": "pervaya-uchitelnitsa",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Первая учительница",
+   "hook": "Ты помнишь её голос, а она тебя — вряд ли, и это нормально."
+  },
+  "en": {
+   "title": "First Teacher",
+   "hook": "You remember her voice for life; she got forty new faces every September."
+  },
+  "uz": {
+   "title": "Birinchi muallima",
+   "hook": "Uning ovozi hamon esingda — u esa har yili qirqta yangi bolaning ismini yodlagan."
+  }
+ },
+ {
+  "slug": "roditelskoe-sobranie",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Родительское собрание",
+   "hook": "Единственный суд, на который подсудимого даже не пускают в зал."
+  },
+  "en": {
+   "title": "Parent-Teacher Night",
+   "hook": "The only trial where the defendant waits in the hallway and hears the verdict on the way home."
+  },
+  "uz": {
+   "title": "Ota-onalar yigʻilishi",
+   "hook": "Yagona sud — bunda ayblanuvchi zalga kiritilmaydi, hukmni koridorda kutib turadi."
+  }
+ },
+ {
+  "slug": "korporativ",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Корпоратив",
+   "hook": "Один вечер, когда иерархия делает вид, что её не существует."
+  },
+  "en": {
+   "title": "Office Party",
+   "hook": "One night a year the hierarchy pretends it doesn't exist — by Monday it remembers everything."
+  },
+  "uz": {
+   "title": "Korporativ kecha",
+   "hook": "Yiliga bir kecha boshliq ham oddiy odamga aylanadi — ertalab esa hamma yana oʻz oʻrnida."
+  }
+ },
+ {
+  "slug": "znakomstvo-s-roditelyami",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Знакомство с родителями",
+   "hook": "Тебя оценивают не как человека, а как версию будущего их ребёнка."
+  },
+  "en": {
+   "title": "Meeting the Parents",
+   "hook": "They aren't judging you — they're judging their child's future, and you're just the evidence."
+  },
+  "uz": {
+   "title": "Ota-onasi bilan tanishuv",
+   "hook": "Ular seni emas, sen orqali farzandining kelajagini baholaydi — choyni qanday quyishinggacha hisobga olinadi."
+  }
+ },
+ {
+  "slug": "dvorovaya-kompaniya",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Дворовая компания",
+   "hook": "Людей выбирал не ты — их выбрало расстояние до твоего подъезда."
+  },
+  "en": {
+   "title": "Neighborhood Crew",
+   "hook": "You never picked these friends — the walk from your front door did."
+  },
+  "uz": {
+   "title": "Mahalla bolalari",
+   "hook": "Doʻstingni sen tanlamagansan — darvozangdan necha qadam narida yashagani tanlagan."
+  }
+ },
+ {
+  "slug": "dalniy-rodstvennik",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Дальний родственник",
+   "hook": "Человек, чью степень родства никто в семье объяснить не может."
+  },
+  "en": {
+   "title": "Distant Relative",
+   "hook": "Nobody can trace the link, yet he has a seat at every wedding."
+  },
+  "uz": {
+   "title": "Uzoq qarindosh",
+   "hook": "Qanaqa qarindoshligini uyda hech kim tushuntira olmaydi, lekin toʻyda toʻrda oʻtiradi."
+  }
+ },
+ {
+  "slug": "gosti-s-nochevkoy",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Гости с ночёвкой",
+   "hook": "Твой дом перестаёт быть твоим ровно на срок их визита."
+  },
+  "en": {
+   "title": "Overnight Guests",
+   "hook": "You keep the keys; everything else is theirs until they leave."
+  },
+  "uz": {
+   "title": "Tunab qoladigan mehmon",
+   "hook": "Kalit sendaligicha qoladi, qolgan hamma narsa ular ketguncha ularniki."
+  }
+ },
+ {
+  "slug": "babushki-u-podezda",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Бабушки у подъезда",
+   "hook": "Первая система наблюдения, работавшая без камер, интернета и выходных."
+  },
+  "en": {
+   "title": "Porch Grandmas",
+   "hook": "Surveillance existed long before cameras — it just sat on a bench."
+  },
+  "uz": {
+   "title": "Darvoza oldidagi kampirlar",
+   "hook": "Kuzatuv kamerasidan ancha oldin ham mahalla hammasini bilardi — skameykada oʻtirib."
+  }
+ },
+ {
+  "slug": "schet-popolam",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Счёт пополам",
+   "hook": "Пять минут арифметики, за которыми видно всё об отношениях в компании."
+  },
+  "en": {
+   "title": "Splitting the Bill",
+   "hook": "Five minutes of arithmetic that exposes what everyone thinks of everyone."
+  },
+  "uz": {
+   "title": "Hisobni boʻlishish",
+   "hook": "Besh daqiqalik hisob-kitob dasturxondagi kim kimga qanday qarashini ochib tashlaydi."
+  }
+ },
+ {
+  "slug": "zabytoe-imya",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Забытое имя",
+   "hook": "Ты помнишь про человека всё, кроме единственного, что ему принадлежит."
+  },
+  "en": {
+   "title": "Blanking on a Name",
+   "hook": "You remember their dog, their car, their ex — everything but the one word that's theirs."
+  },
+  "uz": {
+   "title": "Esdan chiqqan ism",
+   "hook": "Mashinasi, akasi, iti — hammasi esingda. Faqat ismi yoʻq."
+  }
+ },
+ {
+  "slug": "zvonok-mame",
+  "bank": "quick",
+  "domain": "people",
+  "ru": {
+   "title": "Звонок маме",
+   "hook": "Разговор всегда короче, чем стоило бы, и длиннее, чем планировал."
+  },
+  "en": {
+   "title": "Calling Mom",
+   "hook": "It always runs longer than you planned and still ends sooner than it should."
+  },
+  "uz": {
+   "title": "Onamga qoʻngʻiroq",
+   "hook": "Rejalaganingdan uzoq choʻziladi, baribir kerak boʻlganidan qisqa tugaydi."
+  }
+ },
+ {
+  "slug": "istoriya-brauzera",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "История браузера",
+   "hook": "Самый честный дневник, который ты ведёшь, не собираясь его вести."
+  },
+  "en": {
+   "title": "Browser History",
+   "hook": "The most honest diary you keep without ever meaning to write it."
+  },
+  "uz": {
+   "title": "Brauzer tarixi",
+   "hook": "Hech kimga koʻrsatmaydigan, lekin har kuni toʻldirib boradigan eng halol kundaliging."
+  }
+ },
+ {
+  "slug": "prochitano-bez-otveta",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Прочитано без ответа",
+   "hook": "Молчание, у которого теперь есть точное время и подтверждение доставки."
+  },
+  "en": {
+   "title": "Left on Read",
+   "hook": "Silence that now comes with a timestamp and a delivery receipt."
+  },
+  "uz": {
+   "title": "Oʻqidi, javob yoʻq",
+   "hook": "Jimlikning endi aniq vaqti bor: soat nechida oʻqigani yozib qoʻyilgan."
+  }
+ },
+ {
+  "slug": "zametki-v-telefone",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Заметки в телефоне",
+   "hook": "Пароли, списки покупок и мысли в три ночи в одной папке."
+  },
+  "en": {
+   "title": "Notes App",
+   "hook": "Passwords, grocery lists and 3 a.m. thoughts filed in the same place."
+  },
+  "uz": {
+   "title": "Telefondagi eslatmalar",
+   "hook": "Parollar, bozorlik roʻyxati va tunda uygʻonib yozilgan fikrlar — bitta joyda."
+  }
+ },
+ {
+  "slug": "semeynyy-chat",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Семейный чат",
+   "hook": "Единственное место, где открытка с добрым утром важнее любых новостей."
+  },
+  "en": {
+   "title": "Family Group Chat",
+   "hook": "The one place where a good-morning GIF outranks any actual news."
+  },
+  "uz": {
+   "title": "Oila guruhi",
+   "hook": "Jiddiy yangilikdan koʻra «Xayrli tong» surati koʻproq javob oladigan yagona joy."
+  }
+ },
+ {
+  "slug": "odin-protsent-zaryadki",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Один процент зарядки",
+   "hook": "Единственный процент, который умеет растягиваться и обрываться без предупреждения."
+  },
+  "en": {
+   "title": "One Percent Battery",
+   "hook": "The only percent that lasts half an hour or dies mid-sentence."
+  },
+  "uz": {
+   "title": "Bir foiz zaryad",
+   "hook": "Goh yarim soat chidaydi, goh eng kerakli gapning oʻrtasida oʻchib qoladi."
+  }
+ },
+ {
+  "slug": "reklama-kotoraya-podslushala",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Реклама, которая подслушала",
+   "hook": "Совпадение, в которое никто не верит, но объяснить его никто не может."
+  },
+  "en": {
+   "title": "Eavesdropping Ads",
+   "hook": "You said it out loud once, the feed heard you, and nobody can explain how."
+  },
+  "uz": {
+   "title": "Gapingni eshitgan reklama",
+   "hook": "Ogʻzaki aytgan narsang ertasiga lentangda chiqadi — buni hech kim tushuntira olmaydi."
+  }
+ },
+ {
+  "slug": "sluchaynyy-layk",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Случайный лайк",
+   "hook": "Одно движение пальца выдаёт, как глубоко ты залез в чужую жизнь."
+  },
+  "en": {
+   "title": "Accidental Like",
+   "hook": "One thumb slip and everyone knows you scrolled back three years."
+  },
+  "uz": {
+   "title": "Tasodifiy layk",
+   "hook": "Barmoq qoqilgan bir lahza uch yil oldingi rasmgacha tushganingni fosh qiladi."
+  }
+ },
+ {
+  "slug": "skrinshot-perepiski",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Скриншот переписки",
+   "hook": "Момент, когда личный разговор превращается в улику для третьих лиц."
+  },
+  "en": {
+   "title": "Chat Screenshot",
+   "hook": "The moment a private conversation becomes evidence in someone else's case."
+  },
+  "uz": {
+   "title": "Yozishma skrinshoti",
+   "hook": "Ikki kishilik suhbat uchinchi odamning qoʻlida dalilga aylanadigan lahza."
+  }
+ },
+ {
+  "slug": "ekrannoe-vremya",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Экранное время",
+   "hook": "Цифра, которую ты смотришь три секунды и сразу возвращаешься в телефон."
+  },
+  "en": {
+   "title": "Screen Time",
+   "hook": "You read the number, sigh, and go straight back into the same screen."
+  },
+  "uz": {
+   "title": "Ekran vaqti",
+   "hook": "Haftalik hisobotni oʻqiysan, xoʻrsinasan va oʻsha ekranning oʻziga qaytasan."
+  }
+ },
+ {
+  "slug": "avatarka-2013",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Аватарка из 2013-го",
+   "hook": "Человек, которым ты был, до сих пор смотрит на тебя оттуда."
+  },
+  "en": {
+   "title": "2013 Profile Pic",
+   "hook": "The person you used to be still stares out of that thumbnail."
+  },
+  "uz": {
+   "title": "2013-yilgi avatarka",
+   "hook": "Oʻsha paytdagi oʻzing hamon kichkina rasmdan turib senga qarab turadi."
+  }
+ },
+ {
+  "slug": "neotpravlennoe-soobshchenie",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Неотправленное сообщение",
+   "hook": "Ты написал всё честно ровно потому, что не собирался это отправлять."
+  },
+  "en": {
+   "title": "Unsent Message",
+   "hook": "It came out honest only because you knew you'd never hit send."
+  },
+  "uz": {
+   "title": "Yuborilmagan xabar",
+   "hook": "Yubormasligingni bilganing uchun bir umrlik rostini yozib tashlagansan."
+  }
+ },
+ {
+  "slug": "golosovoe-soobshchenie",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Голосовое сообщение",
+   "hook": "Удобно тому, кто говорит, и неудобно всем, кто слушает."
+  },
+  "en": {
+   "title": "Voice Message",
+   "hook": "Three minutes of talking to deliver what one line of text would have."
+  },
+  "uz": {
+   "title": "Ovozli xabar",
+   "hook": "Bir qatorlik gap uchun uch daqiqa: gapirganga qulay, eshitganga har doim yoʻq."
+  }
+ },
+ {
+  "slug": "spam-zvonok",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Спам-звонок",
+   "hook": "Единственные люди, которые ещё звонят тебе, а не пишут."
+  },
+  "en": {
+   "title": "Spam Call",
+   "hook": "The only people left who still call instead of texting you."
+  },
+  "uz": {
+   "title": "Spam qoʻngʻiroq",
+   "hook": "Endi senga faqat notanish raqamlar qoʻngʻiroq qiladi, qolgani yozib qoʻya qoladi."
+  }
+ },
+ {
+  "slug": "korzina-v-marketpleyse",
+  "bank": "quick",
+  "domain": "digital",
+  "ru": {
+   "title": "Корзина в маркетплейсе",
+   "hook": "Склад желаний, где вещи кончаются быстрее, чем ты решаешься купить."
+  },
+  "en": {
+   "title": "The Abandoned Cart",
+   "hook": "A wishlist where things sell out before you ever decide."
+  },
+  "uz": {
+   "title": "Onlayn savatcha",
+   "hook": "Sotib ham olmaysan, oʻchirmaysan ham — qaror qilguningcha narsa sotilib ketadi."
+  }
+ }
+]

@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+@import '../styles/radix.css';
+@import '../styles/tokens.css';
+@import '../styles/app.css';
+@import '../styles/overlay.css';
+
+/* @theme inline заставляет Tailwind писать var(--…), а не
+   резолвить значение на сборке — иначе смена токенов
+   в рантайме была бы невозможна */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --font-display: var(--font-display);
+  --font-cond: var(--font-cond);
+  --font-mono: var(--font-mono);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+::selection { background: var(--primary); color: var(--primary-foreground); }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }

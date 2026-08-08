@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════════════════════════
+   Оверлеи: таймер, отсчёт, настройки
+   ═══════════════════════════════════════════════════════════ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background: color-mix(in srgb, var(--background) 93%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fade 0.3s var(--ease-out) both;
+}
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+
+.ov-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: rise 0.5s var(--ease-out) 0.05s both;
+}
+
+.t-topic {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: clamp(22px, 4vh, 42px);
+  max-width: 42ch;
+  line-height: 1.9;
+}
+
+/* Кольцо УБЫВАЕТ: показывает остаток, а не расход. Растущая
+   дуга боковым зрением читается как «времени много» ровно
+   тогда, когда его уже нет.
+   Свойства --p и --ring-col зарегистрированы через @property —
+   без этого transition на conic-gradient не работает вообще */
+.ring {
+  position: relative;
+  width: clamp(180px, 25vh, 236px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--ring-col) calc(var(--p) * 360deg), var(--ring-track) 0);
+  transition: --p 0.12s linear, --ring-col 0.35s linear;
+}
+.ring::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
+  background: var(--background);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+.ring-b { position: relative; z-index: 1; }
+
+.t-digits {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-size: clamp(38px, 6vh, 52px);
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.t-phase {
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--subtle-foreground);
+}
+.overlay.done .t-digits { color: var(--primary-text); }
+.overlay.done .ring { animation: pop 0.8s var(--ease-out); }
+@keyframes pop { 0%, 100% { transform: scale(1) } 42% { transform: scale(1.045) } }
+
+/* Три опоры минутного монолога — каркас связной речи.
+   Без них ролик разваливается в пересказ определения */
+.stages { display: flex; margin-top: clamp(20px, 3.4vh, 32px); }
+.stages span {
+  padding: 9px 18px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--border);
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition: color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+.stages span + span { margin-left: -1px; }
+.stages span.on {
+  color: var(--primary-foreground);
+  background: var(--primary);
+  box-shadow: none;
+}
+.stages span.past { color: var(--muted-foreground); box-shadow: inset 0 0 0 1px var(--border-strong); }
+
+.t-status {
+  margin-top: clamp(16px, 2.6vh, 26px);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.t-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: clamp(18px, 3vh, 30px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Отсчёт перед речью: без него первые секунды дубля уходят
+   на то, как человек отпускает мышь и набирает воздух */
+.countdown {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--background) 97%, transparent);
+}
+.countdown b {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-variation-settings: 'CTRS' 60;
+  font-weight: 600;
+  font-size: clamp(120px, 22vh, 200px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--primary);
+  animation: cd 0.92s var(--ease-out);
+}
+@keyframes cd {
+  0% { opacity: 0; transform: scale(1.25) }
+  18% { opacity: 1; transform: scale(1) }
+  100% { opacity: 0.08; transform: scale(0.96) }
+}
+
+/* ── Настройки ──────────────────────────────────────────── */
+
+.panel {
+  width: min(420px, 90vw);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+  padding: 30px;
+  text-align: left;
+}
+.panel:focus { outline: none; }
+.panel h2 {
+  margin: 0 0 4px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+.panel .note {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--border);
+  margin: 0 0 26px;
+}
+.field-row { margin-bottom: 24px; }
+.field-row .lab {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.field-row .lab span { color: var(--muted-foreground); }
+.field-row .lab b {
+  color: var(--primary-text);
+  font-weight: 700;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--border-strong);
+  outline: none;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 4px;
+  height: 18px;
+  border-radius: 1px;
+  background: var(--primary);
+  cursor: pointer;
+}
+input[type='range']::-moz-range-thumb {
+  width: 4px;
+  height: 18px;
+  border: none;
+  border-radius: 1px;
+  background: var(--primary);
+  cursor: pointer;
+}
+input[type='range']:focus-visible { outline: 1px solid var(--ring); outline-offset: 5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .countdown b { animation: none; }
+}

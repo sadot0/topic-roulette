@@ -1,0 +1,1190 @@
+[
+ {
+  "slug": "reverse-centaur",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Обратный кентавр",
+   "hook": "Не машина помогает тебе — это ты подрабатываешь руками у машины."
+  },
+  "en": {
+   "title": "Reverse Centaur",
+   "hook": "You're not using the machine; you're the hands it doesn't have."
+  },
+  "uz": {
+   "title": "Teskari kentavr",
+   "hook": "Mashina senga yordam bermayapti — sen uning qoʻli boʻlib ishlayapsan."
+  }
+ },
+ {
+  "slug": "workslop",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Воркслоп",
+   "hook": "Отчёт выглядит готовым, а думать за автора придётся тебе."
+  },
+  "en": {
+   "title": "Workslop",
+   "hook": "It looks finished, and quietly hands all the thinking to you."
+  },
+  "uz": {
+   "title": "Workslop",
+   "hook": "Hisobot tayyordek koʻrinadi — oʻylashni esa baribir senga qoldiradi."
+  }
+ },
+ {
+  "slug": "jagged-frontier",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Зубчатая граница ИИ",
+   "hook": "Пишет диссертацию за минуту и не может посчитать буквы в слове."
+  },
+  "en": {
+   "title": "Jagged Frontier",
+   "hook": "It drafts a legal brief in seconds, then miscounts the letters."
+  },
+  "uz": {
+   "title": "Tishsimon chegara",
+   "hook": "Bir daqiqada dissertatsiya yozadi, soʻzdagi harflarni esa sanay olmaydi."
+  }
+ },
+ {
+  "slug": "verification-gap",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Разрыв верификации",
+   "hook": "Текст рождается за секунду, а проверять его по-прежнему приходится глазами."
+  },
+  "en": {
+   "title": "Verification Gap",
+   "hook": "Creating got a thousand times faster; checking still runs at human speed."
+  },
+  "uz": {
+   "title": "Tekshiruv boʻshligʻi",
+   "hook": "Yozish ming barobar tezlashdi, tekshirish esa oʻsha odam tezligida qoldi."
+  }
+ },
+ {
+  "slug": "moral-crumple-zone",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Моральная зона смятия",
+   "hook": "Оператора держат у пульта не ради контроля, а ради виноватого."
+  },
+  "en": {
+   "title": "Moral Crumple Zone",
+   "hook": "The human stays in the loop mainly to absorb the blame."
+  },
+  "uz": {
+   "title": "Axloqiy ezilish zonasi",
+   "hook": "Odam pult oldida boshqarish uchun emas, aybni boʻyniga olish uchun oʻtiradi."
+  }
+ },
+ {
+  "slug": "habsburg-ai",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Габсбургский ИИ",
+   "hook": "Модель учится на детях моделей и вырождается, как королевская династия."
+  },
+  "en": {
+   "title": "Habsburg AI",
+   "hook": "Trained on its own descendants, the model inbreeds like a royal dynasty."
+  },
+  "uz": {
+   "title": "Habsburg sunʼiy intellekti",
+   "hook": "Model oʻz avlodlaridan oʻrganadi va qirol sulolasidek aynib boradi."
+  }
+ },
+ {
+  "slug": "seventy-percent-problem",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Проблема последних 30%",
+   "hook": "Первые семьдесят процентов — за пять минут, остальные тридцать — за месяц."
+  },
+  "en": {
+   "title": "The 70% Problem",
+   "hook": "Seventy percent arrives in minutes; the last thirty eat the whole month."
+  },
+  "uz": {
+   "title": "70 foiz muammosi",
+   "hook": "Yetmish foizi besh daqiqada bitadi, qolgan oʻttizi bir oyni yeydi."
+  }
+ },
+ {
+  "slug": "ai-sycophancy",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Машинное подхалимство",
+   "hook": "Она хвалит твою идею чаще, чем это сделал бы честный друг."
+  },
+  "en": {
+   "title": "AI Sycophancy",
+   "hook": "It agrees with you far more often than an honest colleague would."
+  },
+  "uz": {
+   "title": "Mashina xushomadi",
+   "hook": "Gʻoyangni halol doʻsting ham bunchalik maqtamaydi."
+  }
+ },
+ {
+  "slug": "secret-cyborgs",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Тайные киборги",
+   "hook": "Половина офиса уже автоматизировала свою работу и молчит, чтобы не догрузили."
+  },
+  "en": {
+   "title": "Secret Cyborgs",
+   "hook": "Half the office already automated their jobs — and nobody's telling the boss."
+  },
+  "uz": {
+   "title": "Yashirin kiborglar",
+   "hook": "Ofisning yarmi ishini avtomatlashtirgan — boshliq bilsa, yana yuk ortadi."
+  }
+ },
+ {
+  "slug": "liars-dividend",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Дивиденд лжеца",
+   "hook": "Опасны не фальшивые записи, а то, что настоящую теперь объявляют фальшивкой."
+  },
+  "en": {
+   "title": "Liar's Dividend",
+   "hook": "The real danger isn't fake video — it's calling real video fake."
+  },
+  "uz": {
+   "title": "Yolgʻonchi dividendi",
+   "hook": "Asl xavf soxta videoda emas — endi haqiqiysini ham soxta deb yuborishadi."
+  }
+ },
+ {
+  "slug": "moravecs-paradox",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Моравека",
+   "hook": "Шахматы машина забрала за сорок лет, а носки не может собрать до сих пор."
+  },
+  "en": {
+   "title": "Moravec's Paradox",
+   "hook": "Chess took machines forty years; picking up a sock still defeats them."
+  },
+  "uz": {
+   "title": "Moravek paradoksi",
+   "hook": "Mashina shaxmatni qirq yilda yengdi, paypoqni esa hamon yerdan ololmaydi."
+  }
+ },
+ {
+  "slug": "ironies-of-automation",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "Иронии автоматизации",
+   "hook": "Чем надёжнее автопилот, тем беспомощнее пилот, которому он однажды всё вернёт."
+  },
+  "en": {
+   "title": "Ironies of Automation",
+   "hook": "The better the autopilot, the less ready the pilot it wakes up."
+  },
+  "uz": {
+   "title": "Avtomatlashtirish kinoyasi",
+   "hook": "Avtopilot qanchalik zoʻr boʻlsa, u uygʻotgan uchuvchi shunchalik nochor."
+  }
+ },
+ {
+  "slug": "illusion-of-explanatory-depth",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Иллюзия глубины объяснения",
+   "hook": "Ты точно знаешь, как работает велосипед — пока тебя не попросят объяснить."
+  },
+  "en": {
+   "title": "Illusion of Explanatory Depth",
+   "hook": "You know exactly how a zipper works until someone asks you to explain it."
+  },
+  "uz": {
+   "title": "Tushuntirish chuqurligi illyuziyasi",
+   "hook": "Velosiped qanday ishlashini bilasan — kimdir tushuntirib ber deb qolguncha."
+  }
+ },
+ {
+  "slug": "mere-urgency-effect",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект простой срочности",
+   "hook": "Мы бросаем важное ради ерунды — просто потому, что у неё горит срок."
+  },
+  "en": {
+   "title": "Mere Urgency Effect",
+   "hook": "We drop what matters for something trivial — just because it has a deadline."
+  },
+  "uz": {
+   "title": "Shoshilinchlik effekti",
+   "hook": "Muhim ishni tashlab qoʻyamiz — chunki maydasining muddati yonyapti."
+  }
+ },
+ {
+  "slug": "solomons-paradox",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Соломона",
+   "hook": "Чужую жизнь ты разруливаешь мудро, свою — будто живёшь первый раз."
+  },
+  "en": {
+   "title": "Solomon's Paradox",
+   "hook": "You give brilliant advice to friends and none of it to yourself."
+  },
+  "uz": {
+   "title": "Sulaymon paradoksi",
+   "hook": "Oʻzgaga dono maslahat berasan, oʻzingnikiga kelganda boshing qotadi."
+  }
+ },
+ {
+  "slug": "moral-licensing",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Моральное лицензирование",
+   "hook": "Сделал доброе дело — и мозг выписал разрешение на подлость."
+  },
+  "en": {
+   "title": "Moral Licensing",
+   "hook": "One good deed, and the brain quietly issues a permit to misbehave."
+  },
+  "uz": {
+   "title": "Axloqiy litsenziya",
+   "hook": "Bitta savob ish qilasan — miya darrov gunohga ruxsatnoma yozib beradi."
+  }
+ },
+ {
+  "slug": "prevalence-induced-concept-change",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Сдвиг понятия проблемы",
+   "hook": "Проблем стало меньше — и мозг тут же назначил проблемами вещи помельче."
+  },
+  "en": {
+   "title": "Prevalence-Induced Concept Change",
+   "hook": "As real problems vanish, the mind promotes smaller things into problems."
+  },
+  "uz": {
+   "title": "Muammo tushunchasining siljishi",
+   "hook": "Muammolar kamaydi — miya darrov mayda narsalarni muammo deb eʼlon qiladi."
+  }
+ },
+ {
+  "slug": "berksons-paradox",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Берксона",
+   "hook": "Почему все красивые — козлы? Виноват не мир, а ваш фильтр."
+  },
+  "en": {
+   "title": "Berkson's Paradox",
+   "hook": "Everyone good-looking turns out to be a jerk — that's your filter talking, not the world."
+  },
+  "uz": {
+   "title": "Berkson paradoksi",
+   "hook": "Chiroylilarning bari yaramas chiqadimi? Ayb dunyoda emas, oʻz filtringda."
+  }
+ },
+ {
+  "slug": "porcupine-dilemma",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Дилемма дикобразов",
+   "hook": "Подойдёшь ближе — уколешься, отойдёшь — замёрзнешь; и так всю жизнь."
+  },
+  "en": {
+   "title": "Hedgehog's Dilemma",
+   "hook": "Get close and the spines hurt; back away and you freeze."
+  },
+  "uz": {
+   "title": "Tipratikanlar dilemmasi",
+   "hook": "Yaqinlashsang sanchilasan, uzoqlashsang sovqotasan — oʻrtasi umr boʻyi topilmaydi."
+  }
+ },
+ {
+  "slug": "cognitive-debt",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Когнитивный долг",
+   "hook": "Машина думает за тебя сегодня — проценты спишут с твоей головы завтра."
+  },
+  "en": {
+   "title": "Cognitive Debt",
+   "hook": "Let the machine think for you today; the interest comes out of your head tomorrow."
+  },
+  "uz": {
+   "title": "Kognitiv qarz",
+   "hook": "Bugun sening oʻrningga mashina oʻylaydi — foizini ertaga miyang bilan toʻlaysan."
+  }
+ },
+ {
+  "slug": "algorithm-aversion",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Алгоритмическое отторжение",
+   "hook": "Человеку ошибку прощают, алгоритму — никогда, даже если он ошибается реже."
+  },
+  "en": {
+   "title": "Algorithm Aversion",
+   "hook": "A human errs and we forgive; an algorithm errs once and we switch it off."
+  },
+  "uz": {
+   "title": "Algoritmga ishonmaslik",
+   "hook": "Odam adashsa kechiramiz, algoritm bir marta adashsa — oʻchirib tashlaymiz."
+  }
+ },
+ {
+  "slug": "ludic-loop",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Лудическая петля",
+   "hook": "Лента листается по чертежу игрового автомата — и время просто исчезает."
+  },
+  "en": {
+   "title": "Ludic Loop",
+   "hook": "Your feed runs on slot-machine mechanics, and the hours just vanish."
+  },
+  "uz": {
+   "title": "Ludik halqa",
+   "hook": "Lentang oʻyin avtomati qonuni bilan ishlaydi — vaqting qayoqqa ketganini sezmay qolasan."
+  }
+ },
+ {
+  "slug": "teletransportation-paradox",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Телепортационный парадокс Парфита",
+   "hook": "Телепорт уничтожил оригинал и собрал копию на Марсе: ты долетел?"
+  },
+  "en": {
+   "title": "Teletransportation Paradox",
+   "hook": "The teleporter destroys you here and rebuilds you on Mars — did you make the trip?"
+  },
+  "uz": {
+   "title": "Teleportatsiya paradoksi",
+   "hook": "Teleport seni bu yerda yoʻq qildi, Marsda qaytadan yigʻdi — yetib borgan sen oʻzingmi?"
+  }
+ },
+ {
+  "slug": "marys-room",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Комната Мэри",
+   "hook": "Она знает о цвете всё, но красный видит впервые — узнает новое?"
+  },
+  "en": {
+   "title": "Mary's Room",
+   "hook": "She knows every fact about color. Then she sees red — did she just learn something new?"
+  },
+  "uz": {
+   "title": "Merining xonasi",
+   "hook": "Rang haqida hamma narsani biladi, lekin qizilni endi koʻrdi — yangi nimadir bildimi?"
+  }
+ },
+ {
+  "slug": "humes-guillotine",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Гильотина Юма",
+   "hook": "Из «так устроено» никогда не следует «так и должно быть»."
+  },
+  "en": {
+   "title": "Hume's Guillotine",
+   "hook": "No pile of facts will ever tell you what ought to be."
+  },
+  "uz": {
+   "title": "Yum gilyotinasi",
+   "hook": "«Shunday ekan» hech qachon «shunday boʻlishi kerak» degani emas."
+  }
+ },
+ {
+  "slug": "moral-luck",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Моральная удача",
+   "hook": "Два одинаково пьяных водителя, разный перекрёсток — и приговор почему-то разный."
+  },
+  "en": {
+   "title": "Moral Luck",
+   "hook": "Two equally drunk drivers — one hits a pedestrian, one doesn't, and only one is a monster."
+  },
+  "uz": {
+   "title": "Axloqiy omad",
+   "hook": "Ikkovi ham bir xil mast, faqat birining yoʻlida odam chiqdi — hukm esa yer bilan osmoncha."
+  }
+ },
+ {
+  "slug": "frankfurt-bullshit",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Брехня против лжи",
+   "hook": "Лжец прячет правду, брехуну она вообще неинтересна — и это опаснее."
+  },
+  "en": {
+   "title": "Frankfurt's Bullshit",
+   "hook": "A liar tracks the truth to hide it; a bullshitter never even looks."
+  },
+  "uz": {
+   "title": "Yolgʻon va safsata",
+   "hook": "Yolgʻonchi haqiqatni biladi va yashiradi, safsatabozga esa haqiqat umuman qiziq emas."
+  }
+ },
+ {
+  "slug": "motte-and-bailey",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Мотт и бейли",
+   "hook": "Заявляет громкое, под ударом прячется в скучное, потом снова громкое."
+  },
+  "en": {
+   "title": "Motte-and-Bailey",
+   "hook": "Make the wild claim, defend the boring one, then go back to the wild one."
+  },
+  "uz": {
+   "title": "Mott va beyli",
+   "hook": "Dadil daʼvo qiladi, tanqid kelsa zerikarlisini himoya qiladi — keyin yana oʻshani takrorlaydi."
+  }
+ },
+ {
+  "slug": "copenhagen-interpretation-of-ethics",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Копенгагенская интерпретация этики",
+   "hook": "Прошёл мимо — чист. Помог наполовину — виноват. Осуждают за прикосновение."
+  },
+  "en": {
+   "title": "Copenhagen Interpretation of Ethics",
+   "hook": "Walk past and you're innocent; help halfway and you're the villain."
+  },
+  "uz": {
+   "title": "Etikaning Kopengagen talqini",
+   "hook": "Beparvo oʻtib ketsang begunohsan, yarim yordam bersang — aybdor boʻlasan."
+  }
+ },
+ {
+  "slug": "audience-capture",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Захват аудиторией",
+   "hook": "Ты думаешь, что ведёшь аудиторию, — а она лепит из тебя карикатуру."
+  },
+  "en": {
+   "title": "Audience Capture",
+   "hook": "You think you're leading your audience — it's quietly carving you into a caricature."
+  },
+  "uz": {
+   "title": "Auditoriya asirligi",
+   "hook": "Sen auditoriyani yetaklayman deysan — aslida u sendan karikatura yasayapti."
+  }
+ },
+ {
+  "slug": "context-collapse",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Схлопывание контекстов",
+   "hook": "Один пост читают мама, начальник и бывший — кем быть сразу для всех?"
+  },
+  "en": {
+   "title": "Context Collapse",
+   "hook": "Your mother, your boss and your ex are reading the same post — who do you write it for?"
+  },
+  "uz": {
+   "title": "Kontekstlar qulashi",
+   "hook": "Bitta postni onang ham, boshligʻing ham, sobiging ham oʻqiydi — qaysi biriga gapiryapsan?"
+  }
+ },
+ {
+  "slug": "value-capture",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Захват ценности",
+   "hook": "Пришёл за смыслом — остался ради цифры, и цифра стала целью."
+  },
+  "en": {
+   "title": "Value Capture",
+   "hook": "You came for the meaning and stayed for the score — now the score is the point."
+  },
+  "uz": {
+   "title": "Qadriyat asirligi",
+   "hook": "Maʼno izlab kelasan, oxiri ekrandagi raqam maqsadingga aylanadi."
+  }
+ },
+ {
+  "slug": "parasocial-breakup",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Парасоциальный разрыв",
+   "hook": "Он тебя не знает, но его уход ты переживаешь как расставание."
+  },
+  "en": {
+   "title": "Parasocial Breakup",
+   "hook": "He never knew you existed, yet when he disappears it hurts like a real breakup."
+  },
+  "uz": {
+   "title": "Parasotsial ayriliq",
+   "hook": "U sening borligingni ham bilmaydi, lekin gʻoyib boʻlsa — chin ayriliqday ogʻriydi."
+  }
+ },
+ {
+  "slug": "calibrated-amateurism",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Калиброванная любительность",
+   "hook": "Кривой кадр и сырой звук — это дорогая работа над естественностью."
+  },
+  "en": {
+   "title": "Calibrated Amateurism",
+   "hook": "The shaky framing and bad audio were engineered to look accidental."
+  },
+  "uz": {
+   "title": "Sozlangan havaskorlik",
+   "hook": "Qiyshiq kadr, sifatsiz ovoz — bularning bari «tabiiy» koʻrinsin deb ataylab qilingan."
+  }
+ },
+ {
+  "slug": "toxoplasma-of-rage",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Токсоплазма ярости",
+   "hook": "Вирусным становится не лучший пример проблемы, а самый спорный."
+  },
+  "en": {
+   "title": "The Toxoplasma of Rage",
+   "hook": "The most indefensible example is the one that spreads — it's the only one worth fighting over."
+  },
+  "uz": {
+   "title": "Gʻazab toksoplazmasi",
+   "hook": "Eng ishonchli misol emas, eng janjallisi tarqaladi — tortishishga faqat oʻsha arziydi."
+  }
+ },
+ {
+  "slug": "purity-spiral",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Спираль чистоты",
+   "hook": "Планка правильности ползёт вверх, пока еретиком не окажется каждый."
+  },
+  "en": {
+   "title": "Purity Spiral",
+   "hook": "Everyone races to be a little purer — until nobody is pure enough."
+  },
+  "uz": {
+   "title": "Poklik spirali",
+   "hook": "Har kim qoʻshnisidan bir pogʻona pokroq boʻlishga urinadi — oxiri hamma gunohkor chiqadi."
+  }
+ },
+ {
+  "slug": "algorithmic-monoculture",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Алгоритмическая монокультура",
+   "hook": "Миллионы смотрят в один алгоритм — и кафе, музыка, лица становятся одинаковыми."
+  },
+  "en": {
+   "title": "Algorithmic Monoculture",
+   "hook": "Everyone scrolls the same feed, and every café, playlist and face starts to look alike."
+  },
+  "uz": {
+   "title": "Algoritmik monomadaniyat",
+   "hook": "Hamma bitta lentani aylantiradi — kafelar ham, musiqa ham, yuzlar ham bir xil boʻlib qolyapti."
+  }
+ },
+ {
+  "slug": "hipster-effect",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Эффект хипстера",
+   "hook": "Все решили быть не как все — и синхронно стали одинаковыми."
+  },
+  "en": {
+   "title": "The Hipster Effect",
+   "hook": "Everyone tried to look different — and ended up looking identical."
+  },
+  "uz": {
+   "title": "Xipster effekti",
+   "hook": "Hamma oʻzgacha koʻrinmoqchi boʻldi — oxiri hammasi bir xil boʻlib chiqdi."
+  }
+ },
+ {
+  "slug": "abilene-paradox",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Абилина",
+   "hook": "Все согласились единогласно — и поехали туда, куда не хотел никто."
+  },
+  "en": {
+   "title": "The Abilene Paradox",
+   "hook": "Everyone agrees, nobody objects — and off they drive somewhere not one of them wanted to go."
+  },
+  "uz": {
+   "title": "Abilin paradoksi",
+   "hook": "Hamma bir ovozdan rozi boʻldi — va hech kim xohlamagan joyga joʻnab ketishdi."
+  }
+ },
+ {
+  "slug": "preference-falsification",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Фальсификация предпочтений",
+   "hook": "Все публично «за», все приватно «против» — и монолит рушится за неделю."
+  },
+  "en": {
+   "title": "Preference Falsification",
+   "hook": "Everyone publicly backs what nobody privately believes — then the whole thing falls in a week."
+  },
+  "uz": {
+   "title": "Soxta rozilik",
+   "hook": "Koʻchada hamma yoqlaydi, uyda hamma qarshi — shuning uchun rejim bir haftada quladi."
+  }
+ },
+ {
+  "slug": "pournelles-iron-law-of-bureaucracy",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Железный закон бюрократии",
+   "hook": "В любой организации власть достаётся тем, кто служит не делу, а организации."
+  },
+  "en": {
+   "title": "Iron Law of Bureaucracy",
+   "hook": "Those who serve the organization always outrank those who serve the work."
+  },
+  "uz": {
+   "title": "Byurokratiyaning temir qonuni",
+   "hook": "Ishga emas, tashkilotga xizmat qilganlar oxir-oqibat boshqaruvni qoʻlga oladi."
+  }
+ },
+ {
+  "slug": "shirky-principle",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Принцип Ширки",
+   "hook": "Организация будет беречь ту самую проблему, ради решения которой создана."
+  },
+  "en": {
+   "title": "The Shirky Principle",
+   "hook": "Institutions will try to preserve the problem they exist to solve."
+  },
+  "uz": {
+   "title": "Shirki prinsipi",
+   "hook": "Har bir tashkilot oʻzi yoʻq qilishi kerak boʻlgan muammoni asrab-avaylaydi."
+  }
+ },
+ {
+  "slug": "salami-tactics",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Тактика салями",
+   "hook": "Ни один ломтик не повод для скандала — а колбасы уже нет."
+  },
+  "en": {
+   "title": "Salami Tactics",
+   "hook": "No single slice is worth a fight — and then the whole salami is gone."
+  },
+  "uz": {
+   "title": "Salami taktikasi",
+   "hook": "Bitta tilim uchun janjal qilmaysan — bir qarasang, butun kolbasa yoʻq."
+  }
+ },
+ {
+  "slug": "mcnamara-fallacy",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Ошибка Макнамары",
+   "hook": "Что не посчитали — сперва неважно, а потом и вовсе не существует."
+  },
+  "en": {
+   "title": "The McNamara Fallacy",
+   "hook": "What can't be counted becomes unimportant — and then it stops existing at all."
+  },
+  "uz": {
+   "title": "Maknamara xatosi",
+   "hook": "Oʻlchab boʻlmaydigan narsa avval ahamiyatsiz boʻlib qoladi, keyin esa umuman yoʻq hisoblanadi."
+  }
+ },
+ {
+  "slug": "dead-sea-effect",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект Мёртвого моря",
+   "hook": "Из компании первыми испаряются сильные, а оседают те, кому некуда идти."
+  },
+  "en": {
+   "title": "The Dead Sea Effect",
+   "hook": "The strongest evaporate first, and what's left behind is everyone with nowhere else to go."
+  },
+  "uz": {
+   "title": "Oʻlik dengiz effekti",
+   "hook": "Kuchlilar birinchi boʻlib bugʻlanib ketadi, boradigan joyi yoʻqlar tubida qolaveradi."
+  }
+ },
+ {
+  "slug": "kayfabe",
+  "bank": "deep",
+  "domain": "power",
+  "era": "modern",
+  "ru": {
+   "title": "Кейфейб",
+   "hook": "Все знают, что бой постановочный, и всё равно болеют всерьёз."
+  },
+  "en": {
+   "title": "Kayfabe",
+   "hook": "Everyone knows the fight is scripted — and everyone still screams for their guy."
+  },
+  "uz": {
+   "title": "Keyfeyb",
+   "hook": "Jang ssenariy boʻyicha ekanini hamma biladi — baribir hamma jon-dildan tarafkashlik qiladi."
+  }
+ },
+ {
+  "slug": "weaponized-interdependence",
+  "bank": "deep",
+  "domain": "power",
+  "era": "modern",
+  "ru": {
+   "title": "Взаимозависимость как оружие",
+   "hook": "Кто держит узел, через который идут все, отключает страну одним движением."
+  },
+  "en": {
+   "title": "Weaponized Interdependence",
+   "hook": "Whoever owns the chokepoint everyone depends on can unplug a country overnight."
+  },
+  "uz": {
+   "title": "Oʻzaro bogʻliqlik quroli",
+   "hook": "Hamma oʻtadigan tugun kimning qoʻlida boʻlsa, butun davlatni bir tugma bilan uzib qoʻyadi."
+  }
+ },
+ {
+  "slug": "elite-overproduction",
+  "bank": "deep",
+  "domain": "power",
+  "era": "modern",
+  "ru": {
+   "title": "Перепроизводство элит",
+   "hook": "Дипломов и амбиций выпущено больше, чем кресел, — лишние идут ломать систему."
+  },
+  "en": {
+   "title": "Elite Overproduction",
+   "hook": "A country turns out more ambitious graduates than there are seats — the leftovers go looking for trouble."
+  },
+  "uz": {
+   "title": "Elita ortiqchaligi",
+   "hook": "Diplomli daʼvogarlar kursilardan koʻpayib ketsa, ortib qolganlari tizimni sindirishga tushadi."
+  }
+ },
+ {
+  "slug": "enshittification",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Эншиттификация",
+   "hook": "Сначала платформа балует тебя, потом доит — уходить всё равно некуда."
+  },
+  "en": {
+   "title": "Enshittification",
+   "hook": "First the platform spoils you, then it milks you — because by then you can't leave."
+  },
+  "uz": {
+   "title": "Platformalarning aynishi",
+   "hook": "Platforma avval erkalaydi, keyin sogʻa boshlaydi — ketadigan joying ham qolmagan."
+  }
+ },
+ {
+  "slug": "surveillance-pricing",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Слежечное ценообразование",
+   "hook": "Цена на экране посчитана лично для тебя — по телефону и геолокации."
+  },
+  "en": {
+   "title": "Surveillance Pricing",
+   "hook": "That price was worked out for you alone — your phone, your location, yesterday's cart."
+  },
+  "uz": {
+   "title": "Kuzatuvga asoslangan narx",
+   "hook": "Ekrandagi narx shaxsan senga atab hisoblangan: telefoning, joylashuving, kechagi savating."
+  }
+ },
+ {
+  "slug": "technofeudalism",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Технофеодализм",
+   "hook": "Рынка больше нет: платформа ничего не производит, но собирает оброк со всех."
+  },
+  "en": {
+   "title": "Technofeudalism",
+   "hook": "It's not a market, it's someone's land — and the platform collects rent."
+  },
+  "uz": {
+   "title": "Texnofeodalizm",
+   "hook": "Bu bozor emas, birovning yeri — platforma hech narsa ishlab chiqarmay, oʻlpon yigʻadi."
+  }
+ },
+ {
+  "slug": "algorithmic-wage-discrimination",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Алгоритмическая дискриминация оплаты",
+   "hook": "Ты и напарник делаете одно и то же — платят вам разное."
+  },
+  "en": {
+   "title": "Algorithmic Wage Discrimination",
+   "hook": "Same job, same hour — the app quietly pays one of you less."
+  },
+  "uz": {
+   "title": "Maoshdagi algoritmik kamsitish",
+   "hook": "Bir xil ish, bir xil soat — ilova ikkalangizga har xil pul toʻlaydi."
+  }
+ },
+ {
+  "slug": "circular-financing",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Круговое финансирование",
+   "hook": "Дал денег клиенту, клиент вернул их тебе — и оба записали выручку."
+  },
+  "en": {
+   "title": "Circular Financing",
+   "hook": "You lend your customer money, he spends it on your product, and both of you book the revenue."
+  },
+  "uz": {
+   "title": "Aylanma moliyalashtirish",
+   "hook": "Mijozga oʻzing pul berasan, u shu pulga sendan mol oladi — daromad ikki marta yoziladi."
+  }
+ },
+ {
+  "slug": "sludge",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Сладж — спроектированное трение",
+   "hook": "Подписка — два клика, отписка — три экрана и живой оператор."
+  },
+  "en": {
+   "title": "Sludge: Designed Friction",
+   "hook": "Signing up takes two clicks; cancelling takes a phone call and three screens."
+  },
+  "uz": {
+   "title": "Slaj: ataylab qoʻyilgan toʻsiq",
+   "hook": "Obunaga yozilish — ikki bosish, bekor qilish — uch ekran va operator bilan suhbat."
+  }
+ },
+ {
+  "slug": "cantillon-effect",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект Кантильона",
+   "hook": "Новые деньги успевают обогатить первых, пока до остальных доходит только подорожание."
+  },
+  "en": {
+   "title": "Cantillon Effect",
+   "hook": "Whoever touches new money first buys at yesterday's prices; everyone else pays tomorrow's."
+  },
+  "uz": {
+   "title": "Kantilon effekti",
+   "hook": "Yangi pulni birinchi boʻlib olgan eski narxda xarid qiladi, qolganlarga faqat qimmatchilik yetib keladi."
+  }
+ },
+ {
+  "slug": "law-of-rent",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Закон ренты Рикардо",
+   "hook": "Зарплаты в городе выросли — и ровно на столько же выросла аренда."
+  },
+  "en": {
+   "title": "Ricardo's Law of Rent",
+   "hook": "The city's raise never reaches you — the landlord collects it first."
+  },
+  "uz": {
+   "title": "Rikardoning renta qonuni",
+   "hook": "Shahar boyidi, maoshlar oshdi — qoʻshilgan pulni butunlay ijara haqi yeb qoʻydi."
+  }
+ },
+ {
+  "slug": "baumol-cost-disease",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Болезнь издержек Баумоля",
+   "hook": "Телевизор дешевеет каждый год, а стрижка почему-то дорожает."
+  },
+  "en": {
+   "title": "Baumol's Cost Disease",
+   "hook": "TVs get cheaper every year; a haircut somehow keeps getting more expensive."
+  },
+  "uz": {
+   "title": "Baumolning xarajat kasalligi",
+   "hook": "Televizor har yili arzonlashadi, soch oldirish esa negadir qimmatlashaveradi."
+  }
+ },
+ {
+  "slug": "sam-vimes-boots-theory",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Теория ботинок Ваймса",
+   "hook": "Дешёвые сапоги за десять лет обойдутся дороже одной хорошей пары."
+  },
+  "en": {
+   "title": "Sam Vimes Boots Theory",
+   "hook": "Ten years of cheap boots cost more than one good pair."
+  },
+  "uz": {
+   "title": "Vaymsning etik nazariyasi",
+   "hook": "Arzon etik oʻn yil ichida bitta qimmat etikdan ham qimmatga tushadi."
+  }
+ },
+ {
+  "slug": "a-fine-is-a-price",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Штраф — это цена",
+   "hook": "Ввели штраф за опоздания — и родители стали опаздывать чаще."
+  },
+  "en": {
+   "title": "When Fines Become Prices",
+   "hook": "The daycare started fining late parents, and parents started showing up even later."
+  },
+  "uz": {
+   "title": "Jarima — bu narx",
+   "hook": "Bogʻchada kechikkanga jarima solindi — ota-onalar avvalgidan ham koʻproq kechikadigan boʻldi."
+  }
+ },
+ {
+  "slug": "moloch-multipolar-trap",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "modern",
+  "ru": {
+   "title": "Молох: многополярная ловушка",
+   "hook": "Все видят, что гонка всех уничтожит, но остановиться первым — значит проиграть."
+  },
+  "en": {
+   "title": "Moloch: The Multipolar Trap",
+   "hook": "Everyone knows the race destroys them all; whoever stops first loses everything."
+  },
+  "uz": {
+   "title": "Molox: koʻp qutbli tuzoq",
+   "hook": "Poyga hammani yeb bitirishini hamma biladi, lekin birinchi toʻxtagan yutqazadi."
+  }
+ },
+ {
+  "slug": "ergodicity",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "modern",
+  "ru": {
+   "title": "Неэргодичность",
+   "hook": "Игра с выгодным средним разоряет почти каждого, кто играет в неё долго."
+  },
+  "en": {
+   "title": "Non-Ergodicity",
+   "hook": "The math says you win on average; almost everyone who keeps playing goes broke."
+  },
+  "uz": {
+   "title": "Noergodiklik",
+   "hook": "Oʻrtachasi foydali koʻringan oʻyin uzoq oʻynagan deyarli hammani xonavayron qiladi."
+  }
+ },
+ {
+  "slug": "jevons-paradox",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Джевонса",
+   "hook": "Научились тратить ресурс экономнее — и стали тратить его гораздо больше."
+  },
+  "en": {
+   "title": "Jevons Paradox",
+   "hook": "We learned to burn fuel efficiently, so we started burning far more."
+  },
+  "uz": {
+   "title": "Jevons paradoksi",
+   "hook": "Yoqilgʻini tejashni oʻrgandik — va uni avvalgidan koʻp yoqadigan boʻldik."
+  }
+ },
+ {
+  "slug": "braess-paradox",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Браесса",
+   "hook": "Открыли новую дорогу — пробки выросли; закрыли её — город поехал."
+  },
+  "en": {
+   "title": "Braess's Paradox",
+   "hook": "They opened a new road and traffic got worse; closing it fixed everything."
+  },
+  "uz": {
+   "title": "Braess paradoksi",
+   "hook": "Yangi yoʻl ochildi — tirbandlik kuchaydi; yoʻl yopildi — shahar yurib ketdi."
+  }
+ },
+ {
+  "slug": "normalization-of-deviance",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Нормализация отклонения",
+   "hook": "Нарушение, которое дважды сошло с рук, перестаёт считаться нарушением."
+  },
+  "en": {
+   "title": "Normalization of Deviance",
+   "hook": "Break the rule twice without consequence and it stops feeling like a rule."
+  },
+  "uz": {
+   "title": "Qoidabuzarlikning odatga aylanishi",
+   "hook": "Qoidani ikki marta jazosiz buzsang, u endi qoidaday tuyulmay qoladi."
+  }
+ },
+ {
+  "slug": "seneca-effect",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Обрыв Сенеки",
+   "hook": "Наверх карабкаются годами, а вниз летят за несколько дней."
+  },
+  "en": {
+   "title": "The Seneca Cliff",
+   "hook": "The climb takes decades; the collapse takes days."
+  },
+  "uz": {
+   "title": "Seneka jarligi",
+   "hook": "Choʻqqiga chiqish yillar oladi, undan qulash — bir necha kun."
+  }
+ },
+ {
+  "slug": "handicap-of-a-head-start",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Закон гандикапа лидера",
+   "hook": "Первый застревает в своей победившей технологии, отстающий перепрыгивает через поколение."
+  },
+  "en": {
+   "title": "The Head Start Handicap",
+   "hook": "The leader is stuck with what won; the latecomer skips a whole generation."
+  },
+  "uz": {
+   "title": "Oldinda ketganning jazosi",
+   "hook": "Birinchi boʻlgan oʻz eski gʻalabasiga mixlanib qoladi, orqadagi butun bir bosqichni sakrab oʻtadi."
+  }
+ }
+]

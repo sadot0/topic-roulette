@@ -1,0 +1,552 @@
+/* ═══════════════════════════════════════════════════════════
+   Компоновка «Калибр»: экран — передняя панель прибора.
+   Рельса управления слева, окно результата в центре, шкала
+   барабана справа, обрезанная краем экрана.
+
+   Утилитами это не пишется — здесь геометрия и физика,
+   а не набор отступов.
+   ═══════════════════════════════════════════════════════════ */
+
+.app {
+  position: relative;
+  height: 100svh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr) var(--tape);
+  background: var(--background);
+  color: var(--foreground);
+  overflow: hidden;
+}
+
+/* Хайрлайны идут В КРАЙ: линия, не доходящая до кромки,
+   читается как рамка, а в край — как конструкция */
+.app::before,
+.app::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+  z-index: 6;
+  pointer-events: none;
+}
+.app::before { left: var(--rail); }
+.app::after { right: var(--tape); }
+
+/* Зерно — фактура металла, не «шум ради шума».
+   soft-light даёт текстуру, не поднимая чёрное */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.3;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+}
+
+/* ── Рельса ─────────────────────────────────────────────── */
+
+.rail {
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 5;
+}
+.rail-cell {
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.mark { height: 64px; flex-direction: column; gap: 3px; }
+.mark i { display: block; height: 3px; }
+.mark i:nth-child(1) { width: 24px; background: var(--muted-foreground); }
+.mark i:nth-child(2) { width: 16px; background: var(--subtle-foreground); }
+.mark i:nth-child(3) { width: 8px; background: var(--primary); }
+
+.rail-lang { flex-direction: column; }
+.rail-lang button {
+  width: 100%;
+  padding: 11px 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--subtle-foreground);
+  position: relative;
+  transition: color 0.2s;
+}
+.rail-lang button + button { border-top: 1px solid var(--border); }
+.rail-lang button:hover { color: var(--muted-foreground); }
+.rail-lang button[aria-pressed='true'] { color: var(--foreground); }
+/* Активный язык помечен риской у кромки, а не заливкой */
+.rail-lang button[aria-pressed='true']::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 14px;
+  margin-top: -7px;
+  background: var(--primary);
+}
+
+.rail-btn {
+  height: 56px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--subtle-foreground);
+  transition: color 0.2s;
+}
+.rail-btn:hover { color: var(--muted-foreground); }
+.rail-btn svg { width: 15px; height: 15px; }
+.rail-btn[aria-pressed='false'] .wave { opacity: 0.2; }
+.rail-btn[aria-pressed='false'] .slash { opacity: 1; }
+.rail-btn .slash { opacity: 0; transition: opacity 0.2s; }
+
+.rail-spacer { flex: 1 1 auto; border-bottom: 1px solid var(--border); }
+
+.rail-author { padding: 16px 0 20px; display: flex; justify-content: center; }
+.rail-author a {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--subtle-foreground);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.rail-author a:hover { color: var(--primary-text); }
+
+/* ── Поле ───────────────────────────────────────────────── */
+
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(28px, 4vw, 56px);
+  min-width: 0;
+}
+.field-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  pointer-events: none;
+}
+.field-line.top { top: 88px; }
+.field-line.bot { bottom: 96px; }
+
+.status {
+  height: 88px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--subtle-foreground);
+  min-width: 0;
+}
+.status .st { color: var(--muted-foreground); white-space: nowrap; }
+.status .sep { color: var(--border); }
+.status .right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.status .right b { color: var(--muted-foreground); font-weight: 500; }
+
+.modes { display: flex; }
+.modes button {
+  padding: 6px 13px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--subtle-foreground);
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.modes button + button { border-left: 1px solid var(--border); }
+.modes button:hover { color: var(--muted-foreground); }
+.modes button[aria-pressed='true'] { color: var(--foreground); }
+.modes button[aria-pressed='true']::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 11px;
+  margin-top: -5.5px;
+  background: var(--primary);
+}
+
+.window {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+  padding: clamp(10px, 2vh, 24px) 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow .idx { color: var(--primary-text); }
+.eyebrow .sep { color: var(--border); }
+
+/* Имя темы. Ось CTRS даёт контраст штриха — модуляцию толщины,
+   как у серифа, без серифного штампа */
+.title {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-variation-settings: 'CTRS' 45, 'wdth' 100;
+  font-weight: 600;
+  font-size: 88px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: var(--foreground);
+  max-width: 100%;
+  /* НЕ break-word: разрыв внутри слова делает scrollWidth
+     всегда меньше ширины бокса, и автофит считает, что кегль
+     влезает, хотя слово разорвано пополам */
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+/* Длинное имя переезжает в узкое начертание и остаётся крупным
+   вместо усушки до нечитаемого кегля */
+.title.is-condensed {
+  font-family: var(--font-cond), system-ui, sans-serif;
+  font-variation-settings: normal;
+  font-weight: 800;
+}
+
+.idle-txt {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--subtle-foreground);
+  line-height: 2.2;
+}
+.idle-txt b { display: block; color: var(--muted-foreground); font-weight: 500; }
+
+.reveal > * { opacity: 0; transform: translateY(10px); }
+.reveal.show > * { animation: rise 0.62s var(--ease-out) forwards; }
+.reveal.show > *:nth-child(1) { animation-delay: 0.02s; }
+.reveal.show > *:nth-child(2) { animation-delay: 0.09s; }
+.reveal.show > *:nth-child(3) { animation-delay: 0.18s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* Суть темы — показывается ТОЛЬКО после речи */
+.hook {
+  margin: 22px 0 0;
+  padding-left: 15px;
+  border-left: 2px solid var(--primary);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-variation-settings: 'CTRS' 20;
+  font-size: clamp(15px, 1.7vw, 20px);
+  line-height: 1.45;
+  color: var(--muted-foreground);
+  max-width: 54ch;
+}
+
+.foot {
+  height: 96px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* ── Кнопки ─────────────────────────────────────────────── */
+
+.btn {
+  height: 42px;
+  padding: 0 22px;
+  border-radius: 2px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition: color 0.18s, box-shadow 0.18s, background-color 0.18s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled) {
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+.btn:focus-visible { outline: 1px solid var(--ring); outline-offset: 2px; }
+.btn:disabled { color: var(--border); box-shadow: inset 0 0 0 1px var(--border); cursor: default; }
+
+/* Единственная заливка на экране — единственное действие,
+   с которого всё начинается */
+.btn.go {
+  color: var(--primary-foreground);
+  background: var(--primary);
+  box-shadow: none;
+  padding: 0 32px;
+  font-weight: 700;
+}
+.btn.go:hover:not(:disabled) { background: var(--primary-hover); box-shadow: none; }
+.btn.go:active { transform: translateY(1px); }
+.btn.sq { width: 42px; padding: 0; display: grid; place-items: center; }
+.btn.sq svg { width: 15px; height: 15px; }
+
+.foot .hint {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--border);
+}
+.foot .hint kbd {
+  font: inherit;
+  padding: 3px 7px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px var(--border);
+  color: var(--subtle-foreground);
+}
+
+/* ── Лента ──────────────────────────────────────────────── */
+
+.tape {
+  position: relative;
+  background: var(--surface);
+  overflow: hidden;
+  z-index: 4;
+}
+.tape-win { position: absolute; inset: 0; overflow: hidden; }
+.strip { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
+
+.row {
+  height: var(--row-h);
+  display: flex;
+  align-items: center;
+  padding: 0 14px 0 22px;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-variation-settings: 'CTRS' 10;
+  font-weight: 450;
+  font-size: 17px;
+  line-height: 1.15;
+  letter-spacing: -0.008em;
+  /* Прежние строки имели контраст ~1.5:1 — двести пикселей
+     экрана были заняты невидимым ничем */
+  color: var(--row-idle);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: color 0.16s linear;
+  /* Длинное имя уходит за кромку — честнее многоточия:
+     лента продолжается за корпусом прибора */
+  -webkit-mask-image: linear-gradient(90deg, #000 76%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 76%, transparent 100%);
+}
+.row.is-live { color: var(--row-live); }
+.row.is-hit { color: var(--row-hit); }
+
+.ticks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 9px;
+  z-index: 2;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    180deg,
+    var(--border-strong) 0 1px,
+    transparent 1px var(--row-h)
+  );
+}
+
+/* Индексная риска — то, чем «вычитывается» тема, как частота
+   на шкале приёмника */
+.index {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: var(--row-h);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 3;
+  box-shadow: inset 0 1px 0 var(--border-strong), inset 0 -1px 0 var(--border-strong);
+  background: var(--sand-a2);
+}
+.index::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 9px;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--primary);
+  transition: width 0.3s var(--ease-out);
+}
+.is-spinning .index::before { width: 16px; }
+.is-settled .index::before { width: 22px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.show > * { animation-duration: 0.01s; }
+}
+
+/* ── Режим «в кадр» ──────────────────────────────────────
+   Композиция под вертикальное видео: всё служебное скрыто,
+   имя темы и подпись автора живут в зоне, которую не срежет
+   кроп 9:16. Запись экрана становится готовым началом ролика */
+.app.is-frame {
+  grid-template-columns: 1fr;
+}
+.app.is-frame .rail,
+.app.is-frame .tape,
+.app.is-frame .status,
+.app.is-frame .field-line,
+.app.is-frame .foot .btn,
+.app.is-frame .foot .hint {
+  display: none;
+}
+.app.is-frame::before,
+.app.is-frame::after { display: none; }
+
+.app.is-frame .field {
+  align-items: center;
+  padding: 0;
+}
+.app.is-frame .window {
+  width: min(56vh, 100%);
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+.app.is-frame .eyebrow { justify-content: center; }
+.app.is-frame .foot {
+  height: auto;
+  justify-content: center;
+  padding-bottom: 8vh;
+}
+
+/* Подпись прямо под темой — при кропе она обязана остаться
+   в кадре вместе с ней */
+.frame-sign {
+  display: none;
+  margin-top: 28px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--subtle-foreground);
+  text-align: center;
+}
+.app.is-frame .frame-sign { display: block; }
+.frame-sign b { color: var(--primary-text); font-weight: 500; }
+.frame-sign span { display: block; margin-top: 6px; font-size: 10px; color: var(--border); }
+
+.frame-exit {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 20;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--border);
+}
+
+/* ── Мобильная ───────────────────────────────────────────
+   Весь трафик из Instagram — мобильный. Если ссылка из bio
+   открывается криво, остальная работа обесценивается на входе */
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100svh;
+  }
+  .app::before, .app::after { display: none; }
+
+  .rail {
+    flex-direction: row;
+    align-items: center;
+    height: 52px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rail-cell { border-bottom: none; border-right: 1px solid var(--border); height: 100%; }
+  .mark { width: 52px; }
+  .rail-lang { flex-direction: row; }
+  .rail-lang button { width: 44px; padding: 0; height: 100%; }
+  .rail-lang button + button { border-top: none; border-left: 1px solid var(--border); }
+  .rail-lang button[aria-pressed='true']::before {
+    left: 50%; top: auto; bottom: 0;
+    width: 14px; height: 3px; margin: 0 0 0 -7px;
+  }
+  .rail-btn { height: 100%; width: 52px; }
+  .rail-spacer { border-bottom: none; }
+  .rail-author { padding: 0 14px; }
+  .rail-author a { writing-mode: horizontal-tb; transform: none; font-size: 10px; }
+
+  .field { padding: 0 20px; }
+  .field-line.top { top: 62px; }
+  .field-line.bot { bottom: 86px; }
+  .status {
+    height: 62px;
+    font-size: 9px;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .status::-webkit-scrollbar { display: none; }
+  .status .right { gap: 8px; }
+
+  /* Лента уходит вниз узкой полосой: вертикальная колонка
+     на телефоне съела бы половину экрана */
+  .tape {
+    height: 76px;
+    border-top: 1px solid var(--border);
+  }
+  .tape-win { inset: 0; }
+  .row { font-size: 14px; padding: 0 12px 0 18px; }
+  .ticks { width: 6px; }
+
+  .foot { height: 86px; gap: 7px; }
+  .btn { height: 40px; padding: 0 16px; font-size: 10px; letter-spacing: 0.1em; }
+  .btn.go { padding: 0 22px; }
+  .foot .hint { display: none; }
+
+  .t-actions .btn { min-height: 44px; }
+}
