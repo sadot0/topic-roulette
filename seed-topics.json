@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "goodharts-law",
+    "domain": "economy",
+    "era": "classic",
+    "ru": { "title": "Закон Гудхарта", "hook": "Как только показатель становится целью, он перестаёт быть показателем." },
+    "en": { "title": "Goodhart's Law", "hook": "When a measure becomes a target, it stops being a good measure." },
+    "uz": { "title": "Gudxart qonuni", "hook": "Ko'rsatkich maqsadga aylansa, u ko'rsatkich bo'lishdan to'xtaydi." }
+  },
+  {
+    "slug": "braess-paradox",
+    "domain": "systems",
+    "era": "classic",
+    "ru": { "title": "Парадокс Браесса", "hook": "Построили новую дорогу — и все стали ехать дольше." },
+    "en": { "title": "Braess's Paradox", "hook": "They built a new road, and everyone's commute got longer." },
+    "uz": { "title": "Braess paradoksi", "hook": "Yangi yo'l qurildi — va hamma uzoqroq yura boshladi." }
+  },
+  {
+    "slug": "dead-sea-effect",
+    "domain": "power",
+    "era": "classic",
+    "ru": { "title": "Эффект Мёртвого моря", "hook": "Из компании первыми испаряются самые сильные." },
+    "en": { "title": "Dead Sea Effect", "hook": "In a struggling company, the strongest evaporate first." },
+    "uz": { "title": "O'lik dengiz effekti", "hook": "Kompaniyadan avval eng kuchlilar bug'lanib ketadi." }
+  },
+  {
+    "slug": "model-collapse",
+    "domain": "tech",
+    "era": "modern",
+    "ru": { "title": "Коллапс модели", "hook": "ИИ, обученный на текстах ИИ, начинает забывать реальность." },
+    "en": { "title": "Model Collapse", "hook": "An AI trained on AI output slowly forgets the real world." },
+    "uz": { "title": "Model kollapsi", "hook": "Sun'iy intellekt o'z matnida o'qib, haqiqatni unuta boshlaydi." }
+  },
+  {
+    "slug": "enshittification",
+    "domain": "tech",
+    "era": "modern",
+    "ru": { "title": "Эншиттификация", "hook": "Платформа хороша, пока ей ещё нужны вы, а не ваши деньги." },
+    "en": { "title": "Enshittification", "hook": "A platform is good only while it still needs you, not your wallet." },
+    "uz": { "title": "Enshittifikatsiya", "hook": "Platforma sizga emas, pulingizga muhtoj bo'lguncha yaxshi." }
+  },
+  {
+    "slug": "abilene-paradox",
+    "domain": "society",
+    "era": "classic",
+    "ru": { "title": "Парадокс Абилина", "hook": "Все согласились с тем, чего не хотел никто." },
+    "en": { "title": "The Abilene Paradox", "hook": "Everyone agreed to something not one person wanted." },
+    "uz": { "title": "Abilin paradoksi", "hook": "Hamma hech kim istamagan narsaga rozi bo'ldi." }
+  },
+  {
+    "slug": "chestertons-fence",
+    "domain": "philosophy",
+    "era": "classic",
+    "ru": { "title": "Забор Честертона", "hook": "Не сноси забор, пока не выяснил, зачем его поставили." },
+    "en": { "title": "Chesterton's Fence", "hook": "Don't tear down a fence until you know why it went up." },
+    "uz": { "title": "Chesterton devori", "hook": "Nega qurilganini bilmaguningizcha devorni buzmang." }
+  },
+  {
+    "slug": "automation-bias",
+    "domain": "mind",
+    "era": "modern",
+    "ru": { "title": "Доверие к машине", "hook": "Человек поверит экрану даже вопреки тому, что видит сам." },
+    "en": { "title": "Automation Bias", "hook": "People trust the screen over what their own eyes report." },
+    "uz": { "title": "Avtomatga ishonch", "hook": "Odam o'z ko'zidan ko'ra ekranga ko'proq ishonadi." }
+  }
+]
