@@ -135,6 +135,41 @@ a{ color:inherit; }
 
 .controls{ display:flex; align-items:center; gap:9px; margin-top:3px; }
 
+/* Переключатель режимов. Бегунок едет под активным сегментом —
+   это дешевле и плавнее, чем анимировать фон каждой кнопки */
+.modes{
+  position:relative; display:flex; padding:3px;
+  border-radius:999px;
+  background:var(--surf-1);
+  box-shadow:inset 0 0 0 1px var(--line);
+  margin-top:2px;
+}
+.modes .thumb{
+  position:absolute; top:3px; bottom:3px; left:3px;
+  width:calc(50% - 3px);
+  border-radius:999px;
+  background:var(--surf-3);
+  box-shadow:inset 0 0 0 1px var(--line-mid);
+  transform:translateX(calc(var(--i,0) * 100%));
+  transition:transform .34s var(--ease-out);
+}
+.mode{
+  position:relative; z-index:1;
+  flex:1 1 0; min-width:0;
+  padding:8px 20px; border-radius:999px;
+  font-size:12.5px; font-weight:600; white-space:nowrap;
+  color:var(--ink-4);
+  transition:color .26s;
+}
+.mode[aria-pressed="true"]{ color:var(--ink); }
+.mode:hover{ color:var(--ink-2); }
+.mode:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+.mode-note{
+  font-size:12px; color:var(--ink-4);
+  margin-top:2px; min-height:1.2em;
+}
+
 .langs{
   display:flex; padding:3px;
   border-radius:999px;
@@ -562,6 +597,13 @@ input[type=range]:focus-visible{ outline:2px solid var(--gold); outline-offset:4
         </svg>
       </button>
     </div>
+
+    <div class="modes" role="group" aria-label="Mode">
+      <span class="thumb" id="mode-thumb"></span>
+      <button class="mode" data-mode="quick" aria-pressed="false" data-i18n="modeQuick">Без подготовки</button>
+      <button class="mode" data-mode="deep"  aria-pressed="true"  data-i18n="modeDeep">Глубокий ресёрч</button>
+    </div>
+    <div class="mode-note" id="mode-note"></div>
   </header>
 
   <section class="drum">
@@ -697,7 +739,11 @@ const UI = {
        statusResearch:'изучай', statusSpeech:'говори', statusPaused:'пауза',
        researchDone:'ресёрч окончен', timeUp:'время',
        toSpeech:'Начать речь', skipToSpeech:'Пропустить', nextTopic:'Следующая тема',
-       st1:'Что?', st2:'И что?', st3:'Что дальше?' },
+       st1:'Что?', st2:'И что?', st3:'Что дальше?',
+       modeQuick:'Без подготовки', modeDeep:'Глубокий ресёрч',
+       noteQuick:'Минимум подготовки. Говори сразу, как есть.',
+       noteDeep:'Изучи тему, потом расскажи её на камеру.',
+       speechBtn:'Речь' },
 
   en:{ brand:'Topic Roulette', spin:'Spin', spinAgain:'Next one', skipSpin:'Skip',
        progress:'unlocked', kbd:'space', reset:'reset', madeBy:'made by',
@@ -709,7 +755,11 @@ const UI = {
        statusResearch:'dig in', statusSpeech:'speak', statusPaused:'paused',
        researchDone:'research done', timeUp:'time',
        toSpeech:'Start speech', skipToSpeech:'Skip', nextTopic:'Next topic',
-       st1:'What?', st2:'So what?', st3:'Now what?' },
+       st1:'What?', st2:'So what?', st3:'Now what?',
+       modeQuick:'Off the cuff', modeDeep:'Deep research',
+       noteQuick:'Minimal prep. Think on your feet.',
+       noteDeep:'Dig into the topic, then say it on camera.',
+       speechBtn:'Speech' },
 
   uz:{ brand:'Mavzular ruletkasi', spin:'Aylantirish', spinAgain:'Keyingisi', skipSpin:'Tashlab ketish',
        progress:'ochilgan', kbd:'boshliq', reset:'tozalash', madeBy:'muallif',
@@ -721,13 +771,18 @@ const UI = {
        statusResearch:'organ', statusSpeech:'gapir', statusPaused:'pauzada',
        researchDone:'research tugadi', timeUp:'vaqt',
        toSpeech:'Nutqni boshlash', skipToSpeech:'Otkazib yuborish', nextTopic:'Keyingi mavzu',
-       st1:'Nima?', st2:'Nega muhim?', st3:'Endi nima?' },
+       st1:'Nima?', st2:'Nega muhim?', st3:'Endi nima?',
+       modeQuick:'Tayyorgarliksiz', modeDeep:'Chuqur research',
+       noteQuick:'Tayyorgarliksiz. Bor gapni darrov ayt.',
+       noteDeep:'Mavzuni organ, keyin kamera oldida ayt.',
+       speechBtn:'Nutq' },
 };
 /* Апострофы узбекской латиницы ставим кодом — так они не зависят
    от того, как редактор или сборщик обойдётся с ' в разметке */
 UI.uz.kbd            = "bo'shliq";
 UI.uz.statusResearch = "o'rgan";
 UI.uz.skipToSpeech   = "O'tkazib yuborish";
+UI.uz.noteDeep       = "Mavzuni o'rgan, keyin kamera oldida ayt.";
 
 const LANGS = ['ru','en','uz'];
 
@@ -746,6 +801,7 @@ const store = {
 const saved = store.read();
 let lang    = LANGS.includes(saved.lang) ? saved.lang : 'ru';
 let soundOn = saved.sound !== false;
+let mode    = saved.mode === 'quick' ? 'quick' : 'deep';   // deep = ресёрч + речь
 let seen    = new Set(Array.isArray(saved.seen) ? saved.seen : []);
 
 /* ═══════════════════════════════════════════════════════════
@@ -1158,7 +1214,7 @@ function applyLang(){
     }
   }
 
-  updateResearchLabel();
+  applyMode();
   /* Открытый таймер перерисовываем на месте — язык не должен
      сбивать отсчёт */
   if (T.isOpen){ T.buildStages(); T.render(); }
@@ -1189,6 +1245,29 @@ function fillIdleStrip(){
    вкладка в фоне троттлит интервалы, и наивный счётчик отстаёт
    на минуты. Плюс пауза, которой нет у референса
    ═══════════════════════════════════════════════════════════ */
+/* Кольцо не просто красится в цвет фазы, а непрерывно уходит
+   от спокойного холодного к тревожному тёплому по мере расхода
+   времени. Стопы заданы по ДОЛЕ ПРОШЕДШЕГО (0 — старт, 1 — конец) */
+const RING_STOPS = {
+  research: [[0, [96,126,158]], [.55, [227,168,87]], [1, [214,104,72]]],
+  speech:   [[0, [227,168,87]], [.62, [226,146,92]], [1, [214,88,68]]],
+};
+
+function ringColor(phase, elapsed){
+  const stops = RING_STOPS[phase] || RING_STOPS.speech;
+  const e = Math.max(0, Math.min(1, elapsed));
+  for (let i = 1; i < stops.length; i++){
+    const [p1, c1] = stops[i - 1], [p2, c2] = stops[i];
+    if (e <= p2){
+      const k = p2 === p1 ? 0 : (e - p1) / (p2 - p1);
+      const c = c1.map((v, j) => Math.round(v + (c2[j] - v) * k));
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    }
+  }
+  const last = stops[stops.length - 1][1];
+  return `rgb(${last[0]},${last[1]},${last[2]})`;
+}
+
 const T = {
   el: {
     box:$('timer'), topic:$('t-topic'), ring:$('ring'), digits:$('t-digits'),
@@ -1210,11 +1289,6 @@ const T = {
 
     const t = TOPICS[current];
     this.el.topic.textContent = (t[lang] || t.ru).title;
-    /* Золото приберегаем для речи: второй хроматический цвет
-       появлялся бы ровно на том экране, где на акцент и смотрят */
-    this.el.ring.style.setProperty('--ring-col',
-      phase === 'research' ? 'var(--ink-3)' : 'var(--gold)');
-
     this.buildStages();
     this.el.box.classList.add('open');
     this.el.box.classList.remove('done');
@@ -1282,6 +1356,7 @@ const T = {
 
     const p = this.finished ? 0 : Math.max(0, Math.min(1, this.frac));
     this.el.ring.style.setProperty('--p', p.toFixed(4));
+    this.el.ring.style.setProperty('--ring-col', ringColor(this.phase, 1 - p));
 
     if (this.finished){
       this.el.status.textContent =
@@ -1436,8 +1511,22 @@ const S = {
   get isOpen(){ return this.box.classList.contains('open'); },
 };
 
+/* В режиме «без подготовки» ресёрча нет вовсе: кнопка ведёт
+   сразу в речь. Это не косметика — это второй сценарий работы */
+function applyMode(){
+  const d = UI[lang];
+  document.querySelectorAll('.mode').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+  $('mode-thumb').style.setProperty('--i', mode === 'deep' ? 1 : 0);
+  $('mode-note').textContent = mode === 'deep' ? d.noteDeep : d.noteQuick;
+  updateResearchLabel();
+}
+
 function updateResearchLabel(){
-  $('research-label').textContent = cfg.research + ' ' + UI[lang].min;
+  const d = UI[lang];
+  $('research-label').textContent = mode === 'deep'
+    ? cfg.research + ' ' + d.min
+    : d.speechBtn + ' · ' + cfg.speech + ' ' + d.min;
 }
 
 /* ── События ───────────────────────────────────────────── */
@@ -1445,7 +1534,18 @@ function updateResearchLabel(){
 /* Клик во время вращения = «хватит крутить, показывай» */
 el.spin.addEventListener('click', () => { if (spinning) skipReq = true; else spin(); });
 
-$('start-research').addEventListener('click', () => T.open('research'));
+$('start-research').addEventListener('click', () =>
+  mode === 'deep' ? T.open('research') : T.toSpeech());
+
+document.querySelectorAll('.mode').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (btn.dataset.mode === mode) return;
+    mode = btn.dataset.mode;
+    store.write({ mode });
+    Snd.init(); Snd.blip(mode === 'deep' ? 660 : 520, .04);
+    applyMode();
+  });
+});
 $('open-settings').addEventListener('click', () => { Snd.init(); S.open(); });
 
 T.el.pause.addEventListener('click', () => T.togglePause());
