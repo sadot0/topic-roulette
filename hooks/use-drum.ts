@@ -61,6 +61,7 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
   const tokenRef = useRef(0);
   const currentRef = useRef<number | undefined>(undefined);
   const liveRef = useRef(-1);
+  const rearmRef = useRef(false);
   const onSettledRef = useRef(onSettled);
   onSettledRef.current = onSettled;
 
@@ -126,6 +127,14 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
           currentRef.current = idx;
           const topic = topics[idx];
           if (topic) onSettledRef.current(topic, idx);
+          /* Взводим ленту под следующий спин. Раньше новый спин
+             мгновенно ставил позицию на START_SLOT — лента прыгала
+             на 84 строки вверх, и это читалось как рывок.
+             Сдвигаем массив циклически так, чтобы выпавшая строка
+             оказалась на START_SLOT, и туда же ставим позицию:
+             картинка не меняется ни на пиксель, но лента уже
+             готова ехать вниз без скачка */
+          rearmRef.current = true;
         },
       },
     );
@@ -146,7 +155,7 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
     /* Разблокировка звука только здесь: политика autoplay требует
        жеста, а созданный заранее контекст стартует suspended */
     sound.unlock();
-    sound.blip(520, 0.04);
+    sound.blip(520, 0.07);
 
     const target = bagRef.current!.next(currentRef.current);
     const rnd = Math.random;
@@ -167,6 +176,12 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
       prev = idx;
       next.push(idx);
     }
+
+    /* Сохраняем то, что сейчас под прицелом: при пересборке
+       ленты эта строка должна остаться на месте, иначе видно
+       подмену прямо перед стартом */
+    const keep = rowsRef.current[START_SLOT];
+    if (keep !== undefined) next[START_SLOT] = keep;
 
     setRows(next);
     setSpinning(true);
@@ -199,31 +214,62 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
     return () => e.cancel();
   }, [spinReq, getEngine, reduceMotion]);
 
+  /* Собственно взвод: выполняется после того, как React
+     отрисовал результат, чтобы сдвиг не мигнул */
+  useLayoutEffect(() => {
+    if (spinning || !rearmRef.current) return;
+    rearmRef.current = false;
+    const shift = START_SLOT - TARGET_SLOT;
+    const cur = rowsRef.current;
+    if (cur.length !== STRIP_LEN) return;
+    const next = new Array<number>(STRIP_LEN);
+    for (let i = 0; i < STRIP_LEN; i++) {
+      next[i] = cur[(i - shift + STRIP_LEN) % STRIP_LEN];
+    }
+    setRows(next);
+    const h = measureRowHeight(windowRef.current);
+    const centre = (windowRef.current?.clientHeight ?? 0) / 2;
+    if (stripRef.current) {
+      stripRef.current.style.transform =
+        `translate3d(0,${centre - (START_SLOT * h + h / 2)}px,0)`;
+    }
+    liveRef.current = -1;
+    requestAnimationFrame(() => {
+      stripRef.current?.querySelector('.is-hit')?.classList.remove('is-hit');
+      stripRef.current?.children[START_SLOT]?.classList.add('is-hit');
+      setLive(START_SLOT);
+    });
+  }, [spinning, setLive]);
+
   /** Посадка без анимации — для восстановления темы и ссылки-вызова */
   const settleOn = useCallback(
     (index: number) => {
       const next = [...rowsRef.current];
-      next[TARGET_SLOT] = index;
+      /* Ставим восстановленную тему сразу на стартовую позицию —
+         лента остаётся взведённой, и следующий спин пойдёт
+         без рывка */
+      next[START_SLOT] = index;
       setRows(next);
       currentRef.current = index;
       requestAnimationFrame(() => {
         const e = getEngine();
-        e?.settleAt(TARGET_SLOT, measureRowHeight(windowRef.current));
-        stripRef.current?.children[TARGET_SLOT]?.classList.add('is-hit');
+        e?.settleAt(START_SLOT, measureRowHeight(windowRef.current));
+        stripRef.current?.children[START_SLOT]?.classList.add('is-hit');
       });
     },
     [getEngine],
   );
 
-  /* Лента в покое: без этого до первого спина видно пустоту */
+  /* Лента в покое стоит СРАЗУ на стартовой позиции спина:
+     иначе первый же запуск прыгал на 84 строки вверх, прежде
+     чем поехать вниз */
   useLayoutEffect(() => {
     if (spinReq || !windowRef.current || !stripRef.current) return;
     const rh = measureRowHeight(windowRef.current);
-    const start = 12;
-    void rh;
     const centre = windowRef.current.clientHeight / 2;
-    stripRef.current.style.transform = `translate3d(0,${centre - (start * rh + rh / 2)}px,0)`;
-    setLive(start);
+    stripRef.current.style.transform =
+      `translate3d(0,${centre - (START_SLOT * rh + rh / 2)}px,0)`;
+    setLive(START_SLOT);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

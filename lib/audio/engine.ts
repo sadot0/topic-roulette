@@ -67,12 +67,14 @@ class SoundEngine implements SoundApi {
 
     this.ctx = new AC();
     const comp = this.ctx.createDynamicsCompressor();
-    comp.threshold.value = -14;
+    comp.threshold.value = -12;
     comp.ratio.value = 5;
     comp.release.value = 0.25;
 
     this.master = this.ctx.createGain();
-    this.master.gain.value = 0.9;
+    /* Порог компрессора -14 дБ срезает пики, поэтому
+       поднять мастер можно без искажений */
+    this.master.gain.value = 1.35;
     this.master.connect(comp);
     comp.connect(this.ctx.destination);
 
@@ -121,7 +123,7 @@ class SoundEngine implements SoundApi {
 
     const g = c.createGain();
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.05 + s * 0.08, t + 0.0012);
+    g.gain.linearRampToValueAtTime(0.085 + s * 0.13, t + 0.0012);
     g.gain.exponentialRampToValueAtTime(0.0001, t + 0.026 + (1 - s) * 0.024);
 
     src.connect(bp);
@@ -137,7 +139,7 @@ class SoundEngine implements SoundApi {
     o.frequency.setValueAtTime(2050 + s * 900, t);
     o.frequency.exponentialRampToValueAtTime(880, t + 0.022);
     og.gain.setValueAtTime(0, t);
-    og.gain.linearRampToValueAtTime(0.026 + s * 0.032, t + 0.001);
+    og.gain.linearRampToValueAtTime(0.044 + s * 0.055, t + 0.001);
     og.gain.exponentialRampToValueAtTime(0.0001, t + 0.03);
     o.connect(og);
     og.connect(this.master);
@@ -158,7 +160,7 @@ class SoundEngine implements SoundApi {
     o.frequency.setValueAtTime(170, t);
     o.frequency.exponentialRampToValueAtTime(44, t + 0.32);
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(0.36, t + 0.006);
+    g.gain.linearRampToValueAtTime(0.52, t + 0.006);
     g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
     o.connect(g);
     g.connect(this.master);
@@ -172,7 +174,7 @@ class SoundEngine implements SoundApi {
     lp.frequency.setValueAtTime(2600, t);
     lp.frequency.exponentialRampToValueAtTime(300, t + 0.13);
     const ng = c.createGain();
-    ng.gain.setValueAtTime(0.11, t);
+    ng.gain.setValueAtTime(0.17, t);
     ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
     src.connect(lp);
     lp.connect(ng);
@@ -185,7 +187,7 @@ class SoundEngine implements SoundApi {
     o2.type = 'sine';
     o2.frequency.value = 1320;
     g2.gain.setValueAtTime(0, t + 0.045);
-    g2.gain.linearRampToValueAtTime(0.038, t + 0.055);
+    g2.gain.linearRampToValueAtTime(0.058, t + 0.055);
     g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.78);
     o2.connect(g2);
     g2.connect(this.master);
@@ -218,7 +220,7 @@ class SoundEngine implements SoundApi {
       lp.type = 'lowpass';
       lp.frequency.value = 2600;
 
-      const peak = 0.052 - i * 0.006;
+      const peak = 0.095 - i * 0.010;
       g.gain.setValueAtTime(0, at);
       g.gain.linearRampToValueAtTime(peak, at + 0.014);
       /* Длинный хвост — то, что отличает награду от щелчка */
@@ -237,7 +239,7 @@ class SoundEngine implements SoundApi {
     sub.type = 'sine';
     sub.frequency.setValueAtTime(130.8, t);
     sg.gain.setValueAtTime(0, t);
-    sg.gain.linearRampToValueAtTime(0.09, t + 0.04);
+    sg.gain.linearRampToValueAtTime(0.15, t + 0.04);
     sg.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
     sub.connect(sg);
     sg.connect(this.master);
@@ -263,7 +265,7 @@ class SoundEngine implements SoundApi {
   }
 
   /** Арпеджио на конец фазы */
-  chime(up = true, vol = 0.17) {
+  chime(up = true, vol = 0.26) {
     const c = this.live;
     if (!c || !this.master) return;
     const t = c.currentTime;
@@ -293,7 +295,7 @@ class SoundEngine implements SoundApi {
     o.type = 'sine';
     o.frequency.value = last ? 1180 : 880;
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(last ? 0.07 : 0.04, t + 0.004);
+    g.gain.linearRampToValueAtTime(last ? 0.11 : 0.065, t + 0.004);
     g.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
     o.connect(g);
     g.connect(this.master);
