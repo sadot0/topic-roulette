@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useDrum } from '@/hooks/use-drum';
+import { useShuffle } from '@/hooks/use-shuffle';
 import { useCountdown, type Phase } from '@/hooks/use-countdown';
 import { useFitText } from '@/hooks/use-fit-text';
 import { useSound } from '@/hooks/use-sound';
@@ -13,11 +13,11 @@ import { useHydrated } from '@/hooks/use-hydrated';
 import { ringColor } from '@/lib/ring';
 import { localDay } from '@/lib/daily';
 import type { Bank, Lang, TopicSlice } from '@/lib/topics/types';
+import { LANGS } from '@/lib/topics/types';
 import type { Dict } from '@/i18n/config';
 
 import { TimerOverlay } from './timer/timer-overlay';
 import { SettingsPanel } from './settings-panel';
-import { Rail } from './rail';
 import { TopicPicker, buildOptions } from './topic-picker';
 
 const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
@@ -51,7 +51,7 @@ export interface RouletteAppProps {
   initialMode?: Bank;
 }
 
-export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode }: RouletteAppProps) {
+export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: RouletteAppProps) {
   const router = useRouter();
   const hydrated = useHydrated();
   const reduceMotion = useReducedMotion();
@@ -68,44 +68,43 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
   const topics = banks[mode] ?? [];
   const pick = pickAll[mode] ?? null;
 
-  /* Индексы выбранной категории. Лента наполняется из всего
-     банка — мелькать должно разное; ограничивается только
-     то, что может выпасть */
+  /* Категория ограничивает только то, что может ВЫПАСТЬ;
+     в переборе по-прежнему мелькает весь банк */
   const poolIndices = useMemo(
-    () => (pick ? topics.map((t, i) => (t.domain === pick ? i : -1)).filter((i) => i >= 0) : undefined),
+    () =>
+      pick
+        ? topics.map((t, i) => (t.domain === pick ? i : -1)).filter((i) => i >= 0)
+        : undefined,
     [topics, pick],
   );
 
   const pickerOptions = useMemo(
-    () => buildOptions(topics, Object.fromEntries(
-      Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.ru]),
-    ), mode),
+    () =>
+      buildOptions(
+        topics,
+        Object.fromEntries(Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.ru])),
+        mode,
+      ),
     [topics, lang, mode],
   );
 
-  const [current, setCurrent] = useState<TopicSlice | null>(null);
   const [revealHook, setRevealHook] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [frame, setFrame] = useState(false);
   const restoredRef = useRef(false);
 
-  const drum = useDrum({
+  const reel = useShuffle({
     topics,
     poolIndices,
-    seed,
     reduceMotion,
-    soundOn,
     onSettled: (topic) => {
-      setCurrent(topic);
       setRevealHook(false);
       const list = seenAll[mode] ?? [];
       if (!list.includes(topic.slug)) {
         patch({ seen: { ...seenAll, [mode]: [...list, topic.slug] } });
       }
-      /* Тему запоминаем: ресёрч уходит в другие вкладки, и любая
-         перезагрузка иначе стирает то, ради чего человек пришёл */
       patch({ last: { ...readStoredLast(), [mode]: topic.slug } });
-      /* replaceState, а не router.replace — иначе перерисуется
+      /* replaceState, а не router.replace: иначе перерисуется
          всё дерево ради строки в адресе */
       const u = new URL(window.location.href);
       u.searchParams.set('t', topic.slug);
@@ -114,44 +113,40 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
   });
 
   const timer = useCountdown(
-    useCallback(
-      (p: Phase) => {
-        if (p === 'speech') markStreakDay();
-      },
-      [],
-    ),
+    useCallback((p: Phase) => {
+      if (p === 'speech') markStreakDay();
+    }, []),
   );
 
   const fit = useFitText<HTMLHeadingElement>({
-    text: current?.title ?? '',
+    text: reel.shown?.title ?? '',
+    minPx: 28,
+    maxPx: 128,
     deps: [lang, mode, frame],
   });
 
-  /* Восстановление темы: из ссылки-вызова или из прошлой сессии.
-     setState здесь однократный — гварда restoredRef достаточно,
-     каскада ререндеров не будет */
+  /* Восстановление темы: из ссылки-вызова или из прошлой сессии */
   useEffect(() => {
     if (restoredRef.current || !topics.length) return;
     restoredRef.current = true;
-    const slug = initialTopic ?? readLast(mode);
+    const slug = initialTopic ?? readStoredLast()[mode];
     if (!slug) return;
     const idx = topics.findIndex((t) => t.slug === slug);
-    if (idx < 0) return;
-    setCurrent(topics[idx]);
-    drum.settleOn(idx);
+    if (idx >= 0) reel.settleOn(idx);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topics.length]);
 
   const spinOrSkip = useCallback(() => {
     setRevealHook(false);
-    drum.spinOrSkip();
-  }, [drum]);
+    reel.spinOrSkip();
+  }, [reel]);
 
+  const currentTopic = reel.current;
   const startPhase = useCallback(() => {
-    if (!current) return;
+    if (!currentTopic) return;
     if (mode === 'deep') timer.open('research', research * 60);
     else timer.open('speech', speech * 60);
-  }, [current, mode, research, speech, timer]);
+  }, [currentTopic, mode, research, speech, timer]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -180,130 +175,157 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
     return () => document.removeEventListener('keydown', onKey);
   }, [spinOrSkip, timer, settingsOpen]);
 
+  const status = reel.spinning ? dict.stSpin : currentTopic ? dict.stLocked : dict.stReady;
+  const shown = reel.shown;
 
   return (
     <>
-      <div
-        className={`app ${drum.spinning ? 'is-spinning' : ''} ${current && !drum.spinning ? 'is-settled' : ''} ${frame ? 'is-frame' : ''}`}
-        id="app"
-      >
-        <Rail
-          lang={lang}
-          dict={dict}
-          soundOn={soundOn}
-          onLang={(l) => { patch({ lang: l }); router.push(`/${l}`); }}
-          onSound={() => { const v = !soundOn; patch({ sound: v }); snd.setEnabled(v); if (v) snd.unlock(); }}
-        />
+      <div className={`stage ${reel.spinning ? 'is-spinning' : ''} ${frame ? 'is-frame' : ''}`}>
+        <header className="head">
+          <h1 className="brand">{dict.brand}</h1>
+          <a
+            className="author"
+            href="https://www.instagram.com/mirzabek_vokhidov"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="by">{dict.author}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                 strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="3" y="3" width="18" height="18" rx="5.4" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none" />
+            </svg>
+            <span>@mirzabek_vokhidov</span>
+          </a>
+        </header>
 
-        <main className="field">
-          <div className="field-line top" />
-          <div className="field-line bot" />
-
-          <div className="status">
-            <div className="modes" role="group" aria-label="Mode">
-              {(['quick', 'deep'] as Bank[]).map((m) => (
-                <button
-                  key={m}
-                  aria-pressed={hydrated ? mode === m : m === 'deep'}
-                  onClick={() => {
-                    if (m === mode) return;
-                    patch({ mode: m });
-                    setCurrent(null);
-                    setRevealHook(false);
-                    snd.unlock();
-                    snd.blip(m === 'deep' ? 660 : 520, 0.04);
-                  }}
-                >
-                  {m === 'quick' ? dict.modeQuick : dict.modeDeep}
-                </button>
-              ))}
-            </div>
-            <TopicPicker
-              options={pickerOptions}
-              value={pick}
-              anyLabel={dict.anyTopic}
-              onChange={(v) => {
-                patch({ pick: { ...pickAll, [mode]: v } });
-                snd.unlock();
-                snd.blip(v ? 700 : 560, 0.04);
-              }}
-            />
-
+        <div className="controls">
+          <div className="modes" role="group" aria-label="Mode">
+            {(['quick', 'deep'] as Bank[]).map((m) => (
+              <button
+                key={m}
+                aria-pressed={hydrated ? mode === m : m === 'deep'}
+                onClick={() => {
+                  if (m === mode) return;
+                  patch({ mode: m });
+                  setRevealHook(false);
+                  snd.unlock();
+                  snd.blip(m === 'deep' ? 660 : 520, 0.05);
+                }}
+              >
+                {m === 'quick' ? dict.modeQuick : dict.modeDeep}
+              </button>
+            ))}
           </div>
 
-          <div className="window" ref={fit.boxRef as React.RefObject<HTMLDivElement>}>
-            {current ? (
-              <div className={`reveal show`} key={current.slug}>
-                <div className="eyebrow">
-                  <span>{DOMAIN_LABEL[current.domain]?.[lang] ?? current.domain}</span>
-                  {current.era && (
-                    <>
-                      <span className="sep">·</span>
-                      <span>{ERA_LABEL[current.era][lang]}</span>
-                    </>
-                  )}
-                </div>
-                <h1 className="title" ref={fit.ref}>{current.title}</h1>
-                {/* При кропе 9:16 подпись обязана остаться в кадре
-                    вместе с темой — в шапке она бы срезалась */}
-                <div className="frame-sign">
-                  <b>@mirzabek_vokhidov</b>
-                  <span>topic-roulette.vercel.app</span>
-                </div>
-                {revealHook && current.hook && (
-                  <p className="hook">{current.hook}</p>
-                )}
-              </div>
+          <p className="mode-note">{mode === 'deep' ? dict.noteDeep : dict.noteQuick}</p>
+
+          <TopicPicker
+            options={pickerOptions}
+            value={pick}
+            anyLabel={dict.anyTopic}
+            onChange={(v) => {
+              patch({ pick: { ...pickAll, [mode]: v } });
+              snd.unlock();
+              snd.blip(v ? 700 : 560, 0.05);
+            }}
+          />
+        </div>
+
+        <main className="reel">
+          <div className="reel-status">{status}</div>
+
+          <div className="reel-box">
+            {shown ? (
+              <h2 className={`topic ${reel.spinning ? 'is-rolling' : 'is-landed'}`} ref={fit.ref}>
+                {shown.title}
+              </h2>
             ) : (
-              <div className="idle-txt">
-                <b>{dict.brand}</b>
-                <span>{dict.tagline}</span>
-              </div>
+              <p className="reel-idle">{dict.tagline}</p>
             )}
           </div>
 
-          <div className="foot">
-            <button className="btn go" onClick={spinOrSkip}>
-              {drum.spinning ? dict.skipSpin : current ? dict.spinAgain : dict.spin}
-            </button>
-            <button className="btn" onClick={startPhase} disabled={!current}>
-              {mode === 'deep'
-                ? `${research} ${dict.min}`
-                : `${dict.speech} · ${speech} ${dict.min}`}
-            </button>
-            <button className="btn sq" onClick={() => { snd.unlock(); setSettingsOpen(true); }} aria-label={dict.settings}>
-              <GearIcon />
-            </button>
-            <button className="btn" onClick={() => setFrame(true)} disabled={!current}>
-              {dict.frameMode}
-            </button>
-            <span className="hint"><kbd>{dict.kbd}</kbd></span>
+          {!reel.spinning && currentTopic && (
+            <div className="reel-meta">
+              <span>{DOMAIN_LABEL[currentTopic.domain]?.[lang] ?? currentTopic.domain}</span>
+              {currentTopic.era && (
+                <>
+                  <span className="sep">·</span>
+                  <span>{ERA_LABEL[currentTopic.era][lang]}</span>
+                </>
+              )}
+            </div>
+          )}
+
+          {revealHook && currentTopic?.hook && <p className="hook">{currentTopic.hook}</p>}
+
+          {/* При кропе 9:16 подпись обязана остаться в кадре
+              вместе с темой — в шапке она бы срезалась */}
+          <div className="frame-sign">
+            <b>@mirzabek_vokhidov</b>
+            <span>sadot0.github.io/topic-roulette</span>
           </div>
         </main>
 
-        <aside className="tape">
-          <div className="tape-win" ref={drum.windowRef}>
-            <div className="strip" ref={drum.stripRef}>
-              {drum.rows.map((idx, i) => (
-                <div className="row" key={`${i}-${idx}`}>
-                  {topics[idx]?.title ?? ''}
-                </div>
-              ))}
-            </div>
+        <footer className="actions">
+          <button className="btn go" onClick={spinOrSkip}>
+            {reel.spinning ? dict.skipSpin : currentTopic ? dict.spinAgain : dict.spin}
+          </button>
 
+          <button className="btn" onClick={startPhase} disabled={!currentTopic}>
+            {mode === 'deep' ? `${research} ${dict.min}` : `${dict.speech} · ${speech} ${dict.min}`}
+          </button>
+
+          <button className="btn sq" onClick={() => setFrame(true)} disabled={!currentTopic}
+                  aria-label={dict.frameMode} title={dict.frameMode}>
+            <FrameIcon />
+          </button>
+
+          <button className="btn sq" onClick={() => { snd.unlock(); setSettingsOpen(true); }}
+                  aria-label={dict.settings} title={dict.settings}>
+            <GearIcon />
+          </button>
+        </footer>
+
+        <div className="corner">
+          <div className="langs" role="group" aria-label="Language">
+            {LANGS.map((l) => (
+              <button key={l} aria-pressed={l === lang}
+                      onClick={() => { patch({ lang: l }); router.push(`/${l}`); }}>
+                {l.toUpperCase()}
+              </button>
+            ))}
           </div>
-          <div className="ticks" />
-          <div className="index" />
-        </aside>
+          <button
+            className="mute"
+            aria-pressed={soundOn}
+            aria-label="Sound"
+            onClick={() => {
+              const v = !soundOn;
+              patch({ sound: v });
+              snd.setEnabled(v);
+              if (v) { snd.unlock(); snd.blip(700, 0.06); }
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                 strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 9.5h3.2L12 5.5v13L7.2 14.5H4z" />
+              <path className="wave" d="M15.6 9.2a4 4 0 0 1 0 5.6" />
+              <path className="wave" d="M18.2 6.6a7.6 7.6 0 0 1 0 10.8" />
+              <path className="slash" d="M3 3l18 18" strokeWidth="1.6" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div className="grain" aria-hidden />
       {frame && <div className="frame-exit">{dict.frameHint}</div>}
 
-      {timer.phase && current && (
+      {timer.phase && currentTopic && (
         <TimerOverlay
           dict={dict}
-          topic={current}
+          topic={currentTopic}
           state={timer}
           ringCss={ringColor(timer.phase, 1 - timer.frac)}
           onPause={timer.togglePause}
@@ -326,7 +348,7 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
   );
 }
 
-/* Вспомогательное: чтение last вне React-цикла */
+/* Чтение вне React-цикла. Не хук — просто доступ к хранилищу */
 function readStoredLast(): Partial<Record<Bank, string>> {
   try {
     const raw = localStorage.getItem('roulette-tem/v4');
@@ -334,9 +356,6 @@ function readStoredLast(): Partial<Record<Bank, string>> {
   } catch {
     return {};
   }
-}
-function readLast(mode: Bank): string | undefined {
-  return readStoredLast()[mode];
 }
 
 /** Стрик отмечается по локальной дате — тот же формат, что
@@ -362,9 +381,20 @@ function markStreakDay() {
 
 function GearIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+         strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="3.1" />
       <path d="M19.4 15a1.6 1.6 0 0 0 .32 1.77l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.6 1.6 0 0 0-1.77-.32 1.6 1.6 0 0 0-1 1.47V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.77.32l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.6 1.6 0 0 0 4.6 15a1.6 1.6 0 0 0-1.47-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.32-1.77l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.6 1.6 0 0 0 9 4.6h.08A1.6 1.6 0 0 0 10 3.13V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.47 1.6 1.6 0 0 0 1.77-.32l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.6 1.6 0 0 0 19.4 9v.08a1.6 1.6 0 0 0 1.47 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z" />
+    </svg>
+  );
+}
+
+function FrameIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+         strokeLinecap="round" strokeLinejoin="round">
+      <rect x="7" y="3" width="10" height="18" rx="2.4" />
+      <path d="M3 8v8M21 8v8" />
     </svg>
   );
 }

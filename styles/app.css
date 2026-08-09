@@ -1,29 +1,32 @@
 /* ═══════════════════════════════════════════════════════════
-   Компоновка. Мягкая: блоки разделяются воздухом и сменой
-   поверхности, а не линиями в край.
+   Композиция: всё по центральной оси одним стеком.
+   Слова меняются НА МЕСТЕ — ленты нет, есть окно, в котором
+   тема подменяется всё медленнее.
    ═══════════════════════════════════════════════════════════ */
 
-.app {
+.stage {
   position: relative;
   min-height: 100svh;
-  display: grid;
-  grid-template-columns: var(--rail) minmax(0, 1fr) var(--tape);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(20px, 4vh, 44px) var(--sp-4) clamp(24px, 5vh, 56px);
   background: var(--bg);
   color: var(--t-1);
+  text-align: center;
   overflow: hidden;
 }
 
-/* Мягкая подсветка — «лампа над сценой». Она же даёт барабану
-   свет, который падает на выпавшую строку */
-.app::before {
+/* Мягкая подсветка: тёплая лампа сверху, холодная глубина снизу */
+.stage::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(72% 48% at 22% -6%, rgba(233,188,128,.055), transparent 62%),
-    radial-gradient(64% 44% at 88% 8%, rgba(150,201,181,.035), transparent 58%),
-    radial-gradient(90% 52% at 50% 106%, rgba(58,55,80,.30), transparent 64%);
+    radial-gradient(58% 40% at 18% -4%, rgba(233,188,128,.075), transparent 62%),
+    radial-gradient(52% 36% at 84% 4%, rgba(150,201,181,.045), transparent 58%),
+    radial-gradient(86% 48% at 50% 106%, rgba(58,55,80,.34), transparent 66%);
 }
 
 .grain {
@@ -36,103 +39,56 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
 }
 
-/* ── Рельса ─────────────────────────────────────────────── */
+/* ── Шапка ──────────────────────────────────────────────── */
 
-.rail {
+.head {
   position: relative;
-  z-index: 5;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-4) 0;
-}
-
-.mark { display: flex; flex-direction: column; gap: 3px; align-items: center; }
-.mark i { display: block; height: 3px; border-radius: 2px; }
-.mark i:nth-child(1) { width: 22px; background: var(--t-3); }
-.mark i:nth-child(2) { width: 14px; background: var(--t-4); }
-.mark i:nth-child(3) { width: 8px;  background: var(--acc); }
-
-/* Сегментированный контрол — одно из немногих мест, где
-   пилюля осмысленна */
-.rail-lang {
-  display: flex;
-  flex-direction: column;
-  padding: 4px;
-  border-radius: var(--r-pill);
-  background: var(--surf-1);
-}
-.rail-lang button {
-  width: 40px;
-  padding: 9px 0;
-  border-radius: var(--r-pill);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--t-4);
-  transition: color var(--t-fast) var(--ease-out),
-              background-color var(--t-fast) var(--ease-out);
-}
-.rail-lang button:hover { color: var(--t-2); }
-.rail-lang button[aria-pressed='true'] {
-  color: var(--t-on-acc);
-  background: var(--acc);
-}
-.rail-lang button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
-
-.rail-btn {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-pill);
-  background: var(--surf-1);
-  color: var(--t-4);
-  transition: color var(--t-fast) var(--ease-out),
-              background-color var(--t-fast) var(--ease-out);
-}
-.rail-btn:hover { color: var(--t-2); background: var(--surf-2); }
-.rail-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
-.rail-btn svg { width: 19px; height: 19px; }
-.rail-btn[aria-pressed='false'] .wave { opacity: 0.22; }
-.rail-btn[aria-pressed='false'] .slash { opacity: 1; }
-.rail-btn .slash { opacity: 0; transition: opacity var(--t-fast); }
-
-.rail-spacer { flex: 1 1 auto; }
-
-.rail-author {
-  display: flex;
-  justify-content: center;
-  flex: 0 0 auto;
-  padding-bottom: var(--sp-1);
-}
-.rail-author a {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 11px;
-  color: var(--t-4);
-  white-space: nowrap;
-  transition: color var(--t-base) var(--ease-out);
-}
-.rail-author a:hover { color: var(--acc-text); }
-
-/* ── Поле ───────────────────────────────────────────────── */
-
-.field {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: var(--sp-4) var(--sp-6);
-  min-width: 0;
-}
-
-.status {
-  flex: 0 0 auto;
-  display: flex;
   align-items: center;
   gap: var(--sp-1);
-  flex-wrap: wrap;
-  padding-bottom: var(--sp-4);
+  flex: 0 0 auto;
+}
+
+.brand {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(26px, 3.4vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--t-1);
+}
+
+.author {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px 6px 12px;
+  border-radius: var(--r-pill);
+  background: var(--surf-1);
+  font-size: 13px;
+  color: var(--t-3);
+  transition: color var(--t-base) var(--ease-out),
+              background-color var(--t-base) var(--ease-out);
+}
+.author .by { color: var(--t-4); }
+.author svg { width: 14px; height: 14px; flex: 0 0 auto; }
+.author:hover { color: var(--acc-text); background: var(--surf-2); }
+.author:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+
+/* ── Управление ─────────────────────────────────────────── */
+
+.controls {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: clamp(20px, 4vh, 46px);
+  flex: 0 0 auto;
 }
 
 .modes {
@@ -142,9 +98,9 @@
   background: var(--surf-1);
 }
 .modes button {
-  padding: 9px 20px;
+  padding: 10px 22px;
   border-radius: var(--r-pill);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--t-4);
   white-space: nowrap;
@@ -152,9 +108,269 @@
               background-color var(--t-base) var(--ease-out);
 }
 .modes button:hover { color: var(--t-2); }
-.modes button[aria-pressed='true'] { color: var(--t-1); background: var(--surf-3); }
+.modes button[aria-pressed='true'] { color: var(--t-on-acc); background: var(--acc); }
 .modes button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
+.mode-note {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--t-4);
+  min-height: 1.2em;
+}
+
+/* ── Окно темы ──────────────────────────────────────────── */
+
+.reel {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1080px;
+  min-height: 0;
+  padding: var(--sp-4) 0;
+}
+
+.reel-status {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc-text);
+  margin-bottom: var(--sp-3);
+  min-height: 1.2em;
+}
+
+/* Фиксированная высота: без неё подмена слова разной длины
+   дёргает всю страницу вверх-вниз */
+.reel-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: clamp(150px, 26vh, 260px);
+}
+
+.topic {
+  margin: 0;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 84px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--t-1);
+  max-width: 100%;
+  /* Не break-word: разрыв внутри слова обманывает автофит —
+     scrollWidth всегда меньше бокса, и кегль не уменьшается */
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+/* Во время перебора слово чуть приглушено и слегка размыто:
+   так видно, что это ещё не результат */
+.topic.is-rolling {
+  color: var(--t-2);
+  opacity: 0.86;
+  filter: blur(0.4px);
+}
+.topic.is-landed {
+  animation: land var(--t-slow) var(--ease-soft);
+}
+@keyframes land {
+  0% { opacity: 0.5; transform: scale(0.985) }
+  100% { opacity: 1; transform: none }
+}
+
+.reel-idle {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--t-4);
+  max-width: 40ch;
+}
+
+.reel-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  margin-top: var(--sp-3);
+  font-size: 13px;
+  color: var(--t-3);
+  animation: rise var(--t-slow) var(--ease-soft) both;
+}
+.reel-meta .sep { color: var(--t-4); }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px) }
+  to { opacity: 1; transform: none }
+}
+
+/* Суть темы — показывается только после речи */
+.hook {
+  margin: var(--sp-4) 0 0;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-md);
+  background: var(--acc-quiet);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.6;
+  color: var(--t-2);
+  max-width: 58ch;
+  animation: rise var(--t-slow) var(--ease-soft) both;
+}
+
+/* ── Действия ───────────────────────────────────────────── */
+
+.actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-1);
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+
+.btn {
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--t-2);
+  background: var(--surf-1);
+  transition: color var(--t-base) var(--ease-out),
+              background-color var(--t-base) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled) { color: var(--t-1); background: var(--surf-2); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+.btn:disabled { color: var(--t-4); opacity: 0.45; cursor: default; }
+
+/* Единственная заливка акцентом — единственное действие,
+   с которого всё начинается */
+.btn.go {
+  color: var(--t-on-acc);
+  background: var(--acc);
+  padding: 0 34px;
+  font-weight: 600;
+  box-shadow: var(--sh-soft);
+}
+.btn.go:hover:not(:disabled) { background: var(--acc-hover); color: var(--t-on-acc); }
+.btn.go:active:not(:disabled) { background: var(--acc-press); }
+.btn.sq { width: 48px; padding: 0; display: grid; place-items: center; }
+.btn.sq svg { width: 19px; height: 19px; }
+
+/* ── Язык и звук ────────────────────────────────────────── */
+
+.corner {
+  position: fixed;
+  top: clamp(16px, 3vh, 28px);
+  right: clamp(16px, 3vw, 32px);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.langs {
+  display: flex;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: var(--surf-1);
+}
+.langs button {
+  padding: 7px 12px;
+  border-radius: var(--r-pill);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--t-4);
+  transition: color var(--t-fast) var(--ease-out),
+              background-color var(--t-fast) var(--ease-out);
+}
+.langs button:hover { color: var(--t-2); }
+.langs button[aria-pressed='true'] { color: var(--t-on-acc); background: var(--acc); }
+.langs button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+
+.mute {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--surf-1);
+  color: var(--t-4);
+  transition: color var(--t-fast) var(--ease-out),
+              background-color var(--t-fast) var(--ease-out);
+}
+.mute:hover { color: var(--t-2); background: var(--surf-2); }
+.mute:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+.mute svg { width: 18px; height: 18px; }
+.mute[aria-pressed='false'] .wave { opacity: 0.22; }
+.mute[aria-pressed='false'] .slash { opacity: 1; }
+.mute .slash { opacity: 0; transition: opacity var(--t-fast); }
+
+/* ── Режим «в кадр» ─────────────────────────────────────── */
+
+.stage.is-frame .head,
+.stage.is-frame .controls,
+.stage.is-frame .corner,
+.stage.is-frame .actions,
+.stage.is-frame .reel-status { display: none; }
+
+.stage.is-frame .reel {
+  width: min(58vh, 100%);
+  justify-content: center;
+}
+
+/* Подпись прямо под темой: при кропе 9:16 она обязана
+   остаться в кадре вместе с ней */
+.frame-sign {
+  display: none;
+  margin-top: var(--sp-5);
+  font-size: 13px;
+  color: var(--t-3);
+}
+.stage.is-frame .frame-sign { display: block; }
+.frame-sign b { color: var(--acc-text); font-weight: 500; }
+.frame-sign span { display: block; margin-top: 6px; font-size: 11px; color: var(--t-4); }
+
+.frame-exit {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: var(--sp-4);
+  z-index: 20;
+  font-size: 11px;
+  color: var(--t-4);
+}
+
+/* ── Мобильная ──────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  .stage { padding: var(--sp-3) var(--sp-3) var(--sp-4); }
+  .corner { position: static; margin-bottom: var(--sp-2); align-self: center; }
+  .head { order: 1; }
+  .corner { order: 0; }
+  .brand { font-size: clamp(22px, 6vw, 28px); }
+  .modes button { padding: 9px 16px; font-size: 13px; }
+  .mode-note { font-size: 12.5px; }
+  .reel-box { min-height: clamp(120px, 22vh, 200px); }
+  .btn { height: 44px; padding: 0 18px; font-size: 13px; }
+  .btn.go { padding: 0 26px; }
+  .btn.sq { width: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topic.is-landed, .reel-meta, .hook { animation: none; }
+  .topic.is-rolling { filter: none; }
+}
 /* ── Выбор категории ────────────────────────────────────── */
 
 .picker { position: relative; }
@@ -237,269 +453,3 @@
 }
 .picker-menu button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--focus-ring); }
 
-.window {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 0;
-  padding: var(--sp-4) 0;
-}
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--acc-text);
-  margin-bottom: var(--sp-3);
-}
-.eyebrow .sep { color: var(--t-4); }
-
-/* Literata — книжная антиква с притуплёнными скруглёнными
-   засечками: тема выглядит строкой из книги, а не показанием
-   прибора. Вес 400: тяжёлые начертания сами по себе жёстки */
-.title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  font-size: 84px;
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  margin: 0;
-  color: var(--t-1);
-  max-width: 100%;
-  /* Не break-word: разрыв внутри слова делает scrollWidth
-     всегда меньше бокса, и автофит считает, что кегль влез */
-  overflow-wrap: normal;
-  word-break: normal;
-  hyphens: none;
-}
-.title.is-condensed { font-weight: 500; }
-
-.idle-txt { color: var(--t-3); }
-.idle-txt b {
-  display: block;
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(28px, 3.6vw, 42px);
-  line-height: 1.24;
-  color: var(--t-2);
-  margin-bottom: var(--sp-1);
-}
-.idle-txt span { font-size: 15px; line-height: 1.6; }
-
-.reveal > * { opacity: 0; transform: translateY(8px); }
-.reveal.show > * { animation: rise var(--t-slow) var(--ease-soft) forwards; }
-.reveal.show > *:nth-child(1) { animation-delay: 0.02s; }
-.reveal.show > *:nth-child(2) { animation-delay: 0.10s; }
-.reveal.show > *:nth-child(3) { animation-delay: 0.20s; }
-@keyframes rise { to { opacity: 1; transform: none; } }
-
-/* Суть темы — показывается только после речи */
-.hook {
-  margin: var(--sp-4) 0 0;
-  padding: var(--sp-3) var(--sp-4);
-  border-radius: var(--r-md);
-  background: var(--acc-quiet);
-  font-size: clamp(16px, 1.6vw, 19px);
-  line-height: 1.6;
-  color: var(--t-2);
-  max-width: 62ch;
-}
-
-.foot {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-1);
-  padding-top: var(--sp-4);
-}
-
-/* ── Кнопки ─────────────────────────────────────────────── */
-
-.btn {
-  height: 46px;
-  padding: 0 22px;
-  border-radius: var(--r-pill);
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--t-2);
-  background: var(--surf-1);
-  transition: color var(--t-base) var(--ease-out),
-              background-color var(--t-base) var(--ease-out),
-              transform var(--t-fast) var(--ease-out);
-  white-space: nowrap;
-  cursor: pointer;
-}
-.btn:hover:not(:disabled) { color: var(--t-1); background: var(--surf-2); }
-.btn:active:not(:disabled) { transform: translateY(1px); }
-.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
-.btn:disabled { color: var(--t-4); opacity: 0.5; cursor: default; }
-
-/* Единственная заливка акцентом — единственное действие,
-   с которого всё начинается */
-.btn.go {
-  color: var(--t-on-acc);
-  background: var(--acc);
-  padding: 0 30px;
-  font-weight: 600;
-  box-shadow: var(--sh-soft);
-}
-.btn.go:hover:not(:disabled) { background: var(--acc-hover); color: var(--t-on-acc); }
-.btn.go:active:not(:disabled) { background: var(--acc-press); }
-.btn.sq { width: 46px; padding: 0; display: grid; place-items: center; }
-.btn.sq svg { width: 19px; height: 19px; }
-
-.foot .hint { margin-left: auto; font-size: 12px; color: var(--t-4); }
-.foot .hint kbd {
-  font: inherit;
-  padding: 4px 10px;
-  border-radius: var(--r-sm);
-  background: var(--surf-1);
-  color: var(--t-3);
-}
-
-/* ── Барабан ────────────────────────────────────────────── */
-
-.tape {
-  position: relative;
-  z-index: 4;
-  padding: var(--sp-4) var(--sp-4) var(--sp-4) 0;
-}
-.tape-win {
-  position: absolute;
-  inset: var(--sp-4) var(--sp-4) var(--sp-4) 0;
-  overflow: hidden;
-  border-radius: var(--r-lg);
-  background: var(--bg-deep);
-  /* Строки растворяются, а не отрезаются: жёсткий край
-     возвращает ощущение коробки */
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0, #000 56px, #000 calc(100% - 56px), transparent 100%);
-}
-.strip { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
-
-.row {
-  height: var(--row-h);
-  display: flex;
-  align-items: center;
-  padding: 0 var(--sp-4);
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  font-size: 15.5px;
-  line-height: 1.3;
-  color: var(--t-4);
-  white-space: nowrap;
-  overflow: hidden;
-  transition: color var(--t-fast) linear;
-  -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
-  mask-image: linear-gradient(90deg, #000 82%, transparent 100%);
-}
-.row.is-live { color: var(--t-2); }
-.row.is-hit { color: var(--t-1); }
-
-/* Прицел — мягкая подсвеченная капсула, а не риска прибора */
-.index {
-  position: absolute;
-  left: var(--sp-2);
-  right: calc(var(--sp-4) + var(--sp-2));
-  top: 50%;
-  height: var(--row-h);
-  transform: translateY(-50%);
-  pointer-events: none;
-  z-index: 3;
-  border-radius: var(--r-md);
-  background: var(--acc-quiet);
-  transition: background-color var(--t-slow) var(--ease-out),
-              box-shadow var(--t-slow) var(--ease-out);
-}
-.is-spinning .index { background: rgba(233,188,128,.16); }
-.is-settled .index {
-  background: var(--acc-strong);
-  box-shadow: 0 0 0 1px var(--acc-line), 0 0 42px rgba(233,188,128,.14);
-}
-
-/* ── Режим «в кадр» ─────────────────────────────────────── */
-
-.app.is-frame { grid-template-columns: 1fr; }
-.app.is-frame .rail,
-.app.is-frame .tape,
-.app.is-frame .status,
-.app.is-frame .foot .btn,
-.app.is-frame .foot .hint { display: none; }
-
-.app.is-frame .field { align-items: center; padding: 0; }
-.app.is-frame .window {
-  width: min(58vh, 100%);
-  margin: 0 auto;
-  justify-content: center;
-  text-align: center;
-  padding: 0 var(--sp-4);
-}
-.app.is-frame .eyebrow { justify-content: center; }
-.app.is-frame .foot { justify-content: center; padding-bottom: 8vh; }
-
-/* Подпись прямо под темой: при кропе 9:16 она обязана
-   остаться в кадре вместе с ней */
-.frame-sign {
-  display: none;
-  margin-top: var(--sp-5);
-  font-size: 13px;
-  color: var(--t-3);
-  text-align: center;
-}
-.app.is-frame .frame-sign { display: block; }
-.frame-sign b { color: var(--acc-text); font-weight: 500; }
-.frame-sign span { display: block; margin-top: 6px; font-size: 11px; color: var(--t-4); }
-
-.frame-exit {
-  position: fixed;
-  right: var(--sp-4);
-  bottom: var(--sp-4);
-  z-index: 20;
-  font-size: 11px;
-  color: var(--t-4);
-}
-
-/* ── Мобильная ──────────────────────────────────────────── */
-
-@media (max-width: 900px) {
-  .app {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-  }
-
-  .rail {
-    flex-direction: row;
-    padding: var(--sp-2) var(--sp-3);
-    gap: var(--sp-2);
-  }
-  .rail-lang { flex-direction: row; }
-  .rail-lang button { width: 44px; padding: 8px 0; }
-  .rail-spacer { flex: 1 1 auto; }
-  .rail-author a { writing-mode: horizontal-tb; transform: none; }
-
-  .field { padding: var(--sp-2) var(--sp-3) var(--sp-3); }
-  .status { padding-bottom: var(--sp-2); }
-  .modes button { padding: 9px 14px; font-size: 12px; }
-  .picker-trigger { height: 38px; padding: 0 12px 0 14px; font-size: 12px; }
-  .picker-menu { min-width: 200px; }
-
-  /* Лента уходит вниз полосой: вертикальная колонка на
-     телефоне съела бы половину экрана */
-  .tape { padding: 0 var(--sp-3) var(--sp-3); height: 108px; }
-  .tape-win { inset: 0 var(--sp-3) var(--sp-3); }
-  .row { font-size: 15px; padding: 0 var(--sp-3); }
-  .index { left: var(--sp-1); right: calc(var(--sp-3) + var(--sp-1)); }
-
-  .foot { padding-top: var(--sp-2); flex-wrap: wrap; }
-  .btn { height: 44px; padding: 0 18px; font-size: 13px; }
-  .btn.go { padding: 0 24px; }
-  .btn.sq { width: 44px; }
-  .foot .hint { display: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal.show > * { animation-duration: 0.01s; }
-}
