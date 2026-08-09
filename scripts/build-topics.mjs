@@ -15,17 +15,18 @@ const SRC = process.env.TOPICS_SRC
   || '/private/tmp/claude-501/-Users-admin-Desktop------------/9f843165-059a-41aa-9a7d-a6a3aa64f43f/scratchpad';
 
 const LANGS = ['ru', 'en', 'uz'];
-const DEEP_DOMAINS = ['mind','economy','society','philosophy','systems','power','tech'];
+const DEEP_DOMAINS = ['mind','economy','society','philosophy','systems','power','tech','culture'];
 const QUICK_DOMAINS = ['objects','routine','city','memory','people','digital'];
 const ERAS = ['classic','modern'];
 
 const warn = [];
 
-function readBatches(prefix) {
+function readBatches(prefixes) {
+  const list = Array.isArray(prefixes) ? prefixes : [prefixes];
   let files = [];
   try {
     files = fs.readdirSync(SRC)
-      .filter(f => new RegExp(`^${prefix}-\\d+\\.json$`).test(f))
+      .filter(f => list.some(p => new RegExp(`^${p}-\\d+\\.json$`).test(f)))
       .sort((a, b) => (+a.match(/\d+/)[0]) - (+b.match(/\d+/)[0]))
       .map(f => path.join(SRC, f));
   } catch { return []; }
@@ -84,9 +85,9 @@ function validate(list, bank) {
   return out;
 }
 
-function build(prefix, bank, outFile) {
+function build(prefixes, bank, outFile) {
   console.log(`\n· ${bank}:`);
-  const raw = readBatches(prefix);
+  const raw = readBatches(prefixes);
   if (!raw.length) { console.log('  батчей нет — пропускаю'); return 0; }
 
   const topics = validate(raw, bank);
@@ -99,8 +100,10 @@ function build(prefix, bank, outFile) {
   return topics.length;
 }
 
-const deep = build('topics-batch', 'deep', 'topics.deep.json');
-const quick = build('quick-batch', 'quick', 'topics.quick.json');
+/* Оба поколения: первые 66 тем и новые 96 по топикам.
+   Дубликаты по slug отсеет валидатор */
+const deep = build(['topics-batch', 'deep2-batch'], 'deep', 'topics.deep.json');
+const quick = build(['quick-batch'], 'quick', 'topics.quick.json');
 
 if (warn.length) {
   console.log(`\n⚠ замечаний: ${warn.length}`);

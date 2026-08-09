@@ -2,7 +2,8 @@ export type Lang = 'ru' | 'en' | 'uz';
 export type Bank = 'quick' | 'deep';
 
 export type DeepDomain =
-  | 'mind' | 'economy' | 'society' | 'philosophy' | 'systems' | 'power' | 'tech';
+  | 'mind' | 'economy' | 'society' | 'philosophy'
+  | 'systems' | 'power' | 'tech' | 'culture';
 export type QuickDomain =
   | 'objects' | 'routine' | 'city' | 'memory' | 'people' | 'digital';
 export type Era = 'classic' | 'modern';

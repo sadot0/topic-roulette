@@ -612,6 +612,1734 @@
   }
  },
  {
+  "slug": "choice-blindness",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Слепота выбора",
+   "hook": "Вам подменили ваш выбор — и вы объясняете, почему выбрали именно это."
+  },
+  "en": {
+   "title": "Choice Blindness",
+   "hook": "Swap someone's chosen photo and they'll passionately defend the one they rejected."
+  },
+  "uz": {
+   "title": "Tanlov koʻrligi",
+   "hook": "Tanlagan suratingizni sezdirmay almashtirib qoʻyishadi — siz rad etganingizni jon-jahdingiz bilan himoya qilasiz."
+  }
+ },
+ {
+  "slug": "einstellung-effect",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект установки",
+   "hook": "Первое хорошее решение мешает увидеть лучшее — глаза сами возвращаются к нему."
+  },
+  "en": {
+   "title": "Einstellung Effect",
+   "hook": "The first good answer blocks the better one from ever being seen."
+  },
+  "uz": {
+   "title": "Einstellung effekti",
+   "hook": "Birinchi topilgan yechim yaxshirogʻini koʻrgani qoʻymaydi — koʻz baribir oʻshanga qaytaveradi."
+  }
+ },
+ {
+  "slug": "verbal-overshadowing",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Вербальное затенение",
+   "hook": "Подробно опишите лицо словами — и потом узнаете его хуже, чем молчавший."
+  },
+  "en": {
+   "title": "Verbal Overshadowing",
+   "hook": "Describe the face in words and you'll pick it out worse than the witness who said nothing."
+  },
+  "uz": {
+   "title": "Verbal soyalash effekti",
+   "hook": "Yuzni soʻz bilan batafsil taʼriflang — keyin uni jim turgan guvohdan ham yomonroq tanaysiz."
+  }
+ },
+ {
+  "slug": "low-prevalence-effect",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Эффект редкой цели",
+   "hook": "Чем реже встречается опасность, тем чаще её не замечают, глядя прямо на неё."
+  },
+  "en": {
+   "title": "Low-Prevalence Effect",
+   "hook": "The rarer the thing you seek, the more often you look straight past it."
+  },
+  "uz": {
+   "title": "Kam uchraydigan nishon effekti",
+   "hook": "Nishon qanchalik kam uchrasa, tikilib turib ham shunchalik koʻp oʻtkazib yuborasiz."
+  }
+ },
+ {
+  "slug": "left-brain-interpreter",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Интерпретатор левого полушария",
+   "hook": "Мозг никогда не отвечает «не знаю» — он сочиняет причину и верит ей."
+  },
+  "en": {
+   "title": "Left-Brain Interpreter",
+   "hook": "The brain never says “I don't know” — it invents a reason and believes it."
+  },
+  "uz": {
+   "title": "Chap yarimshar talqinchisi",
+   "hook": "Miya hech qachon «bilmayman» demaydi — sabab toʻqiydi va oʻziyam ishonadi."
+  }
+ },
+ {
+  "slug": "cryptomnesia",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Криптомнезия",
+   "hook": "Чужая мысль возвращается без бирки «чужое» и ощущается как собственное озарение."
+  },
+  "en": {
+   "title": "Cryptomnesia",
+   "hook": "A borrowed idea comes back without its label and feels like your own."
+  },
+  "uz": {
+   "title": "Kriptomneziya",
+   "hook": "Oʻzganing fikri yorliqsiz qaytib keladi va oʻzingiz kashf qilgandek tuyuladi."
+  }
+ },
+ {
+  "slug": "retrieval-induced-forgetting",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Забывание через припоминание",
+   "hook": "Каждый пересказ вашей версии стирает те детали, которые вы не рассказали."
+  },
+  "en": {
+   "title": "Retrieval-Induced Forgetting",
+   "hook": "Every retelling of your version erases the details you left out."
+  },
+  "uz": {
+   "title": "Eslash orqali unutish",
+   "hook": "Voqeani oʻz talqiningizda har aytganingizda, aytmagan tafsilotlar xotiradan oʻchadi."
+  }
+ },
+ {
+  "slug": "apparent-mental-causation",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Кажущаяся ментальная причинность",
+   "hook": "Чувство «это сделал я» — не отчёт воли, а догадка мозга задним числом."
+  },
+  "en": {
+   "title": "Apparent Mental Causation",
+   "hook": "“I did that” isn't a report from your will — it's your brain guessing after the fact."
+  },
+  "uz": {
+   "title": "Zohiriy ruhiy sababiyat",
+   "hook": "«Buni men qildim» degan his — irodaning hisoboti emas, miyaning keyin qilgan taxmini."
+  }
+ },
+ {
+  "slug": "hypercorrection-effect",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Эффект гиперкоррекции",
+   "hook": "Чем увереннее вы ошиблись, тем прочнее запомните поправку — если ошибка не про вас."
+  },
+  "en": {
+   "title": "Hypercorrection Effect",
+   "hook": "The more confidently you were wrong, the harder the correction sticks — unless the error is who you are."
+  },
+  "uz": {
+   "title": "Giperkorreksiya effekti",
+   "hook": "Qanchalik ishonch bilan xato qilsangiz, toʻgʻrisi shunchalik mahkam esda qoladi — agar gap oʻzligingiz haqida boʻlmasa."
+  }
+ },
+ {
+  "slug": "kind-vs-wicked-learning-environments",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Добрые и злые среды",
+   "hook": "Двадцать лет опыта в кривой обратной связи дают не мастерство, а уверенность."
+  },
+  "en": {
+   "title": "Kind vs Wicked Environments",
+   "hook": "Twenty years of feedback that lies gives you confidence, not expertise."
+  },
+  "uz": {
+   "title": "Yaxshi va yovuz muhitlar",
+   "hook": "Teskari aloqasi yolgʻon sohada yigirma yil ishlasangiz, mahorat emas — ishonch orttirasiz."
+  }
+ },
+ {
+  "slug": "natural-frequencies",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "classic",
+  "ru": {
+   "title": "Естественные частоты",
+   "hook": "Скажите «10 человек из 1000» вместо «1%» — и врачи внезапно считают правильно."
+  },
+  "en": {
+   "title": "Natural Frequencies",
+   "hook": "Say “10 people in 1000” instead of “1%” and doctors suddenly get it right."
+  },
+  "uz": {
+   "title": "Tabiiy chastotalar",
+   "hook": "«1%» oʻrniga «1000 kishidan 10 tasi» deng — shifokorlar birdan toʻgʻri hisoblab ketadi."
+  }
+ },
+ {
+  "slug": "hot-hand-fallacy-fallacy",
+  "bank": "deep",
+  "domain": "mind",
+  "era": "modern",
+  "ru": {
+   "title": "Эффект Миллера–Санхурхо",
+   "hook": "Считая броски только после трёх попаданий, вы заставите честную монету «остывать»."
+  },
+  "en": {
+   "title": "Miller–Sanjurjo Effect",
+   "hook": "Count only flips after three heads and a fair coin looks like it's cooling."
+  },
+  "uz": {
+   "title": "Miller–Sanjurjo effekti",
+   "hook": "Faqat ketma-ket uchta gerbdan keyingi tashlashni sanang — halol tanga ham «sovib» qolgandek koʻrinadi."
+  }
+ },
+ {
+  "slug": "alchian-allen-theorem",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Теорема Алчиана–Аллена",
+   "hook": "Одинаковая доставка для плохого и хорошего — и лучшие яблоки уезжают из города."
+  },
+  "en": {
+   "title": "Alchian–Allen Theorem",
+   "hook": "Add the same shipping cost to both, and the good apples leave town."
+  },
+  "uz": {
+   "title": "Alchian–Allen teoremasi",
+   "hook": "Yaxshisiga ham, yomoniga ham yetkazish narxi bir xil — eng yaxshi olma shahardan chiqib ketadi."
+  }
+ },
+ {
+  "slug": "multitask-principal-agent",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Проблема многозадачного агента",
+   "hook": "Премия за измеримое незаметно высасывает усилия из всего неизмеримого."
+  },
+  "en": {
+   "title": "Multitask Principal-Agent Problem",
+   "hook": "A bonus on the measurable quietly drains effort from everything you can't measure."
+  },
+  "uz": {
+   "title": "Koʻp vazifali agent muammosi",
+   "hook": "Oʻlchanadigan ishga bonus qoʻying — oʻlchab boʻlmaydigan hamma ish sekin-asta tashlab qoʻyiladi."
+  }
+ },
+ {
+  "slug": "shrouded-attributes",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Скрытые атрибуты",
+   "hook": "Разоблачить чужие доплаты невыгодно: клиент поумнеет и останется у конкурента."
+  },
+  "en": {
+   "title": "Shrouded Attributes",
+   "hook": "Exposing a rival's hidden fee just teaches customers to dodge it — and stay."
+  },
+  "uz": {
+   "title": "Yashirilgan atributlar",
+   "hook": "Raqibning yashirin toʻlovini fosh qiling — mijoz aqlli boʻladi-yu, oʻsha yerda qolaveradi."
+  }
+ },
+ {
+  "slug": "arrow-information-paradox",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Информационный парадокс Эрроу",
+   "hook": "Чтобы оценить информацию, её надо узнать — а узнав, вы её уже получили."
+  },
+  "en": {
+   "title": "Arrow's Information Paradox",
+   "hook": "To value information you must learn it — and once you have, you own it."
+  },
+  "uz": {
+   "title": "Errouning axborot paradoksi",
+   "hook": "Axborotning narxini bilish uchun uni koʻrish kerak — koʻrdingizmi, allaqachon qoʻlga kiritdingiz."
+  }
+ },
+ {
+  "slug": "rat-race-equilibrium",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Крысиные бега Акерлофа",
+   "hook": "Когда усилие не видно, его приходится изображать — и все остаются допоздна."
+  },
+  "en": {
+   "title": "Akerlof's Rat Race",
+   "hook": "When effort is invisible, everyone stays late — and nobody gets ahead."
+  },
+  "uz": {
+   "title": "Akerlofning kalamushlar poygasi",
+   "hook": "Mehnating koʻrinmasa, uni koʻz-koʻz qilishga toʻgʻri keladi — hamma kechgacha ishxonada oʻtiradi."
+  }
+ },
+ {
+  "slug": "coase-conjecture",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Гипотеза Коуза",
+   "hook": "Покупатель знает, что цена упадёт, и просто ждёт — поэтому всё стало подпиской."
+  },
+  "en": {
+   "title": "The Coase Conjecture",
+   "hook": "Buyers know the price will drop, so they wait — hence subscriptions."
+  },
+  "uz": {
+   "title": "Kouz farazi",
+   "hook": "Xaridor narx baribir tushishini biladi va shunchaki kutadi — shuning uchun hammasi obunaga oʻtdi."
+  }
+ },
+ {
+  "slug": "the-bezzle",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Бэззл Гэлбрейта",
+   "hook": "Между кражей и её обнаружением богаты оба — и вор, и обворованный."
+  },
+  "en": {
+   "title": "Galbraith's Bezzle",
+   "hook": "Between the theft and its discovery, both sides feel rich."
+  },
+  "uz": {
+   "title": "Gelbreyt bezzli",
+   "hook": "Oʻgʻirlik boʻldi, lekin hali fosh emas — shu orada oʻgʻri ham, egasi ham oʻzini boy sanaydi."
+  }
+ },
+ {
+  "slug": "o-ring-theory",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Теория О-ринга",
+   "hook": "Качества перемножаются, а не складываются: один слабый этап обнуляет всю работу."
+  },
+  "en": {
+   "title": "The O-Ring Theory",
+   "hook": "One weak step doesn't subtract from the work — it multiplies it by zero."
+  },
+  "uz": {
+   "title": "O-ring nazariyasi",
+   "hook": "Sifatlar qoʻshilmaydi, bir-biriga koʻpaytiriladi: bitta boʻsh boʻgʻin butun ishni nolga chiqaradi."
+  }
+ },
+ {
+  "slug": "damaged-goods",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Испорченные товары",
+   "hook": "Компания доплачивает, чтобы ухудшить товар: слабая версия пугает богатых, а не спасает бедных."
+  },
+  "en": {
+   "title": "Damaged Goods",
+   "hook": "Firms pay extra to make it worse — the cheap version scares the rich."
+  },
+  "uz": {
+   "title": "Ataylab buzilgan tovar",
+   "hook": "Kompaniya pul sarflab tovarini ataylab buzadi: arzon versiya kambagʻalga yordam emas, boyni qoʻrqitish uchun."
+  }
+ },
+ {
+  "slug": "looting-bankruptcy-for-profit",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Банкротство ради прибыли",
+   "hook": "Когда убытки покрывает чужая гарантия, разорить свою фирму становится выгодной стратегией."
+  },
+  "en": {
+   "title": "Bankruptcy for Profit",
+   "hook": "When someone else covers the losses, wrecking your own firm pays."
+  },
+  "uz": {
+   "title": "Foyda uchun bankrotlik",
+   "hook": "Zararni boshqa birov qoplasa, oʻz firmangni sindirish eng foydali biznesga aylanadi."
+  }
+ },
+ {
+  "slug": "hiding-hand-principle",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "classic",
+  "ru": {
+   "title": "Принцип скрывающей руки",
+   "hook": "Мы берёмся за большое, только пока не знаем, насколько оно трудное."
+  },
+  "en": {
+   "title": "The Hiding Hand Principle",
+   "hook": "We only start big things while we still underestimate them."
+  },
+  "uz": {
+   "title": "Yashiruvchi qoʻl tamoyili",
+   "hook": "Katta ishga faqat uning qanchalik ogʻir ekanini bilmagunimizcha qoʻl uramiz."
+  }
+ },
+ {
+  "slug": "great-gatsby-curve",
+  "bank": "deep",
+  "domain": "economy",
+  "era": "modern",
+  "ru": {
+   "title": "Кривая Великого Гэтсби",
+   "hook": "Чем сильнее неравенство в стране, тем точнее ваш доход предсказан доходом отца."
+  },
+  "en": {
+   "title": "The Great Gatsby Curve",
+   "hook": "The more unequal the country, the better your father predicts your salary."
+  },
+  "uz": {
+   "title": "Buyuk Getsbi egri chizigʻi",
+   "hook": "Mamlakatda tengsizlik qancha katta boʻlsa, otangizning daromadi sizning maoshingizni shuncha aniq aytib beradi."
+  }
+ },
+ {
+  "slug": "hidden-profile",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс скрытого профиля",
+   "hook": "На совещании звучит то, что и так знают все, — уникальное молчит."
+  },
+  "en": {
+   "title": "Hidden Profile Paradox",
+   "hook": "Meetings surface what everyone already knew — the one fact that matters stays unsaid."
+  },
+  "uz": {
+   "title": "Yashirin profil paradoksi",
+   "hook": "Yigʻilishda hamma biladigan gap qayta-qayta aytiladi, faqat bitta odam biladigani esa aytilmay qoladi."
+  }
+ },
+ {
+  "slug": "collaborative-inhibition",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Коллаборативное торможение",
+   "hook": "Вспоминая вместе, группа вспоминает меньше, чем те же люди поодиночке."
+  },
+  "en": {
+   "title": "Collaborative Inhibition",
+   "hook": "A group remembers less together than the same people would alone."
+  },
+  "uz": {
+   "title": "Jamoaviy eslash toʻsigʻi",
+   "hook": "Birga oʻtirib eslashsa, guruh xuddi shu odamlar yolgʻiz eslaganidan kamroq gap topadi."
+  }
+ },
+ {
+  "slug": "transactive-memory",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Трансактивная память",
+   "hook": "Половина вашей памяти лежит в другом человеке — и уходит вместе с ним."
+  },
+  "en": {
+   "title": "Transactive Memory",
+   "hook": "Half your memory lives inside another person, and leaves when they do."
+  },
+  "uz": {
+   "title": "Transaktiv xotira",
+   "hook": "Xotirangizning yarmi boshqa odamda turadi — u ketsa, oʻsha yarmi ham u bilan ketadi."
+  }
+ },
+ {
+  "slug": "friendship-paradox",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс дружбы",
+   "hook": "Ваши друзья популярнее вас — популярные просто чаще попадают в чужие списки."
+  },
+  "en": {
+   "title": "The Friendship Paradox",
+   "hook": "Your friends have more friends than you — popular people show up on more lists."
+  },
+  "uz": {
+   "title": "Doʻstlik paradoksi",
+   "hook": "Doʻstlaringizning doʻstlari sizdan koʻp: doʻsti koʻp odam koʻproq roʻyxatga tushadi, xolos."
+  }
+ },
+ {
+  "slug": "granovetter-threshold-model",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Пороговая модель Грановеттера",
+   "hook": "У каждого свой порог: уберите одного — и бунт не начнётся вовсе."
+  },
+  "en": {
+   "title": "Granovetter's Threshold Model",
+   "hook": "Everyone has a threshold — remove one person and the riot never starts."
+  },
+  "uz": {
+   "title": "Granovetterning chegara modeli",
+   "hook": "Har kimning oʻz chegarasi bor: bitta odamni olib tashlang — isyon umuman boshlanmaydi."
+  }
+ },
+ {
+  "slug": "common-knowledge-rational-ritual",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Рациональный ритуал",
+   "hook": "Мало, чтобы все знали — нужно, чтобы все знали, что знают все."
+  },
+  "en": {
+   "title": "Rational Ritual",
+   "hook": "Everyone knowing isn't enough — everyone must know that everyone knows."
+  },
+  "uz": {
+   "title": "Ratsional ritual",
+   "hook": "Hamma bilgani kam — har kim hamma bilishini ham bilishi kerak."
+  }
+ },
+ {
+  "slug": "tunnel-effect",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект туннеля Хиршмана",
+   "hook": "Соседний ряд поехал — вы радуетесь, пока не поймёте, что ваш стоит."
+  },
+  "en": {
+   "title": "Hirschman's Tunnel Effect",
+   "hook": "The next lane moves and you're glad — until yours never does."
+  },
+  "uz": {
+   "title": "Xirshmanning tunnel effekti",
+   "hook": "Yondagi qator yurib ketdi — oʻzingizniki hamon joyida turganini sezmaguningizcha xursand boʻlasiz."
+  }
+ },
+ {
+  "slug": "third-person-effect",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект третьего лица",
+   "hook": "Реклама действует на всех, кроме меня — и запреты пишутся ради этих «всех»."
+  },
+  "en": {
+   "title": "The Third-Person Effect",
+   "hook": "Ads work on everyone but me — and censorship is written for them."
+  },
+  "uz": {
+   "title": "Uchinchi shaxs effekti",
+   "hook": "Reklama hammaga taʼsir qiladi, menga esa yoʻq — taqiqlar ana shu «hamma» uchun yoziladi."
+  }
+ },
+ {
+  "slug": "tyranny-of-structurelessness",
+  "bank": "deep",
+  "domain": "society",
+  "era": "classic",
+  "ru": {
+   "title": "Тирания бесструктурности",
+   "hook": "Отменили начальников — и власть ушла к тем, кого нельзя переизбрать."
+  },
+  "en": {
+   "title": "The Tyranny of Structurelessness",
+   "hook": "Abolish the hierarchy and power moves to the clique nobody elected."
+  },
+  "uz": {
+   "title": "Tuzilmasizlik zulmi",
+   "hook": "Boshliqni bekor qilding — hokimiyat hech kim saylamagan oshna-ogʻayni qoʻliga oʻtdi."
+  }
+ },
+ {
+  "slug": "three-degrees-of-influence",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Правило трёх степеней влияния",
+   "hook": "Вы бросили курить — и бросает друг друга вашего друга."
+  },
+  "en": {
+   "title": "Three Degrees of Influence",
+   "hook": "You quit smoking, and your friend's friend's friend quits too."
+  },
+  "uz": {
+   "title": "Uch darajali taʼsir qoidasi",
+   "hook": "Siz chekishni tashladingiz — doʻstingizning doʻstining doʻsti ham tashlaydi."
+  }
+ },
+ {
+  "slug": "big-sort",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Большая сортировка",
+   "hook": "Никто никого не переубеждал — просто все переехали к своим."
+  },
+  "en": {
+   "title": "The Big Sort",
+   "hook": "Nobody changed anyone's mind; people just moved next to their own."
+  },
+  "uz": {
+   "title": "Katta saralanish",
+   "hook": "Hech kim hech kimni ishontirmadi — hamma shunchaki oʻzinikilar yoniga koʻchib oʻtdi."
+  }
+ },
+ {
+  "slug": "three-and-a-half-percent-rule",
+  "bank": "deep",
+  "domain": "society",
+  "era": "modern",
+  "ru": {
+   "title": "Правило 3,5%",
+   "hook": "Движению нужен не народ, а три с половиной процента народа."
+  },
+  "en": {
+   "title": "The 3.5% Rule",
+   "hook": "No movement that mobilized three and a half percent has ever failed."
+  },
+  "uz": {
+   "title": "3,5% qoidasi",
+   "hook": "Aholining 3,5 foizini koʻchaga chiqara olgan harakat hali hech qachon yutqazmagan."
+  }
+ },
+ {
+  "slug": "repugnant-conclusion",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Отвратительный вывод",
+   "hook": "Триллион едва сносных жизней арифметически перевешивает миллиард счастливых."
+  },
+  "en": {
+   "title": "The Repugnant Conclusion",
+   "hook": "Enough barely-worth-living lives outweigh any number of wonderful ones — and the arithmetic agrees."
+  },
+  "uz": {
+   "title": "Jirkanch xulosa",
+   "hook": "Zoʻrgʻa yashashga arziydigan trillion hayot arifmetikada bir milliard baxtli hayotdan ogʻir keladi."
+  }
+ },
+ {
+  "slug": "non-identity-problem",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Проблема нетождественности",
+   "hook": "Ему нельзя навредить: при другом решении родился бы не он."
+  },
+  "en": {
+   "title": "The Non-Identity Problem",
+   "hook": "You can't harm him: choose otherwise and somebody else is born instead."
+  },
+  "uz": {
+   "title": "Ayniyatsizlik muammosi",
+   "hook": "Unga zarar yetkazib boʻlmaydi: boshqacha qaror qilinsa, dunyoga u emas, boshqa odam kelardi."
+  }
+ },
+ {
+  "slug": "sleeping-beauty-problem",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "modern",
+  "ru": {
+   "title": "Задача о Спящей красавице",
+   "hook": "Она не узнала ничего нового, но честная ставка почему-то изменилась."
+  },
+  "en": {
+   "title": "The Sleeping Beauty Problem",
+   "hook": "She learned nothing new, yet her honest bet somehow has to change."
+  },
+  "uz": {
+   "title": "Uxlayotgan goʻzal masalasi",
+   "hook": "U hech qanday yangi narsa bilmadi, lekin halol garov negadir oʻzgarib ketadi."
+  }
+ },
+ {
+  "slug": "moores-paradox",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Мура",
+   "hook": "«Идёт дождь, но я в это не верю» — правда, которую нельзя произнести."
+  },
+  "en": {
+   "title": "Moore's Paradox",
+   "hook": "\"It's raining, but I don't believe it\" — true, and yet unsayable."
+  },
+  "uz": {
+   "title": "Mur paradoksi",
+   "hook": "«Yomgʻir yogʻyapti, lekin men bunga ishonmayman» — rost gap, ammo aytib boʻlmaydi."
+  }
+ },
+ {
+  "slug": "preface-paradox",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс предисловия",
+   "hook": "Я верю каждой своей фразе — и верю, что где-то соврал."
+  },
+  "en": {
+   "title": "The Preface Paradox",
+   "hook": "I believe every sentence I wrote, and believe one of them is wrong."
+  },
+  "uz": {
+   "title": "Soʻzboshi paradoksi",
+   "hook": "Kitobimdagi har bir jumlaga ishonaman — va ular orasida bittasi xato ekaniga ham."
+  }
+ },
+ {
+  "slug": "new-riddle-of-induction",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс грю",
+   "hook": "Все изумруды зелёные — или синие после 2050-го? Данные одинаковы."
+  },
+  "en": {
+   "title": "The Grue Paradox",
+   "hook": "Every emerald is green — or green until 2050, then blue. Same evidence."
+  },
+  "uz": {
+   "title": "Gryu paradoksi",
+   "hook": "Barcha zumradlar yashil — yoki 2050 yilgacha yashil, keyin koʻk. Dalil oʻsha-oʻsha."
+  }
+ },
+ {
+  "slug": "munchhausen-trilemma",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Трилемма Мюнхгаузена",
+   "hook": "Любое «почему?» кончается кругом, бесконечностью или ударом кулака по столу."
+  },
+  "en": {
+   "title": "The Münchhausen Trilemma",
+   "hook": "Every \"why?\" ends in a circle, an endless regress, or a slammed fist."
+  },
+  "uz": {
+   "title": "Myunxauzen trilemmasi",
+   "hook": "Har bir «nega?» aylanaga, cheksiz zanjirga yoki «shunchaki shunday»ga borib taqaladi."
+  }
+ },
+ {
+  "slug": "experience-machine",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Машина опыта",
+   "hook": "Идеальные ощущения без единого реального события — и почти никто не соглашается."
+  },
+  "en": {
+   "title": "The Experience Machine",
+   "hook": "Perfect experiences, nothing actually happening — and almost nobody wants to plug in."
+  },
+  "uz": {
+   "title": "Tajriba mashinasi",
+   "hook": "Ichida hammasi mukammal, tashqarida hech nima yuz bermaydi — deyarli hech kim ulanishga rozi emas."
+  }
+ },
+ {
+  "slug": "newcombs-problem",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Задача Ньюкома",
+   "hook": "Деньги уже в коробке, но взять обе — значит остаться без них."
+  },
+  "en": {
+   "title": "Newcomb's Problem",
+   "hook": "The money is already in the box, yet taking both leaves you with nothing."
+  },
+  "uz": {
+   "title": "Nyukom masalasi",
+   "hook": "Pul allaqachon qutida, lekin ikkalasini olsangiz, quruq qolasiz."
+  }
+ },
+ {
+  "slug": "pascals-mugging",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "modern",
+  "ru": {
+   "title": "Ограбление Паскаля",
+   "hook": "Пообещай триллион — и ничтожная вероятность перевесит весь здравый смысл."
+  },
+  "en": {
+   "title": "Pascal's Mugging",
+   "hook": "Promise a big enough payoff and any tiny probability outweighs common sense."
+  },
+  "uz": {
+   "title": "Paskal talonchiligi",
+   "hook": "Yetarlicha katta raqam vaʼda qilsang, eng kichik ehtimol ham sogʻlom aqlni bosib ketadi."
+  }
+ },
+ {
+  "slug": "epistemic-injustice",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "modern",
+  "ru": {
+   "title": "Эпистемическая несправедливость",
+   "hook": "Тебе не поверили — или не дали слова, чтобы это назвать."
+  },
+  "en": {
+   "title": "Epistemic Injustice",
+   "hook": "They don't believe you — or there's no word for what was done to you."
+  },
+  "uz": {
+   "title": "Epistemik adolatsizlik",
+   "hook": "Yo senga ishonishmaydi — yo boshingga tushganini atashga soʻzning oʻzi yoʻq."
+  }
+ },
+ {
+  "slug": "adaptive-preferences",
+  "bank": "deep",
+  "domain": "philosophy",
+  "era": "classic",
+  "ru": {
+   "title": "Адаптивные предпочтения",
+   "hook": "«Я и не хотел» — иногда свобода, а чаще след запертой двери."
+  },
+  "en": {
+   "title": "Adaptive Preferences",
+   "hook": "\"I never wanted it anyway\" is sometimes freedom, more often a locked door."
+  },
+  "uz": {
+   "title": "Moslashgan istaklar",
+   "hook": "«Menga baribir kerak emasdi» — baʼzan erkinlik, koʻpincha yopiq eshikning izi."
+  }
+ },
+ {
+  "slug": "garbage-can-model",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Модель мусорной корзины",
+   "hook": "Решения давно готовы и ждут — им просто нужна подходящая проблема."
+  },
+  "en": {
+   "title": "Garbage Can Model",
+   "hook": "The solution was ready first — it just needed a problem to attach to."
+  },
+  "uz": {
+   "title": "Axlat qutisi modeli",
+   "hook": "Yechim allaqachon tayyor turibdi — endi unga mos muammo topilsa bas."
+  }
+ },
+ {
+  "slug": "uncertainty-absorption",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Поглощение неопределённости",
+   "hook": "Наверх идут выводы, оговорки остаются внизу: у начальства картина чётче реальности."
+  },
+  "en": {
+   "title": "Uncertainty Absorption",
+   "hook": "Each level passes up the conclusion and keeps the doubts — by the top, nothing is uncertain anymore."
+  },
+  "uz": {
+   "title": "Noaniqlikning yutilishi",
+   "hook": "Yuqoriga xulosa chiqadi, shubhalar pastda qoladi — rahbarga manzara haqiqatdan ham aniqroq koʻrinadi."
+  }
+ },
+ {
+  "slug": "myth-and-ceremony-decoupling",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Миф и церемония",
+   "hook": "Регламент заводят ради вида, а потом негласно запрещают проверять, работает ли он."
+  },
+  "en": {
+   "title": "Myth and Ceremony",
+   "hook": "The structure exists to look right — and asking whether it works is quietly out of bounds."
+  },
+  "uz": {
+   "title": "Afsona va marosim",
+   "hook": "Tuzilma ish uchun emas, koʻrinish uchun — «ishlayaptimi?» deb soʻrash esa odobsizlik."
+  }
+ },
+ {
+  "slug": "institutional-isomorphism",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Институциональный изоморфизм",
+   "hook": "В тумане все копируют соседа — и отрасль становится одинаковой, но не лучше."
+  },
+  "en": {
+   "title": "Institutional Isomorphism",
+   "hook": "Nobody knows what actually works, so everyone copies the neighbor — the field ends up identical, not better."
+  },
+  "uz": {
+   "title": "Institutsional izomorfizm",
+   "hook": "Nima ish berishini hech kim bilmaydi, shuning uchun hamma qoʻshnisidan nusxa koʻchiradi — soha bir xil boʻladi, yaxshi emas."
+  }
+ },
+ {
+  "slug": "legibility-and-high-modernism",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "modern",
+  "ru": {
+   "title": "Читаемость и высокий модернизм",
+   "hook": "Власть упрощает жизнь до схемы, а потом переделывает жизнь под схему."
+  },
+  "en": {
+   "title": "Legibility and High Modernism",
+   "hook": "The state simplifies life into a map, then rebuilds life to fit the map."
+  },
+  "uz": {
+   "title": "Oʻqiluvchanlik va yuqori modernizm",
+   "hook": "Davlat hayotni sxemaga sigʻdiradi, keyin sxemaga sigʻsin deb hayotning oʻzini qayta quradi."
+  }
+ },
+ {
+  "slug": "institutional-sclerosis",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Институциональный склероз",
+   "hook": "Чем дольше покой, тем больше групп, которым выгоднее делить пирог, чем печь."
+  },
+  "en": {
+   "title": "Institutional Sclerosis",
+   "hook": "The longer the calm, the more groups live off splitting the pie, not baking it."
+  },
+  "uz": {
+   "title": "Institutsional skleroz",
+   "hook": "Osoyishtalik choʻzilgani sari non yopmay, borini boʻlishib yeydiganlar koʻpayaveradi."
+  }
+ },
+ {
+  "slug": "functional-stupidity",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "modern",
+  "ru": {
+   "title": "Функциональная глупость",
+   "hook": "Умные люди молчат об очевидном — так работа идёт быстрее, пока не рухнет."
+  },
+  "en": {
+   "title": "Functional Stupidity",
+   "hook": "Smart people stop asking obvious questions — it speeds everything up until it collapses."
+  },
+  "uz": {
+   "title": "Funksional ahmoqlik",
+   "hook": "Aqlli odamlar eng oddiy savolni ham bermay qoʻyadi — ish tez yuradi, hammasi qulaguncha."
+  }
+ },
+ {
+  "slug": "tragedy-of-the-anticommons",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "modern",
+  "ru": {
+   "title": "Трагедия антиобщин",
+   "hook": "Слишком много тех, кто может сказать «нет» — и ресурс простаивает пустым."
+  },
+  "en": {
+   "title": "Tragedy of the Anticommons",
+   "hook": "Too many people hold a veto, so the resource sits idle and serves no one."
+  },
+  "uz": {
+   "title": "Anti-umumiy mulk fojiasi",
+   "hook": "«Yoʻq» deya oladiganlar shunchalik koʻpki, resurs hech kimga ishlamay boʻsh yotaveradi."
+  }
+ },
+ {
+  "slug": "normal-accidents",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Нормальные аварии",
+   "hook": "Два безобидных сбоя встретились — и катастрофа оказалась свойством конструкции, а не ошибкой."
+  },
+  "en": {
+   "title": "Normal Accidents",
+   "hook": "Two harmless failures met at once — the catastrophe was built into the design."
+  },
+  "uz": {
+   "title": "Normal avariyalar",
+   "hook": "Ikki zararsiz nosozlik bir vaqtda uchrashdi — falokat xatodan emas, tizim tuzilishining oʻzidan chiqdi."
+  }
+ },
+ {
+  "slug": "law-of-requisite-variety",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Закон необходимого разнообразия",
+   "hook": "Если у мира больше состояний, чем у вашего пульта — часть хаоса неустранима."
+  },
+  "en": {
+   "title": "Law of Requisite Variety",
+   "hook": "Your controls have fewer settings than the world has states — that gap is chaos you never get to touch."
+  },
+  "uz": {
+   "title": "Zaruriy xilma-xillik qonuni",
+   "hook": "Dunyodagi holatlar pultingizdagi tugmalardan koʻp boʻlsa, tartibsizlikning bir qismi hech qachon boshqaruvga boʻysunmaydi."
+  }
+ },
+ {
+  "slug": "theory-of-second-best",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "classic",
+  "ru": {
+   "title": "Теорема о втором лучшем",
+   "hook": "Исправили одно искажение из двух — и стало не лучше, а хуже."
+  },
+  "en": {
+   "title": "Theory of Second Best",
+   "hook": "Fix one distortion while another remains, and the result can get worse, not better."
+  },
+  "uz": {
+   "title": "Ikkinchi eng yaxshi teoremasi",
+   "hook": "Ikki buzilishdan bittasini tuzatdingiz — natija yaxshilanmaydi, koʻpincha battar boʻladi."
+  }
+ },
+ {
+  "slug": "etto-principle",
+  "bank": "deep",
+  "domain": "systems",
+  "era": "modern",
+  "ru": {
+   "title": "Принцип ETTO",
+   "hook": "Тщательность меняют на скорость каждый день — и однажды именно этот обмен убивает."
+  },
+  "en": {
+   "title": "ETTO Principle",
+   "hook": "Trading thoroughness for speed saves you every single day — and one day it kills you."
+  },
+  "uz": {
+   "title": "ETTO tamoyili",
+   "hook": "Puxtalikni tezlikka almashtirasiz — har kuni shu qutqaradi, bir kuni shu halok qiladi."
+  }
+ },
+ {
+  "slug": "crozier-uncertainty-zones",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Зоны неопределённости Крозье",
+   "hook": "Власть у того, кто чинит единственную поломку, которую регламент не описал."
+  },
+  "en": {
+   "title": "Crozier's Zones of Uncertainty",
+   "hook": "Power belongs to whoever controls the one breakdown the rulebook could never describe."
+  },
+  "uz": {
+   "title": "Krozyening noaniqlik zonalari",
+   "hook": "Haqiqiy hokimiyat — qoidalarda yozilmagan yagona nosozlikni tuzata oladigan odamda."
+  }
+ },
+ {
+  "slug": "nondecision-making",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Непринятие решений",
+   "hook": "Сильнее всего власть там, где вопрос просто не попал в повестку."
+  },
+  "en": {
+   "title": "Nondecision-Making",
+   "hook": "The strongest power keeps the question off the agenda — the argument never even gets born."
+  },
+  "uz": {
+   "title": "Qaror qabul qilmaslik",
+   "hook": "Eng kuchli hokimiyat masalani kun tartibiga qoʻydirmaydi — bahsning oʻzi tugʻilmaydi."
+  }
+ },
+ {
+  "slug": "anticipated-reactions",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Правило предвиденных реакций",
+   "hook": "Приказа не было: подчинённый угадал желание начальника и выполнил его сам."
+  },
+  "en": {
+   "title": "Rule of Anticipated Reactions",
+   "hook": "No order was given: the subordinate guessed the boss's wish and obeyed it anyway."
+  },
+  "uz": {
+   "title": "Kutilgan reaksiyalar qoidasi",
+   "hook": "Buyruq boʻlmadi: xodim rahbarning koʻnglidagini oʻzi topdi va oʻzi bajardi."
+  }
+ },
+ {
+  "slug": "dictators-and-their-viziers",
+  "bank": "deep",
+  "domain": "power",
+  "era": "modern",
+  "ru": {
+   "title": "Диктаторы и их визири",
+   "hook": "Чем слабее твоя позиция, тем слабее зам, которого ты можешь себе позволить."
+  },
+  "en": {
+   "title": "Dictators and Their Viziers",
+   "hook": "The weaker your position, the weaker the deputy you can afford to hire."
+  },
+  "uz": {
+   "title": "Diktatorlar va vazirlari",
+   "hook": "Kursingiz qanchalik qaltiroq boʻlsa, oʻzingizga shunchalik kuchsiz oʻrinbosar tanlaysiz."
+  }
+ },
+ {
+  "slug": "iron-law-of-oligarchy",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Железный закон олигархии",
+   "hook": "Кто ведёт протокол и знает всех, тот остаётся навсегда."
+  },
+  "en": {
+   "title": "Iron Law of Oligarchy",
+   "hook": "Whoever keeps the minutes and knows everyone quietly becomes impossible to replace."
+  },
+  "uz": {
+   "title": "Oligarxiyaning temir qonuni",
+   "hook": "Majlis bayonini yozib yuradigan, hammani taniydigan odam bir kuni almashtirib boʻlmaydigan odamga aylanadi."
+  }
+ },
+ {
+  "slug": "state-as-protection-racket",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Государство как рэкет",
+   "hook": "Тот, кто продаёт вам защиту, обычно сам и создаёт опасность."
+  },
+  "en": {
+   "title": "State as Protection Racket",
+   "hook": "The one selling you protection is usually the one manufacturing the danger."
+  },
+  "uz": {
+   "title": "Davlat — uyushgan reket",
+   "hook": "Sizga himoya sotayotganning oʻzi koʻpincha oʻsha xavfni yaratib turadi."
+  }
+ },
+ {
+  "slug": "bootleggers-and-baptists",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Баптисты и бутлегеры",
+   "hook": "Запрет держится, пока о морали кричат одни, а зарабатывают на нём другие."
+  },
+  "en": {
+   "title": "Bootleggers and Baptists",
+   "hook": "A ban survives when moralists supply the speeches and smugglers collect the profits."
+  },
+  "uz": {
+   "title": "Baptistlar va butleggerlar",
+   "hook": "Minbarda axloq haqida birov baqiradi, taqiqdan pulni boshqasi sanaydi — shuning uchun taqiq turaveradi."
+  }
+ },
+ {
+  "slug": "fire-alarms-vs-police-patrols",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Сигнализация вместо патрулей",
+   "hook": "Начальство не проверяет — оно ждёт крика; тихий вред не заметят никогда."
+  },
+  "en": {
+   "title": "Fire Alarms, Not Patrols",
+   "hook": "Oversight doesn't patrol; it waits for a scream — so quiet damage is never noticed."
+  },
+  "uz": {
+   "title": "Patrul emas, signalizatsiya",
+   "hook": "Nazorat oʻzi yurib tekshirmaydi — u faqat qichqiriqni kutadi; jimgina zarar esa hech kimga bilinmaydi."
+  }
+ },
+ {
+  "slug": "bureau-shaping",
+  "bank": "deep",
+  "domain": "power",
+  "era": "modern",
+  "ru": {
+   "title": "Модель формирования бюро",
+   "hook": "Чиновник с радостью отдаст полштата наружу, лишь бы остаться в штабе у власти."
+  },
+  "en": {
+   "title": "The Bureau-Shaping Model",
+   "hook": "A bureaucrat will give away half his staff to stay in the room where decisions happen."
+  },
+  "uz": {
+   "title": "Byuroni shakllantirish modeli",
+   "hook": "Amaldor katta boʻlimni oʻz ixtiyori bilan berib yuboradi — qaror chiqadigan kichkina xonada qolish uchun."
+  }
+ },
+ {
+  "slug": "tullock-paradox",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Парадокс Таллока",
+   "hook": "Миллиардные решения покупают за миллионы: влияние либо копеечное, либо вообще не работает."
+  },
+  "en": {
+   "title": "The Tullock Paradox",
+   "hook": "Billion-dollar decisions get bought for millions: influence is either dirt cheap or it doesn't work at all."
+  },
+  "uz": {
+   "title": "Tallok paradoksi",
+   "hook": "Milliardlik qarorlar million pulga sotib olinadi: taʼsir yo juda arzon, yo umuman ishlamaydi."
+  }
+ },
+ {
+  "slug": "structural-holes",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Структурные дыры",
+   "hook": "Власть у того, кто соединяет два мира, не знакомых друг с другом."
+  },
+  "en": {
+   "title": "Structural Holes",
+   "hook": "Power sits with whoever bridges two crowds that never talk to each other."
+  },
+  "uz": {
+   "title": "Strukturaviy boʻshliqlar",
+   "hook": "Ikki doira bir-birini tanimasa, oʻrtada turgan odam ikkalasidan ham kuchli boʻlib qoladi."
+  }
+ },
+ {
+  "slug": "ratchet-effect",
+  "bank": "deep",
+  "domain": "power",
+  "era": "classic",
+  "ru": {
+   "title": "Эффект храповика",
+   "hook": "Перевыполнил план — получил новый план: рекорд наказывает того, кто его поставил."
+  },
+  "en": {
+   "title": "The Ratchet Effect",
+   "hook": "Beat the plan once and that number comes back as tomorrow's plan: your record punishes you."
+  },
+  "uz": {
+   "title": "Xrapovik effekti",
+   "hook": "Rejani ortigʻi bilan bajarsang, ertaga oʻsha raqam yangi reja boʻlib qaytadi."
+  }
+ },
+ {
+  "slug": "hyrums-law",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Закон Хайрама",
+   "hook": "При достаточном числе пользователей ваш баг становится чьей-то рабочей функцией."
+  },
+  "en": {
+   "title": "Hyrum's Law",
+   "hook": "With enough users, your bug is already somebody else's working feature."
+  },
+  "uz": {
+   "title": "Xayrum qonuni",
+   "hook": "Foydalanuvchi yetarlicha koʻpaysa, sizning xatoyingiz allaqachon kimningdir ishlab turgan funksiyasi boʻlib qolgan."
+  }
+ },
+ {
+  "slug": "postels-law",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "Закон Постела",
+   "hook": "Прощай чужие ошибки — и однажды они станут обязательным стандартом."
+  },
+  "en": {
+   "title": "Postel's Law",
+   "hook": "Forgive other people's broken data and their bugs become the permanent standard."
+  },
+  "uz": {
+   "title": "Postel qonuni",
+   "hook": "Birovning xatosini kechiraverasan — bir kuni oʻsha xato majburiy standartga aylanadi."
+  }
+ },
+ {
+  "slug": "protocol-ossification",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Окостенение протоколов",
+   "hook": "Сеть запомнила, как выглядит норма, и теперь ломает всё непохожее."
+  },
+  "en": {
+   "title": "Protocol Ossification",
+   "hook": "The network memorized what normal traffic looks like and now breaks anything that looks different."
+  },
+  "uz": {
+   "title": "Protokollarning suyaklanishi",
+   "hook": "Tarmoq «normal trafik» qanaqa boʻlishini yodlab olgan — endi undan farq qilgan hamma narsani sindiradi."
+  }
+ },
+ {
+  "slug": "law-of-leaky-abstractions",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Закон дырявых абстракций",
+   "hook": "Инструмент экономит время до первой аномалии, а потом требует знать всё скрытое."
+  },
+  "en": {
+   "title": "Law of Leaky Abstractions",
+   "hook": "The tool saves time until it breaks, then demands everything it promised to hide."
+  },
+  "uz": {
+   "title": "Teshik abstraksiyalar qonuni",
+   "hook": "Asbob birinchi nosozlikkacha vaqtingni tejaydi, keyin esa oʻzi yashirgan hamma narsani bilishingni talab qiladi."
+  }
+ },
+ {
+  "slug": "lehmans-laws",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "Законы Лемана",
+   "hook": "Живая программа обязана меняться, а каждое изменение делает следующее дороже."
+  },
+  "en": {
+   "title": "Lehman's Laws",
+   "hook": "Software either keeps changing or dies, and every change makes the next one costlier."
+  },
+  "uz": {
+   "title": "Leman qonunlari",
+   "hook": "Dastur yo oʻzgarib turadi, yo oʻladi; har bir oʻzgarish esa keyingisini qimmatroq qiladi."
+  }
+ },
+ {
+  "slug": "worse-is-better",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "«Хуже — значит лучше»",
+   "hook": "Кривое, но простое расползается по миру быстрее правильного и цельного."
+  },
+  "en": {
+   "title": "Worse Is Better",
+   "hook": "The crude simple thing spreads across the world faster than the correct one."
+  },
+  "uz": {
+   "title": "«Yomonroq — yaxshiroq»",
+   "hook": "Qoʻpol, lekin sodda narsa puxta ishlangan narsadan tezroq butun dunyoga yoyiladi."
+  }
+ },
+ {
+  "slug": "mirroring-hypothesis",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "Гипотеза зеркалирования",
+   "hook": "Архитектура продукта — это отпечаток того, кто с кем разговаривал."
+  },
+  "en": {
+   "title": "The Mirroring Hypothesis",
+   "hook": "A product's architecture is a fossil of who talked to whom while building it."
+  },
+  "uz": {
+   "title": "Koʻzgu gipotezasi",
+   "hook": "Mahsulot arxitekturasi — uni yasagan odamlar kim bilan gaplashganining qotib qolgan izi."
+  }
+ },
+ {
+  "slug": "kerckhoffs-principle",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "classic",
+  "ru": {
+   "title": "Принцип Керкгоффса",
+   "hook": "Система должна выстоять, даже если враг знает про неё всё, кроме ключа."
+  },
+  "en": {
+   "title": "Kerckhoffs's Principle",
+   "hook": "The system must hold even when the enemy knows everything except the key."
+  },
+  "uz": {
+   "title": "Kerkgofs prinsipi",
+   "hook": "Dushman tizim haqida kalitdan boshqa hammasini bilsa ham, tizim buzilmasligi kerak."
+  }
+ },
+ {
+  "slug": "specification-gaming",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Игра со спецификацией",
+   "hook": "Система не ошиблась — она выиграла ровно в ту игру, которую вы написали."
+  },
+  "en": {
+   "title": "Specification Gaming",
+   "hook": "It didn't fail — it won exactly the game you wrote down."
+  },
+  "uz": {
+   "title": "Spetsifikatsiya oʻyini",
+   "hook": "U xato qilmadi — aynan siz yozib qoʻygan oʻyinni yutdi."
+  }
+ },
+ {
+  "slug": "shortcut-learning",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Обучение по ярлыкам",
+   "hook": "Модель училась не по опухоли, а по линейке рядом с ней."
+  },
+  "en": {
+   "title": "Shortcut Learning",
+   "hook": "The model learned the ruler beside the tumour, not the tumour."
+  },
+  "uz": {
+   "title": "Qisqa yoʻldan oʻrganish",
+   "hook": "Model oʻsmani emas, uning yonidagi chizgʻichni oʻrganib olgan."
+  }
+ },
+ {
+  "slug": "bitter-lesson",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Горький урок",
+   "hook": "Вложенные в модель знания всегда проигрывают тем, кто просто добавил вычислений."
+  },
+  "en": {
+   "title": "The Bitter Lesson",
+   "hook": "Human insight loses to whoever simply threw more computation at it."
+  },
+  "uz": {
+   "title": "Achchiq saboq",
+   "hook": "Modelga solingan inson bilimi har safar koʻproq hisoblash quvvatiga yutqazadi."
+  }
+ },
+ {
+  "slug": "lethal-trifecta",
+  "bank": "deep",
+  "domain": "tech",
+  "era": "modern",
+  "ru": {
+   "title": "Смертельная триада",
+   "hook": "Личные данные, чужой текст и выход наружу — уберите любое из трёх."
+  },
+  "en": {
+   "title": "The Lethal Trifecta",
+   "hook": "Private data, untrusted text, outbound channel — remove any one to survive."
+  },
+  "uz": {
+   "title": "Halokatli uchlik",
+   "hook": "Shaxsiy maʼlumot, begona matn va tashqariga chiqish yoʻli — omon qolish uchun bittasini olib tashlang."
+  }
+ },
+ {
+  "slug": "invented-tradition",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "classic",
+  "ru": {
+   "title": "Изобретённая традиция",
+   "hook": "Чем древнее выглядит обычай, тем вероятнее, что его придумали недавно."
+  },
+  "en": {
+   "title": "Invented Tradition",
+   "hook": "The older a custom looks, the more likely it was recently invented."
+  },
+  "uz": {
+   "title": "Oʻylab topilgan anʼana",
+   "hook": "Anʼana qanchalik qadimiy koʻrinsa, uni shunchalik yaqinda toʻqib chiqarishgan boʻladi."
+  }
+ },
+ {
+  "slug": "anxiety-of-influence",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "classic",
+  "ru": {
+   "title": "Страх влияния",
+   "hook": "Сильный автор не продолжает предшественника — он искажает его, чтобы освободить место."
+  },
+  "en": {
+   "title": "The Anxiety of Influence",
+   "hook": "A strong poet misreads his master on purpose, to clear his own space."
+  },
+  "uz": {
+   "title": "Taʼsir qoʻrquvi",
+   "hook": "Kuchli shoir ustozini davom ettirmaydi — oʻziga joy ochish uchun uni ataylab buzib oʻqiydi."
+  }
+ },
+ {
+  "slug": "obliteration-by-incorporation",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "classic",
+  "ru": {
+   "title": "Стирание через включение",
+   "hook": "Идея вошла в учебник — и фамилия автора исчезла из ссылок."
+  },
+  "en": {
+   "title": "Obliteration by Incorporation",
+   "hook": "The bigger the idea, the sooner everyone stops citing whoever had it."
+  },
+  "uz": {
+   "title": "Singib ketib unutilish",
+   "hook": "Gʻoya darslikka kirdi — muallifning familiyasi havolalardan yoʻqoldi."
+  }
+ },
+ {
+  "slug": "cultural-omnivore-thesis",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "modern",
+  "ru": {
+   "title": "Культурная всеядность",
+   "hook": "Статус теперь показывают не отказом от массового, а умением любить всё."
+  },
+  "en": {
+   "title": "The Cultural Omnivore",
+   "hook": "Status is no longer what you refuse to like — it's how much you can like well."
+  },
+  "uz": {
+   "title": "Madaniy hammaxoʻrlik",
+   "hook": "Maqom endi mensimaslikda emas — hamma narsani did bilan yoqtira olishda."
+  }
+ },
+ {
+  "slug": "inconspicuous-consumption",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "modern",
+  "ru": {
+   "title": "Незаметное потребление",
+   "hook": "Роскошь подешевела — и богатство спряталось в то, что не видно на фото."
+  },
+  "en": {
+   "title": "Inconspicuous Consumption",
+   "hook": "Luxury got cheap, so wealth moved into what a photo cannot show."
+  },
+  "uz": {
+   "title": "Koʻrinmas isteʼmol",
+   "hook": "Hashamat arzonlashdi — boylik suratga tushmaydigan narsalarga koʻchib oʻtdi."
+  }
+ },
+ {
+  "slug": "retromania",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "modern",
+  "ru": {
+   "title": "Ретромания",
+   "hook": "Доступ ко всему архиву не ускорил новое, а заморозил его."
+  },
+  "en": {
+   "title": "Retromania",
+   "hook": "Total access to the archive didn't speed up the new — it froze it."
+  },
+  "uz": {
+   "title": "Retromaniya",
+   "hook": "Butun arxivga erkin kirish yangilikni tezlatmadi — aksincha, muzlatib qoʻydi."
+  }
+ },
+ {
+  "slug": "moral-grandstanding",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "modern",
+  "ru": {
+   "title": "Моральное позёрство",
+   "hook": "Когда мораль становится способом показать себя, ставки растут, а точность мешает."
+  },
+  "en": {
+   "title": "Moral Grandstanding",
+   "hook": "Once outrage becomes self-display, the stakes keep rising and accuracy only gets in the way."
+  },
+  "uz": {
+   "title": "Axloqiy koʻz-koʻz qilish",
+   "hook": "Axloq oʻzini koʻrsatish vositasiga aylansa, ovozlar tobora balandlashadi, aniqlik esa faqat xalaqit beradi."
+  }
+ },
+ {
+  "slug": "poes-law",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "modern",
+  "ru": {
+   "title": "Закон По",
+   "hook": "Без явного смайлика пародию на крайность не отличить от самой крайности."
+  },
+  "en": {
+   "title": "Poe's Law",
+   "hook": "Without a wink, parody of extremism is indistinguishable from the real thing."
+  },
+  "uz": {
+   "title": "Po qonuni",
+   "hook": "Kinoya belgisi boʻlmasa, haddan oshgan qarashga qilingan parodiyani aslidan ajratib boʻlmaydi."
+  }
+ },
+ {
+  "slug": "eternal-september",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "modern",
+  "ru": {
+   "title": "Вечный сентябрь",
+   "hook": "Новички приходят быстрее, чем сообщество успевает объяснить им правила."
+  },
+  "en": {
+   "title": "Eternal September",
+   "hook": "The newcomers never stop arriving, so the community never finishes teaching them."
+  },
+  "uz": {
+   "title": "Abadiy sentabr",
+   "hook": "Yangilar shu qadar tez oqib keladiki, jamoa oʻz qoidalarini oʻrgatib ulgurmaydi."
+  }
+ },
+ {
+  "slug": "sacrifice-and-stigma",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "classic",
+  "ru": {
+   "title": "Жертва и стигма",
+   "hook": "Бессмысленные требования — не издержка группы, а её фильтр от халявщиков."
+  },
+  "en": {
+   "title": "Sacrifice and Stigma",
+   "hook": "Pointless costly rules are not a bug — they filter out the free riders."
+  },
+  "uz": {
+   "title": "Qurbonlik va tamgʻa",
+   "hook": "Maʼnisiz va qimmat talablar — kamchilik emas, tekinxoʻrlarni saralab tashlaydigan elak."
+  }
+ },
+ {
+  "slug": "routinization-of-charisma",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "classic",
+  "ru": {
+   "title": "Рутинизация харизмы",
+   "hook": "Вождь уходит — и свита превращает его дар в устав и зарплаты."
+  },
+  "en": {
+   "title": "Routinization of Charisma",
+   "hook": "The prophet dies, and his followers turn the gift into rules and salaries."
+  },
+  "uz": {
+   "title": "Xarizmaning rutinlashuvi",
+   "hook": "Yoʻlboshchi ketadi — izdoshlari uning inʼomini nizom va maoshga aylantiradi."
+  }
+ },
+ {
+  "slug": "ostranenie-defamiliarization",
+  "bank": "deep",
+  "domain": "culture",
+  "era": "classic",
+  "ru": {
+   "title": "Остранение",
+   "hook": "Привычное перестаёт существовать; искусство затрудняет форму, чтобы вещь снова стала видимой."
+  },
+  "en": {
+   "title": "Ostranenie: Making Strange",
+   "hook": "Habit eats the thing; art slows perception down so it becomes visible again."
+  },
+  "uz": {
+   "title": "Ostranenie: notanishlashtirish",
+   "hook": "Odat narsani yeb qoʻyadi; sanʼat esa idrokni qiyinlashtirib, uni yana koʻrinadigan qiladi."
+  }
+ },
+ {
   "slug": "toxoplasma-of-rage",
   "bank": "deep",
   "domain": "society",

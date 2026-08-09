@@ -27,6 +27,7 @@ const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
   systems: { ru: 'Системы', en: 'Systems', uz: 'Tizimlar' },
   power: { ru: 'Власть', en: 'Power', uz: 'Hokimiyat' },
   tech: { ru: 'Технологии', en: 'Tech', uz: 'Texnologiya' },
+  culture: { ru: 'Культура', en: 'Culture', uz: 'Madaniyat' },
   objects: { ru: 'Предметы', en: 'Objects', uz: 'Buyumlar' },
   routine: { ru: 'Рутина', en: 'Routine', uz: 'Kundalik' },
   city: { ru: 'Город', en: 'City', uz: 'Shahar' },
