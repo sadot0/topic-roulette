@@ -9,14 +9,27 @@
   display: grid;
   place-items: center;
   padding: var(--sp-5);
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* Непрозрачный: сквозь полупрозрачный фон просвечивала тема,
+     и в записи экрана это мусор за таймером */
+  background: var(--bg);
   animation: fade var(--t-base) var(--ease-out) both;
+}
+/* Своя мягкая подсветка — экран таймера не должен быть
+   плоской заливкой */
+.overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 42% at 50% -4%, rgba(233,188,128,.05), transparent 64%),
+    radial-gradient(80% 50% at 50% 106%, rgba(58,55,80,.34), transparent 66%);
 }
 @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
 
 .ov-in {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,7 +133,7 @@
   z-index: 60;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  background: var(--bg);
 }
 .countdown b {
   font-family: var(--font-display), Georgia, serif;
