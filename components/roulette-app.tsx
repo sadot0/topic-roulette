@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useDrum } from '@/hooks/use-drum';
@@ -18,6 +18,7 @@ import type { Dict } from '@/i18n/config';
 import { TimerOverlay } from './timer/timer-overlay';
 import { SettingsPanel } from './settings-panel';
 import { Rail } from './rail';
+import { TopicPicker, buildOptions } from './topic-picker';
 
 const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
   mind: { ru: 'Разум', en: 'Mind', uz: 'Ong' },
@@ -61,9 +62,26 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
   const research = usePersisted((s) => s.research);
   const speech = usePersisted((s) => s.speech);
   const seenAll = usePersisted((s) => s.seen);
+  const pickAll = usePersisted((s) => s.pick);
 
   const mode: Bank = initialMode ?? storedMode;
   const topics = banks[mode] ?? [];
+  const pick = pickAll[mode] ?? null;
+
+  /* Индексы выбранной категории. Лента наполняется из всего
+     банка — мелькать должно разное; ограничивается только
+     то, что может выпасть */
+  const poolIndices = useMemo(
+    () => (pick ? topics.map((t, i) => (t.domain === pick ? i : -1)).filter((i) => i >= 0) : undefined),
+    [topics, pick],
+  );
+
+  const pickerOptions = useMemo(
+    () => buildOptions(topics, Object.fromEntries(
+      Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.ru]),
+    ), mode),
+    [topics, lang, mode],
+  );
 
   const [current, setCurrent] = useState<TopicSlice | null>(null);
   const [revealHook, setRevealHook] = useState(false);
@@ -73,6 +91,7 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
 
   const drum = useDrum({
     topics,
+    poolIndices,
     seed,
     reduceMotion,
     soundOn,
@@ -199,6 +218,16 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
                 </button>
               ))}
             </div>
+            <TopicPicker
+              options={pickerOptions}
+              value={pick}
+              anyLabel={dict.anyTopic}
+              onChange={(v) => {
+                patch({ pick: { ...pickAll, [mode]: v } });
+                snd.unlock();
+                snd.blip(v ? 700 : 560, 0.04);
+              }}
+            />
 
           </div>
 
@@ -261,6 +290,7 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
                 </div>
               ))}
             </div>
+
           </div>
           <div className="ticks" />
           <div className="index" />

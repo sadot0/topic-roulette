@@ -11,6 +11,7 @@ export const uz: Dict = {
   spinAgain: 'Keyingisi',
   skipSpin: 'Tashlab ketish',
 
+  anyTopic: 'Istalgan mavzu',
   modeQuick: 'Tayyorgarliksiz',
   modeDeep: 'Chuqur research',
   noteQuick: 'Bor gapni darrov ayt',

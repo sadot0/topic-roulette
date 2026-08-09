@@ -8,6 +8,7 @@ export const ru = {
   spinAgain: 'Следующая',
   skipSpin: 'Пропустить',
 
+  anyTopic: 'Любая тема',
   modeQuick: 'Без подготовки',
   modeDeep: 'Глубокий ресёрч',
   noteQuick: 'Говори сразу, как есть',

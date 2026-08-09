@@ -20,6 +20,10 @@ interface SpinRequest {
 
 export interface UseDrumOptions {
   topics: readonly TopicSlice[];
+  /* Индексы, из которых выбирается тема. Пусто — берём все.
+     Лента при этом всё равно наполняется из полного банка:
+     мелькать должно разное, а выпадать — только из выбранного */
+  poolIndices?: readonly number[];
   seed: string;
   reduceMotion: boolean;
   soundOn: boolean;
@@ -51,7 +55,7 @@ function measureRowHeight(win: HTMLElement | null): number {
 }
 
 export function useDrum(o: UseDrumOptions): UseDrumResult {
-  const { topics, seed, reduceMotion, onSettled } = o;
+  const { topics, poolIndices, seed, reduceMotion, onSettled } = o;
 
   const stripRef = useRef<HTMLDivElement | null>(null);
   const windowRef = useRef<HTMLDivElement | null>(null);
@@ -59,6 +63,7 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
   const bagRef = useRef<Bag | null>(null);
   const tokenRef = useRef(0);
   const currentRef = useRef<number | undefined>(undefined);
+  const lastPoolPosRef = useRef<number | undefined>(undefined);
   const liveRef = useRef(-1);
   const applyRowsRef = useRef<(v: number[]) => void>(() => {});
   const putAtRef = useRef<(s: number) => void>(() => {});
@@ -89,8 +94,18 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
     return out;
   });
 
-  if (!bagRef.current) bagRef.current = new Bag(topics.length);
-  bagRef.current.resize(topics.length);
+  /* Пул пересобирается при смене категории; ключ ловит и смену
+     банка, и смену выбранного топика */
+  const poolRef = useRef<number[]>([]);
+  const poolKeyRef = useRef('');
+  const pool = poolIndices && poolIndices.length ? poolIndices : null;
+  const poolKey = `${topics.length}:${pool ? pool.join(',') : 'all'}`;
+  if (poolKeyRef.current !== poolKey) {
+    poolKeyRef.current = poolKey;
+    poolRef.current = pool ? [...pool] : topics.map((_, i) => i);
+    bagRef.current = new Bag(poolRef.current.length);
+  }
+  if (!bagRef.current) bagRef.current = new Bag(poolRef.current.length);
 
   /* Строки пишем прямо в DOM, а не через состояние React.
      Причина конкретная: setRows планирует рендер на следующий
@@ -199,7 +214,10 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
     sound.unlock();
     sound.blip(520, 0.07);
 
-    const target = bagRef.current!.next(currentRef.current);
+    /* Мешок отдаёт позицию внутри пула, а не индекс темы */
+    const poolPos = bagRef.current!.next(lastPoolPosRef.current);
+    lastPoolPosRef.current = poolPos;
+    const target = poolRef.current[poolPos] ?? 0;
     const rnd = Math.random;
     const next: number[] = [];
     let prev = -1;
@@ -298,7 +316,6 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
     stripRef.current?.querySelector('.is-hit')?.classList.remove('is-hit');
     liveRef.current = -1;
     setLive(START_SLOT);
-    bagRef.current = new Bag(topics.length);
     currentRef.current = undefined;
   }, [topics, spinning, applyRows, putAt, setLive]);
 

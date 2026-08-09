@@ -8,6 +8,8 @@ export interface PersistedV4 {
   research: number;
   speech: number;
   frame: boolean;
+  /* Выбранная категория для каждого банка. null — выпадает любая */
+  pick: Partial<Record<Bank, string | null>>;
   /** просмотренное считается отдельно по банкам — иначе счётчик
       «открыто N из M» смешивал бы разные наборы */
   seen: Record<Bank, string[]>;
@@ -23,6 +25,7 @@ export const DEFAULTS: PersistedV4 = {
   research: 15,
   speech: 1,
   frame: false,
+  pick: {},
   seen: { quick: [], deep: [] },
   last: {},
   streak: { current: 0, best: 0, lastDay: '', days: [] },
@@ -72,6 +75,7 @@ export function normalize(p: Partial<PersistedV4>): PersistedV4 {
     research: clampInt(p.research, 1, 60, DEFAULTS.research),
     speech: clampInt(p.speech, 1, 10, DEFAULTS.speech),
     frame: p.frame === true,
+    pick: p.pick ?? {},
     seen: {
       quick: Array.isArray(p.seen?.quick) ? p.seen!.quick : [],
       deep: Array.isArray(p.seen?.deep) ? p.seen!.deep : [],
