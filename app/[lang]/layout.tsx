@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
-import { display, condensed, mono } from '../fonts';
+import { display, ui } from '../fonts';
 import { getDict, isLang, LANGS } from '@/i18n/config';
 import type { Lang } from '@/lib/topics/types';
 import '../globals.css';
@@ -10,7 +10,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#111110',
+  themeColor: '#171620',
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
@@ -60,7 +60,7 @@ export default async function LangLayout({
   return (
     /* Узбекский помечаем uz-Latn: тексты на латинице */
     <html lang={lang === 'uz' ? 'uz-Latn' : (lang as Lang)}>
-      <body className={`${display.variable} ${condensed.variable} ${mono.variable}`}>
+      <body className={`${display.variable} ${ui.variable}`}>
         {/* Фильтр обязан существовать до первого кадра спина,
             поэтому живёт в layout, а не в клиентском островке */}
         <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden>

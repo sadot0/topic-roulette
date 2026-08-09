@@ -17,6 +17,8 @@ export interface SoundApi {
   setEnabled(on: boolean): void;
   tick(speed?: number): void;
   thud(): void;
+  /** Награда за выпавшую тему — мажорное арпеджио с длинным хвостом */
+  reward(): void;
   blip(freq?: number, vol?: number): void;
   chime(up?: boolean, vol?: number): void;
   pip(last?: boolean): void;
@@ -191,6 +193,58 @@ class SoundEngine implements SoundApi {
     o2.stop(t + 0.82);
   }
 
+  /* Звук получки. Не громче удара, а гармонически богаче:
+     мажорный аккорд лесенкой плюс длинный хвост. Восходящее
+     арпеджио мозг читает как «получилось», нисходящее — как
+     «закончилось». Играет поверх thud, не вместо него */
+  reward() {
+    const c = this.live;
+    if (!c || !this.master) return;
+    const t = c.currentTime;
+
+    /* Мажорный секстаккорд: до-ми-соль-до-ми. Ноты приходят
+       лесенкой по 55 мс — одновременный аккорд звучит как
+       сигнал, разложенный как награда */
+    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+    notes.forEach((f, i) => {
+      const at = t + 0.05 + i * 0.055;
+      const o = c.createOscillator();
+      const g = c.createGain();
+      const lp = c.createBiquadFilter();
+      /* Треугольник мягче синуса по обертонам, но не режет
+         слух как пила */
+      o.type = 'triangle';
+      o.frequency.value = f;
+      lp.type = 'lowpass';
+      lp.frequency.value = 2600;
+
+      const peak = 0.052 - i * 0.006;
+      g.gain.setValueAtTime(0, at);
+      g.gain.linearRampToValueAtTime(peak, at + 0.014);
+      /* Длинный хвост — то, что отличает награду от щелчка */
+      g.gain.exponentialRampToValueAtTime(0.0001, at + 1.5 - i * 0.12);
+
+      o.connect(lp);
+      lp.connect(g);
+      g.connect(this.master!);
+      o.start(at);
+      o.stop(at + 1.6);
+    });
+
+    /* Тёплая подложка снизу: без неё аккорд висит в воздухе */
+    const sub = c.createOscillator();
+    const sg = c.createGain();
+    sub.type = 'sine';
+    sub.frequency.setValueAtTime(130.8, t);
+    sg.gain.setValueAtTime(0, t);
+    sg.gain.linearRampToValueAtTime(0.09, t + 0.04);
+    sg.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+    sub.connect(sg);
+    sg.connect(this.master);
+    sub.start(t);
+    sub.stop(t + 1.2);
+  }
+
   blip(freq = 620, vol = 0.05) {
     const c = this.live;
     if (!c || !this.master) return;
@@ -254,6 +308,7 @@ const NOOP: SoundApi = {
   setEnabled() {},
   tick() {},
   thud() {},
+  reward() {},
   blip() {},
   chime() {},
   pip() {},

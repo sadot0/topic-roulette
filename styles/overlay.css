@@ -8,11 +8,11 @@
   z-index: 50;
   display: grid;
   place-items: center;
-  padding: 32px;
-  background: color-mix(in srgb, var(--background) 93%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  animation: fade 0.3s var(--ease-out) both;
+  padding: var(--sp-5);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: fade var(--t-base) var(--ease-out) both;
 }
 @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
 
@@ -21,103 +21,93 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  animation: rise 0.5s var(--ease-out) 0.05s both;
+  animation: rise var(--t-slow) var(--ease-soft) 0.04s both;
 }
 
 .t-topic {
-  font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-  margin-bottom: clamp(22px, 4vh, 42px);
-  max-width: 42ch;
-  line-height: 1.9;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(19px, 2.4vw, 25px);
+  line-height: 1.34;
+  color: var(--t-2);
+  margin-bottom: var(--sp-5);
+  max-width: 22ch;
 }
 
 /* Кольцо УБЫВАЕТ: показывает остаток, а не расход. Растущая
    дуга боковым зрением читается как «времени много» ровно
    тогда, когда его уже нет.
    Свойства --p и --ring-col зарегистрированы через @property —
-   без этого transition на conic-gradient не работает вообще */
+   иначе transition на conic-gradient не работает вообще */
 .ring {
   position: relative;
-  width: clamp(180px, 25vh, 236px);
+  width: clamp(190px, 26vh, 248px);
   aspect-ratio: 1;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: conic-gradient(var(--ring-col) calc(var(--p) * 360deg), var(--ring-track) 0);
-  transition: --p 0.12s linear, --ring-col 0.35s linear;
+  transition: --p 0.14s linear, --ring-col var(--t-slow) linear;
 }
 .ring::before {
   content: '';
   position: absolute;
-  inset: 9px;
+  inset: 11px;
   border-radius: 50%;
-  background: var(--background);
-  box-shadow: inset 0 0 0 1px var(--border);
+  background: var(--bg);
 }
 .ring-b { position: relative; z-index: 1; }
 
 .t-digits {
-  font-family: var(--font-mono), monospace;
-  font-weight: 700;
-  font-size: clamp(38px, 6vh, 52px);
-  letter-spacing: -0.03em;
-  color: var(--foreground);
+  font-weight: 500;
+  font-size: clamp(40px, 6vh, 54px);
+  letter-spacing: -0.02em;
+  color: var(--t-1);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 .t-phase {
-  margin-top: 8px;
-  font-family: var(--font-mono), monospace;
-  font-size: 9.5px;
+  margin-top: var(--sp-1);
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--subtle-foreground);
+  color: var(--t-4);
 }
-.overlay.done .t-digits { color: var(--primary-text); }
-.overlay.done .ring { animation: pop 0.8s var(--ease-out); }
-@keyframes pop { 0%, 100% { transform: scale(1) } 42% { transform: scale(1.045) } }
+.overlay.done .t-digits { color: var(--acc-text); }
+/* Финал настаивает пульсацией, а не миганием и не сменой
+   цвета на тревожный */
+.overlay.done .ring { animation: pop 1.2s var(--ease-soft); }
+@keyframes pop { 0%, 100% { transform: scale(1) } 45% { transform: scale(1.02) } }
 
-/* Три опоры минутного монолога — каркас связной речи.
-   Без них ролик разваливается в пересказ определения */
-.stages { display: flex; margin-top: clamp(20px, 3.4vh, 32px); }
+/* Три опоры минутного монолога — каркас связной речи */
+.stages {
+  display: flex;
+  gap: var(--sp-1);
+  margin-top: var(--sp-5);
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .stages span {
-  padding: 9px 18px;
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--border);
-  box-shadow: inset 0 0 0 1px var(--border);
-  transition: color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  color: var(--t-4);
+  background: var(--surf-1);
+  transition: color var(--t-slow) var(--ease-out),
+              background-color var(--t-slow) var(--ease-out);
 }
-.stages span + span { margin-left: -1px; }
-.stages span.on {
-  color: var(--primary-foreground);
-  background: var(--primary);
-  box-shadow: none;
-}
-.stages span.past { color: var(--muted-foreground); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.stages span.on { color: var(--t-on-acc); background: var(--acc); }
+.stages span.past { color: var(--t-3); background: var(--surf-2); }
 
 .t-status {
-  margin-top: clamp(16px, 2.6vh, 26px);
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
+  margin-top: var(--sp-4);
+  font-size: 14px;
+  color: var(--t-2);
 }
 .t-actions {
   display: flex;
-  gap: 8px;
-  margin-top: clamp(18px, 3vh, 30px);
+  gap: var(--sp-1);
+  margin-top: var(--sp-4);
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -130,97 +120,89 @@
   z-index: 60;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--background) 97%, transparent);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
 }
 .countdown b {
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-variation-settings: 'CTRS' 60;
-  font-weight: 600;
-  font-size: clamp(120px, 22vh, 200px);
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(130px, 24vh, 210px);
   line-height: 1;
-  letter-spacing: -0.05em;
-  color: var(--primary);
-  animation: cd 0.92s var(--ease-out);
+  color: var(--acc);
+  animation: cd 0.95s var(--ease-soft);
 }
 @keyframes cd {
-  0% { opacity: 0; transform: scale(1.25) }
-  18% { opacity: 1; transform: scale(1) }
-  100% { opacity: 0.08; transform: scale(0.96) }
+  0% { opacity: 0; transform: scale(1.18) }
+  22% { opacity: 1; transform: scale(1) }
+  100% { opacity: 0.1; transform: scale(.97) }
 }
 
 /* ── Настройки ──────────────────────────────────────────── */
 
 .panel {
-  width: min(420px, 90vw);
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px var(--border-strong);
-  padding: 30px;
+  width: min(440px, 92vw);
+  background: var(--surf-1);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-lift);
+  padding: var(--sp-5);
   text-align: left;
 }
 .panel:focus { outline: none; }
 .panel h2 {
   margin: 0 0 4px;
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--foreground);
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--t-1);
 }
-.panel .note {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--border);
-  margin: 0 0 26px;
-}
-.field-row { margin-bottom: 24px; }
+.panel .note { font-size: 14px; color: var(--t-3); margin: 0 0 var(--sp-5); }
+
+.field-row { margin-bottom: var(--sp-4); }
 .field-row .lab {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 12px;
-  font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+  font-size: 14px;
 }
-.field-row .lab span { color: var(--muted-foreground); }
+.field-row .lab span { color: var(--t-2); }
 .field-row .lab b {
-  color: var(--primary-text);
-  font-weight: 700;
-  font-size: 12px;
+  color: var(--acc-text);
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
+
 input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 2px;
-  background: var(--border-strong);
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--surf-3);
   outline: none;
   cursor: pointer;
 }
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 4px;
-  height: 18px;
-  border-radius: 1px;
-  background: var(--primary);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--acc);
   cursor: pointer;
+  box-shadow: var(--sh-soft);
+  transition: transform var(--t-fast) var(--ease-out);
 }
+input[type='range']::-webkit-slider-thumb:hover { transform: scale(1.12); }
 input[type='range']::-moz-range-thumb {
-  width: 4px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border: none;
-  border-radius: 1px;
-  background: var(--primary);
+  border-radius: 50%;
+  background: var(--acc);
   cursor: pointer;
 }
-input[type='range']:focus-visible { outline: 1px solid var(--ring); outline-offset: 5px; }
+input[type='range']:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
-  .countdown b { animation: none; }
+  .countdown b, .overlay.done .ring { animation: none; }
 }

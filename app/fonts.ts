@@ -1,42 +1,37 @@
-import { Science_Gothic, JetBrains_Mono, Sofia_Sans_Extra_Condensed } from 'next/font/google';
+import { Literata, Onest } from 'next/font/google';
 
 /**
- * Шрифты грузятся next/font: файлы скачиваются на этапе сборки
- * и раздаются с нашего домена — в рантайме ни одного обращения
+ * Шрифты грузятся next/font: файлы скачиваются при сборке и
+ * раздаются с нашего домена — в рантайме ни одного обращения
  * к Google, ноль CLS.
  */
 
 /**
- * Science Gothic — имя темы.
- * Ось CTRS (0–85) задаёт контраст штриха: можно получить
- * модуляцию толщины, как у серифа, оставаясь гротеском.
- * Именно она уводит заголовок от «бесплатный элегантный
- * сериф крупным кеглем» — того штампа, который PROJECT.md
- * прямо запрещает.
+ * Literata — экранная книжная антиква с притуплёнными
+ * скруглёнными засечками и низким контрастом штриха.
+ * Кириллица рисовалась как полноценный скрипт, а не
+ * прикручивалась. Смысл: «изучи тему» — это чтение, и тема
+ * должна выглядеть строкой из книги под лампой, а не
+ * показанием прибора.
+ * Ось opsz даёт настоящий оптический размер.
  */
-export const display = Science_Gothic({
+export const display = Literata({
   subsets: ['latin', 'cyrillic'],
-  axes: ['CTRS', 'wdth'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
   display: 'swap',
   variable: '--font-display',
 });
 
 /**
- * Sofia Sans Extra Condensed — запасной кегль для длинных имён.
- * «Алгоритмическая дискриминация оплаты» в узком начертании
- * остаётся крупной вместо усушки до нечитаемого размера.
+ * Onest — гротеск с округлыми овалами и открытыми апертурами,
+ * низкий контраст штриха. Прямая противоположность прежнему
+ * Science Gothic, где ось CTRS срезала сочленения острыми
+ * фасками — именно она давала ощущение «остро».
  */
-export const condensed = Sofia_Sans_Extra_Condensed({
+export const ui = Onest({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '600', '800'],
+  weight: ['400', '500', '600'],
   display: 'swap',
-  variable: '--font-cond',
-});
-
-/** JetBrains Mono — телеметрия, счётчики, цифры таймера */
-export const mono = JetBrains_Mono({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-  variable: '--font-mono',
+  variable: '--font-ui',
 });

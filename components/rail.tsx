@@ -15,9 +15,9 @@ export function Rail({
 }) {
   return (
     <aside className="rail">
-      <div className="rail-cell mark"><i /><i /><i /></div>
+      <div className="mark"><i /><i /><i /></div>
 
-      <div className="rail-cell rail-lang" role="group" aria-label="Language">
+      <div className="rail-lang" role="group" aria-label="Language">
         {LANGS.map((l) => (
           <button key={l} aria-pressed={l === lang} onClick={() => onLang(l)}>
             {l.toUpperCase()}
@@ -25,7 +25,7 @@ export function Rail({
         ))}
       </div>
 
-      <div className="rail-cell">
+      <div>
         <button className="rail-btn" aria-pressed={soundOn} onClick={onSound} aria-label="Sound">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 9.5h3.2L12 5.5v13L7.2 14.5H4z" />

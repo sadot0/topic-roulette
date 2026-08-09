@@ -8,16 +8,14 @@
    резолвить значение на сборке — иначе смена токенов
    в рантайме была бы невозможна */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-background: var(--bg);
+  --color-foreground: var(--t-1);
+  --color-muted: var(--surf-2);
+  --color-muted-foreground: var(--t-3);
+  --color-border: var(--line);
+  --color-primary: var(--acc);
   --font-display: var(--font-display);
-  --font-cond: var(--font-cond);
-  --font-mono: var(--font-mono);
+  --font-ui: var(--font-ui);
 }
 
 * { box-sizing: border-box; }
@@ -25,15 +23,19 @@ html, body { height: 100%; }
 
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-mono), ui-monospace, monospace;
+  background: var(--bg);
+  color: var(--t-1);
+  /* Интерфейс больше не моноширинный: моно + капс + большой
+     трекинг были главным источником «приборности», сильнее
+     чем цвет */
+  font-family: var(--font-ui), -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
 }
 
-::selection { background: var(--primary); color: var(--primary-foreground); }
+::selection { background: var(--acc); color: var(--t-on-acc); }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 a { color: inherit; text-decoration: none; }

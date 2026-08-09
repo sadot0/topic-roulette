@@ -1,9 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { useDrum, TARGET_SLOT } from '@/hooks/use-drum';
+import { useDrum } from '@/hooks/use-drum';
 import { useCountdown, type Phase } from '@/hooks/use-countdown';
 import { useFitText } from '@/hooks/use-fit-text';
 import { useSound } from '@/hooks/use-sound';
@@ -84,7 +84,7 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
       }
       /* Тему запоминаем: ресёрч уходит в другие вкладки, и любая
          перезагрузка иначе стирает то, ради чего человек пришёл */
-      patch({ last: { ...usePersistedLast(), [mode]: topic.slug } });
+      patch({ last: { ...readStoredLast(), [mode]: topic.slug } });
       /* replaceState, а не router.replace — иначе перерисуется
          всё дерево ради строки в адресе */
       const u = new URL(window.location.href);
@@ -98,7 +98,6 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
       (p: Phase) => {
         if (p === 'speech') markStreakDay();
       },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       [],
     ),
   );
@@ -108,7 +107,9 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
     deps: [lang, mode, frame],
   });
 
-  /* Восстановление темы: из ссылки-вызова или из прошлой сессии */
+  /* Восстановление темы: из ссылки-вызова или из прошлой сессии.
+     setState здесь однократный — гварда restoredRef достаточно,
+     каскада ререндеров не будет */
   useEffect(() => {
     if (restoredRef.current || !topics.length) return;
     restoredRef.current = true;
@@ -159,13 +160,6 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
     return () => document.removeEventListener('keydown', onKey);
   }, [spinOrSkip, timer, settingsOpen]);
 
-  const seenCount = useMemo(
-    () => (seenAll[mode] ?? []).filter((s) => topics.some((t) => t.slug === s)).length,
-    [seenAll, mode, topics],
-  );
-
-  const status = drum.spinning ? dict.stSpin : current ? dict.stLocked : dict.stReady;
-  const pad = (n: number) => String(n).padStart(2, '0');
 
   return (
     <>
@@ -186,8 +180,6 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
           <div className="field-line bot" />
 
           <div className="status">
-            <span className="st">{status}</span>
-            <span className="sep">/</span>
             <div className="modes" role="group" aria-label="Mode">
               {(['quick', 'deep'] as Bank[]).map((m) => (
                 <button
@@ -206,12 +198,7 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
                 </button>
               ))}
             </div>
-            <span className="right">
-              <span>{dict.progress}</span>
-              <b>{hydrated ? seenCount : 0}</b>/<span>{topics.length}</span>
-              <span className="sep">·</span>
-              <span>{pad(research)}:00 / {pad(speech)}:00</span>
-            </span>
+
           </div>
 
           <div className="window" ref={fit.boxRef as React.RefObject<HTMLDivElement>}>
@@ -225,10 +212,6 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
                       <span>{ERA_LABEL[current.era][lang]}</span>
                     </>
                   )}
-                  <span className="sep">·</span>
-                  <span className="idx">
-                    {pad(topics.indexOf(current) + 1)}/{pad(topics.length)}
-                  </span>
                 </div>
                 <h1 className="title" ref={fit.ref}>{current.title}</h1>
                 {/* При кропе 9:16 подпись обязана остаться в кадре
@@ -313,7 +296,7 @@ export function RouletteApp({ lang, dict, banks, seed, initialTopic, initialMode
 }
 
 /* Вспомогательное: чтение last вне React-цикла */
-function usePersistedLast(): Partial<Record<Bank, string>> {
+function readStoredLast(): Partial<Record<Bank, string>> {
   try {
     const raw = localStorage.getItem('roulette-tem/v4');
     return raw ? (JSON.parse(raw).last ?? {}) : {};
@@ -322,7 +305,7 @@ function usePersistedLast(): Partial<Record<Bank, string>> {
   }
 }
 function readLast(mode: Bank): string | undefined {
-  return usePersistedLast()[mode];
+  return readStoredLast()[mode];
 }
 
 /** Стрик отмечается по локальной дате — тот же формат, что

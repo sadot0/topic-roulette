@@ -117,6 +117,7 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
              результат отменённого прохода */
           if (token !== tokenRef.current) return;
           sound.thud();
+          sound.reward();
           setSpinning(false);
           const strip2 = stripRef.current;
           strip2?.querySelector('.is-hit')?.classList.remove('is-hit');
