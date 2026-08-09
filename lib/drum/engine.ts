@@ -1,8 +1,16 @@
 /* ═══════════════════════════════════════════════════════════
    Движок барабана. НИ ОДНОГО импорта из React — это условие
    корректности, а не стилистика: анимация мутирует DOM напрямую
-   по рефам, минуя рендер. Проведи хоть одно покадровое значение
-   через setState — получишь 450 ререндеров за спин и рваные кадры.
+   по рефам, минуя рендер.
+
+   Движение считается ФИЗИЧЕСКИ, а не подгонкой кривой:
+   разгон с постоянным ускорением → равномерный ход →
+   торможение с постоянным замедлением. Так ведёт себя
+   настоящий барабан, и так не бывает рывка с места.
+
+   Прежняя easeOutQuint давала стартовую скорость впятеро выше
+   средней — первый кадр проскакивал десяток строк, и это
+   читалось как «проскакивает вверх».
    ═══════════════════════════════════════════════════════════ */
 
 export interface DrumTargets {
@@ -14,9 +22,7 @@ export interface DrumTargets {
 export interface DrumHooks {
   /** speed 0..1 — задаёт тембр щелчка */
   onTick(speed: number): void;
-  /** строка прошла через прицел */
   onLiveRow(slot: number): void;
-  /** спин завершён; token отсекает результат устаревшего спина */
   onSettled(token: number, slot: number): void;
 }
 
@@ -27,27 +33,66 @@ export interface SpinParams {
   /** заморожена на весь спин: iOS меняет высоту вьюпорта при
       скрытии URL-бара, и пересчёт посреди хода сдвинул бы ленту */
   rowHeight: number;
-  runMs: number;
-  crawlMs: number;
-  brakeRows: number;
+  /** полная длительность, мс */
+  durationMs: number;
   reduceMotion: boolean;
   blurEnabled: boolean;
 }
 
 export interface DrumEngine {
   spin(p: SpinParams): void;
-  /** досрочная посадка: инструмент, куда возвращаются по десять
-      раз за сессию, обязан уметь пропускать свою анимацию */
   skip(): void;
-  /** остановить без вызова onSettled — для размонтирования */
   cancel(): void;
   settleAt(slot: number, rowHeight: number): void;
   readonly spinning: boolean;
   destroy(): void;
 }
 
-const easeOutQuint = (t: number) => 1 - Math.pow(1 - t, 5);
-const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+/**
+ * Профиль скорости трапецией: разгон, полка, торможение.
+ * Возвращает долю пройденного пути от 0 до 1.
+ *
+ * Доли фаз подобраны так, чтобы торможение занимало больше
+ * половины хода — именно долгий выбег создаёт напряжение
+ * перед остановкой.
+ */
+const ACC = 0.16;   // разгон
+const CRUISE = 0.26; // равномерный ход
+const DEC = 0.58;   // торможение
+
+/* Нормировочный множитель: путь при трапеции скорости равен
+   площади под ней. Делим на неё, чтобы на выходе получить
+   ровно единицу */
+const AREA = ACC / 2 + CRUISE + DEC / 2;
+
+function travelled(t: number): number {
+  if (t <= 0) return 0;
+  if (t >= 1) return 1;
+
+  let s: number;
+  if (t < ACC) {
+    /* Разгон: скорость линейно растёт от 0, путь квадратичен.
+       Ноль в начале — именно это убирает рывок с места */
+    const k = t / ACC;
+    s = (ACC * k * k) / 2;
+  } else if (t < ACC + CRUISE) {
+    const k = t - ACC;
+    s = ACC / 2 + k;
+  } else {
+    /* Торможение: скорость линейно падает до нуля */
+    const k = (t - ACC - CRUISE) / DEC;
+    s = ACC / 2 + CRUISE + DEC * (k - (k * k) / 2);
+  }
+  return s / AREA;
+}
+
+/** Мгновенная скорость в долях средней — для тембра и размытия */
+function speedAt(t: number): number {
+  if (t <= 0 || t >= 1) return 0;
+  if (t < ACC) return t / ACC;
+  if (t < ACC + CRUISE) return 1;
+  return 1 - (t - ACC - CRUISE) / DEC;
+}
 
 export function createDrumEngine(t: DrumTargets, h: DrumHooks): DrumEngine {
   let raf = 0;
@@ -92,6 +137,7 @@ export function createDrumEngine(t: DrumTargets, h: DrumHooks): DrumEngine {
       const h0 = p.rowHeight;
       const from = p.startSlot * h0;
       const exact = p.targetSlot * h0;
+      const dist = from - exact;
 
       if (p.reduceMotion) {
         setBlur(0, p.blurEnabled);
@@ -102,31 +148,8 @@ export function createDrumEngine(t: DrumTargets, h: DrumHooks): DrumEngine {
         return;
       }
 
-      /* Две фазы вместо одной — ради драматургии. Разгон проносит
-         ленту почти до цели, затем начинается отдельный медленный
-         доползок последних полутора строк. Один easing такого
-         «почти взял» не даёт */
-      const brake = exact + h0 * p.brakeRows;
-
       let lastCard = -1;
-      let lastPos = from;
-      let t0 = performance.now();
-
-      const frame = (pos: number) => {
-        setOffset(pos, h0);
-        /* Мгновенная скорость задаёт и силу размытия, и тембр
-           щелчка: всё привязано к физике, а не к таймеру */
-        const dv = Math.abs(lastPos - pos) / h0;
-        lastPos = pos;
-        setBlur(Math.min(9, dv * 5.2), p.blurEnabled);
-
-        const card = Math.floor(pos / h0);
-        if (card !== lastCard) {
-          if (lastCard !== -1) h.onTick(Math.min(1, dv / 1.5));
-          lastCard = card;
-          h.onLiveRow(card);
-        }
-      };
+      const t0 = performance.now();
 
       const land = () => {
         setBlur(0, p.blurEnabled);
@@ -137,27 +160,32 @@ export function createDrumEngine(t: DrumTargets, h: DrumHooks): DrumEngine {
         h.onSettled(p.token, p.targetSlot);
       };
 
-      const crawl = (now: number) => {
+      const frame = (now: number) => {
         if (skipReq) return land();
-        const raw = Math.min(1, (now - t0) / p.crawlMs);
-        frame(brake + (exact - brake) * easeOutCubic(raw));
-        if (raw < 1) raf = requestAnimationFrame(crawl);
+
+        const t1 = Math.min(1, (now - t0) / p.durationMs);
+        const pos = from - dist * travelled(t1);
+        setOffset(pos, h0);
+
+        /* Скорость берём из профиля, а не из разницы кадров:
+           так тембр и размытие не зависят от того, успел ли
+           браузер отрисовать предыдущий кадр */
+        const v = speedAt(t1);
+        setBlur(Math.min(9, v * 7.5), p.blurEnabled);
+
+        const card = Math.floor(pos / h0);
+        if (card !== lastCard) {
+          if (lastCard !== -1) h.onTick(v);
+          lastCard = card;
+          h.onLiveRow(card);
+        }
+
+        if (t1 < 1) raf = requestAnimationFrame(frame);
         else land();
       };
 
-      const run = (now: number) => {
-        if (skipReq) return land();
-        const raw = Math.min(1, (now - t0) / p.runMs);
-        frame(from + (brake - from) * easeOutQuint(raw));
-        if (raw < 1) raf = requestAnimationFrame(run);
-        else {
-          t0 = performance.now();
-          raf = requestAnimationFrame(crawl);
-        }
-      };
-
       setOffset(from, h0);
-      raf = requestAnimationFrame(run);
+      raf = requestAnimationFrame(frame);
     },
 
     skip() {

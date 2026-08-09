@@ -15,8 +15,7 @@ interface SpinRequest {
   token: number;
   rows: number[];
   rowHeight: number;
-  runMs: number;
-  crawlMs: number;
+  durationMs: number;
 }
 
 export interface UseDrumOptions {
@@ -61,7 +60,9 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
   const tokenRef = useRef(0);
   const currentRef = useRef<number | undefined>(undefined);
   const liveRef = useRef(-1);
-  const rearmRef = useRef(false);
+  const applyRowsRef = useRef<(v: number[]) => void>(() => {});
+  const putAtRef = useRef<(s: number) => void>(() => {});
+  const setLiveRef = useRef<(s: number) => void>(() => {});
   const onSettledRef = useRef(onSettled);
   onSettledRef.current = onSettled;
 
@@ -70,7 +71,9 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
 
   /* Стартовая лента строится сеяным генератором: сервер и клиент
      обязаны получить одинаковую разметку, иначе гидрация ругается */
-  const [rows, setRows] = useState<number[]>(() => {
+  /* Состояние нужно только для первой отрисовки: дальше
+     содержимое строк живёт в DOM и меняется синхронно */
+  const [rows] = useState<number[]>(() => {
     const rnd = rngFrom(seed);
     const out: number[] = [];
     let prev = -1;
@@ -88,6 +91,31 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
 
   if (!bagRef.current) bagRef.current = new Bag(topics.length);
   bagRef.current.resize(topics.length);
+
+  /* Строки пишем прямо в DOM, а не через состояние React.
+     Причина конкретная: setRows планирует рендер на следующий
+     кадр, а transform применяется сразу — между ними успевает
+     отрисоваться кадр со СТАРЫМИ строками на НОВОЙ позиции,
+     и это видно как скачок вверх. Здесь обе вещи меняются
+     в одном синхронном блоке */
+  const applyRows = useCallback((indices: number[]) => {
+    const strip = stripRef.current;
+    rowsRef.current = indices;
+    if (!strip) return;
+    for (let i = 0; i < indices.length; i++) {
+      const el = strip.children[i] as HTMLElement | undefined;
+      if (el) el.textContent = topics[indices[i]]?.title ?? '';
+    }
+  }, [topics]);
+
+  const putAt = useCallback((slot: number) => {
+    const win = windowRef.current;
+    const strip = stripRef.current;
+    if (!win || !strip) return;
+    const h = measureRowHeight(win);
+    const centre = win.clientHeight / 2;
+    strip.style.transform = `translate3d(0,${centre - (slot * h + h / 2)}px,0)`;
+  }, []);
 
   const setLive = useCallback((slot: number) => {
     const strip = stripRef.current;
@@ -127,14 +155,26 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
           currentRef.current = idx;
           const topic = topics[idx];
           if (topic) onSettledRef.current(topic, idx);
-          /* Взводим ленту под следующий спин. Раньше новый спин
-             мгновенно ставил позицию на START_SLOT — лента прыгала
-             на 84 строки вверх, и это читалось как рывок.
-             Сдвигаем массив циклически так, чтобы выпавшая строка
-             оказалась на START_SLOT, и туда же ставим позицию:
-             картинка не меняется ни на пиксель, но лента уже
-             готова ехать вниз без скачка */
-          rearmRef.current = true;
+
+          /* Взвод под следующий спин — синхронно, в этом же кадре.
+             Сдвигаем содержимое строк циклически так, чтобы
+             выпавшая строка оказалась на START_SLOT, и туда же
+             ставим позицию. На экране не меняется ни один пиксель:
+             строка с тем же текстом просто получает другой индекс.
+             Раньше это делалось через состояние React и потому
+             мигало */
+          const shift = START_SLOT - TARGET_SLOT;
+          const cur = rowsRef.current;
+          const next = new Array<number>(STRIP_LEN);
+          for (let i = 0; i < STRIP_LEN; i++) {
+            next[i] = cur[(i - shift + STRIP_LEN) % STRIP_LEN];
+          }
+          applyRowsRef.current(next);
+          putAtRef.current(START_SLOT);
+          strip2?.querySelector('.is-hit')?.classList.remove('is-hit');
+          strip2?.children[START_SLOT]?.classList.add('is-hit');
+          liveRef.current = -1;
+          setLiveRef.current(START_SLOT);
         },
       },
     );
@@ -142,7 +182,9 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
   }, [setLive, topics]);
 
   const rowsRef = useRef(rows);
-  rowsRef.current = rows;
+  applyRowsRef.current = applyRows;
+  putAtRef.current = putAt;
+  setLiveRef.current = setLive;
 
   const spinOrSkip = useCallback(() => {
     if (!topics.length) return;
@@ -177,20 +219,20 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
       next.push(idx);
     }
 
-    /* Сохраняем то, что сейчас под прицелом: при пересборке
-       ленты эта строка должна остаться на месте, иначе видно
+    /* Строка под прицелом остаётся на месте: иначе видно
        подмену прямо перед стартом */
     const keep = rowsRef.current[START_SLOT];
     if (keep !== undefined) next[START_SLOT] = keep;
 
-    setRows(next);
+    /* Синхронно: содержимое и позиция меняются в одном блоке,
+       React в горячем пути не участвует */
+    applyRows(next);
     setSpinning(true);
     setSpinReq({
       token: ++tokenRef.current,
       rows: next,
       rowHeight: measureRowHeight(windowRef.current),
-      runMs: 4200 + Math.random() * 700,
-      crawlMs: 2600 + Math.random() * 500,
+      durationMs: 6600 + Math.random() * 900,
     });
   }, [topics]);
 
@@ -205,41 +247,12 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
       startSlot: START_SLOT,
       targetSlot: TARGET_SLOT,
       rowHeight: spinReq.rowHeight,
-      runMs: spinReq.runMs,
-      crawlMs: spinReq.crawlMs,
-      brakeRows: 1.55,
+      durationMs: spinReq.durationMs,
       reduceMotion,
       blurEnabled: !reduceMotion,
     });
     return () => e.cancel();
   }, [spinReq, getEngine, reduceMotion]);
-
-  /* Собственно взвод: выполняется после того, как React
-     отрисовал результат, чтобы сдвиг не мигнул */
-  useLayoutEffect(() => {
-    if (spinning || !rearmRef.current) return;
-    rearmRef.current = false;
-    const shift = START_SLOT - TARGET_SLOT;
-    const cur = rowsRef.current;
-    if (cur.length !== STRIP_LEN) return;
-    const next = new Array<number>(STRIP_LEN);
-    for (let i = 0; i < STRIP_LEN; i++) {
-      next[i] = cur[(i - shift + STRIP_LEN) % STRIP_LEN];
-    }
-    setRows(next);
-    const h = measureRowHeight(windowRef.current);
-    const centre = (windowRef.current?.clientHeight ?? 0) / 2;
-    if (stripRef.current) {
-      stripRef.current.style.transform =
-        `translate3d(0,${centre - (START_SLOT * h + h / 2)}px,0)`;
-    }
-    liveRef.current = -1;
-    requestAnimationFrame(() => {
-      stripRef.current?.querySelector('.is-hit')?.classList.remove('is-hit');
-      stripRef.current?.children[START_SLOT]?.classList.add('is-hit');
-      setLive(START_SLOT);
-    });
-  }, [spinning, setLive]);
 
   /** Посадка без анимации — для восстановления темы и ссылки-вызова */
   const settleOn = useCallback(
@@ -249,16 +262,45 @@ export function useDrum(o: UseDrumOptions): UseDrumResult {
          лента остаётся взведённой, и следующий спин пойдёт
          без рывка */
       next[START_SLOT] = index;
-      setRows(next);
+      applyRows(next);
+      putAt(START_SLOT);
       currentRef.current = index;
-      requestAnimationFrame(() => {
-        const e = getEngine();
-        e?.settleAt(START_SLOT, measureRowHeight(windowRef.current));
-        stripRef.current?.children[START_SLOT]?.classList.add('is-hit');
-      });
+      stripRef.current?.children[START_SLOT]?.classList.add('is-hit');
+      setLive(START_SLOT);
     },
-    [getEngine],
+    [applyRows, putAt, setLive],
   );
+
+  /* Смена банка тем: содержимое строк надо переписать, иначе
+     в ленте останутся имена из прежнего режима */
+  const bankKeyRef = useRef<string>('');
+  useLayoutEffect(() => {
+    const key = `${topics.length}:${topics[0]?.slug ?? ''}`;
+    if (bankKeyRef.current === key) return;
+    const first = bankKeyRef.current === '';
+    bankKeyRef.current = key;
+    if (first || spinning || !topics.length) return;
+
+    const rnd = Math.random;
+    const next: number[] = [];
+    let prev = -1;
+    for (let i = 0; i < STRIP_LEN; i++) {
+      let idx = 0;
+      for (let g = 0; g < 8; g++) {
+        idx = Math.floor(rnd() * topics.length);
+        if (idx !== prev || topics.length <= 2) break;
+      }
+      prev = idx;
+      next.push(idx);
+    }
+    applyRows(next);
+    putAt(START_SLOT);
+    stripRef.current?.querySelector('.is-hit')?.classList.remove('is-hit');
+    liveRef.current = -1;
+    setLive(START_SLOT);
+    bagRef.current = new Bag(topics.length);
+    currentRef.current = undefined;
+  }, [topics, spinning, applyRows, putAt, setLive]);
 
   /* Лента в покое стоит СРАЗУ на стартовой позиции спина:
      иначе первый же запуск прыгал на 84 строки вверх, прежде
