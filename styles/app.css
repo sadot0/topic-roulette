@@ -125,6 +125,52 @@
   min-height: 1.2em;
 }
 
+/* ── Категории открытым рядом ───────────────────────────── */
+
+.cats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  max-width: 680px;
+  animation: catsIn 380ms var(--ease-soft) both;
+}
+@keyframes catsIn {
+  from { opacity: 0; transform: translateY(-5px) }
+  to   { opacity: 1; transform: none }
+}
+
+.cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 15px 0 12px;
+  border-radius: var(--r-pill);
+  background: var(--surf-1);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t-3);
+  white-space: nowrap;
+  transition: color var(--t-fast) var(--ease-out),
+              background-color var(--t-fast) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
+}
+.cat:hover { color: var(--t-1); background: var(--surf-2); }
+.cat:active { transform: translateY(1px); }
+.cat:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+.cat.on { color: var(--t-on-acc); background: var(--acc); }
+
+.cat i {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1;
+  /* Эмодзи цветные по своей природе: приглушаем, чтобы они
+     не перебивали единственный акцент на экране */
+  filter: saturate(0.72) brightness(0.96);
+}
+.cat.on i { filter: saturate(0.9) brightness(1.02); }
+
 /* ── Окно темы ──────────────────────────────────────────── */
 
 .reel {
@@ -389,7 +435,8 @@
   .corner { order: 0; }
   .brand { font-size: clamp(22px, 6vw, 28px); }
   .modes button { padding: 9px 16px; font-size: 13px; }
-  .mode-note { font-size: 12.5px; }
+  .cats { gap: 6px; max-width: 100%; }
+  .cat { height: 33px; padding: 0 12px 0 10px; font-size: 12px; }
   .reel-box { min-height: clamp(120px, 22vh, 200px); }
   .btn { height: 44px; padding: 0 18px; font-size: 13px; }
   .btn.go { padding: 0 26px; }
@@ -403,95 +450,7 @@
 }
 /* ── Выбор категории ────────────────────────────────────── */
 
-.picker { position: relative; }
 
-.picker-trigger {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-1);
-  height: 40px;
-  padding: 0 14px 0 18px;
-  border-radius: var(--r-pill);
-  background: var(--surf-1);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--t-3);
-  white-space: nowrap;
-  transition: color var(--t-base) var(--ease-out),
-              background-color var(--t-base) var(--ease-out);
-}
-.picker-trigger:hover { color: var(--t-1); background: var(--surf-2); }
-.picker-trigger:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
-.picker-trigger.is-set { color: var(--t-1); background: var(--surf-2); }
-.picker-trigger.is-set b { color: var(--acc-text); }
-.pk-ic {
-  font-size: 14px;
-  line-height: 1;
-  font-style: normal;
-  /* Эмодзи цветные по своей природе: приглушаем, чтобы они
-     не перебивали единственный акцент на экране */
-  filter: saturate(0.72) brightness(0.96);
-}
-.picker-menu button .pk-ic { font-size: 15px; margin-right: 2px; }
 
-.picker-trigger b {
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--t-4);
-  font-variant-numeric: tabular-nums;
-}
-.picker-trigger svg {
-  width: 15px;
-  height: 15px;
-  margin-left: 2px;
-  color: var(--t-4);
-  transition: transform var(--t-base) var(--ease-out);
-}
-.picker-trigger[aria-expanded='true'] svg { transform: rotate(180deg); }
 
-.picker-menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  z-index: 30;
-  min-width: 232px;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding: 6px;
-  border-radius: var(--r-md);
-  background: var(--surf-2);
-  box-shadow: var(--sh-lift);
-  animation: pickerIn var(--t-base) var(--ease-soft) both;
-}
-@keyframes pickerIn {
-  from { opacity: 0; transform: translateY(-6px) scale(.98) }
-  to   { opacity: 1; transform: none }
-}
-.picker-menu button {
-  display: flex;
-  align-items: center;
-  /* Не space-between: счётчиков больше нет, и распорка
-     отбрасывала подпись к правому краю */
-  justify-content: flex-start;
-  gap: 10px;
-  width: 100%;
-  padding: 10px 14px;
-  border-radius: var(--r-sm);
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--t-2);
-  text-align: left;
-  transition: color var(--t-fast) var(--ease-out),
-              background-color var(--t-fast) var(--ease-out);
-}
-.picker-menu button:hover { color: var(--t-1); background: var(--surf-3); }
-.picker-menu button.on { color: var(--t-on-acc); background: var(--acc); }
-.picker-menu button.on b { color: var(--t-on-acc); opacity: .7; }
-.picker-menu button b {
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--t-4);
-  font-variant-numeric: tabular-nums;
-}
-.picker-menu button:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--focus-ring); }
 

@@ -68,6 +68,18 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
   }
   if (!bagRef.current) bagRef.current = new Bag(poolRef.current.length);
 
+  /* Смена БАНКА (а не категории) убирает показанную тему: иначе
+     в быстром режиме продолжает висеть тема из глубокого */
+  const bankRef = useRef(topics);
+  useEffect(() => {
+    if (bankRef.current === topics) return;
+    bankRef.current = topics;
+    if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = 0; }
+    setSpinning(false);
+    setShown(null);
+    setCurrent(null);
+  }, [topics]);
+
   const stop = useCallback(() => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
     rafRef.current = 0;

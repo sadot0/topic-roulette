@@ -79,12 +79,14 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
 
   /* Категория ограничивает только то, что может ВЫПАСТЬ;
      в переборе по-прежнему мелькает весь банк */
+  /* Фильтр живёт только в быстром режиме: глубокий обязан
+     выдавать случайное из всего банка */
   const poolIndices = useMemo(
     () =>
-      pick
+      mode === 'quick' && pick
         ? topics.map((t, i) => (t.domain === pick ? i : -1)).filter((i) => i >= 0)
         : undefined,
-    [topics, pick],
+    [topics, pick, mode],
   );
 
   const pickerOptions = useMemo(
@@ -228,18 +230,21 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
             ))}
           </div>
 
-          <p className="mode-note">{mode === 'deep' ? dict.noteDeep : dict.noteQuick}</p>
-
-          <TopicPicker
-            options={pickerOptions}
-            value={pick}
-            anyLabel={dict.anyTopic}
-            onChange={(v) => {
-              patch({ pick: { ...pickAll, [mode]: v } });
-              snd.unlock();
-              snd.blip(v ? 700 : 560, 0.05);
-            }}
-          />
+          {/* Категории — только в быстром режиме. Глубокий по замыслу
+              выдаёт случайную тему, и любой довесок на экране
+              отвлекает от единственного, что там должно быть */}
+          {mode === 'quick' && (
+            <TopicPicker
+              options={pickerOptions}
+              value={pick}
+              anyLabel={dict.anyTopic}
+              onChange={(v) => {
+                patch({ pick: { ...pickAll, [mode]: v } });
+                snd.unlock();
+                snd.blip(v ? 700 : 560, 0.05);
+              }}
+            />
+          )}
         </div>
 
         <main className="reel">
