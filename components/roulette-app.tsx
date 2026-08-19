@@ -35,6 +35,18 @@ const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
   memory: { ru: 'Память', en: 'Memory', uz: 'Xotira' },
   people: { ru: 'Люди', en: 'People', uz: 'Odamlar' },
   digital: { ru: 'Цифра', en: 'Digital', uz: 'Raqamli' },
+  food: { ru: 'Еда', en: 'Food', uz: 'Taom' },
+  money: { ru: 'Деньги', en: 'Money', uz: 'Pul' },
+  work: { ru: 'Работа', en: 'Work', uz: 'Ish' },
+  home: { ru: 'Дом', en: 'Home', uz: 'Uy' },
+  road: { ru: 'Дорога', en: 'Road', uz: 'Yoʻl' },
+  childhood: { ru: 'Детство', en: 'Childhood', uz: 'Bolalik' },
+  relations: { ru: 'Отношения', en: 'Relationships', uz: 'Munosabatlar' },
+  body: { ru: 'Тело', en: 'Body', uz: 'Tana' },
+  clothes: { ru: 'Одежда', en: 'Clothes', uz: 'Kiyim' },
+  holiday: { ru: 'Праздники', en: 'Holidays', uz: 'Bayramlar' },
+  nature: { ru: 'Природа', en: 'Nature', uz: 'Tabiat' },
+  habits: { ru: 'Привычки', en: 'Habits', uz: 'Odatlar' },
 };
 
 /* Значок у каждого топика: в списке из четырнадцати строк глаз
@@ -44,6 +56,9 @@ const DOMAIN_ICON: Record<string, string> = {
   systems: '⚙️', power: '⚖️', tech: '🔌', culture: '🎭',
   objects: '📦', routine: '☕', city: '🏙️', memory: '📷',
   people: '👥', digital: '📱',
+  food: '🍽️', money: '💵', work: '💼', home: '🏠',
+  road: '🚌', childhood: '🧸', relations: '💬', body: '🫀',
+  clothes: '👕', holiday: '🎁', nature: '🌿', habits: '🔁',
 };
 
 const ERA_LABEL: Record<string, Record<Lang, string>> = {

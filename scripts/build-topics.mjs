@@ -16,7 +16,11 @@ const SRC = process.env.TOPICS_SRC
 
 const LANGS = ['ru', 'en', 'uz'];
 const DEEP_DOMAINS = ['mind','economy','society','philosophy','systems','power','tech','culture'];
-const QUICK_DOMAINS = ['objects','routine','city','memory','people','digital'];
+const QUICK_DOMAINS = [
+  'objects','routine','city','memory','people','digital',
+  'food','money','work','home','road','childhood',
+  'relations','body','clothes','holiday','nature','habits',
+];
 const ERAS = ['classic','modern'];
 
 const warn = [];
@@ -103,7 +107,7 @@ function build(prefixes, bank, outFile) {
 /* Оба поколения: первые 66 тем и новые 96 по топикам.
    Дубликаты по slug отсеет валидатор */
 const deep = build(['topics-batch', 'deep2-batch', 'deep3-batch'], 'deep', 'topics.deep.json');
-const quick = build(['quick-batch'], 'quick', 'topics.quick.json');
+const quick = build(['quick-batch', 'quick2-batch'], 'quick', 'topics.quick.json');
 
 if (warn.length) {
   console.log(`\n⚠ замечаний: ${warn.length}`);

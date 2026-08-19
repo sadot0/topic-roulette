@@ -5,7 +5,9 @@ export type DeepDomain =
   | 'mind' | 'economy' | 'society' | 'philosophy'
   | 'systems' | 'power' | 'tech' | 'culture';
 export type QuickDomain =
-  | 'objects' | 'routine' | 'city' | 'memory' | 'people' | 'digital';
+  | 'objects' | 'routine' | 'city' | 'memory' | 'people' | 'digital'
+  | 'food' | 'money' | 'work' | 'home' | 'road' | 'childhood'
+  | 'relations' | 'body' | 'clothes' | 'holiday' | 'nature' | 'habits';
 export type Era = 'classic' | 'modern';
 
 export interface TopicText {

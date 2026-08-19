@@ -97,9 +97,12 @@ export function buildOptions(
      счётчик рядом с темой читается как счёт очков, а игры тут нет */
   const counts = new Map<string, number>();
   for (const t of topics) counts.set(t.domain, (counts.get(t.domain) ?? 0) + 1);
+  /* По алфавиту, а не по числу тем: в списке из девятнадцати
+     пунктов ищут глазами конкретное слово, и порядок «кого
+     больше» выглядит случайным */
   const list = [...counts.entries()]
     .map(([key, n]) => ({ key, label: labels[key] ?? key, icon: icons[key] ?? '•', n }))
-    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label))
+    .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
     .map(({ key, label, icon }) => ({ key, label, icon }));
   return [{ key: null, label: '', icon: '🎲' }, ...list];
 }
