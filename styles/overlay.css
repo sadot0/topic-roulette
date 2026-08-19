@@ -72,12 +72,19 @@
 .ring-b { position: relative; z-index: 1; }
 
 .t-digits {
+  /* Цифры набираются антиквой, а не интерфейсным гротеском:
+     у Commissioner нет фичи tnum вовсе, и «1» была бы уже «8» —
+     число дёргалось бы каждую секунду. У Piazzolla tnum
+     настоящий, все десять цифр одной ширины */
+  font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
-  font-size: clamp(40px, 6vh, 54px);
-  letter-spacing: -0.02em;
+  font-size: clamp(42px, 6.2vh, 58px);
+  letter-spacing: -0.015em;
   color: var(--t-1);
   line-height: 1;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
+  font-variation-settings: 'opsz' 30;
 }
 .t-phase {
   margin-top: var(--sp-1);

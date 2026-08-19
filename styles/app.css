@@ -213,8 +213,12 @@
   font-family: var(--font-display), Georgia, serif;
   font-weight: 400;
   font-size: 84px;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  /* Оптический размер на максимум: на крупном кегле у Piazzolla
+     раскрывается контраст штриха — рисунок буквы меняется,
+     а не просто масштабируется */
+  font-variation-settings: 'opsz' 30;
   color: var(--t-1);
   max-width: 100%;
   /* Не break-word: разрыв внутри слова обманывает автофит —
