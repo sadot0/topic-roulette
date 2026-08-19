@@ -90,14 +90,10 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
   const spinOrSkip = useCallback(() => {
     if (!topics.length) return;
 
-    /* Клик во время перебора запускает НОВЫЙ круг, а не досаживает
-       текущий: раньше кнопка обрывала спин, и человек, который
-       хотел крутить дальше, получал остановку. Отменяем кадр
-       и начинаем заново с новой целью */
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = 0;
-    }
+    /* Пока крутится — не трогаем. Барабан должен доехать сам:
+       возможность оборвать его на полпути превращает случайный
+       выбор в перебор до понравившегося */
+    if (rafRef.current) return;
 
     /* Звук разблокируется только из жеста: контекст, созданный
        раньше, стартует suspended */

@@ -168,6 +168,8 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
   }, [reel]);
 
   const currentTopic = reel.current;
+  const spinningRef = useRef(false);
+  spinningRef.current = reel.spinning;
   const startPhase = useCallback(() => {
     if (!currentTopic) return;
     if (mode === 'deep') timer.open('research', research * 60);
@@ -194,6 +196,9 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         const el = document.activeElement;
         if (e.code === 'Enter' && el && /^(BUTTON|A|INPUT)$/.test(el.tagName)) return;
         e.preventDefault();
+        /* Пробел во время прокрутки тоже не работает — иначе
+           кнопка заблокирована, а клавиша обходит запрет */
+        if (spinningRef.current) return;
         spinOrSkip();
       }
     };
@@ -301,8 +306,8 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         </main>
 
         <footer className="actions">
-          <button className="btn go" onClick={spinOrSkip}>
-            {reel.spinning ? dict.spinAgain : currentTopic ? dict.spinAgain : dict.spin}
+          <button className="btn go" onClick={spinOrSkip} disabled={reel.spinning}>
+            {reel.spinning ? dict.stSpin : currentTopic ? dict.spinAgain : dict.spin}
           </button>
 
           <button className="btn" onClick={startPhase} disabled={!currentTopic}>

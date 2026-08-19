@@ -372,6 +372,36 @@
 .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .btn:disabled { color: var(--t-4); opacity: 0.45; cursor: default; }
 
+/* Кнопка на время прокрутки: не гаснет как сломанная, а держит
+   акцент приглушённым — видно, что она занята, а не отключена.
+   Плюс бегущая полоска: ожидание должно быть заполнено, иначе
+   шесть секунд читаются как зависание */
+.stage.is-spinning .btn.go:disabled {
+  color: var(--t-on-acc);
+  background: var(--acc);
+  opacity: 0.62;
+  cursor: progress;
+  position: relative;
+  overflow: hidden;
+  animation: none;
+}
+.stage.is-spinning .btn.go:disabled::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 12%,
+    rgba(23, 24, 18, 0.16) 46%,
+    transparent 80%
+  );
+  animation: goSweep 1.25s var(--ease-soft) infinite;
+}
+@keyframes goSweep {
+  from { transform: translateX(-100%) }
+  to   { transform: translateX(100%) }
+}
+
 /* Единственная заливка акцентом — единственное действие,
    с которого всё начинается */
 .btn.go {
@@ -495,6 +525,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .stage.is-spinning .btn.go:disabled::after { animation: none; }
   .topic.is-landed, .reel-meta, .hook,
   .stage::before, .btn.go, .is-spinning .reel-status { animation: none; }
   .topic.is-rolling { filter: none; }
