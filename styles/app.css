@@ -27,6 +27,13 @@
     radial-gradient(58% 40% at 18% -4%, rgba(233,188,128,.075), transparent 62%),
     radial-gradient(52% 36% at 84% 4%, rgba(150,201,181,.045), transparent 58%),
     radial-gradient(86% 48% at 50% 106%, rgba(58,55,80,.34), transparent 66%);
+  /* Очень медленный дрейф: экран перестаёт быть мёртвой картинкой,
+     но заметить движение сознательно нельзя */
+  animation: drift 26s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) scale(1) }
+  to   { transform: translate3d(0, -1.6%, 0) scale(1.035) }
 }
 
 .grain {
@@ -135,6 +142,7 @@
 }
 
 .reel-status {
+  transition: color var(--t-base) var(--ease-out);
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -179,11 +187,23 @@
   filter: blur(0.4px);
 }
 .topic.is-landed {
-  animation: land var(--t-slow) var(--ease-soft);
+  animation: land 620ms var(--ease-soft);
+  /* Тёплое свечение только на осевшей теме: во время перебора
+     его нет, поэтому посадка читается как «вот оно» */
+  text-shadow: 0 0 62px rgba(233, 188, 128, 0.13);
 }
 @keyframes land {
-  0% { opacity: 0.5; transform: scale(0.985) }
-  100% { opacity: 1; transform: none }
+  0%   { opacity: .45; transform: scale(.972) translateY(4px); letter-spacing: .004em }
+  55%  { opacity: 1;   transform: scale(1.004) translateY(0) }
+  100% { opacity: 1;   transform: none; letter-spacing: -.015em }
+}
+
+.is-spinning .reel-status {
+  animation: statusPulse 1.15s ease-in-out infinite;
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: .55 }
+  50%      { opacity: 1 }
 }
 
 .reel-idle {
@@ -204,6 +224,8 @@
   animation: rise var(--t-slow) var(--ease-soft) both;
 }
 .reel-meta .sep { color: var(--t-4); }
+.reel-meta .dm { display: inline-flex; align-items: center; gap: 6px; }
+.reel-meta .dm i { font-style: normal; font-size: 13px; filter: saturate(.72); }
 @keyframes rise {
   from { opacity: 0; transform: translateY(6px) }
   to { opacity: 1; transform: none }
@@ -261,7 +283,14 @@
   background: var(--acc);
   padding: 0 34px;
   font-weight: 600;
-  box-shadow: var(--sh-soft);
+  box-shadow: 0 6px 22px -8px rgba(233, 188, 128, .5), var(--sh-soft);
+}
+/* Пока не крутили ни разу — мягкое дыхание: единственная
+   подсказка, куда нажимать, без единого слова */
+.stage:not(.is-spinning) .btn.go { animation: breathe 3.4s var(--ease-soft) infinite; }
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 6px 22px -8px rgba(233,188,128,.5), var(--sh-soft) }
+  50%      { box-shadow: 0 8px 34px -8px rgba(233,188,128,.75), var(--sh-soft) }
 }
 .btn.go:hover:not(:disabled) { background: var(--acc-hover); color: var(--t-on-acc); }
 .btn.go:active:not(:disabled) { background: var(--acc-press); }
@@ -368,7 +397,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .topic.is-landed, .reel-meta, .hook { animation: none; }
+  .topic.is-landed, .reel-meta, .hook,
+  .stage::before, .btn.go, .is-spinning .reel-status { animation: none; }
   .topic.is-rolling { filter: none; }
 }
 /* ── Выбор категории ────────────────────────────────────── */
@@ -394,6 +424,16 @@
 .picker-trigger:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 .picker-trigger.is-set { color: var(--t-1); background: var(--surf-2); }
 .picker-trigger.is-set b { color: var(--acc-text); }
+.pk-ic {
+  font-size: 14px;
+  line-height: 1;
+  font-style: normal;
+  /* Эмодзи цветные по своей природе: приглушаем, чтобы они
+     не перебивали единственный акцент на экране */
+  filter: saturate(0.72) brightness(0.96);
+}
+.picker-menu button .pk-ic { font-size: 15px; margin-right: 2px; }
+
 .picker-trigger b {
   font-weight: 500;
   font-size: 12px;
@@ -430,8 +470,10 @@
 .picker-menu button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-3);
+  /* Не space-between: счётчиков больше нет, и распорка
+     отбрасывала подпись к правому краю */
+  justify-content: flex-start;
+  gap: 10px;
   width: 100%;
   padding: 10px 14px;
   border-radius: var(--r-sm);

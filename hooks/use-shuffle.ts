@@ -50,7 +50,6 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
   const [spinning, setSpinning] = useState(false);
 
   const rafRef = useRef(0);
-  const skipRef = useRef(false);
   const bagRef = useRef<Bag | null>(null);
   const poolRef = useRef<number[]>([]);
   const poolKeyRef = useRef('');
@@ -79,9 +78,13 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
   const spinOrSkip = useCallback(() => {
     if (!topics.length) return;
 
+    /* Клик во время перебора запускает НОВЫЙ круг, а не досаживает
+       текущий: раньше кнопка обрывала спин, и человек, который
+       хотел крутить дальше, получал остановку. Отменяем кадр
+       и начинаем заново с новой целью */
     if (rafRef.current) {
-      skipRef.current = true;
-      return;
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
     }
 
     /* Звук разблокируется только из жеста: контекст, созданный
@@ -104,7 +107,6 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
     }
 
     setSpinning(true);
-    skipRef.current = false;
 
     const duration = 5200 + Math.random() * 700;
     const t0 = performance.now();
@@ -122,8 +124,6 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
     };
 
     const frame = (now: number) => {
-      if (skipRef.current) return land();
-
       const t = Math.min(1, (now - t0) / duration);
       if (t >= 1) return land();
 

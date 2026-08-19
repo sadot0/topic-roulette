@@ -1,14 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import type { Bank } from '@/lib/topics/types';
 import type { Dict } from '@/i18n/config';
 
 export interface PickerOption {
   /** null — любая тема */
   key: string | null;
   label: string;
-  count: number;
+  icon: string;
 }
 
 /**
@@ -48,7 +47,6 @@ export function TopicPicker({
   }, [open]);
 
   const current = options.find((o) => o.key === value);
-  const total = options.find((o) => o.key === null)?.count ?? 0;
 
   return (
     <div className="picker" ref={boxRef}>
@@ -58,8 +56,8 @@ export function TopicPicker({
         aria-haspopup="listbox"
         onClick={() => setOpen((v) => !v)}
       >
+        <i className="pk-ic" aria-hidden>{current?.icon ?? '🎲'}</i>
         <span>{current?.label ?? anyLabel}</span>
-        <b>{current?.count ?? total}</b>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
              strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M6 9l6 6 6-6" />
@@ -76,8 +74,8 @@ export function TopicPicker({
               className={o.key === value ? 'on' : ''}
               onClick={() => { onChange(o.key); setOpen(false); }}
             >
+              <i className="pk-ic" aria-hidden>{o.icon}</i>
               <span>{o.key === null ? anyLabel : o.label}</span>
-              <b>{o.count}</b>
             </button>
           ))}
         </div>
@@ -91,15 +89,17 @@ export function TopicPicker({
 export function buildOptions(
   topics: readonly { domain: string }[],
   labels: Record<string, string>,
-  bank: Bank,
+  icons: Record<string, string>,
 ): PickerOption[] {
-  void bank;
+  /* Считаем только чтобы отсортировать: числа на экран не выходят —
+     счётчик рядом с темой читается как счёт очков, а игры тут нет */
   const counts = new Map<string, number>();
   for (const t of topics) counts.set(t.domain, (counts.get(t.domain) ?? 0) + 1);
   const list = [...counts.entries()]
-    .map(([key, count]) => ({ key, label: labels[key] ?? key, count }))
-    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
-  return [{ key: null, label: '', count: topics.length }, ...list];
+    .map(([key, n]) => ({ key, label: labels[key] ?? key, icon: icons[key] ?? '•', n }))
+    .sort((a, b) => b.n - a.n || a.label.localeCompare(b.label))
+    .map(({ key, label, icon }) => ({ key, label, icon }));
+  return [{ key: null, label: '', icon: '🎲' }, ...list];
 }
 
 export type { Dict };

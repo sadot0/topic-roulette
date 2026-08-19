@@ -37,6 +37,15 @@ const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
   digital: { ru: 'Цифра', en: 'Digital', uz: 'Raqamli' },
 };
 
+/* Значок у каждого топика: в списке из четырнадцати строк глаз
+   цепляется за форму быстрее, чем читает слово */
+const DOMAIN_ICON: Record<string, string> = {
+  mind: '🧠', economy: '📈', society: '🏛️', philosophy: '🕯️',
+  systems: '⚙️', power: '⚖️', tech: '🔌', culture: '🎭',
+  objects: '📦', routine: '☕', city: '🏙️', memory: '📷',
+  people: '👥', digital: '📱',
+};
+
 const ERA_LABEL: Record<string, Record<Lang, string>> = {
   classic: { ru: 'классика', en: 'classic', uz: 'klassik' },
   modern: { ru: '2020-е', en: '2020s', uz: '2020-yil' },
@@ -83,7 +92,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
       buildOptions(
         topics,
         Object.fromEntries(Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.ru])),
-        mode,
+        DOMAIN_ICON,
       ),
     [topics, lang, mode],
   );
@@ -248,7 +257,10 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
 
           {!reel.spinning && currentTopic && (
             <div className="reel-meta">
-              <span>{DOMAIN_LABEL[currentTopic.domain]?.[lang] ?? currentTopic.domain}</span>
+              <span className="dm">
+                <i aria-hidden>{DOMAIN_ICON[currentTopic.domain]}</i>
+                {DOMAIN_LABEL[currentTopic.domain]?.[lang] ?? currentTopic.domain}
+              </span>
               {currentTopic.era && (
                 <>
                   <span className="sep">·</span>
@@ -270,7 +282,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
 
         <footer className="actions">
           <button className="btn go" onClick={spinOrSkip}>
-            {reel.spinning ? dict.skipSpin : currentTopic ? dict.spinAgain : dict.spin}
+            {reel.spinning ? dict.spinAgain : currentTopic ? dict.spinAgain : dict.spin}
           </button>
 
           <button className="btn" onClick={startPhase} disabled={!currentTopic}>
