@@ -102,7 +102,7 @@ function build(prefixes, bank, outFile) {
 
 /* Оба поколения: первые 66 тем и новые 96 по топикам.
    Дубликаты по slug отсеет валидатор */
-const deep = build(['topics-batch', 'deep2-batch'], 'deep', 'topics.deep.json');
+const deep = build(['topics-batch', 'deep2-batch', 'deep3-batch'], 'deep', 'topics.deep.json');
 const quick = build(['quick-batch'], 'quick', 'topics.quick.json');
 
 if (warn.length) {
