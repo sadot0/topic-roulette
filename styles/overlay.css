@@ -50,26 +50,119 @@
 /* Кольцо УБЫВАЕТ: показывает остаток, а не расход. Растущая
    дуга боковым зрением читается как «времени много» ровно
    тогда, когда его уже нет.
-   Свойства --p и --ring-col зарегистрированы через @property —
-   иначе transition на conic-gradient не работает вообще */
-.ring {
+   Цвет --ring-col зарегистрирован через @property — без этого
+   переход между цветами дуги идёт скачком */
+.dial {
   position: relative;
-  width: clamp(190px, 26vh, 248px);
+  width: clamp(200px, 28vh, 268px);
   aspect-ratio: 1;
-  border-radius: 50%;
   display: grid;
   place-items: center;
-  background: conic-gradient(var(--ring-col) calc(var(--p) * 360deg), var(--ring-track) 0);
-  transition: --p 0.14s linear, --ring-col var(--t-slow) linear;
 }
-.ring::before {
-  content: '';
+
+.dial svg {
   position: absolute;
-  inset: 11px;
-  border-radius: 50%;
-  background: var(--bg);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Всё, включая деления и ореол, помещается внутрь viewBox
+     220×220 — выпускать содержимое наружу больше не нужно */
+  overflow: hidden;
 }
-.ring-b { position: relative; z-index: 1; }
+
+/* Дорожка не серая, а основной текст на 8%: серый в тёплой
+   палитре читается как грязь */
+.dial-track {
+  fill: none;
+  stroke: var(--ring-track);
+  stroke-width: 7;
+}
+
+/* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
+   Никаких фильтров — значит нет и прямоугольной области,
+   край которой был виден рамкой */
+.dial-halo {
+  fill: none;
+  stroke: var(--ring-col);
+  stroke-width: 20;
+  stroke-linecap: round;
+  opacity: 0.13;
+  transform: rotate(-90deg);
+  transform-origin: 110px 110px;
+  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
+}
+
+/* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
+   Никаких фильтров — значит нет и прямоугольной области,
+   край которой был виден рамкой */
+.dial-halo {
+  fill: none;
+  stroke: var(--ring-col);
+  stroke-width: 20;
+  stroke-linecap: round;
+  opacity: 0.13;
+  transform: rotate(-90deg);
+  transform-origin: 110px 110px;
+  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
+}
+
+.dial-arc {
+  fill: none;
+  stroke: var(--ring-col);
+  stroke-width: 7;
+  /* Скруглённый конец — то, чего нельзя получить от
+     conic-gradient: там дуга всегда обрублена по радиусу */
+  stroke-linecap: round;
+  /* Отсчёт идёт от двенадцати часов и по часовой стрелке */
+  transform: rotate(-90deg);
+  transform-origin: 110px 110px;
+  /* Секунда — это шаг в 6°; без сглаживания дуга дёргается.
+     Кривая линейная: любое ускорение выдаёт неравномерность
+     хода времени */
+  transition: stroke-dashoffset 0.98s linear,
+              stroke var(--t-slow) linear,
+              stroke-width var(--t-base) var(--ease-out);
+}
+
+/* Головка: самая яркая точка кольца, показывает «сейчас» */
+.dial-head {
+  fill: var(--ring-col);
+  transition: fill var(--t-slow) linear;
+}
+
+.dial-ticks line {
+  stroke: var(--t-1);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0.13;
+  transition: opacity var(--t-base) var(--ease-out),
+              stroke var(--t-slow) linear;
+}
+/* Пройденные деления гаснут не полностью: шкала должна
+   остаться читаемой целиком */
+.dial-ticks line.past { stroke: var(--ring-col); opacity: 0.5; }
+
+/* Последние десять секунд: пульсирует толщина, а не цвет —
+   мигание цветом сбило бы перелив, ради которого всё сделано */
+.dial.is-urgent .dial-arc { animation: urgentPulse 1s ease-in-out infinite; }
+@keyframes urgentPulse {
+  0%, 100% { stroke-width: 7 }
+  50%      { stroke-width: 9.4 }
+}
+
+/* На паузе кольцо приглушается: видно, что время не идёт */
+.dial.is-paused .dial-arc,
+.dial.is-paused .dial-head { opacity: 0.42; }
+.dial.is-paused .dial-halo { opacity: 0.05; }
+.dial.is-paused .dial-arc { transition: opacity var(--t-base) var(--ease-out); }
+
+.dial-in {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .t-digits {
   /* Цифры набираются антиквой, а не интерфейсным гротеском:
@@ -95,7 +188,7 @@
 .overlay.done .t-digits { color: var(--acc-text); }
 /* Финал настаивает пульсацией, а не миганием и не сменой
    цвета на тревожный */
-.overlay.done .ring { animation: pop 1.2s var(--ease-soft); }
+.overlay.done .dial { animation: pop 1.2s var(--ease-soft); }
 @keyframes pop { 0%, 100% { transform: scale(1) } 45% { transform: scale(1.02) } }
 
 /* Три опоры минутного монолога — каркас связной речи */
@@ -224,7 +317,37 @@ input[type='range']::-moz-range-thumb {
 input[type='range']:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
-  .countdown b, .overlay.done .ring { animation: none; }
+  .dial.is-urgent /* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
+   Никаких фильтров — значит нет и прямоугольной области,
+   край которой был виден рамкой */
+.dial-halo {
+  fill: none;
+  stroke: var(--ring-col);
+  stroke-width: 20;
+  stroke-linecap: round;
+  opacity: 0.13;
+  transform: rotate(-90deg);
+  transform-origin: 110px 110px;
+  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
+}
+
+.dial-arc { animation: none; }
+  /* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
+   Никаких фильтров — значит нет и прямоугольной области,
+   край которой был виден рамкой */
+.dial-halo {
+  fill: none;
+  stroke: var(--ring-col);
+  stroke-width: 20;
+  stroke-linecap: round;
+  opacity: 0.13;
+  transform: rotate(-90deg);
+  transform-origin: 110px 110px;
+  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
+}
+
+.dial-arc { transition: stroke var(--t-slow) linear; }
+  .countdown b, .overlay.done .dial { animation: none; }
 }
 
 /* ── Пресеты и переключатель в настройках ───────────────── */
