@@ -39,7 +39,12 @@ export const ru = {
   researchDone: 'ресёрч окончен',
   timeUp: 'время',
   toSpeech: 'Начать речь',
-  skipToSpeech: 'Пропустить',
+  soundLabel: 'Звуковое сопровождение',
+  soundOnTxt: 'включено',
+  soundOffTxt: 'выключено',
+  presets: 'Быстрый выбор',
+  countdownLabel: 'Отсчёт 3·2·1 перед речью',
+  skipToSpeech: 'Я готов, говорю',
   nextTopic: 'Следующая тема',
 
   st1: 'Что?',

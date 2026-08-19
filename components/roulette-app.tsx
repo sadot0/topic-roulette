@@ -340,7 +340,13 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
           dict={dict}
           research={research}
           speech={speech}
+          sound={soundOn}
           onChange={(p) => patch(p)}
+          onSound={(v) => {
+            patch({ sound: v });
+            snd.setEnabled(v);
+            if (v) { snd.unlock(); snd.blip(700, 0.06); }
+          }}
           onClose={() => setSettingsOpen(false)}
         />
       )}

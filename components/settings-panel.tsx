@@ -3,13 +3,21 @@
 import { useEffect, useRef } from 'react';
 import type { Dict } from '@/i18n/config';
 
+/* Пресеты закрывают то, ради чего обычно и лезут в настройки.
+   Слайдер остаётся для точной подгонки, но попасть в «15» мышью
+   на дорожке 1–60 — отдельная работа */
+const RESEARCH_PRESETS = [5, 10, 15, 30];
+const SPEECH_PRESETS = [1, 2, 3, 5];
+
 export function SettingsPanel({
-  dict, research, speech, onChange, onClose,
+  dict, research, speech, sound, onChange, onSound, onClose,
 }: {
   dict: Dict;
   research: number;
   speech: number;
+  sound: boolean;
   onChange(p: { research?: number; speech?: number }): void;
+  onSound(v: boolean): void;
   onClose(): void;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -26,20 +34,44 @@ export function SettingsPanel({
           <p className="note">{dict.settingsNote}</p>
 
           <div className="field-row">
-            <div className="lab"><span>{dict.research}</span><b>{research}</b></div>
+            <div className="lab"><span>{dict.research}</span><b>{research} {dict.min}</b></div>
             <input
               type="range" min={1} max={60} step={1} value={research}
               onChange={(e) => onChange({ research: +e.target.value })}
             />
+            <div className="chips">
+              {RESEARCH_PRESETS.map((v) => (
+                <button key={v} className={v === research ? 'on' : ''}
+                        onClick={() => onChange({ research: v })}>
+                  {v}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="field-row">
-            <div className="lab"><span>{dict.speech}</span><b>{speech}</b></div>
+            <div className="lab"><span>{dict.speech}</span><b>{speech} {dict.min}</b></div>
             <input
               type="range" min={1} max={10} step={1} value={speech}
               onChange={(e) => onChange({ speech: +e.target.value })}
             />
+            <div className="chips">
+              {SPEECH_PRESETS.map((v) => (
+                <button key={v} className={v === speech ? 'on' : ''}
+                        onClick={() => onChange({ speech: v })}>
+                  {v}
+                </button>
+              ))}
+            </div>
           </div>
+
+          {/* Переключатель звука дублирует угловую кнопку намеренно:
+              там его ищут по иконке, здесь — по названию */}
+          <button className="toggle-row" aria-pressed={sound} onClick={() => onSound(!sound)}>
+            <span className="tr-lab">{dict.soundLabel}</span>
+            <span className="tr-val">{sound ? dict.soundOnTxt : dict.soundOffTxt}</span>
+            <span className="switch" aria-hidden><i /></span>
+          </button>
 
           <button className="btn go" onClick={onClose}>{dict.done}</button>
         </div>

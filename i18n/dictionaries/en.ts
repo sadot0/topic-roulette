@@ -39,7 +39,12 @@ export const en: Dict = {
   researchDone: 'research done',
   timeUp: 'time',
   toSpeech: 'Start speech',
-  skipToSpeech: 'Skip',
+  soundLabel: 'Sound effects',
+  soundOnTxt: 'on',
+  soundOffTxt: 'off',
+  presets: 'Quick pick',
+  countdownLabel: '3·2·1 countdown before speech',
+  skipToSpeech: 'I am ready, speaking',
   nextTopic: 'Next topic',
 
   st1: 'What?',

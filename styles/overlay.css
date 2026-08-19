@@ -219,3 +219,71 @@ input[type='range']:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--f
 @media (prefers-reduced-motion: reduce) {
   .countdown b, .overlay.done .ring { animation: none; }
 }
+
+/* ── Пресеты и переключатель в настройках ───────────────── */
+
+.chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+.chips button {
+  flex: 1 1 0;
+  height: 34px;
+  border-radius: var(--r-sm);
+  background: var(--surf-2);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--t-3);
+  font-variant-numeric: tabular-nums;
+  transition: color var(--t-fast) var(--ease-out),
+              background-color var(--t-fast) var(--ease-out);
+}
+.chips button:hover { color: var(--t-1); background: var(--surf-3); }
+.chips button.on { color: var(--t-on-acc); background: var(--acc); }
+.chips button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  margin-top: var(--sp-2);
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: var(--surf-2);
+  text-align: left;
+  transition: background-color var(--t-fast) var(--ease-out);
+}
+.toggle-row:hover { background: var(--surf-3); }
+.toggle-row:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+.tr-lab { flex: 1 1 auto; font-size: 14px; color: var(--t-2); }
+.tr-val { font-size: 12.5px; color: var(--t-4); }
+
+/* Дорожка переключателя: ширина ровно вдвое больше бегунка,
+   иначе он упирается в край в одном из положений */
+.switch {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 24px;
+  border-radius: var(--r-pill);
+  background: var(--surf-3);
+  position: relative;
+  transition: background-color var(--t-base) var(--ease-out);
+}
+.switch i {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--t-4);
+  transition: transform var(--t-base) var(--ease-soft),
+              background-color var(--t-base) var(--ease-out);
+}
+.toggle-row[aria-pressed='true'] .switch { background: var(--acc); }
+.toggle-row[aria-pressed='true'] .switch i {
+  transform: translateX(18px);
+  background: var(--t-on-acc);
+}

@@ -42,7 +42,12 @@ export const uz: Dict = {
   researchDone: 'research tugadi',
   timeUp: 'vaqt',
   toSpeech: 'Nutqni boshlash',
-  skipToSpeech: 'Oʻtkazib yuborish',
+  soundLabel: 'Ovoz effektlari',
+  soundOnTxt: 'yoqilgan',
+  soundOffTxt: 'oʻchirilgan',
+  presets: 'Tez tanlash',
+  countdownLabel: 'Nutqdan oldin 3·2·1 sanoq',
+  skipToSpeech: 'Tayyorman, gapiraman',
   nextTopic: 'Keyingi mavzu',
 
   st1: 'Nima?',
