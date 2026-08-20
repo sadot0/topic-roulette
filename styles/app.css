@@ -761,3 +761,63 @@
   .author, .corner { display: none; }
   .brand { font-size: 18px; }
 }
+
+/* ── Планшет ────────────────────────────────────────────────
+   Между мобильной вёрсткой и десктопом была дыра: на 834 px
+   действовали десктопные размеры, рассчитанные на 1440,
+   и всё выглядело растянутым */
+
+@media (min-width: 721px) and (max-width: 1180px) {
+  .stage {
+    padding: max(20px, env(safe-area-inset-top)) var(--sp-4)
+             max(24px, env(safe-area-inset-bottom));
+  }
+
+  .brand { font-size: clamp(24px, 3.4vw, 32px); }
+  .controls { margin-top: clamp(16px, 3.4vh, 34px); }
+
+  /* Строка в 1080 px даёт больше 90 знаков — это уже нечитаемо */
+  .reel { max-width: min(88vw, 760px); }
+  .reel-box { height: clamp(140px, 24vh, 230px); }
+  .idle-lead { font-size: clamp(24px, 3.6vw, 30px); }
+
+  /* Касание есть и на планшете — зоны те же, что на телефоне */
+  .btn { height: 48px; }
+  .btn.sq { width: 48px; }
+  .modes button { min-height: 46px; }
+  .picker-trigger { min-height: 44px; }
+  .langs button { min-height: 42px; min-width: 46px; }
+  .mute { width: 44px; height: 44px; }
+
+  .picker-menu { min-width: 340px; }
+}
+
+/* Планшет в альбомной: ужимаем вертикаль, горизонталь не трогаем */
+@media (min-width: 721px) and (max-width: 1180px) and (orientation: landscape) {
+  .stage { padding-top: 16px; padding-bottom: 18px; }
+  .controls { margin-top: 14px; }
+  .reel-box { height: clamp(120px, 26vh, 190px); }
+  .reel { padding: var(--sp-3) 0; }
+}
+
+/* ── Справа налево ──────────────────────────────────────────
+   Арабский. Композиция у нас центральная, поэтому зеркалить
+   почти нечего — но несколько вещей всё же привязаны к сторонам */
+
+[dir='rtl'] .corner { right: auto; left: clamp(16px, 3vw, 32px); }
+[dir='rtl'] .frame-exit span {
+  right: auto;
+  left: max(var(--sp-4), env(safe-area-inset-left));
+}
+[dir='rtl'] .picker-menu button { text-align: right; }
+[dir='rtl'] .picker-trigger svg { transform: scaleX(-1); }
+
+/* Арабская вязь требует больше межстрочного и не терпит
+   отрицательного трекинга: буквы соединяются, и сжатие
+   разрывает связки */
+[dir='rtl'] .topic {
+  letter-spacing: 0;
+  line-height: 1.34;
+}
+[dir='rtl'] .idle-lead { letter-spacing: 0; line-height: 1.5; }
+[dir='rtl'] .reel-status { letter-spacing: 0.06em; }

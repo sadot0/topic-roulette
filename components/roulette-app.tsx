@@ -13,7 +13,7 @@ import { useHydrated } from '@/hooks/use-hydrated';
 import { ringColor } from '@/lib/ring';
 import { localDay } from '@/lib/daily';
 import type { Bank, Lang, TopicSlice } from '@/lib/topics/types';
-import { LANGS } from '@/lib/topics/types';
+import { LANGS, LANG_LABEL, LANG_NAME } from '@/lib/topics/types';
 import type { Dict } from '@/i18n/config';
 
 import { TimerOverlay } from './timer/timer-overlay';
@@ -21,38 +21,38 @@ import { SettingsPanel } from './settings-panel';
 import { TopicPicker, buildOptions } from './topic-picker';
 import { Icon, Mark } from './icons';
 
-const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
-  mind: { ru: 'Разум', en: 'Mind', uz: 'Ong' },
-  economy: { ru: 'Экономика', en: 'Economy', uz: 'Iqtisod' },
-  society: { ru: 'Общество', en: 'Society', uz: 'Jamiyat' },
-  philosophy: { ru: 'Философия', en: 'Philosophy', uz: 'Falsafa' },
-  systems: { ru: 'Системы', en: 'Systems', uz: 'Tizimlar' },
-  power: { ru: 'Власть', en: 'Power', uz: 'Hokimiyat' },
-  tech: { ru: 'Технологии', en: 'Tech', uz: 'Texnologiya' },
-  culture: { ru: 'Культура', en: 'Culture', uz: 'Madaniyat' },
-  objects: { ru: 'Предметы', en: 'Objects', uz: 'Buyumlar' },
-  routine: { ru: 'Рутина', en: 'Routine', uz: 'Kundalik' },
-  city: { ru: 'Город', en: 'City', uz: 'Shahar' },
-  memory: { ru: 'Память', en: 'Memory', uz: 'Xotira' },
-  people: { ru: 'Люди', en: 'People', uz: 'Odamlar' },
-  digital: { ru: 'Цифра', en: 'Digital', uz: 'Raqamli' },
-  food: { ru: 'Еда', en: 'Food', uz: 'Taom' },
-  money: { ru: 'Деньги', en: 'Money', uz: 'Pul' },
-  work: { ru: 'Работа', en: 'Work', uz: 'Ish' },
-  home: { ru: 'Дом', en: 'Home', uz: 'Uy' },
-  road: { ru: 'Дорога', en: 'Road', uz: 'Yoʻl' },
-  childhood: { ru: 'Детство', en: 'Childhood', uz: 'Bolalik' },
-  relations: { ru: 'Отношения', en: 'Relationships', uz: 'Munosabatlar' },
-  body: { ru: 'Тело', en: 'Body', uz: 'Tana' },
-  clothes: { ru: 'Одежда', en: 'Clothes', uz: 'Kiyim' },
-  holiday: { ru: 'Праздники', en: 'Holidays', uz: 'Bayramlar' },
-  nature: { ru: 'Природа', en: 'Nature', uz: 'Tabiat' },
-  habits: { ru: 'Привычки', en: 'Habits', uz: 'Odatlar' },
+const DOMAIN_LABEL: Record<string, Partial<Record<Lang, string>>> = {
+  mind: { ru: 'Разум', en: 'Mind', uz: 'Ong', kk: 'Сана', tr: 'Zihin', es: 'Mente', pt: 'Mente', ar: 'العقل', id: 'Pikiran' },
+  economy: { ru: 'Экономика', en: 'Economy', uz: 'Iqtisod', kk: 'Экономика', tr: 'Ekonomi', es: 'Economía', pt: 'Economia', ar: 'الاقتصاد', id: 'Ekonomi' },
+  society: { ru: 'Общество', en: 'Society', uz: 'Jamiyat', kk: 'Қоғам', tr: 'Toplum', es: 'Sociedad', pt: 'Sociedade', ar: 'المجتمع', id: 'Masyarakat' },
+  philosophy: { ru: 'Философия', en: 'Philosophy', uz: 'Falsafa', kk: 'Философия', tr: 'Felsefe', es: 'Filosofía', pt: 'Filosofia', ar: 'الفلسفة', id: 'Filsafat' },
+  systems: { ru: 'Системы', en: 'Systems', uz: 'Tizimlar', kk: 'Жүйелер', tr: 'Sistemler', es: 'Sistemas', pt: 'Sistemas', ar: 'الأنظمة', id: 'Sistem' },
+  power: { ru: 'Власть', en: 'Power', uz: 'Hokimiyat', kk: 'Билік', tr: 'İktidar', es: 'Poder', pt: 'Poder', ar: 'السلطة', id: 'Kekuasaan' },
+  tech: { ru: 'Технологии', en: 'Tech', uz: 'Texnologiya', kk: 'Технология', tr: 'Teknoloji', es: 'Tecnología', pt: 'Tecnologia', ar: 'التقنية', id: 'Teknologi' },
+  culture: { ru: 'Культура', en: 'Culture', uz: 'Madaniyat', kk: 'Мәдениет', tr: 'Kültür', es: 'Cultura', pt: 'Cultura', ar: 'الثقافة', id: 'Budaya' },
+  objects: { ru: 'Предметы', en: 'Objects', uz: 'Buyumlar', kk: 'Заттар', tr: 'Eşyalar', es: 'Objetos', pt: 'Objetos', ar: 'الأشياء', id: 'Benda' },
+  routine: { ru: 'Рутина', en: 'Routine', uz: 'Kundalik', kk: 'Күнделік', tr: 'Rutin', es: 'Rutina', pt: 'Rotina', ar: 'الروتين', id: 'Rutinitas' },
+  city: { ru: 'Город', en: 'City', uz: 'Shahar', kk: 'Қала', tr: 'Şehir', es: 'Ciudad', pt: 'Cidade', ar: 'المدينة', id: 'Kota' },
+  memory: { ru: 'Память', en: 'Memory', uz: 'Xotira', kk: 'Жады', tr: 'Hafıza', es: 'Memoria', pt: 'Memória', ar: 'الذاكرة', id: 'Kenangan' },
+  people: { ru: 'Люди', en: 'People', uz: 'Odamlar', kk: 'Адамдар', tr: 'İnsanlar', es: 'Gente', pt: 'Pessoas', ar: 'الناس', id: 'Orang' },
+  digital: { ru: 'Цифра', en: 'Digital', uz: 'Raqamli', kk: 'Цифра', tr: 'Dijital', es: 'Digital', pt: 'Digital', ar: 'الرقمي', id: 'Digital' },
+  food: { ru: 'Еда', en: 'Food', uz: 'Taom', kk: 'Тағам', tr: 'Yemek', es: 'Comida', pt: 'Comida', ar: 'الطعام', id: 'Makanan' },
+  money: { ru: 'Деньги', en: 'Money', uz: 'Pul', kk: 'Ақша', tr: 'Para', es: 'Dinero', pt: 'Dinheiro', ar: 'المال', id: 'Uang' },
+  work: { ru: 'Работа', en: 'Work', uz: 'Ish', kk: 'Жұмыс', tr: 'İş', es: 'Trabajo', pt: 'Trabalho', ar: 'العمل', id: 'Kerja' },
+  home: { ru: 'Дом', en: 'Home', uz: 'Uy', kk: 'Үй', tr: 'Ev', es: 'Casa', pt: 'Casa', ar: 'البيت', id: 'Rumah' },
+  road: { ru: 'Дорога', en: 'Road', uz: 'Yoʻl', kk: 'Жол', tr: 'Yol', es: 'Camino', pt: 'Estrada', ar: 'الطريق', id: 'Jalan' },
+  childhood: { ru: 'Детство', en: 'Childhood', uz: 'Bolalik', kk: 'Балалық', tr: 'Çocukluk', es: 'Infancia', pt: 'Infância', ar: 'الطفولة', id: 'Masa kecil' },
+  relations: { ru: 'Отношения', en: 'Relationships', uz: 'Munosabatlar', kk: 'Қарым-қатынас', tr: 'İlişkiler', es: 'Relaciones', pt: 'Relações', ar: 'العلاقات', id: 'Hubungan' },
+  body: { ru: 'Тело', en: 'Body', uz: 'Tana', kk: 'Дене', tr: 'Beden', es: 'Cuerpo', pt: 'Corpo', ar: 'الجسد', id: 'Tubuh' },
+  clothes: { ru: 'Одежда', en: 'Clothes', uz: 'Kiyim', kk: 'Киім', tr: 'Giysi', es: 'Ropa', pt: 'Roupa', ar: 'الملابس', id: 'Pakaian' },
+  holiday: { ru: 'Праздники', en: 'Holidays', uz: 'Bayramlar', kk: 'Мерекелер', tr: 'Bayramlar', es: 'Fiestas', pt: 'Festas', ar: 'الأعياد', id: 'Perayaan' },
+  nature: { ru: 'Природа', en: 'Nature', uz: 'Tabiat', kk: 'Табиғат', tr: 'Doğa', es: 'Naturaleza', pt: 'Natureza', ar: 'الطبيعة', id: 'Alam' },
+  habits: { ru: 'Привычки', en: 'Habits', uz: 'Odatlar', kk: 'Әдеттер', tr: 'Alışkanlıklar', es: 'Hábitos', pt: 'Hábitos', ar: 'العادات', id: 'Kebiasaan' },
 };
 
-const ERA_LABEL: Record<string, Record<Lang, string>> = {
-  classic: { ru: 'классика', en: 'classic', uz: 'klassik' },
-  modern: { ru: '2020-е', en: '2020s', uz: '2020-yil' },
+const ERA_LABEL: Record<string, Partial<Record<Lang, string>>> = {
+  classic: { ru: 'классика', en: 'classic', uz: 'klassik', kk: 'классика', tr: 'klasik', es: 'clásico', pt: 'clássico', ar: 'كلاسيكي', id: 'klasik' },
+  modern: { ru: '2020-е', en: '2020s', uz: '2020-yil', kk: '2020-шы', tr: '2020ler', es: 'años 2020', pt: 'anos 2020', ar: 'العشرينيات', id: '2020-an' },
 };
 
 export interface RouletteAppProps {
@@ -97,7 +97,11 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
     () =>
       buildOptions(
         topics,
-        Object.fromEntries(Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.ru])),
+        /* Запасной — английский: он понятен большей части
+           аудитории новых языков, в отличие от русского */
+        Object.fromEntries(
+          Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.en ?? k]),
+        ),
       ),
     [topics, lang, mode],
   );
@@ -299,12 +303,12 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
             <div className="reel-meta">
               <span className="dm">
                 <Icon name={currentTopic.domain} className="dm-ic" />
-                {DOMAIN_LABEL[currentTopic.domain]?.[lang] ?? currentTopic.domain}
+                {DOMAIN_LABEL[currentTopic.domain]?.[lang] ?? DOMAIN_LABEL[currentTopic.domain]?.en ?? currentTopic.domain}
               </span>
               {currentTopic.era && (
                 <>
                   <span className="sep">·</span>
-                  <span>{ERA_LABEL[currentTopic.era][lang]}</span>
+                  <span>{ERA_LABEL[currentTopic.era]?.[lang] ?? ERA_LABEL[currentTopic.era]?.en}</span>
                 </>
               )}
             </div>
@@ -343,9 +347,13 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         <div className="corner">
           <div className="langs" role="group" aria-label="Language">
             {LANGS.map((l) => (
-              <button key={l} aria-pressed={l === lang}
-                      onClick={() => { patch({ lang: l }); router.push(`/${l}`); }}>
-                {l.toUpperCase()}
+              <button
+                key={l}
+                aria-pressed={l === lang}
+                title={LANG_NAME[l]}
+                onClick={() => { patch({ lang: l }); router.push(`/${l}`); }}
+              >
+                {LANG_LABEL[l]}
               </button>
             ))}
           </div>

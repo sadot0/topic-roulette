@@ -1,4 +1,13 @@
-export type Lang = 'ru' | 'en' | 'uz';
+export type Lang =
+  | 'ru' | 'en' | 'uz'
+  | 'kk' | 'tr' | 'es' | 'pt' | 'ar' | 'id';
+
+/** Языки, которые пишутся справа налево. Нужен и для dir
+    на <html>, и для зеркалирования логики барабана */
+export const RTL_LANGS: readonly Lang[] = ['ar'] as const;
+export function isRtl(l: Lang): boolean {
+  return (RTL_LANGS as readonly string[]).includes(l);
+}
 export type Bank = 'quick' | 'deep';
 
 export type DeepDomain =
@@ -19,9 +28,17 @@ export interface TopicText {
 
 interface Base {
   slug: string;
+  /* Языки ядра есть у каждой темы; остальные могут
+     отсутствовать — тогда показывается запасной */
   ru: TopicText;
   en: TopicText;
   uz: TopicText;
+  kk?: TopicText;
+  tr?: TopicText;
+  es?: TopicText;
+  pt?: TopicText;
+  ar?: TopicText;
+  id?: TopicText;
 }
 
 export type DeepTopic = Base & { bank: 'deep'; domain: DeepDomain; era: Era };
@@ -40,7 +57,23 @@ export interface TopicSlice {
   hook: string;
 }
 
-export const LANGS: readonly Lang[] = ['ru', 'en', 'uz'] as const;
+/* Порядок важен: он же порядок кнопок в переключателе.
+   Сначала языки ядра аудитории, потом крупные рынки */
+export const LANGS: readonly Lang[] = [
+  'ru', 'uz', 'kk', 'tr', 'en', 'es', 'pt', 'ar',
+] as const;
+
+/** Подписи в переключателе — самоназвания, а не коды:
+    «Qazaq» понятнее казаху, чем «KK» */
+export const LANG_LABEL: Record<Lang, string> = {
+  ru: 'RU', uz: 'UZ', kk: 'KK', tr: 'TR',
+  en: 'EN', es: 'ES', pt: 'PT', ar: 'AR', id: 'ID',
+};
+
+export const LANG_NAME: Record<Lang, string> = {
+  ru: 'Русский', uz: 'Oʻzbekcha', kk: 'Қазақша', tr: 'Türkçe',
+  en: 'English', es: 'Español', pt: 'Português', ar: 'العربية', id: 'Indonesia',
+};
 export const DEFAULT_LANG: Lang = 'ru';
 
 export function isLang(v: string): v is Lang {

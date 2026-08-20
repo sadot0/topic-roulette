@@ -10,14 +10,20 @@ const BANKS: Record<Bank, Topic[]> = {
 /** Нарезка на сервере: клиенту уезжает один язык и один банк,
     а не весь JSON на трёх языках */
 export function sliceBank(bank: Bank, lang: Lang): TopicSlice[] {
-  return (BANKS[bank] ?? []).map((t) => ({
-    slug: t.slug,
-    bank: t.bank,
-    domain: t.domain,
-    ...(t.bank === 'deep' ? { era: t.era } : {}),
-    title: t[lang].title,
-    hook: t[lang].hook,
-  }));
+  return (BANKS[bank] ?? []).map((t) => {
+    /* Запасной язык, если тема на нужном ещё не переведена.
+       Английский, а не русский: он понятен большей части
+       аудитории новых языков */
+    const text = t[lang] ?? t.en ?? t.ru;
+    return {
+      slug: t.slug,
+      bank: t.bank,
+      domain: t.domain,
+      ...(t.bank === 'deep' ? { era: t.era } : {}),
+      title: text.title,
+      hook: text.hook,
+    };
+  });
 }
 
 export function allTopics(): Topic[] {

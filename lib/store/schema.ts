@@ -1,4 +1,4 @@
-import type { Bank, Lang } from '@/lib/topics/types';
+import { Bank, Lang , isLang } from '@/lib/topics/types';
 
 export interface PersistedV4 {
   v: 4;
@@ -69,7 +69,9 @@ export function normalize(p: Partial<PersistedV4>): PersistedV4 {
   const s = p.streak ?? DEFAULTS.streak;
   return {
     v: 4,
-    lang: (['ru', 'en', 'uz'] as const).includes(p.lang as Lang) ? (p.lang as Lang) : DEFAULTS.lang,
+    /* Проверяем по общему списку, а не по вписанной сюда тройке:
+       иначе каждый новый язык молча сбрасывался бы в русский */
+    lang: p.lang && isLang(p.lang) ? p.lang : DEFAULTS.lang,
     sound: p.sound !== false,
     mode: p.mode === 'quick' ? 'quick' : 'deep',
     research: clampInt(p.research, 1, 60, DEFAULTS.research),

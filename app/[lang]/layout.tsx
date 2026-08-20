@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { display, ui } from '../fonts';
 import { getDict, isLang, LANGS } from '@/i18n/config';
 import type { Lang } from '@/lib/topics/types';
+import { isRtl } from '@/lib/topics/types';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -61,7 +62,10 @@ export default async function LangLayout({
 
   return (
     /* Узбекский помечаем uz-Latn: тексты на латинице */
-    <html lang={lang === 'uz' ? 'uz-Latn' : (lang as Lang)}>
+    <html
+      lang={lang === 'uz' ? 'uz-Latn' : lang}
+      dir={isRtl(lang) ? 'rtl' : 'ltr'}
+    >
       <body className={`${display.variable} ${ui.variable}`}>
         {/* Фильтр обязан существовать до первого кадра спина,
             поэтому живёт в layout, а не в клиентском островке */}

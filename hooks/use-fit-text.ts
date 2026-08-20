@@ -39,6 +39,9 @@ export function useFitText<T extends HTMLElement>(o: FitOptions) {
       /* Сначала ужимаем до минимума: иначе бокс ещё растянут
          новым словом на старом кегле, и высота берётся от чужой темы */
       el.style.fontSize = `${minPx}px`;
+      /* В арабском трекинг не трогаем: буквы соединяются,
+         и сжатие разрывает связки */
+      const rtl = getComputedStyle(el).direction === 'rtl';
       const maxW = box.clientWidth;
       const maxH = Math.max(120, box.clientHeight - 8);
       if (!maxW) return;
@@ -48,7 +51,7 @@ export function useFitText<T extends HTMLElement>(o: FitOptions) {
       for (let i = 0; i < 9; i++) {
         const mid = (lo + hi) / 2;
         el.style.fontSize = `${mid}px`;
-        el.style.letterSpacing = `${trackFor(mid)}em`;
+        el.style.letterSpacing = rtl ? '0' : `${trackFor(mid)}em`;
         if (el.scrollWidth <= maxW && el.scrollHeight <= maxH) { best = mid; lo = mid; }
         else hi = mid;
       }
@@ -59,14 +62,14 @@ export function useFitText<T extends HTMLElement>(o: FitOptions) {
         for (let i = 0; i < 9; i++) {
           const mid = (lo + hi) / 2;
           el.style.fontSize = `${mid}px`;
-          el.style.letterSpacing = `${trackFor(mid)}em`;
+          el.style.letterSpacing = rtl ? '0' : `${trackFor(mid)}em`;
           if (el.scrollWidth <= maxW && el.scrollHeight <= maxH) { best = mid; lo = mid; }
           else hi = mid;
         }
       }
 
       el.style.fontSize = `${best.toFixed(1)}px`;
-      el.style.letterSpacing = `${trackFor(best)}em`;
+      el.style.letterSpacing = rtl ? '0' : `${trackFor(best)}em`;
     };
 
     fit();
