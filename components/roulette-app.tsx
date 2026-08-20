@@ -19,6 +19,7 @@ import type { Dict } from '@/i18n/config';
 import { TimerOverlay } from './timer/timer-overlay';
 import { SettingsPanel } from './settings-panel';
 import { TopicPicker, buildOptions } from './topic-picker';
+import { Icon, Mark } from './icons';
 
 const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
   mind: { ru: 'Разум', en: 'Mind', uz: 'Ong' },
@@ -47,18 +48,6 @@ const DOMAIN_LABEL: Record<string, Record<Lang, string>> = {
   holiday: { ru: 'Праздники', en: 'Holidays', uz: 'Bayramlar' },
   nature: { ru: 'Природа', en: 'Nature', uz: 'Tabiat' },
   habits: { ru: 'Привычки', en: 'Habits', uz: 'Odatlar' },
-};
-
-/* Значок у каждого топика: в списке из четырнадцати строк глаз
-   цепляется за форму быстрее, чем читает слово */
-const DOMAIN_ICON: Record<string, string> = {
-  mind: '🧠', economy: '📈', society: '🏛️', philosophy: '🕯️',
-  systems: '⚙️', power: '⚖️', tech: '🔌', culture: '🎭',
-  objects: '📦', routine: '☕', city: '🏙️', memory: '📷',
-  people: '👥', digital: '📱',
-  food: '🍽️', money: '💵', work: '💼', home: '🏠',
-  road: '🚌', childhood: '🧸', relations: '💬', body: '🫀',
-  clothes: '👕', holiday: '🎁', nature: '🌿', habits: '🔁',
 };
 
 const ERA_LABEL: Record<string, Record<Lang, string>> = {
@@ -109,7 +98,6 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
       buildOptions(
         topics,
         Object.fromEntries(Object.entries(DOMAIN_LABEL).map(([k, v]) => [k, v[lang] ?? v.ru])),
-        DOMAIN_ICON,
       ),
     [topics, lang, mode],
   );
@@ -213,7 +201,10 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
     <>
       <div className={`stage ${reel.spinning ? 'is-spinning' : ''} ${frame ? 'is-frame' : ''}`}>
         <header className="head">
-          <h1 className="brand">{dict.brand}</h1>
+          <h1 className="brand">
+            <Mark className="brand-mark" />
+            {dict.brand}
+          </h1>
           <a
             className="author"
             href="https://www.instagram.com/mirzabek_vokhidov"
@@ -290,7 +281,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
           {!reel.spinning && currentTopic && (
             <div className="reel-meta">
               <span className="dm">
-                <i aria-hidden>{DOMAIN_ICON[currentTopic.domain]}</i>
+                <Icon name={currentTopic.domain} className="dm-ic" />
                 {DOMAIN_LABEL[currentTopic.domain]?.[lang] ?? currentTopic.domain}
               </span>
               {currentTopic.era && (
@@ -363,6 +354,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         </div>
       </div>
 
+      <div className="vignette" aria-hidden />
       <div className="grain" aria-hidden />
       {frame && <div className="frame-exit">{dict.frameHint}</div>}
 

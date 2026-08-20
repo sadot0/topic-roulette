@@ -1,5 +1,7 @@
 'use client';
 
+import { Icon } from './icons';
+
 import { useEffect, useRef, useState } from 'react';
 import type { Dict } from '@/i18n/config';
 
@@ -7,7 +9,6 @@ export interface PickerOption {
   /** null — любая тема */
   key: string | null;
   label: string;
-  icon: string;
 }
 
 /**
@@ -56,7 +57,7 @@ export function TopicPicker({
         aria-haspopup="listbox"
         onClick={() => setOpen((v) => !v)}
       >
-        <i className="pk-ic" aria-hidden>{current?.icon ?? '🎲'}</i>
+        <PickerIcon k={current?.key ?? null} />
         {/* У «любой темы» label пустой — берём общую подпись,
             иначе кнопка остаётся с одним значком */}
         <span>{current && current.key ? current.label : anyLabel}</span>
@@ -76,7 +77,7 @@ export function TopicPicker({
               className={o.key === value ? 'on' : ''}
               onClick={() => { onChange(o.key); setOpen(false); }}
             >
-              <i className="pk-ic" aria-hidden>{o.icon}</i>
+              <PickerIcon k={o.key} />
               <span>{o.key === null ? anyLabel : o.label}</span>
             </button>
           ))}
@@ -86,12 +87,25 @@ export function TopicPicker({
   );
 }
 
+/** «Любая тема» получает свой знак — три точки как жребий */
+function PickerIcon({ k }: { k: string | null }) {
+  if (k) return <Icon name={k} className="pk-ic" />;
+  return (
+    <svg className="pk-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         strokeWidth="1.5" strokeLinecap="round" aria-hidden>
+      <circle cx="12" cy="12" r="8.6" />
+      <circle cx="9.2" cy="10" r="1.15" fill="currentColor" stroke="none" />
+      <circle cx="14.8" cy="10" r="1.15" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="15" r="1.15" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 /** Категории считаются из самого банка — руками список
     поддерживать негде и незачем */
 export function buildOptions(
   topics: readonly { domain: string }[],
   labels: Record<string, string>,
-  icons: Record<string, string>,
 ): PickerOption[] {
   /* Считаем только чтобы отсортировать: числа на экран не выходят —
      счётчик рядом с темой читается как счёт очков, а игры тут нет */
@@ -101,10 +115,10 @@ export function buildOptions(
      пунктов ищут глазами конкретное слово, и порядок «кого
      больше» выглядит случайным */
   const list = [...counts.entries()]
-    .map(([key, n]) => ({ key, label: labels[key] ?? key, icon: icons[key] ?? '•', n }))
+    .map(([key, n]) => ({ key, label: labels[key] ?? key, n }))
     .sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
-    .map(({ key, label, icon }) => ({ key, label, icon }));
-  return [{ key: null, label: '', icon: '🎲' }, ...list];
+    .map(({ key, label }) => ({ key, label }));
+  return [{ key: null, label: '' }, ...list];
 }
 
 export type { Dict };

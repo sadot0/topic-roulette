@@ -17,23 +17,57 @@
   overflow: hidden;
 }
 
-/* Мягкая подсветка: тёплая лампа сверху, холодная глубина снизу */
+/* ── Свет ───────────────────────────────────────────────────
+   Четыре источника разной температуры вместо плоской заливки.
+   Слои дышат в противофазе и с разными периодами (34 и 46 с) —
+   их сумма никогда не повторяется, и фон не выглядит зациклённой
+   анимацией. Заметить движение сознательно нельзя. */
 .stage::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -10%;
   pointer-events: none;
   background:
-    radial-gradient(58% 40% at 18% -4%, rgba(233,188,128,.075), transparent 62%),
-    radial-gradient(52% 36% at 84% 4%, rgba(150,201,181,.045), transparent 58%),
-    radial-gradient(86% 48% at 50% 106%, rgba(58,55,80,.34), transparent 66%);
-  /* Очень медленный дрейф: экран перестаёт быть мёртвой картинкой,
-     но заметить движение сознательно нельзя */
-  animation: drift 26s ease-in-out infinite alternate;
+    radial-gradient(46% 34% at 14% 2%,  rgba(var(--light-warm), .13), transparent 66%),
+    radial-gradient(40% 30% at 88% 6%,  rgba(var(--light-cool), .085), transparent 62%),
+    radial-gradient(58% 40% at 72% 96%, rgba(var(--light-plum), .08),  transparent 68%),
+    radial-gradient(80% 52% at 30% 104%, rgba(var(--light-deep), .155), transparent 70%);
+  animation: lightsA 34s ease-in-out infinite alternate;
 }
-@keyframes drift {
+
+/* Второй слой света — медленнее и в другую сторону */
+.stage::after {
+  content: '';
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(34% 26% at 62% 12%, rgba(var(--light-warm), .07), transparent 64%),
+    radial-gradient(44% 32% at 8% 78%,  rgba(var(--light-cool), .06), transparent 66%);
+  animation: lightsB 46s ease-in-out infinite alternate;
+}
+
+@keyframes lightsA {
   from { transform: translate3d(0, 0, 0) scale(1) }
-  to   { transform: translate3d(0, -1.6%, 0) scale(1.035) }
+  to   { transform: translate3d(1.6%, -2.2%, 0) scale(1.06) }
+}
+@keyframes lightsB {
+  from { transform: translate3d(0, 0, 0) scale(1.04) }
+  to   { transform: translate3d(-2.4%, 1.8%, 0) scale(1) }
+}
+
+/* Виньетка: собирает взгляд к центру, где стоит тема.
+   Отдельным слоем поверх света, иначе он её размывает */
+.stage > * { position: relative; z-index: 1; }
+
+/* Виньетка отдельным элементом: край экрана уходит в тень,
+   центр остаётся чистым */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(120% 88% at 50% 46%, transparent 52%, rgba(7, 8, 16, .55) 100%);
 }
 
 .grain {
@@ -41,7 +75,7 @@
   inset: 0;
   z-index: 90;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.16;
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
 }
@@ -59,6 +93,9 @@
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
   font-weight: 500;
@@ -67,6 +104,17 @@
   letter-spacing: -0.005em;
   color: var(--t-1);
 }
+
+/* Знак медленно поворачивается на наведении — намёк на то,
+   что это барабан, а не просто круг */
+.brand-mark {
+  width: 0.86em;
+  height: 0.86em;
+  flex: 0 0 auto;
+  color: var(--acc);
+  transition: transform 620ms var(--ease-soft);
+}
+.head:hover .brand-mark { transform: rotate(72deg); }
 
 .author {
   display: inline-flex;
@@ -156,14 +204,18 @@
 }
 .picker-trigger[aria-expanded='true'] svg { transform: rotate(180deg); }
 
+/* Иконки рисованные: наследуют цвет строки, поэтому в активном
+   пункте становятся тёмными вместе с текстом — эмодзи так
+   не умели и всегда торчали цветным пятном */
 .pk-ic {
-  font-style: normal;
-  font-size: 14px;
-  line-height: 1;
-  /* Эмодзи цветные по своей природе: приглушаем, чтобы они
-     не перебивали единственный акцент на экране */
-  filter: saturate(0.72) brightness(0.96);
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  opacity: 0.78;
 }
+.picker-trigger.is-set .pk-ic,
+.picker-menu button.on .pk-ic { opacity: 1; }
+.picker-menu button:hover .pk-ic { opacity: 1; }
 
 /* Список кладём по центру под кнопкой: сама кнопка стоит
    на центральной оси, и меню, выровненное по левому краю,
@@ -341,7 +393,7 @@
 }
 .reel-meta .sep { color: var(--t-4); }
 .reel-meta .dm { display: inline-flex; align-items: center; gap: 6px; }
-.reel-meta .dm i { font-style: normal; font-size: 13px; filter: saturate(.72); }
+.dm-ic { width: 15px; height: 15px; opacity: .75; }
 @keyframes rise {
   from { opacity: 0; transform: translateY(6px) }
   to { opacity: 1; transform: none }
@@ -531,6 +583,7 @@
 
 
 @media (prefers-reduced-motion: reduce) {
+  .stage::before, .stage::after { animation: none; }
   .stage.is-spinning .btn.go:disabled::after { animation: none; }
   .topic.is-landed, .reel-meta, .hook,
   .stage::before, .btn.go, .is-spinning .reel-status { animation: none; }
