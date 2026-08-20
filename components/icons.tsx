@@ -61,21 +61,49 @@ export function Icon({ name, className }: { name: string; className?: string }) 
   );
 }
 
-/** Знак приложения: барабан с меткой наверху. Круг разомкнут
-    сверху — там, где стоит указатель, — поэтому читается как
-    механизм, а не как просто окружность */
+/** Знак приложения: барабан с указателем.
+ *
+ *  Собран из трёх слоёв, каждый со своей задачей.
+ *  Внешнее кольцо разомкнуто сверху — там, где стоит указатель:
+ *  замкнутая окружность читалась бы просто кругом, разрыв делает
+ *  её механизмом. Двенадцать делений внутри — шкала барабана,
+ *  та же, что в кольце таймера, поэтому знак и таймер выглядят
+ *  частями одной вещи. Точка в центре — ось вращения.
+ */
 export function Mark({ className }: { className?: string }) {
+  const R = 11.4;
+  const ticks = Array.from({ length: 12 }, (_, i) => {
+    const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
+    const r1 = R - 3.4, r2 = R - 1.6;
+    /* Округляем до трёх знаков: React сравнивает атрибуты
+       как СТРОКИ, и «24.487048957087495» на сервере против
+       «24.4870489570875» на клиенте ломает гидратацию —
+       числа равны, а записи разной длины */
+    const r = (v: number) => +v.toFixed(3);
+    return {
+      x1: r(16 + r1 * Math.cos(a)), y1: r(16 + r1 * Math.sin(a)),
+      x2: r(16 + r2 * Math.cos(a)), y2: r(16 + r2 * Math.sin(a)),
+    };
+  });
+
   return (
     <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden>
+      {/* Разомкнутое кольцо: дуга от 100° до 440°, разрыв наверху */}
       <path
-        d="M16 3.6a12.4 12.4 0 1 1-4.8 1"
+        d="M20.2 5.6a11.4 11.4 0 1 1-8.4 0"
         stroke="currentColor"
-        strokeWidth="2.2"
+        strokeWidth="2"
         strokeLinecap="round"
       />
-      <circle cx="16" cy="16" r="4.6" stroke="currentColor" strokeWidth="1.6" opacity=".5" />
-      <path d="M16 1.6v4.2" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-      <circle cx="16" cy="16" r="1.7" fill="currentColor" />
+      {/* Шкала — та же, что у кольца таймера */}
+      <g stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" opacity=".38">
+        {ticks.map((t, i) => (
+          <line key={i} x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} />
+        ))}
+      </g>
+      {/* Указатель: снаружи внутрь, к оси */}
+      <path d="M16 1.9v4.6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="16" cy="16" r="1.9" fill="currentColor" />
     </svg>
   );
 }

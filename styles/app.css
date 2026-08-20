@@ -120,21 +120,73 @@
 }
 .head:hover .brand-mark { transform: rotate(72deg); }
 
+/* Пилюля автора. Три слоя вместо плоской заливки:
+   заливка, волосяная рамка градиентом и пятно света, идущее
+   за курсором. Рамка светлее сверху и гаснет книзу — так
+   ведёт себя реальная фаска под верхним светом */
 .author {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 6px 14px 6px 12px;
+  gap: 8px;
+  padding: 7px 15px 7px 13px;
   border-radius: var(--r-pill);
   background: var(--surf-1);
-  font-size: 13px;
+  font-size: 12.5px;
+  letter-spacing: 0.002em;
   color: var(--t-3);
+  overflow: hidden;
   transition: color var(--t-base) var(--ease-out),
-              background-color var(--t-base) var(--ease-out);
+              background-color var(--t-base) var(--ease-out),
+              transform var(--t-fast) var(--ease-out);
 }
+
+/* Волосяная рамка: маска вырезает середину, остаётся контур
+   в 1 пиксель. border с градиентом так не умеет */
+.author::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    170deg,
+    rgba(242, 239, 230, 0.14),
+    rgba(242, 239, 230, 0.04) 42%,
+    transparent 78%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+
+/* Пятно света под курсором. Координаты пишет JS в --mx/--my;
+   пока мыши не было, оно стоит за пределами и не видно */
+.author::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    72px circle at var(--mx, -100%) var(--my, -100%),
+    rgba(233, 192, 138, 0.16),
+    transparent 62%
+  );
+  transition: opacity var(--t-base) var(--ease-out);
+}
+
 .author .by { color: var(--t-4); }
 .author svg { width: 14px; height: 14px; flex: 0 0 auto; }
-.author:hover { color: var(--acc-text); background: var(--surf-2); }
+.author:hover { color: var(--acc-text); background: var(--surf-2); transform: translateY(-1px); }
+.author:hover::after { opacity: 1; }
+.author:hover::before { opacity: 0.6; }
+.author:active { transform: translateY(0); }
 .author:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 /* ── Управление ─────────────────────────────────────────── */

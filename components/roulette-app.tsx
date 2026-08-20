@@ -217,6 +217,14 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
             href="https://www.instagram.com/mirzabek_vokhidov"
             target="_blank"
             rel="noopener noreferrer"
+            /* Координаты курсора внутри пилюли — для пятна света.
+               Пишем в стиль напрямую: состояние тут не нужно,
+               а ререндер на каждое движение мыши недопустим */
+            onPointerMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`);
+              e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`);
+            }}
           >
             <span className="by">{dict.author}</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"

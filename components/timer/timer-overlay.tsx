@@ -124,11 +124,14 @@ function Ring({
             const t = (i / TICKS) * 360 - 90;
             const rad = t * (Math.PI / 180);
             const r1 = R + 10, r2 = R + 15;
+            /* Округление обязательно: несовпадение строк
+               в атрибутах ломает гидратацию */
+            const q = (v: number) => +v.toFixed(3);
             return (
               <line
                 key={i}
-                x1={110 + r1 * Math.cos(rad)} y1={110 + r1 * Math.sin(rad)}
-                x2={110 + r2 * Math.cos(rad)} y2={110 + r2 * Math.sin(rad)}
+                x1={q(110 + r1 * Math.cos(rad))} y1={q(110 + r1 * Math.sin(rad))}
+                x2={q(110 + r2 * Math.cos(rad))} y2={q(110 + r2 * Math.sin(rad))}
                 className={i / TICKS > frac ? 'past' : ''}
               />
             );
