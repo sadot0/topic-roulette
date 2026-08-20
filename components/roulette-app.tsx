@@ -13,13 +13,13 @@ import { useHydrated } from '@/hooks/use-hydrated';
 import { ringColor } from '@/lib/ring';
 import { localDay } from '@/lib/daily';
 import type { Bank, Lang, TopicSlice } from '@/lib/topics/types';
-import { LANGS, LANG_LABEL, LANG_NAME } from '@/lib/topics/types';
 import type { Dict } from '@/i18n/config';
 
 import { TimerOverlay } from './timer/timer-overlay';
 import { SettingsPanel } from './settings-panel';
 import { TopicPicker, buildOptions } from './topic-picker';
 import { Icon, Mark } from './icons';
+import { LangSwitch } from './lang-switch';
 
 const DOMAIN_LABEL: Record<string, Partial<Record<Lang, string>>> = {
   mind: { ru: 'Разум', en: 'Mind', uz: 'Ong', kk: 'Сана', tr: 'Zihin', es: 'Mente', pt: 'Mente', ar: 'العقل', id: 'Pikiran' },
@@ -345,18 +345,10 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         </footer>
 
         <div className="corner">
-          <div className="langs" role="group" aria-label="Language">
-            {LANGS.map((l) => (
-              <button
-                key={l}
-                aria-pressed={l === lang}
-                title={LANG_NAME[l]}
-                onClick={() => { patch({ lang: l }); router.push(`/${l}`); }}
-              >
-                {LANG_LABEL[l]}
-              </button>
-            ))}
-          </div>
+          <LangSwitch
+            lang={lang}
+            onPick={(l) => { patch({ lang: l }); router.push(`/${l}`); }}
+          />
           <button
             className="mute"
             aria-pressed={soundOn}
