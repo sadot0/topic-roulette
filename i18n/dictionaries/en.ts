@@ -8,6 +8,7 @@ export const en: Dict = {
   spinAgain: 'Next one',
   skipSpin: 'Skip',
 
+  idleLead: 'Press it and get a topic you know nothing about',
   anyTopic: 'Any topic',
   modeQuick: 'Off the cuff',
   modeDeep: 'Deep research',

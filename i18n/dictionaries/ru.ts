@@ -8,6 +8,7 @@ export const ru = {
   spinAgain: 'Следующая',
   skipSpin: 'Пропустить',
 
+  idleLead: 'Нажми — и получишь тему, о которой ничего не знаешь',
   anyTopic: 'Любая тема',
   modeQuick: 'Без подготовки',
   modeDeep: 'Глубокий ресёрч',

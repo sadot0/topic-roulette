@@ -268,7 +268,11 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         </div>
 
         <main className="reel">
-          <div className="reel-status">{status}</div>
+          {/* До первого спина статуса нет: «ожидание» на пустом
+              экране ничего не сообщает, только занимает место */}
+          {(reel.spinning || currentTopic) && (
+            <div className="reel-status">{status}</div>
+          )}
 
           <div className="reel-box">
             {shown ? (
@@ -276,7 +280,10 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
                 {shown.title}
               </h2>
             ) : (
-              <p className="reel-idle">{dict.tagline}</p>
+              <div className="idle">
+                <p className="idle-lead">{dict.idleLead}</p>
+                <p className="idle-note">{dict.tagline}</p>
+              </div>
             )}
           </div>
 

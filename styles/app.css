@@ -302,12 +302,32 @@
   50%      { opacity: 1 }
 }
 
-.reel-idle {
+/* Пустой экран — единственное, что видит человек в первую
+   секунду. Значит он обязан объяснять, а не ждать */
+.idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  animation: rise var(--t-slow) var(--ease-soft) both;
+}
+.idle-lead {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(22px, 3.2vw, 34px);
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--t-2);
+  max-width: 20ch;
+  text-wrap: balance;
+  font-variation-settings: 'opsz' 20;
+}
+.idle-note {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
   color: var(--t-4);
-  max-width: 40ch;
 }
 
 .reel-meta {
@@ -554,6 +574,8 @@
   .reel { padding: var(--sp-3) 0; }
   .reel-box { min-height: clamp(120px, 24vh, 200px); }
   .reel-status { margin-bottom: var(--sp-2); font-size: 10.5px; }
+  .idle-lead { font-size: clamp(19px, 5.4vw, 24px); max-width: 17ch; }
+  .idle-note { font-size: 12.5px; }
   .hook { margin-top: var(--sp-3); padding: var(--sp-2) var(--sp-3); font-size: 14px; }
 
   .actions { gap: 8px; }
