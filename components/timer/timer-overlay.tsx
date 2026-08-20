@@ -111,12 +111,6 @@ function Ring({
   paused: boolean;
   children: React.ReactNode;
 }) {
-  /* Головка едет по дуге: конец отрезка — самая заметная точка
-     кольца, и без неё непонятно, где «сейчас» */
-  const a = (frac * 360 - 90) * (Math.PI / 180);
-  const hx = 110 + R * Math.cos(a);
-  const hy = 110 + R * Math.sin(a);
-
   return (
     <div
       className={`dial ${urgent ? 'is-urgent' : ''} ${paused ? 'is-paused' : ''}`}
@@ -135,7 +129,7 @@ function Ring({
                 key={i}
                 x1={110 + r1 * Math.cos(rad)} y1={110 + r1 * Math.sin(rad)}
                 x2={110 + r2 * Math.cos(rad)} y2={110 + r2 * Math.sin(rad)}
-                className={i / TICKS <= 1 - frac ? 'past' : ''}
+                className={i / TICKS > frac ? 'past' : ''}
               />
             );
           })}
@@ -158,8 +152,13 @@ function Ring({
           strokeDasharray={C}
           strokeDashoffset={C * (1 - frac)}
         />
+        {/* Головка вращается CSS-поворотом, а не пересчётом координат:
+            атрибуты cx/cy React переписывал раз в секунду, и точка
+            прыгала на 6°, отставая от плавно едущей дуги */}
         {frac > 0.004 && frac < 0.999 && (
-          <circle className="dial-head" cx={hx} cy={hy} r="5" />
+          <g className="dial-head-g" style={{ ['--head-a' as string]: `${frac * 360}deg` }}>
+            <circle className="dial-head" cx="110" cy={110 - R} r="5" />
+          </g>
         )}
       </svg>
 

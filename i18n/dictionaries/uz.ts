@@ -59,7 +59,7 @@ export const uz: Dict = {
   hookLabel: 'mohiyati',
 
   frameMode: 'Kadrga',
-  frameHint: 'chiqish uchun F',
+  frameHint: 'F yoki teging — chiqish',
   challenge: 'Chaqiriq tashla',
   challengeCopied: 'Havola nusxalandi',
   shareCard: 'Kartochka',

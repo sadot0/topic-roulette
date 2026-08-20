@@ -56,7 +56,7 @@ export const ru = {
   hookLabel: 'суть',
 
   frameMode: 'В кадр',
-  frameHint: 'нажми F, чтобы выйти',
+  frameHint: 'F или касание — выход',
   challenge: 'Бросить вызов',
   challengeCopied: 'Ссылка скопирована',
   shareCard: 'Карточка',

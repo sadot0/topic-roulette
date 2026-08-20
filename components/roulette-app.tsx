@@ -175,6 +175,9 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         if (e.code === 'Escape') { e.preventDefault(); setSettingsOpen(false); }
         return;
       }
+      /* На телефоне клавиши F нет — режим «в кадр» был ловушкой
+         без выхода, кроме перезагрузки */
+      if (e.code === 'Escape') { e.preventDefault(); setFrame(false); return; }
       if (e.code === 'KeyF' && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         setFrame((v) => !v);
@@ -199,7 +202,11 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
 
   return (
     <>
-      <div className={`stage ${reel.spinning ? 'is-spinning' : ''} ${frame ? 'is-frame' : ''}`}>
+      <div
+        className={`stage ${reel.spinning ? 'is-spinning' : ''} ${frame ? 'is-frame' : ''} ${
+          !currentTopic && !reel.spinning ? 'is-fresh' : ''
+        }`}
+      >
         <header className="head">
           <h1 className="brand">
             <Mark className="brand-mark" />
@@ -228,6 +235,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
               <button
                 key={m}
                 aria-pressed={hydrated ? mode === m : m === 'deep'}
+                disabled={reel.spinning}
                 onClick={() => {
                   if (m === mode) return;
                   patch({ mode: m });
@@ -249,6 +257,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
               options={pickerOptions}
               value={pick}
               anyLabel={dict.anyTopic}
+              disabled={reel.spinning}
               onChange={(v) => {
                 patch({ pick: { ...pickAll, [mode]: v } });
                 snd.unlock();
@@ -335,7 +344,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
           <button
             className="mute"
             aria-pressed={soundOn}
-            aria-label="Sound"
+            aria-label={dict.soundLabel}
             onClick={() => {
               const v = !soundOn;
               patch({ sound: v });
@@ -356,7 +365,11 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
 
       <div className="vignette" aria-hidden />
       <div className="grain" aria-hidden />
-      {frame && <div className="frame-exit">{dict.frameHint}</div>}
+      {frame && (
+        <button className="frame-exit" onClick={() => setFrame(false)}>
+          <span>{dict.frameHint}</span>
+        </button>
+      )}
 
       {timer.phase && currentTopic && (
         <TimerOverlay

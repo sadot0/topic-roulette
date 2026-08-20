@@ -95,16 +95,7 @@
 /* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
    Никаких фильтров — значит нет и прямоугольной области,
    край которой был виден рамкой */
-.dial-halo {
-  fill: none;
-  stroke: var(--ring-col);
-  stroke-width: 20;
-  stroke-linecap: round;
-  opacity: 0.13;
-  transform: rotate(-90deg);
-  transform-origin: 110px 110px;
-  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
-}
+
 
 .dial-arc {
   fill: none;
@@ -125,6 +116,13 @@
 }
 
 /* Головка: самая яркая точка кольца, показывает «сейчас» */
+/* Головка едет тем же переходом, что дуга */
+.dial-head-g {
+  transform: rotate(var(--head-a));
+  transform-origin: 110px 110px;
+  transition: transform 0.98s linear;
+}
+
 .dial-head {
   fill: var(--ring-col);
   transition: fill var(--t-slow) linear;
@@ -152,9 +150,15 @@
 
 /* На паузе кольцо приглушается: видно, что время не идёт */
 .dial.is-paused .dial-arc,
-.dial.is-paused .dial-head { opacity: 0.42; }
-.dial.is-paused .dial-halo { opacity: 0.05; }
-.dial.is-paused .dial-arc { transition: opacity var(--t-base) var(--ease-out); }
+.dial.is-paused /* Головка едет тем же переходом, что дуга */
+.dial-head-g {
+  transform: rotate(var(--head-a));
+  transform-origin: 110px 110px;
+  transition: transform 0.98s linear;
+}
+
+.dial-head { opacity: 0.42; }
+.dial.is-paused .dial.is-paused .dial-arc { transition: opacity var(--t-base) var(--ease-out); }
 
 .dial-in {
   position: relative;
@@ -317,36 +321,9 @@ input[type='range']::-moz-range-thumb {
 input[type='range']:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
 
 @media (prefers-reduced-motion: reduce) {
-  .dial.is-urgent /* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
-   Никаких фильтров — значит нет и прямоугольной области,
-   край которой был виден рамкой */
-.dial-halo {
-  fill: none;
-  stroke: var(--ring-col);
-  stroke-width: 20;
-  stroke-linecap: round;
-  opacity: 0.13;
-  transform: rotate(-90deg);
-  transform-origin: 110px 110px;
-  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
-}
-
-.dial-arc { animation: none; }
-  /* Мягкий ореол: та же дуга, втрое толще и почти прозрачная.
-   Никаких фильтров — значит нет и прямоугольной области,
-   край которой был виден рамкой */
-.dial-halo {
-  fill: none;
-  stroke: var(--ring-col);
-  stroke-width: 20;
-  stroke-linecap: round;
-  opacity: 0.13;
-  transform: rotate(-90deg);
-  transform-origin: 110px 110px;
-  transition: stroke-dashoffset 0.98s linear, stroke var(--t-slow) linear;
-}
-
-.dial-arc { transition: stroke var(--t-slow) linear; }
+  .dial.is-urgent .dial-arc { animation: none; }
+  .dial-arc { transition: stroke var(--t-slow) linear; }
+  .dial-halo, .dial-head-g { transition: none; }
   .countdown b, .overlay.done .dial { animation: none; }
 }
 

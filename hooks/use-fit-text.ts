@@ -36,6 +36,9 @@ export function useFitText<T extends HTMLElement>(o: FitOptions) {
     if (!el || !box) return;
 
     const fit = () => {
+      /* Сначала ужимаем до минимума: иначе бокс ещё растянут
+         новым словом на старом кегле, и высота берётся от чужой темы */
+      el.style.fontSize = `${minPx}px`;
       const maxW = box.clientWidth;
       const maxH = Math.max(120, box.clientHeight - 8);
       if (!maxW) return;

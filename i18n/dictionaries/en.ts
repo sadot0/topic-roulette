@@ -56,7 +56,7 @@ export const en: Dict = {
   hookLabel: 'the point',
 
   frameMode: 'Frame',
-  frameHint: 'press F to exit',
+  frameHint: 'press F or tap to exit',
   challenge: 'Challenge someone',
   challengeCopied: 'Link copied',
   shareCard: 'Card',

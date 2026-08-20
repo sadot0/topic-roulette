@@ -10,8 +10,10 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#171620',
+  themeColor: '#0E1016',
   colorScheme: 'dark',
+  /* Без cover все env(safe-area-inset-*) в CSS равны 0px */
+  viewportFit: 'cover',
   width: 'device-width',
   initialScale: 1,
 };

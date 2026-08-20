@@ -19,11 +19,13 @@ export function TopicPicker({
   options,
   value,
   anyLabel,
+  disabled = false,
   onChange,
 }: {
   options: PickerOption[];
   value: string | null;
   anyLabel: string;
+  disabled?: boolean;
   onChange(v: string | null): void;
 }) {
   const [open, setOpen] = useState(false);
@@ -55,6 +57,7 @@ export function TopicPicker({
         className={`picker-trigger ${value ? 'is-set' : ''}`}
         aria-expanded={open}
         aria-haspopup="listbox"
+        disabled={disabled}
         onClick={() => setOpen((v) => !v)}
       >
         <PickerIcon k={current?.key ?? null} />
