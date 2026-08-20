@@ -508,21 +508,7 @@
 
 /* ── Мобильная ──────────────────────────────────────────── */
 
-@media (max-width: 720px) {
-  .stage { padding: var(--sp-3) var(--sp-3) var(--sp-4); }
-  .corner { position: static; margin-bottom: var(--sp-2); align-self: center; }
-  .head { order: 1; }
-  .corner { order: 0; }
-  .brand { font-size: clamp(22px, 6vw, 28px); }
-  .modes button { padding: 9px 16px; font-size: 13px; }
-  .picker-trigger { height: 36px; font-size: 12.5px; }
-  .picker-menu { grid-template-columns: repeat(2, minmax(124px, 1fr)); }
-  .picker-menu button { padding: 9px 11px; font-size: 12.5px; }
-  .reel-box { min-height: clamp(120px, 22vh, 200px); }
-  .btn { height: 44px; padding: 0 18px; font-size: 13px; }
-  .btn.go { padding: 0 26px; }
-  .btn.sq { width: 44px; }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   .stage.is-spinning .btn.go:disabled::after { animation: none; }
@@ -532,7 +518,68 @@
 }
 /* ── Выбор категории ────────────────────────────────────── */
 
+/* ── Мобильная ──────────────────────────────────────────── */
 
+@media (max-width: 720px) {
+  /* svh, а не vh: адресная строка iOS съедает часть экрана,
+     и на 100vh нижние кнопки уезжают под неё */
+  .stage {
+    min-height: 100svh;
+    padding: max(12px, env(safe-area-inset-top)) var(--sp-3)
+             max(16px, env(safe-area-inset-bottom));
+  }
 
+  /* Порядок сверху вниз тот же, что на десктопе. Раньше здесь
+     стоял order, и название приложения уезжало под кнопки */
+  .head { order: 0; gap: 6px; }
+  .controls { order: 1; margin-top: var(--sp-3); gap: 10px; }
+  .reel { order: 2; }
+  .actions { order: 3; }
+  .corner { order: 4; }
 
+  .brand { font-size: clamp(21px, 5.6vw, 26px); }
+  .author { padding: 8px 14px; font-size: 12.5px; min-height: 44px; }
 
+  /* Зона нажатия не меньше 44 px: палец толще курсора */
+  .modes { padding: 3px; }
+  .modes button { min-height: 44px; padding: 0 16px; font-size: 13px; }
+
+  .picker-trigger { min-height: 44px; padding: 0 12px 0 14px; font-size: 12.5px; }
+  .picker-menu {
+    grid-template-columns: repeat(2, minmax(118px, 1fr));
+    min-width: min(300px, calc(100vw - 32px));
+  }
+  .picker-menu button { min-height: 42px; padding: 9px 11px; font-size: 12.5px; }
+
+  .reel { padding: var(--sp-3) 0; }
+  .reel-box { min-height: clamp(120px, 24vh, 200px); }
+  .reel-status { margin-bottom: var(--sp-2); font-size: 10.5px; }
+  .hook { margin-top: var(--sp-3); padding: var(--sp-2) var(--sp-3); font-size: 14px; }
+
+  .actions { gap: 8px; }
+  .btn { height: 46px; padding: 0 18px; font-size: 13px; }
+  .btn.go { padding: 0 26px; flex: 1 1 100%; }
+  .btn.sq { width: 46px; }
+
+  /* Язык и звук уходят вниз общей строкой: наверху они дрались
+     за угол с названием */
+  .corner {
+    position: static;
+    margin-top: var(--sp-2);
+    justify-content: center;
+  }
+  .langs { padding: 2px; }
+  .langs button { min-width: 48px; min-height: 44px; font-size: 12px; }
+  .mute { width: 44px; height: 44px; }
+}
+
+/* Альбомная ориентация на телефоне: высоты почти нет,
+   поэтому убираем всё, что можно, и жмём вертикальный ритм */
+@media (max-width: 900px) and (max-height: 460px) and (orientation: landscape) {
+  .stage { padding-top: 8px; padding-bottom: 8px; }
+  .controls { margin-top: 8px; }
+  .reel-box { min-height: 92px; }
+  .reel { padding: 8px 0; }
+  .author, .corner { display: none; }
+  .brand { font-size: 18px; }
+}
