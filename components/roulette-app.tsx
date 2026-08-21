@@ -320,7 +320,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
               вместе с темой — в шапке она бы срезалась */}
           <div className="frame-sign">
             <b>@mirzabek_vokhidov</b>
-            <span>sadot0.github.io/topic-roulette</span>
+            <span>speaksolo.app</span>
           </div>
         </main>
 

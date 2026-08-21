@@ -6,6 +6,11 @@ import type { Lang } from '@/lib/topics/types';
 import { isRtl } from '@/lib/topics/types';
 import '../globals.css';
 
+/* Один источник адреса на весь проект */
+const SITE = process.env.CUSTOM_DOMAIN
+  ? `https://${process.env.CUSTOM_DOMAIN}`
+  : 'https://sadot0.github.io/topic-roulette';
+
 export function generateStaticParams() {
   return LANGS.map((lang) => ({ lang }));
 }
@@ -29,6 +34,9 @@ export async function generateMetadata({
   const d = getDict(lang);
 
   return {
+    /* Абсолютные адреса: относительные в OG-тегах не работают —
+       мессенджер не знает, от какого хоста их считать */
+    metadataBase: new URL(SITE),
     title: d.brand,
     description: d.tagline,
     /* Без этого ссылка в Telegram разворачивается голым текстом */
@@ -36,15 +44,23 @@ export async function generateMetadata({
       title: d.brand,
       description: d.tagline,
       type: 'website',
+      url: `/${lang}/`,
+      siteName: d.brand,
       locale: lang === 'uz' ? 'uz_Latn' : lang,
     },
     twitter: { card: 'summary_large_image', title: d.brand, description: d.tagline },
     alternates: {
+      canonical: `/${lang}/`,
       languages: {
-        ru: '/ru',
-        en: '/en',
-        'uz-Latn': '/uz',
-        'x-default': '/ru',
+        ru: '/ru/',
+        uz: '/uz/',
+        kk: '/kk/',
+        tr: '/tr/',
+        en: '/en/',
+        es: '/es/',
+        pt: '/pt/',
+        ar: '/ar/',
+        'x-default': '/ru/',
       },
     },
   };
