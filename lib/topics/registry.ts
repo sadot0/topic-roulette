@@ -1,11 +1,19 @@
 import deepRaw from '@/data/topics.deep.json';
 import quickRaw from '@/data/topics.quick.json';
+import buildRaw from '@/data/topics.build.json';
 import type { Bank, Lang, Topic, TopicSlice } from './types';
 
 const BANKS: Record<Bank, Topic[]> = {
   deep: deepRaw as Topic[],
   quick: quickRaw as Topic[],
+  build: buildRaw as Topic[],
 };
+
+/** Пуст ли банк. Нужно, чтобы не показывать вкладку режима,
+    за которой ничего нет */
+export function bankHasTopics(bank: Bank): boolean {
+  return (BANKS[bank]?.length ?? 0) > 0;
+}
 
 /** Нарезка на сервере: клиенту уезжает один язык и один банк,
     а не весь JSON на трёх языках */
@@ -35,5 +43,9 @@ export function findTopic(slug: string): Topic | undefined {
 }
 
 export function bankSizes(): Record<Bank, number> {
-  return { deep: BANKS.deep.length, quick: BANKS.quick.length };
+  return {
+    deep: BANKS.deep.length,
+    quick: BANKS.quick.length,
+    build: BANKS.build.length,
+  };
 }

@@ -3,7 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { sound } from '@/lib/audio/engine';
 
-export type Phase = 'research' | 'speech';
+/* Третья фаза — работа над заданием. Отдельная, а не
+   переиспользованный research: у неё своя длительность,
+   свои подписи и свой звук в конце */
+export type Phase = 'research' | 'speech' | 'build';
 
 export interface CountdownState {
   phase: Phase | null;
@@ -52,7 +55,10 @@ export function useCountdown(onFinish?: (p: Phase) => void) {
     if (ms <= 0) {
       stop();
       setS((p) => ({ ...p, left: 0, frac: 0, finished: true }));
-      sound.chime(cur.phase === 'research');
+      /* Восходящее арпеджио, когда впереди ещё этап, нисходящее —
+         когда всё закончилось. Речь всегда последняя, поэтому
+         только у неё финал «закрывающий» */
+      sound.chime(cur.phase !== 'speech');
       finishRef.current?.(cur.phase);
       return;
     }

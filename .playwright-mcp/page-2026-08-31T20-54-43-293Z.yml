@@ -1,0 +1,26 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - heading "Рулетка тем" [level=1] [ref=e4]
+      - link "автор @mirzabek_vokhidov" [ref=e17] [cursor=pointer]:
+        - /url: https://www.instagram.com/mirzabek_vokhidov
+        - generic [ref=e18]: автор
+        - generic [ref=e23]: "@mirzabek_vokhidov"
+    - group "Mode" [ref=e25]:
+      - button "Без подготовки" [ref=e26] [cursor=pointer]
+      - button "Глубокий ресёрч" [pressed] [ref=e27] [cursor=pointer]
+      - button "Вайб-кодинг" [ref=e28] [cursor=pointer]
+    - main [ref=e29]:
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Нажми — и получишь тему, о которой ничего не знаешь
+        - paragraph [ref=e33]: одна тема · ресёрч · минута на камеру
+    - contentinfo [ref=e34]:
+      - button "Крутить" [ref=e35] [cursor=pointer]
+      - button "15 мин" [disabled] [ref=e36]
+      - button "В кадр" [disabled] [ref=e37]
+      - button "Настройки" [ref=e41] [cursor=pointer]
+    - generic [ref=e45]:
+      - button "Русский" [ref=e47] [cursor=pointer]:
+        - generic [ref=e52]: RU
+      - button "Звуковое сопровождение" [pressed] [ref=e53] [cursor=pointer]
+  - alert [ref=e59]

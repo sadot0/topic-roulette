@@ -24,7 +24,11 @@ export default async function Page({
     <RouletteApp
       lang={lang}
       dict={getDict(lang)}
-      banks={{ quick: sliceBank('quick', lang), deep: sliceBank('deep', lang) }}
+      banks={{
+        quick: sliceBank('quick', lang),
+        deep: sliceBank('deep', lang),
+        build: sliceBank('build', lang),
+      }}
       seed="rt-2026"
       initialTopic={t}
       initialMode={m}

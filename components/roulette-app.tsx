@@ -48,12 +48,24 @@ const DOMAIN_LABEL: Record<string, Partial<Record<Lang, string>>> = {
   holiday: { ru: 'Праздники', en: 'Holidays', uz: 'Bayramlar', kk: 'Мерекелер', tr: 'Bayramlar', es: 'Fiestas', pt: 'Festas', ar: 'الأعياد', id: 'Perayaan' },
   nature: { ru: 'Природа', en: 'Nature', uz: 'Tabiat', kk: 'Табиғат', tr: 'Doğa', es: 'Naturaleza', pt: 'Natureza', ar: 'الطبيعة', id: 'Alam' },
   habits: { ru: 'Привычки', en: 'Habits', uz: 'Odatlar', kk: 'Әдеттер', tr: 'Alışkanlıklar', es: 'Hábitos', pt: 'Hábitos', ar: 'العادات', id: 'Kebiasaan' },
+  visual: { ru: 'Графика', en: 'Visual', uz: 'Grafika', kk: 'Графика', tr: 'Görsel', es: 'Visual', pt: 'Visual', ar: 'الرسوم', id: 'Visual' },
+  game: { ru: 'Игры', en: 'Games', uz: 'Oʻyinlar', kk: 'Ойындар', tr: 'Oyunlar', es: 'Juegos', pt: 'Jogos', ar: 'الألعاب', id: 'Gim' },
+  tool: { ru: 'Инструменты', en: 'Tools', uz: 'Asboblar', kk: 'Құралдар', tr: 'Araçlar', es: 'Herramientas', pt: 'Ferramentas', ar: 'الأدوات', id: 'Alat' },
+  text: { ru: 'Текст', en: 'Text', uz: 'Matn', kk: 'Мәтін', tr: 'Metin', es: 'Texto', pt: 'Texto', ar: 'النص', id: 'Teks' },
+  data: { ru: 'Данные', en: 'Data', uz: 'Maʼlumot', kk: 'Деректер', tr: 'Veri', es: 'Datos', pt: 'Dados', ar: 'البيانات', id: 'Data' },
+  simulate: { ru: 'Симуляции', en: 'Simulations', uz: 'Simulyatsiya', kk: 'Симуляция', tr: 'Simülasyon', es: 'Simulación', pt: 'Simulação', ar: 'المحاكاة', id: 'Simulasi' },
+  interface: { ru: 'Интерфейс', en: 'Interface', uz: 'Interfeys', kk: 'Интерфейс', tr: 'Arayüz', es: 'Interfaz', pt: 'Interface', ar: 'الواجهة', id: 'Antarmuka' },
+  weird: { ru: 'Странное', en: 'Weird', uz: 'Gʻalati', kk: 'Оғаш', tr: 'Tuhaf', es: 'Raro', pt: 'Estranho', ar: 'الغريب', id: 'Aneh' },
 };
 
 const ERA_LABEL: Record<string, Partial<Record<Lang, string>>> = {
   classic: { ru: 'классика', en: 'classic', uz: 'klassik', kk: 'классика', tr: 'klasik', es: 'clásico', pt: 'clássico', ar: 'كلاسيكي', id: 'klasik' },
   modern: { ru: '2020-е', en: '2020s', uz: '2020-yil', kk: '2020-шы', tr: '2020ler', es: 'años 2020', pt: 'anos 2020', ar: 'العشرينيات', id: '2020-an' },
 };
+
+/* Порядок вкладок — по длительности сеанса: минута, четверть
+   часа, сорок минут. Слева направо время растёт */
+const MODES: Bank[] = ['quick', 'deep', 'build'];
 
 export interface RouletteAppProps {
   lang: Lang;
@@ -74,6 +86,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
   const soundOn = usePersisted((s) => s.sound);
   const research = usePersisted((s) => s.research);
   const speech = usePersisted((s) => s.speech);
+  const buildMin = usePersisted((s) => s.build);
   const seenAll = usePersisted((s) => s.seen);
   const pickAll = usePersisted((s) => s.pick);
 
@@ -164,9 +177,13 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
   spinningRef.current = reel.spinning;
   const startPhase = useCallback(() => {
     if (!currentTopic) return;
-    if (mode === 'deep') timer.open('research', research * 60);
+    /* У каждого режима своя первая фаза. В кодинге она же
+       и единственная: закончил — значит закончил, речи после
+       задания нет */
+    if (mode === 'build') timer.open('build', buildMin * 60);
+    else if (mode === 'deep') timer.open('research', research * 60);
     else timer.open('speech', speech * 60);
-  }, [currentTopic, mode, research, speech, timer]);
+  }, [currentTopic, mode, research, speech, buildMin, timer]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -243,7 +260,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
 
         <div className="controls">
           <div className="modes" role="group" aria-label="Mode">
-            {(['quick', 'deep'] as Bank[]).map((m) => (
+            {MODES.map((m) => (
               <button
                 key={m}
                 aria-pressed={hydrated ? mode === m : m === 'deep'}
@@ -253,10 +270,12 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
                   patch({ mode: m });
                   setRevealHook(false);
                   snd.unlock();
-                  snd.blip(m === 'deep' ? 660 : 520, 0.05);
+                  /* Тон растёт слева направо: короткий режим ниже,
+                     длинный выше — переключение слышно как движение */
+                  snd.blip(m === 'quick' ? 520 : m === 'deep' ? 660 : 800, 0.05);
                 }}
               >
-                {m === 'quick' ? dict.modeQuick : dict.modeDeep}
+                {m === 'quick' ? dict.modeQuick : m === 'deep' ? dict.modeDeep : dict.modeBuild}
               </button>
             ))}
           </div>
@@ -330,7 +349,11 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
           </button>
 
           <button className="btn" onClick={startPhase} disabled={!currentTopic}>
-            {mode === 'deep' ? `${research} ${dict.min}` : `${dict.speech} · ${speech} ${dict.min}`}
+            {mode === 'build'
+              ? `${dict.build} · ${buildMin} ${dict.min}`
+              : mode === 'deep'
+                ? `${research} ${dict.min}`
+                : `${dict.speech} · ${speech} ${dict.min}`}
           </button>
 
           <button className="btn sq" onClick={() => setFrame(true)} disabled={!currentTopic}
@@ -397,6 +420,7 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
           dict={dict}
           research={research}
           speech={speech}
+          build={buildMin}
           sound={soundOn}
           onChange={(p) => patch(p)}
           onSound={(v) => {

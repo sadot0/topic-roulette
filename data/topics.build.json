@@ -1,0 +1,1406 @@
+[
+ {
+  "slug": "gravity-cursor-dust",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Пыль, которая боится курсора",
+   "hook": "Тысяча частиц спокойно висит в воздухе, но разбегается от курсора и медленно возвращается на свои места."
+  },
+  "en": {
+   "title": "Dust That Fears the Cursor",
+   "hook": "A thousand particles hang still, scatter away from the cursor, and slowly drift back to their original spots."
+  },
+  "uz": {
+   "title": "Kursordan qoʻrqadigan chang",
+   "hook": "Ming zarra havoda muallaq turadi, kursordan qochadi va sekin oʻz joyiga qaytadi."
+  }
+ },
+ {
+  "slug": "mirror-that-lies",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Зеркало, которое отражает с опозданием",
+   "hook": "Половина холста повторяет всё, что вы рисуете на другой половине, но с задержкой в две секунды и лёгким дрожанием линии."
+  },
+  "en": {
+   "title": "The Mirror That Lags",
+   "hook": "Half the canvas mirrors whatever you draw on the other half — two seconds late and with a slight tremble in the line."
+  },
+  "uz": {
+   "title": "Kechikib aks ettiruvchi oyna",
+   "hook": "Kanvasning yarmi siz ikkinchi yarmiga chizgan hamma narsani takrorlaydi — ikki soniya kechikib va chizigʻi biroz titrab."
+  }
+ },
+ {
+  "slug": "city-skyline-from-text",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Город из вашего имени",
+   "hook": "Вводите любое слово — получаете силуэт города, где буквы задают высоту домов, окна и цвет заката; одно и то же слово всегда даёт один и тот же город."
+  },
+  "en": {
+   "title": "A City Built From Your Name",
+   "hook": "Type any word and get a skyline where the letters set building heights, windows and sunset color — the same word always yields the same city."
+  },
+  "uz": {
+   "title": "Ismingizdan qurilgan shahar",
+   "hook": "Istalgan soʻz kiriting — harflar bino balandligi, deraza va shom rangini belgilaydigan shahar siluetini olasiz; bir xil soʻz doim bir xil shahar beradi."
+  }
+ },
+ {
+  "slug": "ink-in-water",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Капля чернил в воде",
+   "hook": "Клик роняет каплю, она расползается клубами и перемешивается с предыдущими каплями, не превращаясь в однородную кашу."
+  },
+  "en": {
+   "title": "Ink Drop in Water",
+   "hook": "A click drops ink that billows outward and swirls into earlier drops without collapsing into flat mush."
+  },
+  "uz": {
+   "title": "Suvdagi siyoh tomchisi",
+   "hook": "Bosganda tomchi tushadi, u toʻlqinlanib yoyiladi va avvalgi tomchilar bilan aralashadi, ammo bir xil loyqaga aylanmaydi."
+  }
+ },
+ {
+  "slug": "self-portrait-of-clock",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Часы, которые рисуют себя заново каждую секунду",
+   "hook": "Каждую секунду циферблат перерисовывается в новом случайном стиле — штрихи, точки, кляксы — но время читается всегда."
+  },
+  "en": {
+   "title": "A Clock That Redraws Itself Every Second",
+   "hook": "Every second the dial is redrawn in a new random style — strokes, dots, blobs — yet the time stays readable."
+  },
+  "uz": {
+   "title": "Har soniyada oʻzini qaytadan chizadigan soat",
+   "hook": "Har soniyada siferblat yangi tasodifiy uslubda — chiziq, nuqta, dogʻ bilan qayta chiziladi, lekin vaqt doim oʻqiladi."
+  }
+ },
+ {
+  "slug": "drawing-that-decays",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Холст, с которого рисунок осыпается",
+   "hook": "Всё нарисованное медленно распадается на песчинки и стекает вниз, так что картину приходится постоянно подновлять."
+  },
+  "en": {
+   "title": "A Canvas Your Drawing Falls Off Of",
+   "hook": "Everything you draw slowly crumbles into grains and slides down, so the picture has to be constantly repainted."
+  },
+  "uz": {
+   "title": "Rasm toʻkilib tushadigan kanvas",
+   "hook": "Chizilgan hamma narsa sekin zarralarga ajralib pastga oqadi, shuning uchun rasmni doim yangilab turish kerak."
+  }
+ },
+ {
+  "slug": "shadow-of-invisible-object",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Тень невидимого предмета",
+   "hook": "На экране только движущаяся тень на полу, и по её форме и искажению можно догадаться, какая фигура крутится над ней."
+  },
+  "en": {
+   "title": "The Shadow of an Invisible Object",
+   "hook": "Only a moving shadow on the floor is visible, and its shape and distortion let you guess what solid is spinning above it."
+  },
+  "uz": {
+   "title": "Koʻrinmas narsaning soyasi",
+   "hook": "Ekranda faqat polda harakatlanuvchi soya bor, uning shakli va buzilishidan tepada qanday jism aylanayotganini topsa boʻladi."
+  }
+ },
+ {
+  "slug": "pixel-sorting-slider",
+  "bank": "build",
+  "domain": "visual",
+  "era": "modern",
+  "ru": {
+   "title": "Картинка, которая плавится по яркости",
+   "hook": "Ползунок задаёт порог, и пиксели картинки начинают течь полосами вниз, а второй ползунок разворачивает поток вбок."
+  },
+  "en": {
+   "title": "A Picture That Melts by Brightness",
+   "hook": "A slider sets the threshold and the image's pixels start streaming downward in bands, while a second slider turns the flow sideways."
+  },
+  "uz": {
+   "title": "Yorqinlik boʻyicha eriydigan rasm",
+   "hook": "Slayder chegarani belgilaydi va rasm piksellari chiziqlar boʻlib pastga oqa boshlaydi, ikkinchi slayder esa oqimni yon tomonga buradi."
+  }
+ },
+ {
+  "slug": "one-button-platformer",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Платформер, где кнопка одна",
+   "hook": "Герой бежит сам, единственная клавиша прыгает; уровень генерируется бесконечно, и падение в яму мгновенно перезапускает забег со счётчиком метров."
+  },
+  "en": {
+   "title": "Platformer With Exactly One Button",
+   "hook": "The hero runs on his own, one key jumps; the level generates endlessly and falling into a pit instantly restarts the run with a metre counter."
+  },
+  "uz": {
+   "title": "Bitta tugmali platformer",
+   "hook": "Qahramon oʻzi yuguradi, yagona tugma sakraydi; daraja cheksiz hosil boʻladi, chuqurga tushish esa metr hisoblagichi bilan yugurishni qaytadan boshlaydi."
+  }
+ },
+ {
+  "slug": "bot-that-plays-itself",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Бот, который играет сам с собой и комментирует",
+   "hook": "Два алгоритма играют в крестики-нолики или ним без участия человека, на экране идёт партия и живой комментарий каждого хода."
+  },
+  "en": {
+   "title": "A Bot That Plays Itself and Commentates",
+   "hook": "Two algorithms play tic-tac-toe or Nim with no human involved, and the screen shows the match plus live commentary on every move."
+  },
+  "uz": {
+   "title": "Oʻzi bilan oʻynab, sharhlab boradigan bot",
+   "hook": "Ikki algoritm odamsiz krestik-nolik yoki Nim oʻynaydi, ekranda esa oʻyin va har bir yurishga jonli sharh koʻrinadi."
+  }
+ },
+ {
+  "slug": "level-generator-from-a-word",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Генератор уровней из одного слова",
+   "hook": "Вводишь любое слово — получаешь всегда один и тот же проходимый уровень с картой, врагами и выходом; то же слово даёт тот же уровень."
+  },
+  "en": {
+   "title": "Level Generator Fed by a Single Word",
+   "hook": "Type any word and get a always-completable level with map, enemies and exit; the same word always yields the same level."
+  },
+  "uz": {
+   "title": "Bitta soʻzdan daraja yasovchi generator",
+   "hook": "Istalgan soʻz kiritasiz — xarita, dushmanlar va chiqishi bor, oʻtib boʻladigan daraja chiqadi; bir xil soʻz doim bir xil darajani beradi."
+  }
+ },
+ {
+  "slug": "snake-that-remembers",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Змейка, которая помнит прошлую жизнь",
+   "hook": "После проигрыша призрак прошлого забега остаётся на поле как препятствие, и каждая новая попытка играется среди своих же трупов."
+  },
+  "en": {
+   "title": "Snake That Remembers Its Past Life",
+   "hook": "After you lose, the ghost of the previous run stays on the field as an obstacle, so every new attempt is played among your own corpses."
+  },
+  "uz": {
+   "title": "Oʻtgan hayotini eslaydigan ilon",
+   "hook": "Yutqazgandan soʻng oldingi yugurishning arvohi maydonda toʻsiq boʻlib qoladi, har bir yangi urinish esa oʻz jasadlaring orasida oʻtadi."
+  }
+ },
+ {
+  "slug": "physics-golf-in-one-screen",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Гольф с одним экраном и кривой гравитацией",
+   "hook": "Тянешь мяч мышью, он летит по параболе, отскакивает от стен, а гравитация меняет направление в каждой лунке; счёт ударов ведётся."
+  },
+  "en": {
+   "title": "One-Screen Golf With Crooked Gravity",
+   "hook": "Drag the ball with the mouse, it arcs and bounces off walls, gravity points a different way each hole, and strokes are counted."
+  },
+  "uz": {
+   "title": "Bitta ekranli, qiyshiq tortishishli golf",
+   "hook": "Toʻpni sichqoncha bilan tortasiz, u parabola boʻylab uchadi va devorlardan qaytadi, har teshikda tortishish yoʻnalishi oʻzgaradi, zarbalar sanaladi."
+  }
+ },
+ {
+  "slug": "guess-what-i-drew",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Угадай, что я нарисовал",
+   "hook": "Игрок рисует мышью на сетке, программа по числу линий, углов и замкнутых контуров уверенно называет предмет — иногда попадает."
+  },
+  "en": {
+   "title": "Guess What I Drew",
+   "hook": "The player draws on a grid with the mouse and the program confidently names an object from stroke count, angles and closed loops — sometimes correctly."
+  },
+  "uz": {
+   "title": "Nima chizganimni top",
+   "hook": "Oʻyinchi toʻrda sichqoncha bilan chizadi, dastur chiziqlar, burchaklar va yopiq konturlar soniga qarab buyum nomini ishonch bilan aytadi — baʼzan topadi."
+  }
+ },
+ {
+  "slug": "roguelike-in-forty-tiles",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Рогалик на сорок клеток",
+   "hook": "Комната сорок клеток, три вида врагов, инвентарь на два слота и перманентная смерть — забег длится минуту и заканчивается эпитафией."
+  },
+  "en": {
+   "title": "A Roguelike in Forty Tiles",
+   "hook": "One forty-tile room, three enemy types, a two-slot inventory and permadeath — a run lasts a minute and ends with an epitaph."
+  },
+  "uz": {
+   "title": "Qirq katakli roguelike",
+   "hook": "Qirq katakli xona, uch xil dushman, ikki uyali inventar va doimiy oʻlim — yugurish bir daqiqa davom etadi va epitafiya bilan tugaydi."
+  }
+ },
+ {
+  "slug": "rhythm-game-from-typing",
+  "bank": "build",
+  "domain": "game",
+  "era": "modern",
+  "ru": {
+   "title": "Ритм-игра из твоей же печати",
+   "hook": "Печатаешь любой текст полминуты, программа превращает ритм нажатий в дорожку нот и предлагает сыграть её обратно с оценкой точности."
+  },
+  "en": {
+   "title": "Rhythm Game Made From Your Own Typing",
+   "hook": "Type any text for half a minute, the program turns your keystroke rhythm into a note track and asks you to play it back with an accuracy score."
+  },
+  "uz": {
+   "title": "Oʻz yozuvingizdan yasalgan ritm oʻyini",
+   "hook": "Yarim daqiqa istalgan matn yozasiz, dastur bosishlar ritmini nota yoʻlagiga aylantiradi va aniqlik bahosi bilan qaytarib oʻynashni taklif qiladi."
+  }
+ },
+ {
+  "slug": "unit-in-cats",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Сколько это в котах",
+   "hook": "Вводишь любое число с единицей — получаешь его в котах, автобусах и чашках кофе, с картинкой из повторяющихся иконок."
+  },
+  "en": {
+   "title": "How Many Cats Is That",
+   "hook": "Enter any measurement and get it restated in cats, buses and coffee cups, drawn as a row of repeating icons."
+  },
+  "uz": {
+   "title": "Bu necha mushuk boʻladi",
+   "hook": "Istalgan oʻlchovni kiritasiz — u mushuk, avtobus va qahva piyolalarida qayta yoziladi va takrorlanuvchi belgilar qatori boʻlib chiziladi."
+  }
+ },
+ {
+  "slug": "meeting-money-burner",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Счётчик горящих денег на совещании",
+   "hook": "Указываешь число людей и их ставки — секундомер тикает и показывает, сколько денег уже сгорело и на что этого хватило бы."
+  },
+  "en": {
+   "title": "Meeting Money Burner",
+   "hook": "Set the headcount and hourly rates, hit start, and watch the money burned so far tick up with a live note on what it could have bought."
+  },
+  "uz": {
+   "title": "Yigʻilishda yonayotgan pul hisoblagichi",
+   "hook": "Ishtirokchilar soni va soatlik stavkani kiritasiz, sekundomer ishga tushadi va sarflangan pul oʻsib boradi, yonida shu pulga nima olish mumkinligi yoziladi."
+  }
+ },
+ {
+  "slug": "haggling-timer",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Таймер, с которым надо торговаться",
+   "hook": "Просишь 15 минут — он предлагает 7, и пока не сойдётесь в числе за пару раундов, отсчёт не начнётся."
+  },
+  "en": {
+   "title": "The Timer You Have to Haggle With",
+   "hook": "Ask for fifteen minutes, get offered seven, and the countdown only starts once you settle on a number after a few rounds of bargaining."
+  },
+  "uz": {
+   "title": "Savdolashish kerak boʻlgan taymer",
+   "hook": "15 daqiqa soʻraysiz — u 7 taklif qiladi va bir necha bosqich savdodan keyin kelishuvga erishilmaguncha sanoq boshlanmaydi."
+  }
+ },
+ {
+  "slug": "attention-stopwatch",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Секундомер, который идёт, только пока ты работаешь",
+   "hook": "Отсчёт замирает, если минуту нет ни клика, ни клавиши, и в конце показывает график с провалами внимания."
+  },
+  "en": {
+   "title": "The Stopwatch That Only Runs While You Work",
+   "hook": "It freezes after a minute with no clicks or keystrokes and ends with a timeline showing every gap in attention."
+  },
+  "uz": {
+   "title": "Faqat ishlayotganingizda yuradigan sekundomer",
+   "hook": "Bir daqiqa davomida na bosish, na tugma boʻlsa sanoq toʻxtaydi, oxirida esa barcha tanaffuslar grafikda koʻrsatiladi."
+  }
+ },
+ {
+  "slug": "draw-that-remembers",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Жребий, который помнит прошлые разы",
+   "hook": "Крутишь колесо выбора обеда — вчерашний победитель становится заметно менее вероятным, и вес каждого варианта виден прямо на секторе."
+  },
+  "en": {
+   "title": "The Draw That Remembers Last Time",
+   "hook": "Spin the wheel to pick lunch: whatever won yesterday gets visibly thinner odds, with each slice showing its current weight."
+  },
+  "uz": {
+   "title": "Oʻtgan safarni eslab qoladigan qurʼa",
+   "hook": "Tushlik tanlash gʻildiragini aylantirasiz — kecha chiqqan variant ehtimoli sezilarli kamayadi va har bir boʻlakda uning ogʻirligi koʻrinib turadi."
+  }
+ },
+ {
+  "slug": "read-aloud-timer",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Хронометр текста для чтения вслух",
+   "hook": "Вставляешь текст — получаешь время звучания с поправкой на длинные слова и цифры, а абзацы подсвечены там, где слушатель заскучает."
+  },
+  "en": {
+   "title": "Read-It-Out-Loud Timer",
+   "hook": "Paste a text and get its spoken length adjusted for long words and numbers, with paragraphs shaded where the listener will drift off."
+  },
+  "uz": {
+   "title": "Ovoz chiqarib oʻqish xronometri",
+   "hook": "Matnni qoʻyasiz — uzun soʻz va raqamlarni hisobga olgan holda oʻqish vaqti chiqadi, abzatslar esa tinglovchi zerikadigan joyiga qarab boʻyaladi."
+  }
+ },
+ {
+  "slug": "steeping-strength-curve",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Таймер заварки с кривой крепости",
+   "hook": "Выбираешь сорт чая — идёт отсчёт, чашка рядом темнеет в реальном времени, а на кривой крепости появляется отметка «уже горчит»."
+  },
+  "en": {
+   "title": "Steeping Timer With a Strength Curve",
+   "hook": "Pick a tea, start the countdown, and watch the cup darken in real time alongside a strength curve marked where it turns bitter."
+  },
+  "uz": {
+   "title": "Damlash taymeri va kuchlilik egri chizigʻi",
+   "hook": "Choy navini tanlaysiz — sanoq ketadi, yonida piyola real vaqtda qorayadi va kuchlilik egri chizigʻida «endi achchiq» belgisi paydo boʻladi."
+  }
+ },
+ {
+  "slug": "timezones-in-human-terms",
+  "bank": "build",
+  "domain": "tool",
+  "era": "modern",
+  "ru": {
+   "title": "Часовые пояса на человеческом языке",
+   "hook": "Добавляешь города — вместо цифр видишь строку вроде «у неё поздний ужин, писать можно» и цветную полосу суток."
+  },
+  "en": {
+   "title": "Time Zones in Human Terms",
+   "hook": "Add cities and instead of digits you get lines like 'late dinner there, safe to message' over a coloured band of the day."
+  },
+  "uz": {
+   "title": "Vaqt mintaqalari odam tilida",
+   "hook": "Shaharlarni qoʻshasiz — raqamlar oʻrniga «u yerda kechki ovqat, yozsa boʻladi» kabi satr va kunning rangli chizigʻi chiqadi."
+  }
+ },
+ {
+  "slug": "ghost-autocomplete",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Автодополнение с чужой памятью",
+   "hook": "Вставил любой текст — поле ввода серым подсказывает следующее слово в стиле этого текста, Tab принимает подсказку."
+  },
+  "en": {
+   "title": "Autocomplete That Remembers Someone Else",
+   "hook": "Paste any text and the input shows a grey next-word suggestion in that text's voice; Tab accepts it."
+  },
+  "uz": {
+   "title": "Begona xotirali avtotoʻldirish",
+   "hook": "Istalgan matnni joylaysiz — kiritish maydoni oʻsha matn uslubida keyingi soʻzni kulrang rangda taklif qiladi, Tab uni qabul qiladi."
+  }
+ },
+ {
+  "slug": "bureaucrat-translator",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Переводчик на канцелярит",
+   "hook": "Вводишь живую фразу — получаешь абзац официальной формулировки, ползунок задаёт степень тяжести."
+  },
+  "en": {
+   "title": "Plain Speech to Officialese Translator",
+   "hook": "Type a human sentence and get a paragraph of bureaucratic prose, with a slider for how heavy the jargon gets."
+  },
+  "uz": {
+   "title": "Jonli tildan rasmiy tilga tarjimon",
+   "hook": "Oddiy jumla yozasiz — rasmiy uslubdagi butun bir xatboshi chiqadi, slayder esa qanchalik ogʻir yozilishini belgilaydi."
+  }
+ },
+ {
+  "slug": "style-fingerprint",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Отпечаток стиля",
+   "hook": "Кидаешь два текста — считаются длина слов, частота запятых и любимые словечки, и выносится вердикт: один автор или разные."
+  },
+  "en": {
+   "title": "Style Fingerprint",
+   "hook": "Drop in two texts and the app compares word length, comma rate and favourite words, then rules: same author or not."
+  },
+  "uz": {
+   "title": "Uslubning barmoq izi",
+   "hook": "Ikki matn tashlaysiz — dastur soʻz uzunligi, vergul chastotasi va sevimli soʻzlarni sanab, «bir muallif» yoki «har xil» degan hukm chiqaradi."
+  }
+ },
+ {
+  "slug": "rotor-cipher-machine",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Шифровальная машина с тремя роторами",
+   "hook": "Печатаешь букву — роторы на экране проворачиваются и выдают шифр; те же настройки расшифровывают текст обратно."
+  },
+  "en": {
+   "title": "Three-Rotor Cipher Machine",
+   "hook": "Each typed letter turns the rotors on screen and emits a cipher letter; the same settings decode it back."
+  },
+  "uz": {
+   "title": "Uch rotorli shifr mashinasi",
+   "hook": "Har bir harfni bosganda ekrandagi rotorlar aylanadi va shifr harfi chiqadi; oʻsha sozlamalar matnni qaytib ochadi."
+  }
+ },
+ {
+  "slug": "plausible-name-forge",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Фабрика несуществующих городов",
+   "hook": "По списку настоящих названий строится модель букв и выдаётся двадцать новых имён, которые звучат как настоящие."
+  },
+  "en": {
+   "title": "Factory of Cities That Don't Exist",
+   "hook": "Feed it a list of real place names and it emits twenty invented ones that still sound real."
+  },
+  "uz": {
+   "title": "Mavjud boʻlmagan shaharlar fabrikasi",
+   "hook": "Haqiqiy nomlar roʻyxatidan harflar modeli quriladi va haqiqiydek eshitiladigan yigirmata yangi nom chiqadi."
+  }
+ },
+ {
+  "slug": "anagram-lock",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Замок, который открывается анаграммой",
+   "hook": "Экран показывает перемешанные буквы; ввёл настоящее слово из тех же букв — замок щёлкает и выдаёт следующий уровень."
+  },
+  "en": {
+   "title": "A Lock That Opens With an Anagram",
+   "hook": "The screen shows scrambled letters; type a real word made of exactly those letters and the lock clicks open to the next level."
+  },
+  "uz": {
+   "title": "Anagramma bilan ochiladigan qulf",
+   "hook": "Ekranda aralashtirilgan harflar turadi; oʻsha harflardan haqiqiy soʻz yozsangiz, qulf ochilib keyingi bosqichga oʻtadi."
+  }
+ },
+ {
+  "slug": "self-compressing-text",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Текст, который сжимает сам себя",
+   "hook": "Повторяющиеся куски находятся и прямо на экране заменяются ссылками, снизу счётчик: было столько символов, стало столько."
+  },
+  "en": {
+   "title": "Text That Compresses Itself",
+   "hook": "Repeated fragments are found and replaced by back-references on screen, with a counter showing characters before and after."
+  },
+  "uz": {
+   "title": "Oʻzini oʻzi siqadigan matn",
+   "hook": "Takrorlanadigan boʻlaklar topilib, ekranda havolalarga almashtiriladi, pastda esa «edi — boʻldi» belgilar hisobi koʻrinadi."
+  }
+ },
+ {
+  "slug": "substitution-breaker",
+  "bank": "build",
+  "domain": "text",
+  "era": "modern",
+  "ru": {
+   "title": "Взломщик шифра замены",
+   "hook": "Загружаешь зашифрованный текст — частотный анализ расставляет первые догадки, буквы меняешь руками, и текст на экране проступает."
+  },
+  "en": {
+   "title": "Substitution Cipher Cracker",
+   "hook": "Load an enciphered text: frequency analysis fills in first guesses, you swap letters by hand, and the plaintext surfaces live."
+  },
+  "uz": {
+   "title": "Almashtirish shifrini buzuvchi",
+   "hook": "Shifrlangan matnni yuklaysiz — chastota tahlili birinchi taxminlarni qoʻyadi, harflarni qoʻlda almashtirasiz va matn koʻz oldingizda ochiladi."
+  }
+ },
+ {
+  "slug": "benford-fake-number-detector",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Детектор подделанных чисел",
+   "hook": "Вставил столбец чисел — на экране гистограмма первых цифр поверх кривой Бенфорда и вердикт: похоже на живые данные или на выдуманные."
+  },
+  "en": {
+   "title": "Fake Number Detector",
+   "hook": "Paste any column of numbers and get a first-digit histogram over the Benford curve plus a verdict: real data or invented."
+  },
+  "uz": {
+   "title": "Soxta raqamlar detektori",
+   "hook": "Istalgan raqamlar ustunini qoʻyasan — ekranda birinchi raqamlar gistogrammasi Benford egri chizigʻi ustida chiqadi va xulosa: maʼlumot haqiqiymi yoki oʻylab topilganmi."
+  }
+ },
+ {
+  "slug": "self-describing-table",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Таблица, которая сама себя описывает",
+   "hook": "Бросаешь CSV — получаешь карточку на каждый столбец: угаданный тип, доля пропусков, топ значений и мини-график распределения, без единой настройки."
+  },
+  "en": {
+   "title": "The Table That Describes Itself",
+   "hook": "Drop in a CSV and get a card per column: guessed type, missing-value share, top values and a mini distribution chart, with zero configuration."
+  },
+  "uz": {
+   "title": "Oʻzini oʻzi taʼriflaydigan jadval",
+   "hook": "CSV tashlaysan — har bir ustun uchun kartochka chiqadi: aniqlangan tur, boʻsh kataklar ulushi, top qiymatlar va taqsimotning mini-grafigi, hech qanday sozlashsiz."
+  }
+ },
+ {
+  "slug": "planet-shaking-right-now",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Планета трясётся прямо сейчас",
+   "hook": "Открытая лента землетрясений за сутки превращается в карту с пузырями по магнитуде и список событий, который обновляется по кнопке."
+  },
+  "en": {
+   "title": "The Planet Is Shaking Right Now",
+   "hook": "An open 24-hour earthquake feed turns into a map of magnitude-sized bubbles plus an event list that refreshes on a button press."
+  },
+  "uz": {
+   "title": "Sayyora hozir titrayapti",
+   "hook": "Sutkalik ochiq zilzila maʼlumotlari magnitudaga qarab pufakchali xaritaga va tugma bosilganda yangilanadigan hodisalar roʻyxatiga aylanadi."
+  }
+ },
+ {
+  "slug": "wikipedia-attention-curve",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Кривая внимания Википедии",
+   "hook": "Вводишь название статьи — получаешь график просмотров за год, где всплески подписаны датами, когда мир вдруг ею заинтересовался."
+  },
+  "en": {
+   "title": "Wikipedia Attention Curve",
+   "hook": "Type an article name and get a year of pageviews charted, with every spike labelled by the date the world suddenly cared."
+  },
+  "uz": {
+   "title": "Vikipediya eʼtibori egri chizigʻi",
+   "hook": "Maqola nomini kiritasan — bir yillik koʻrishlar grafigi chiqadi, har bir sakrash dunyo qiziqib qolgan sana bilan belgilanadi."
+  }
+ },
+ {
+  "slug": "five-charts-five-conclusions",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Пять графиков — пять выводов, данные одни",
+   "hook": "Один ряд рисуется пятью способами (обрезанная ось, другой шаг, накопление, сглаживание, проценты), и под каждым написано, какой вывод он навязывает."
+  },
+  "en": {
+   "title": "Five Charts, Five Conclusions, One Dataset",
+   "hook": "The same series is drawn five ways — cropped axis, different bucket, cumulative, smoothed, percentages — each captioned with the conclusion it pushes."
+  },
+  "uz": {
+   "title": "Besh grafik — besh xulosa, maʼlumot bitta",
+   "hook": "Bitta qator besh xil usulda chiziladi (kesilgan oʻq, boshqa qadam, jamlanma, silliqlash, foizlar), har birining tagida u qanday xulosaga undashi yozilgan."
+  }
+ },
+ {
+  "slug": "two-tables-under-a-lens",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Две таблицы под лупой",
+   "hook": "Кладёшь два CSV — видишь три списка: добавленные строки, исчезнувшие и изменённые с подсветкой конкретных ячеек."
+  },
+  "en": {
+   "title": "Two Tables Under a Lens",
+   "hook": "Feed in two CSVs and see three lists: rows added, rows gone, and rows changed with the exact cells highlighted."
+  },
+  "uz": {
+   "title": "Ikki jadval lupa ostida",
+   "hook": "Ikkita CSV qoʻyasan — uchta roʻyxat koʻrinadi: qoʻshilgan qatorlar, yoʻqolganlari va aniq kataklari ajratilgan oʻzgarganlari."
+  }
+ },
+ {
+  "slug": "spurious-correlation-factory",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Фабрика ложных корреляций",
+   "hook": "Кнопка перебирает случайные пары рядов и выкидывает на экран самую убедительную пару с r выше 0.9 и издевательской подписью."
+  },
+  "en": {
+   "title": "Spurious Correlation Factory",
+   "hook": "One button scans random pairs of series and puts the most convincing pair on screen with r above 0.9 and a straight-faced caption."
+  },
+  "uz": {
+   "title": "Soxta korrelyatsiyalar fabrikasi",
+   "hook": "Tugma tasodifiy qator juftlarini saralaydi va r 0.9 dan yuqori boʻlgan eng ishonarli juftni masxaraomuz izoh bilan ekranga chiqaradi."
+  }
+ },
+ {
+  "slug": "raw-log-to-dashboard",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Дашборд из сырого лога за один проход",
+   "hook": "Вставляешь кусок access-лога — получаешь топ путей, коды ответов кольцом и график запросов по часам, всё из одного разбора текста."
+  },
+  "en": {
+   "title": "Dashboard From a Raw Log in One Pass",
+   "hook": "Paste a chunk of access log and get top paths, a ring of status codes and requests by hour — all from a single parse."
+  },
+  "uz": {
+   "title": "Log fayldan bir oʻtishda boshqaruv paneli",
+   "hook": "Access-log parchasini qoʻyasan — eng koʻp soʻralgan yoʻllar, halqa koʻrinishidagi javob kodlari va soatlar boʻyicha soʻrovlar grafigi chiqadi."
+  }
+ },
+ {
+  "slug": "who-with-whom-graph",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Кто с кем: граф из списка пар",
+   "hook": "Скармливаешь список пар «А — Б», на экране разлетается граф: узел тем крупнее, чем больше связей, а поиск подсвечивает соседей."
+  },
+  "en": {
+   "title": "Who With Whom: A Graph From a List of Pairs",
+   "hook": "Feed it lines of \"A — B\" and a graph spreads out on screen: nodes grow with their degree and search highlights a node's neighbours."
+  },
+  "uz": {
+   "title": "Kim kim bilan: juftlar roʻyxatidan graf",
+   "hook": "«A — B» juftlar roʻyxatini berasan, ekranda graf yoyiladi: tugun aloqalari koʻp boʻlgani sari kattalashadi, qidiruv esa qoʻshnilarni yoritadi."
+  }
+ },
+ {
+  "slug": "twin-catcher-in-names",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Ловец двойников в списке имён",
+   "hook": "Тысяча записей с опечатками схлопывается в группы: «Иванов И.И.» и «И. Иванов» стоят рядом с оценкой похожести и кнопкой слияния."
+  },
+  "en": {
+   "title": "Twin Catcher in a List of Names",
+   "hook": "A thousand typo-ridden records collapse into groups: \"Smith J.\" and \"J. Smtih\" sit side by side with a similarity score and a merge button."
+  },
+  "uz": {
+   "title": "Ismlar roʻyxatidagi egizaklar ovchisi",
+   "hook": "Xatolar bilan yozilgan ming yozuv guruhlarga yigʻiladi: bir odamning turlicha yozilgan ismlari oʻxshashlik bahosi va birlashtirish tugmasi bilan yonma-yon turadi."
+  }
+ },
+ {
+  "slug": "guess-the-line",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Угадай линию",
+   "hook": "Показана первая половина настоящего ряда, ты дорисовываешь продолжение мышкой, потом открывается правда и считается счёт за точность."
+  },
+  "en": {
+   "title": "Guess the Line",
+   "hook": "You see the first half of a real series, draw the continuation with the mouse, then the truth is revealed and your accuracy is scored."
+  },
+  "uz": {
+   "title": "Chiziqni topib chiz",
+   "hook": "Haqiqiy qatorning birinchi yarmi koʻrsatiladi, davomini sichqoncha bilan chizasan, keyin haqiqat ochiladi va aniqliging uchun ball hisoblanadi."
+  }
+ },
+ {
+  "slug": "paradox-on-a-slider",
+  "bank": "build",
+  "domain": "data",
+  "era": "modern",
+  "ru": {
+   "title": "Парадокс, который переворачивается ползунком",
+   "hook": "Общий тренд уверенно идёт вверх, но стоит разбить точки на группы ползунком — каждая внутренняя линия идёт вниз, и обе картины видны одновременно."
+  },
+  "en": {
+   "title": "The Paradox That Flips on a Slider",
+   "hook": "The overall trend climbs, but split the points into groups with the slider and every within-group line falls — both pictures visible at once."
+  },
+  "uz": {
+   "title": "Slayder bilan agʻdariladigan paradoks",
+   "hook": "Umumiy trend yuqoriga ketadi, lekin slayder bilan nuqtalarni guruhlarga boʻlsang, har bir guruh ichidagi chiziq pastga tushadi — ikkala manzara bir vaqtda koʻrinadi."
+  }
+ },
+ {
+  "slug": "phantom-jam-on-a-ring-road",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Пробка из ниоткуда на кольцевой дороге",
+   "hook": "Одна машина на кольце чуть притормаживает — и по потоку должна побежать волна затора против движения, а график средней скорости провалиться."
+  },
+  "en": {
+   "title": "A Traffic Jam Out of Nowhere",
+   "hook": "One car on a ring road taps the brakes and a jam wave must travel backwards through the flow while the average-speed graph collapses."
+  },
+  "uz": {
+   "title": "Halqa yoʻldagi arvoh tirbandlik",
+   "hook": "Halqadagi bitta mashina sal sekinlashganda oqim boʻylab teskari yoʻnalishda tirbandlik toʻlqini yugursin va oʻrtacha tezlik grafigi tushib ketsin."
+  }
+ },
+ {
+  "slug": "forest-fire-with-wind",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Лес, который горит по ветру",
+   "hook": "Поджёг мышью — огонь должен вытянуться по направлению ветра, оставить чёрные выгоревшие пятна и сам погаснуть, упершись в реку или в уже сгоревшее."
+  },
+  "en": {
+   "title": "A Forest That Burns Downwind",
+   "hook": "Click to ignite: the fire must stretch along the wind, leave black burnt scars, and die out on its own when it hits a river or old burn."
+  },
+  "uz": {
+   "title": "Shamol boʻylab yonadigan oʻrmon",
+   "hook": "Sichqoncha bilan oʻt qoʻyilganda yongʻin shamol yoʻnalishi boʻyicha choʻzilsin, qora kuygan dogʻlar qoldirsin va daryoga yoki kuygan joyga tirkalib oʻzi soʻnsin."
+  }
+ },
+ {
+  "slug": "sand-water-fire-box",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Коробка, в которую сыплешь песок, воду и огонь",
+   "hook": "Кистью мыши рисуешь четыре вещества — песок должен ссыпаться в горки, вода растекаться по уровню, камень стоять, а огонь гаснуть в воде."
+  },
+  "en": {
+   "title": "A Box You Pour Sand, Water and Fire Into",
+   "hook": "Four materials painted with the mouse: sand must pile into slopes, water must level out, stone must hold, and fire must die in water."
+  },
+  "uz": {
+   "title": "Qum, suv va olov soladigan quti",
+   "hook": "Sichqoncha bilan toʻrt modda chizilsin: qum uyum hosil qilsin, suv sath boʻylab yoyilsin, tosh turaversin, olov suvda oʻchsin."
+  }
+ },
+ {
+  "slug": "crowd-through-one-door",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Триста человек и одна дверь",
+   "hook": "Толпа должна ломиться к единственному выходу, образовать перед ним дугу-затор, а поставленная перед дверью колонна — измеримо изменить время эвакуации на таймере."
+  },
+  "en": {
+   "title": "Three Hundred People, One Door",
+   "hook": "The crowd must rush a single exit, form the classic clogging arch in front of it, and a pillar placed before the door must measurably change the evacuation timer."
+  },
+  "uz": {
+   "title": "Uch yuz odam va bitta eshik",
+   "hook": "Olomon yagona chiqishga intilsin, eshik oldida yoysimon tiqilinch hosil boʻlsin, eshik oldiga qoʻyilgan ustun esa taymerdagi chiqish vaqtini oʻlchovli oʻzgartirsin."
+  }
+ },
+ {
+  "slug": "hundred-people-hundred-coins",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Сто человек, сто монет, честный обмен",
+   "hook": "Каждый шаг случайная пара передаёт монету — и через несколько тысяч шагов ровная гистограмма богатства должна сама расслоиться в резкое неравенство."
+  },
+  "en": {
+   "title": "A Hundred People, a Hundred Coins",
+   "hook": "Each tick a random pair hands over one coin, and after a few thousand ticks the flat wealth histogram must slide on its own into sharp inequality."
+  },
+  "uz": {
+   "title": "Yuz kishi, yuz tanga, halol almashuv",
+   "hook": "Har qadamda tasodifiy juftlik bir tanga uzatsin va bir necha ming qadamdan soʻng tekis boylik diagrammasi oʻz-oʻzidan keskin notekislikka oʻtsin."
+  }
+ },
+ {
+  "slug": "flock-afraid-of-the-cursor",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Стая, которая боится курсора",
+   "hook": "Точки должны лететь единым косяком по трём правилам, при приближении мыши разлетаться на два рукава и через пару секунд снова смыкаться."
+  },
+  "en": {
+   "title": "A Flock That Fears the Cursor",
+   "hook": "Dots must fly as one flock on three rules, split into two streams when the mouse comes close, and merge back within a couple of seconds."
+  },
+  "uz": {
+   "title": "Kursordan qoʻrqadigan gala",
+   "hook": "Nuqtalar uch qoida boʻyicha yagona gala boʻlib uchsin, sichqoncha yaqinlashganda ikkiga boʻlinib qochsin va bir necha soniyada yana birlashsin."
+  }
+ },
+ {
+  "slug": "moths-on-the-bark",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Бабочки на коре, которых ты сам выклёвываешь",
+   "hook": "Ты кликами убираешь самых заметных бабочек — за десяток поколений популяция должна сравняться по цвету с фоном, а смена фона запускать отбор заново."
+  },
+  "en": {
+   "title": "Moths on Bark, and You Are the Bird",
+   "hook": "Clicking off the most visible moths must, within a dozen generations, drive the population to match the bark colour — and changing the bark must restart the selection."
+  },
+  "uz": {
+   "title": "Poʻstloqdagi kapalaklar, qush esa sensan",
+   "hook": "Eng koʻrinib turgan kapalaklar bosib olib tashlansin va oʻnlab avloddan soʻng populyatsiya fon rangiga moslashsin; fon oʻzgarsa tanlanish qaytadan boshlansin."
+  }
+ },
+ {
+  "slug": "slime-mold-road-builder",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Плесень, которая строит дорожную сеть",
+   "hook": "Тысячи агентов оставляют след и идут на него — через несколько секунд на экране должна проступить жилковатая сеть, связывающая расставленные точки еды."
+  },
+  "en": {
+   "title": "The Slime Mould That Builds Roads",
+   "hook": "Thousands of trail-following agents must, within seconds, grow a veined network connecting the food points you placed."
+  },
+  "uz": {
+   "title": "Yoʻl quruvchi shilimshiq zamburugʻ",
+   "hook": "Minglab zarracha iz qoldirib, izga ergashib yursin va bir necha soniyada qoʻyilgan oziq nuqtalarini bogʻlovchi tomirsimon tarmoq paydo boʻlsin."
+  }
+ },
+ {
+  "slug": "board-that-segregates-itself",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Доска, которая сама себя разделяет",
+   "hook": "Даже при требовании «хочу всего 30% похожих соседей» перемешанная доска за десятки шагов должна распасться на однородные острова, и счётчик сегрегации это показать."
+  },
+  "en": {
+   "title": "The Board That Segregates Itself",
+   "hook": "Even at 'I only need 30% similar neighbours', a mixed board must break into single-colour islands within tens of steps, with a segregation counter proving it."
+  },
+  "uz": {
+   "title": "Oʻzini oʻzi ajratadigan taxta",
+   "hook": "«Atigi 30% oʻxshash qoʻshni yetarli» talabida ham aralash taxta oʻnlab qadamda bir xil rangli orollarga ajralsin va ajralish koʻrsatkichi buni raqamda tasdiqlasin."
+  }
+ },
+ {
+  "slug": "flick-a-planet-into-orbit",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Планета, которую закидываешь на орбиту щелчком",
+   "hook": "Оттянул мышь и отпустил — планета должна лететь по эллипсу вокруг звезды, оставляя след, а при слабом броске падать на звезду."
+  },
+  "en": {
+   "title": "Flick a Planet Into Orbit",
+   "hook": "Drag and release: the planet must trace an ellipse around the star leaving a trail, and fall into the star if you throw it too softly."
+  },
+  "uz": {
+   "title": "Chertib orbitaga uchiriladigan sayyora",
+   "hook": "Sichqoncha tortilib qoʻyib yuborilganda sayyora yulduz atrofida ellips chizib iz qoldirsin, kuch yetmasa yulduzga qulasin."
+  }
+ },
+ {
+  "slug": "one-till-or-two",
+  "bank": "build",
+  "domain": "simulate",
+  "era": "modern",
+  "ru": {
+   "title": "Одна касса или две: очередь, которую видно",
+   "hook": "Посетители приходят случайно, очередь ползёт по экрану кружочками, а добавление второй кассы должно тут же пересчитать среднее время ожидания в цифре."
+  },
+  "en": {
+   "title": "One Till or Two: A Queue You Can Watch",
+   "hook": "Customers arrive at random, the queue crawls across the screen as dots, and adding a second till must instantly recompute the average wait time on screen."
+  },
+  "uz": {
+   "title": "Bitta kassa yoki ikkita: koʻrinadigan navbat",
+   "hook": "Mijozlar tasodifiy kelsin, navbat ekranda doirachalar boʻlib surilsin, ikkinchi kassa qoʻshilganda oʻrtacha kutish vaqti raqami darhol qayta hisoblansin."
+  }
+ },
+ {
+  "slug": "flashlight-cursor-page",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Страница, которую видно только под фонариком",
+   "hook": "Экран тёмный, вокруг курсора светлое пятно; текст читается только в луче, а пятно сжимается, когда мышь замирает."
+  },
+  "en": {
+   "title": "A page you can only read by flashlight",
+   "hook": "The screen is dark, a bright spot follows the cursor, text is legible only inside the beam, and the beam shrinks when the mouse stops moving."
+  },
+  "uz": {
+   "title": "Faqat fonar ostida oʻqiladigan sahifa",
+   "hook": "Ekran qorongʻi, kursor atrofida yorugʻ dogʻ boradi, matn faqat nur ichida oʻqiladi va sichqoncha toʻxtaganda dogʻ kichrayadi."
+  }
+ },
+ {
+  "slug": "one-button-morse-input",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Одна кнопка вместо клавиатуры",
+   "hook": "Короткое нажатие — точка, долгое — тире, пауза — конец буквы; набранный морзянкой текст появляется в строке в реальном времени."
+  },
+  "en": {
+   "title": "One button instead of a keyboard",
+   "hook": "Short press is a dot, long press a dash, a pause ends the letter, and the decoded text appears in a line in real time."
+  },
+  "uz": {
+   "title": "Klaviatura oʻrniga bitta tugma",
+   "hook": "Qisqa bosish — nuqta, uzun — tire, pauza — harf tugadi; Morze bilan terilgan matn qatorda real vaqtda paydo boʻladi."
+  }
+ },
+ {
+  "slug": "radial-throw-menu",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Круглое меню, которое выбирается броском",
+   "hook": "Правая кнопка раскрывает восемь секторов вокруг курсора, пункт выбирается направлением рывка мыши, а отпускание в центре отменяет всё."
+  },
+  "en": {
+   "title": "A pie menu you pick by flicking",
+   "hook": "Right-click opens eight sectors around the cursor, the item is chosen by the direction of the flick, and releasing in the centre cancels."
+  },
+  "uz": {
+   "title": "Silkitib tanlanadigan doira menyu",
+   "hook": "Oʻng tugma kursor atrofida sakkiz sektor ochadi, band sichqonchani silkitish yoʻnalishi bilan tanlanadi, markazda qoʻyib yuborilsa bekor boʻladi."
+  }
+ },
+ {
+  "slug": "keyboard-that-plays",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Клавиатура, которая играет твой текст",
+   "hook": "Каждая буква звучит своей нотой, скорость печати задаёт длительность, и любой набранный абзац можно переслушать целиком."
+  },
+  "en": {
+   "title": "A keyboard that plays what you type",
+   "hook": "Every letter sounds its own note, typing speed sets the note length, and any typed paragraph can be replayed as a melody."
+  },
+  "uz": {
+   "title": "Matningni chaladigan klaviatura",
+   "hook": "Har bir harf oʻz notasida jaranglaydi, yozish tezligi nota uzunligini beradi va terilgan xatboshini butunlay qayta eshitish mumkin."
+  }
+ },
+ {
+  "slug": "text-that-falls-down",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Поле ввода, из которого буквы падают",
+   "hook": "Набранные символы срываются со строки и сваливаются в кучу внизу экрана, где их можно расталкивать курсором."
+  },
+  "en": {
+   "title": "An input field the letters fall out of",
+   "hook": "Typed characters drop off the line and pile up at the bottom of the screen, where the cursor can shove them around."
+  },
+  "uz": {
+   "title": "Harflari toʻkiladigan kiritish maydoni",
+   "hook": "Terilgan belgilar qatordan uzilib ekran pastiga uyum boʻlib tushadi va kursor bilan ularni turtib tarqatish mumkin."
+  }
+ },
+ {
+  "slug": "hesitation-meter-field",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Поле, которое видит, как ты сомневался",
+   "hook": "Кнопка «реплей» проигрывает набор символ за символом вместе со всеми стираниями, а рядом растёт счётчик нерешительности."
+  },
+  "en": {
+   "title": "A field that sees you hesitate",
+   "hook": "A replay button plays the typing back keystroke by keystroke including every deletion, next to a rising hesitation score."
+  },
+  "uz": {
+   "title": "Ikkilanganingni koʻradigan maydon",
+   "hook": "«Qayta oʻynatish» tugmasi yozuvni har bir oʻchirish bilan birga belgima-belgi takrorlaydi, yonida ikkilanish hisobi oʻsib boradi."
+  }
+ },
+ {
+  "slug": "number-by-turning",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Число, которое вводится вращением",
+   "hook": "Круглая ручка крутится мышью, значение меняется по углу, а чем дальше курсор от центра — тем точнее шаг."
+  },
+  "en": {
+   "title": "A number you dial in by turning",
+   "hook": "A round knob spins with the mouse, the value follows the angle, and the further the cursor is from the centre the finer the step."
+  },
+  "uz": {
+   "title": "Burab kiritiladigan raqam",
+   "hook": "Dumaloq gʻildirak sichqoncha bilan aylanadi, qiymat burchakka ergashadi, kursor markazdan qancha uzoq boʻlsa, qadam shuncha nozik."
+  }
+ },
+ {
+  "slug": "tooltip-that-notices",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Подсказка, которая замечает растерянность",
+   "hook": "Если курсор несколько секунд бесцельно кружит, сам собой всплывает совет по ближайшему элементу — а при уверенных движениях он не появляется никогда."
+  },
+  "en": {
+   "title": "A tooltip that notices you are lost",
+   "hook": "If the cursor circles aimlessly for a few seconds a hint about the nearest element pops up by itself, and confident movement never triggers it."
+  },
+  "uz": {
+   "title": "Sarosimangni sezadigan maslahat",
+   "hook": "Kursor bir necha soniya maqsadsiz aylansa, eng yaqin element haqida maslahat oʻzi chiqadi, ishonchli harakatda esa hech qachon chiqmaydi."
+  }
+ },
+ {
+  "slug": "interface-that-wears-out",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Интерфейс, который снашивается",
+   "hook": "Часто нажимаемые кнопки затираются и блестят, забытые покрываются пылью, и по виду панели сразу понятно, чем ты пользуешься."
+  },
+  "en": {
+   "title": "An interface that wears out",
+   "hook": "Often-clicked buttons get polished and worn, forgotten ones gather dust, and one look at the panel shows what you actually use."
+  },
+  "uz": {
+   "title": "Eskiradigan interfeys",
+   "hook": "Tez-tez bosilgan tugmalar yedirilib yaltiraydi, unutilganlari chang bosadi va panelga qarab nimadan foydalanishing darrov koʻrinadi."
+  }
+ },
+ {
+  "slug": "two-hand-confirm",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Подтверждение, которое нельзя нажать одной рукой",
+   "hook": "Опасное действие срабатывает, только если две далёкие друг от друга точки удерживаются одновременно три секунды, иначе прогресс откатывается."
+  },
+  "en": {
+   "title": "A confirm you cannot press with one hand",
+   "hook": "The dangerous action fires only if two far-apart spots are held down together for three seconds, otherwise the progress rewinds."
+  },
+  "uz": {
+   "title": "Bir qoʻl bilan bosib boʻlmaydigan tasdiq",
+   "hook": "Xavfli amal bir-biridan uzoq ikki nuqta uch soniya birga ushlab turilgandagina ishlaydi, aks holda progress orqaga qaytadi."
+  }
+ },
+ {
+  "slug": "arcade-letter-wheel",
+  "bank": "build",
+  "domain": "interface",
+  "era": "modern",
+  "ru": {
+   "title": "Колесо букв вместо клавиатуры",
+   "hook": "Имя набирается прокруткой алфавита в трёх ячейках, как в аркадном автомате, и по подтверждению попадает в таблицу рекордов."
+  },
+  "en": {
+   "title": "A letter wheel instead of a keyboard",
+   "hook": "A name is entered by scrolling the alphabet in three slots like an arcade cabinet, and confirming drops it into a high-score table."
+  },
+  "uz": {
+   "title": "Klaviatura oʻrniga harflar gʻildiragi",
+   "hook": "Ism arkada avtomatidagidek uchta katakda alifboni aylantirib teriladi va tasdiqlangach rekordlar jadvaliga tushadi."
+  }
+ },
+ {
+  "slug": "useless-machine-with-moods",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Бесполезная машина, у которой портится характер",
+   "hook": "Включаешь тумблер — крышка открывается, рука выезжает и выключает его; после пятого раза рука начинает делать это по-другому: медленнее, резче, с паузой."
+  },
+  "en": {
+   "title": "A Useless Machine That Gets Moody",
+   "hook": "Flipping the switch makes a lid open and an arm slide out to flip it back; after the fifth try the arm changes its manner — slower, angrier, with a pause."
+  },
+  "uz": {
+   "title": "Feʼli buziladigan foydasiz mashina",
+   "hook": "Tugmani yoqsangiz, qopqoq ochilib, qoʻl chiqadi va uni oʻchiradi; beshinchi martadan keyin qoʻl boshqacha harakat qiladi — sekinroq, keskinroq, pauza bilan."
+  }
+ },
+ {
+  "slug": "impossible-password-field",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Поле пароля, которое придумывает новые правила по ходу",
+   "hook": "Каждое выполненное требование добавляет следующее, всё абсурднее, и форма реально принимает пароль, только когда выполнены все восемь одновременно."
+  },
+  "en": {
+   "title": "A Password Field That Invents New Rules As You Type",
+   "hook": "Every satisfied rule spawns a more absurd one, and the form actually accepts the password only when all eight hold at once."
+  },
+  "uz": {
+   "title": "Yozgan sari yangi qoida oʻylab topadigan parol maydoni",
+   "hook": "Har bajarilgan talab yanada bemaʼniroq keyingisini tugʻdiradi, forma esa faqat sakkiztasi bir vaqtda bajarilgandagina parolni qabul qiladi."
+  }
+ },
+ {
+  "slug": "honest-progress-bar",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Прогресс-бар, который вслух признаётся, что врёт",
+   "hook": "Полоса ползёт, откатывается назад и подписывает каждый рывок честным комментарием вроде «добавил 12%, чтобы ты не ушёл», и всё-таки доходит до конца."
+  },
+  "en": {
+   "title": "A Progress Bar That Admits It Is Lying",
+   "hook": "The bar creeps, rolls back, captions every jump with an honest note like \"added 12% so you would stay\", and still reaches the end."
+  },
+  "uz": {
+   "title": "Yolgʻon aytayotganini tan oladigan progress chizigʻi",
+   "hook": "Chiziq siljiydi, orqaga qaytadi va har sakrashini «ketib qolmasliging uchun 12% qoʻshdim» kabi halol izoh bilan imzolaydi, oxir-oqibat baribir yakuniga yetadi."
+  }
+ },
+ {
+  "slug": "quine-that-hates-itself",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Программа, которая печатает свой исходник и разносит его в комментариях",
+   "hook": "На экране появляется её собственный код строка за строкой, а рядом — придирки к каждой строке: «магическое число», «это вообще зачем»."
+  },
+  "en": {
+   "title": "A Program That Prints Its Own Source And Trashes It",
+   "hook": "It prints its own code line by line with a snide review beside each line — \"magic number\", \"why does this exist\"."
+  },
+  "uz": {
+   "title": "Oʻz kodini chop etib, uni tanqid qiladigan dastur",
+   "hook": "Ekranda uning oʻz kodi qatorma-qator chiqadi, yonida esa har qatorga eʼtiroz: «sehrli raqam», «bu umuman nega kerak»."
+  }
+ },
+ {
+  "slug": "settings-panel-at-war",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Панель настроек, где тумблеры воюют друг с другом",
+   "hook": "Двенадцать переключателей с правилами вроде «если включён этот — гасим соседний», и внизу живой счётчик: сколько ходов до состояния, которое уже не меняется."
+  },
+  "en": {
+   "title": "A Settings Panel Where The Toggles Fight Each Other",
+   "hook": "Twelve switches with rules like \"if this one is on, kill the neighbour\", plus a live counter of how many moves until the panel settles."
+  },
+  "uz": {
+   "title": "Tugmalari bir-biri bilan urishadigan sozlamalar paneli",
+   "hook": "«Bu yoqilsa — qoʻshnisi oʻchsin» kabi qoidali oʻn ikkita tugma va pastda jonli hisoblagich: barqaror holatgacha necha qadam qolgani."
+  }
+ },
+ {
+  "slug": "unsubscribe-labyrinth",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Отписка, до которой семь экранов",
+   "hook": "Кнопка «отписаться» работает по-настоящему, но путь к ней идёт через опрос, скидку, грустного котика и подтверждение подтверждения — и всё это реально проходится."
+  },
+  "en": {
+   "title": "An Unsubscribe Button Seven Screens Deep",
+   "hook": "The unsubscribe really works, but the path there runs through a survey, a discount, a sad cat and a confirmation of the confirmation — and it can actually be completed."
+  },
+  "uz": {
+   "title": "Yetti ekran naridagi «obunani bekor qilish»",
+   "hook": "«Obunani bekor qilish» tugmasi rostdan ishlaydi, lekin unga yoʻl soʻrovnoma, chegirma, gʻamgin mushuk va tasdiqning tasdigʻi orqali oʻtadi — va bu yoʻlni oxirigacha bosib oʻtish mumkin."
+  }
+ },
+ {
+  "slug": "editor-that-eats-your-words",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Редактор, который стирает написанное, если замолчать",
+   "hook": "Пока печатаешь — текст живёт; пауза дольше пяти секунд начинает съедать его с конца по букве, и есть счётчик выживших слов."
+  },
+  "en": {
+   "title": "An Editor That Eats Your Text When You Stop Typing",
+   "hook": "The text survives while you type; a pause longer than five seconds starts devouring it letter by letter from the end, with a counter of surviving words."
+  },
+  "uz": {
+   "title": "Yozishdan toʻxtasangiz matnni yeb qoʻyadigan muharrir",
+   "hook": "Yozayotganingizda matn yashaydi; besh soniyadan uzoq pauza uni oxiridan harfma-harf yeya boshlaydi, omon qolgan soʻzlar hisoblagichi bilan."
+  }
+ },
+ {
+  "slug": "file-manager-for-files-that-dont-exist",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Файловый менеджер для файлов, которых нет",
+   "hook": "Дерево папок, размеры, даты и содержимое генерируются на лету при каждом открытии — но навигация, поиск и «открыть файл» работают как настоящие."
+  },
+  "en": {
+   "title": "A File Manager For Files That Don't Exist",
+   "hook": "Folders, sizes, dates and contents are invented on the fly each time you open them, yet navigation, search and \"open file\" behave like the real thing."
+  },
+  "uz": {
+   "title": "Mavjud boʻlmagan fayllar uchun fayl menejeri",
+   "hook": "Papkalar, hajmlar, sanalar va mazmun har ochilganda joyida oʻylab topiladi, ammo navigatsiya, qidiruv va «faylni ochish» xuddi haqiqiydek ishlaydi."
+  }
+ },
+ {
+  "slug": "captcha-that-prefers-bots",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Капча, которая пропускает только нечеловека",
+   "hook": "Задание решается легко, но пускает дальше лишь того, кто ответил слишком быстро и слишком точно — а человеку вежливо предлагают попробовать ещё раз."
+  },
+  "en": {
+   "title": "A Captcha That Only Lets Non-Humans Through",
+   "hook": "The puzzle is easy, but it only admits whoever answered too fast and too precisely, politely asking anyone human to try again."
+  },
+  "uz": {
+   "title": "Faqat odam boʻlmaganni oʻtkazadigan kapcha",
+   "hook": "Topshiriq oson yechiladi, biroq juda tez va juda aniq javob berganni oʻtkazadi, odamga esa muloyimlik bilan yana urinishni taklif qiladi."
+  }
+ },
+ {
+  "slug": "eula-with-an-odometer",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Соглашение длиной в километр с одометром прокрутки",
+   "hook": "Пункты генерируются сами, счётчик показывает пройденные метры и оставшееся время, а кнопка «принимаю» включается только на последнем экране."
+  },
+  "en": {
+   "title": "A Kilometre-Long Agreement With A Scroll Odometer",
+   "hook": "The clauses generate themselves, an odometer shows metres scrolled and time remaining, and \"I accept\" unlocks only on the final screen."
+  },
+  "uz": {
+   "title": "Aylantirish odometri bilan bir kilometrlik kelishuv",
+   "hook": "Bandlar oʻz-oʻzidan yozilib boradi, hisoblagich bosib oʻtilgan metr va qolgan vaqtni koʻrsatadi, «roziman» tugmasi esa faqat oxirgi ekranda ochiladi."
+  }
+ },
+ {
+  "slug": "tamagotchi-that-hates-care",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Питомец, которому вредит забота",
+   "hook": "Кормишь, гладишь, лечишь — полоски падают; выживает он, только если закрыть вкладку и вернуться позже, и это видно по его виду."
+  },
+  "en": {
+   "title": "A Pet That Is Harmed By Care",
+   "hook": "Feeding, petting and healing drain its bars; it thrives only if you close the tab and come back later, and its appearance shows it."
+  },
+  "uz": {
+   "title": "Gʻamxoʻrlikdan zarar koʻradigan uy hayvoni",
+   "hook": "Boqasiz, silaysiz, davolaysiz — koʻrsatkichlari tushadi; u faqat varaqni yopib, keyinroq qaytsangiz yashnaydi va buni koʻrinishidan bilsa boʻladi."
+  }
+ },
+ {
+  "slug": "form-that-breeds-forms",
+  "bank": "build",
+  "domain": "weird",
+  "era": "modern",
+  "ru": {
+   "title": "Форма, которая требует справку о справке",
+   "hook": "Отправка любой формы порождает новую с ссылкой на предыдущую, сбоку растёт дерево дел, и где-то на шестом уровне выдаётся печатный документ с номерами всех предков."
+  },
+  "en": {
+   "title": "A Form That Demands A Certificate For The Certificate",
+   "hook": "Submitting any form spawns another referencing it, a case tree grows on the side, and around level six you get a printable document listing every ancestor number."
+  },
+  "uz": {
+   "title": "Maʼlumotnomaga maʼlumotnoma talab qiladigan forma",
+   "hook": "Har forma yuborilganda oldingisiga havola qiluvchi yangisi tugʻiladi, yon tomonda ish daraxti oʻsadi, oltinchi darajada esa barcha ajdodlar raqamli chop etsa boʻladigan hujjat beriladi."
+  }
+ }
+]

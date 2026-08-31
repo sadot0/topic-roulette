@@ -8,15 +8,19 @@ import type { Dict } from '@/i18n/config';
    на дорожке 1–60 — отдельная работа */
 const RESEARCH_PRESETS = [5, 10, 15, 30];
 const SPEECH_PRESETS = [1, 2, 3, 5];
+/* Полчаса — минимум, за который успеваешь что-то доделать;
+   час — верх комфортного сеанса без перерыва */
+const BUILD_PRESETS = [20, 30, 40, 60];
 
 export function SettingsPanel({
-  dict, research, speech, sound, onChange, onSound, onClose,
+  dict, research, speech, build, sound, onChange, onSound, onClose,
 }: {
   dict: Dict;
   research: number;
   speech: number;
+  build: number;
   sound: boolean;
-  onChange(p: { research?: number; speech?: number }): void;
+  onChange(p: { research?: number; speech?: number; build?: number }): void;
   onSound(v: boolean): void;
   onClose(): void;
 }) {
@@ -59,6 +63,22 @@ export function SettingsPanel({
               {SPEECH_PRESETS.map((v) => (
                 <button key={v} className={v === speech ? 'on' : ''}
                         onClick={() => onChange({ speech: v })}>
+                  {v}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="field-row">
+            <div className="lab"><span>{dict.buildLabel}</span><b>{build} {dict.min}</b></div>
+            <input
+              type="range" min={5} max={120} step={5} value={build}
+              onChange={(e) => onChange({ build: +e.target.value })}
+            />
+            <div className="chips">
+              {BUILD_PRESETS.map((v) => (
+                <button key={v} className={v === build ? 'on' : ''}
+                        onClick={() => onChange({ build: v })}>
                   {v}
                 </button>
               ))}

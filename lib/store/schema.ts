@@ -7,6 +7,10 @@ export interface PersistedV4 {
   mode: Bank;
   research: number;
   speech: number;
+  /** Минуты на задание в режиме кодинга. Своё поле, а не общее
+      с ресёрчем: там пятнадцать минут на чтение, здесь сорок
+      на работу, и общий слайдер пришлось бы каждый раз двигать */
+  build: number;
   frame: boolean;
   /* Выбранная категория для каждого банка. null — выпадает любая */
   pick: Partial<Record<Bank, string | null>>;
@@ -24,9 +28,10 @@ export const DEFAULTS: PersistedV4 = {
   mode: 'deep',
   research: 15,
   speech: 1,
+  build: 40,
   frame: false,
   pick: {},
-  seen: { quick: [], deep: [] },
+  seen: { quick: [], deep: [], build: [] },
   last: {},
   streak: { current: 0, best: 0, lastDay: '', days: [] },
 };
@@ -57,7 +62,11 @@ export function migrate(raw: string | null, legacy: string | null): PersistedV4 
         mode: o.mode as Bank,
         research: o.research as number,
         speech: o.speech as number,
-        seen: { quick: [], deep: Array.isArray(o.seen) ? (o.seen as string[]) : [] },
+        seen: {
+          quick: [],
+          deep: Array.isArray(o.seen) ? (o.seen as string[]) : [],
+          build: [],
+        },
         last: o.last ? { deep: o.last as string } : {},
       });
     } catch {}
@@ -73,14 +82,18 @@ export function normalize(p: Partial<PersistedV4>): PersistedV4 {
        иначе каждый новый язык молча сбрасывался бы в русский */
     lang: p.lang && isLang(p.lang) ? p.lang : DEFAULTS.lang,
     sound: p.sound !== false,
-    mode: p.mode === 'quick' ? 'quick' : 'deep',
+    mode: p.mode === 'quick' || p.mode === 'build' ? p.mode : 'deep',
     research: clampInt(p.research, 1, 60, DEFAULTS.research),
     speech: clampInt(p.speech, 1, 10, DEFAULTS.speech),
+    /* До двух часов: сорок минут — рабочий сеанс, но кто-то
+       захочет растянуть на полноценный подход */
+    build: clampInt(p.build, 5, 120, DEFAULTS.build),
     frame: p.frame === true,
     pick: p.pick ?? {},
     seen: {
       quick: Array.isArray(p.seen?.quick) ? p.seen!.quick : [],
       deep: Array.isArray(p.seen?.deep) ? p.seen!.deep : [],
+      build: Array.isArray(p.seen?.build) ? p.seen!.build : [],
     },
     last: p.last ?? {},
     streak: {

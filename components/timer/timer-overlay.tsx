@@ -25,7 +25,10 @@ export function TimerOverlay({
      куда можно вынести отсчёт */
   useEffect(() => {
     const clock = `${Math.floor(state.left / 60)}:${String(state.left % 60).padStart(2, '0')}`;
-    const phase = state.phase === 'research' ? dict.phaseResearch : dict.phaseSpeech;
+    const phase =
+      state.phase === 'research' ? dict.phaseResearch
+      : state.phase === 'build' ? dict.phaseBuild
+      : dict.phaseSpeech;
     document.title = state.finished ? `✓ ${dict.brand}` : `${clock} · ${phase}`;
     return () => { document.title = dict.brand; };
   }, [state.left, state.finished, state.phase, dict]);
@@ -48,7 +51,9 @@ export function TimerOverlay({
         >
           <div className="t-digits">{clock}</div>
           <div className="t-phase">
-            {state.phase === 'research' ? dict.phaseResearch : dict.phaseSpeech}
+            {state.phase === 'research' ? dict.phaseResearch
+              : state.phase === 'build' ? dict.phaseBuild
+              : dict.phaseSpeech}
           </div>
         </Ring>
 
@@ -64,9 +69,13 @@ export function TimerOverlay({
 
         <div className="t-status">
           {state.finished
-            ? state.phase === 'research' ? dict.researchDone : dict.timeUp
+            ? state.phase === 'research' ? dict.researchDone
+              : state.phase === 'build' ? dict.buildDone
+              : dict.timeUp
             : state.paused ? dict.statusPaused
-            : state.phase === 'research' ? dict.statusResearch : dict.statusSpeech}
+            : state.phase === 'research' ? dict.statusResearch
+              : state.phase === 'build' ? dict.statusBuild
+              : dict.statusSpeech}
         </div>
 
         <div className="t-actions">
@@ -81,6 +90,11 @@ export function TimerOverlay({
             <button className={`btn ${state.finished ? 'go' : ''}`} onClick={onToSpeech}>
               {state.finished ? dict.toSpeech : dict.skipToSpeech}
             </button>
+          )}
+          {/* У кодинга нет фазы «после»: закончил — бери следующее.
+              Речь идёт только за ресёрчем */}
+          {state.phase === 'build' && state.finished && (
+            <button className="btn go" onClick={onNextTopic}>{dict.nextTopic}</button>
           )}
           {state.phase === 'speech' && state.finished && (
             <button className="btn go" onClick={onNextTopic}>{dict.nextTopic}</button>

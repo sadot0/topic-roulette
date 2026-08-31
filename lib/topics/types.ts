@@ -8,11 +8,17 @@ export const RTL_LANGS: readonly Lang[] = ['ar'] as const;
 export function isRtl(l: Lang): boolean {
   return (RTL_LANGS as readonly string[]).includes(l);
 }
-export type Bank = 'quick' | 'deep';
+/* Третий банк — задания на кодинг. Отличается от первых двух
+   по существу: там тема РАЗГОВОРА, здесь вещь, которую надо
+   ПОСТРОИТЬ. «Обратный кентавр» не закодишь */
+export type Bank = 'quick' | 'deep' | 'build';
 
 export type DeepDomain =
   | 'mind' | 'economy' | 'society' | 'philosophy'
   | 'systems' | 'power' | 'tech' | 'culture';
+export type BuildDomain =
+  | 'visual' | 'game' | 'tool' | 'text'
+  | 'data' | 'simulate' | 'interface' | 'weird';
 export type QuickDomain =
   | 'objects' | 'routine' | 'city' | 'memory' | 'people' | 'digital'
   | 'food' | 'money' | 'work' | 'home' | 'road' | 'childhood'
@@ -43,7 +49,11 @@ interface Base {
 
 export type DeepTopic = Base & { bank: 'deep'; domain: DeepDomain; era: Era };
 export type QuickTopic = Base & { bank: 'quick'; domain: QuickDomain };
-export type Topic = DeepTopic | QuickTopic;
+/* У задания era есть — все они современные, но поле нужно,
+   чтобы подпись под заголовком выглядела одинаково во всех
+   трёх режимах */
+export type BuildTopic = Base & { bank: 'build'; domain: BuildDomain; era: Era };
+export type Topic = DeepTopic | QuickTopic | BuildTopic;
 
 /** То, что уезжает клиенту: один язык, ничего лишнего.
     Дискриминация по bank не даёт напечатать «классика»
