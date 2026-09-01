@@ -109,16 +109,57 @@
   color: var(--t-1);
 }
 
-/* Знак медленно поворачивается на наведении — намёк на то,
-   что это барабан, а не просто круг */
+/* Знак — это кнопка: у рулетки логотип и есть её механизм,
+   странно держать его мёртвой картинкой рядом с «крутить» */
+.brand-btn {
+  display: grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  margin: -0.32em 0;
+  border-radius: 50%;
+  color: var(--acc);
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease-out),
+              background-color var(--t-base) var(--ease-out);
+}
+.brand-btn:hover { background: var(--acc-quiet); }
+.brand-btn:active { transform: scale(.93); }
+.brand-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--focus-ring); }
+.brand-btn:disabled { cursor: progress; }
+
 .brand-mark {
   width: 0.86em;
   height: 0.86em;
   flex: 0 0 auto;
-  color: var(--acc);
+  /* Медленный доворот на наведении — намёк, что деталь живая */
   transition: transform 620ms var(--ease-soft);
 }
-.head:hover .brand-mark { transform: rotate(72deg); }
+.brand-btn:hover .brand-mark { transform: rotate(72deg); }
+
+/* Пока идёт перебор, знак крутится вместе с ним: одна анимация
+   на два элемента экрана связывает их в одно устройство.
+   Оборот за 1.1 с — к концу прокрутки глаз уже следит
+   за словом, а не за знаком */
+.stage.is-spinning .brand-mark {
+  animation: markSpin 1.1s linear infinite;
+  transition: none;
+}
+@keyframes markSpin {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
+}
+
+/* На посадке знак довинчивается с отдачей — тот же жест,
+   что у настоящего барабана, встающего на упор */
+.stage:not(.is-spinning) .brand-mark { animation: markSettle 720ms var(--ease-soft); }
+@keyframes markSettle {
+  0%   { transform: rotate(0deg) }
+  62%  { transform: rotate(28deg) }
+  100% { transform: rotate(18deg) }
+}
+
+.brand-name { display: inline-block; }
 
 /* Пилюля автора. Три слоя вместо плоской заливки:
    заливка, волосяная рамка градиентом и пятно света, идущее
@@ -743,7 +784,10 @@
   .stage::before, .stage::after { animation: none; }
   .stage.is-spinning .btn.go:disabled::after { animation: none; }
   .topic.is-landed, .reel-meta, .hook,
-  .stage::before, .btn.go, .is-spinning .reel-status { animation: none; }
+  .btn.go, .is-spinning .reel-status { animation: none; }
+  .stage.is-spinning .brand-mark,
+  .stage:not(.is-spinning) .brand-mark { animation: none; }
+  .brand-btn:hover .brand-mark { transform: none; }
   .topic.is-rolling { filter: none; }
 }
 /* ── Выбор категории ────────────────────────────────────── */

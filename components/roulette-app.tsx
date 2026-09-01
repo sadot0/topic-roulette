@@ -229,9 +229,20 @@ export function RouletteApp({ lang, dict, banks, initialTopic, initialMode }: Ro
         }`}
       >
         <header className="head">
+          {/* Знак кликабельный и сам крутит барабан. У рулетки
+              логотип — это её механизм, странно было бы держать
+              его мёртвой картинкой рядом с кнопкой «крутить» */}
           <h1 className="brand">
-            <Mark className="brand-mark" />
-            {dict.brand}
+            <button
+              className="brand-btn"
+              onClick={spinOrSkip}
+              disabled={reel.spinning}
+              aria-label={dict.spin}
+              title={dict.spin}
+            >
+              <Mark className="brand-mark" />
+            </button>
+            <span className="brand-name">{dict.brand}</span>
           </h1>
           <a
             className="author"

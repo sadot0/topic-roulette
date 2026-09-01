@@ -120,6 +120,7 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
     const t0 = performance.now();
     let nextAt = 0;
     let last = -1;
+    const usedInSpin = new Set<number>();
 
     const land = () => {
       stop();
@@ -136,12 +137,27 @@ export function useShuffle(o: UseShuffleOptions): UseShuffleResult {
       if (t >= 1) return land();
 
       if (now >= nextAt) {
-        /* Целевую тему в переборе не показываем: иначе финал
-           выглядит подделкой — «оно уже было и вернулось» */
-        let pick = last;
-        for (let g = 0; g < 12 && (pick === last || pick === targetIdx); g++) {
-          pick = Math.floor(Math.random() * topics.length);
+        /* Ни одного повтора за прокрутку. Раньше защита ловила
+           только два одинаковых подряд, и на банке из 78 позиций
+           за 44 подмены одно и то же слово мелькало дважды —
+           это читается как сбой, а не как случайность.
+           Целевую тему тоже не показываем: иначе финал выглядит
+           подделкой, «оно уже было и вернулось» */
+        let pick = -1;
+        for (let g = 0; g < 24; g++) {
+          const c = Math.floor(Math.random() * topics.length);
+          if (c !== targetIdx && !usedInSpin.has(c)) { pick = c; break; }
         }
+        /* Банк кончился — начинаем круг заново, но с текущего
+           места, чтобы не повторить только что показанное */
+        if (pick < 0) {
+          usedInSpin.clear();
+          if (last >= 0) usedInSpin.add(last);
+          do {
+            pick = Math.floor(Math.random() * topics.length);
+          } while (topics.length > 2 && (pick === targetIdx || pick === last));
+        }
+        usedInSpin.add(pick);
         last = pick;
         setShown(topics[pick]);
 
